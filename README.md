@@ -1,1 +1,1 @@
-# projeto-integrador-redatorpro
+# projeto-integrador-pretty-nails
