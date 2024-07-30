@@ -1,0 +1,166 @@
+/*Termos gerais*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+  }
+  
+  body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  span{
+    color: #bf5947;
+  }
+  
+  main{
+    font-size: 20px;
+  }
+  
+  button{
+    color: #bf5947;
+    background: transparent;
+    border: 2px solid #bf5947;
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+  }
+  
+  button:hover{
+    background: #bf5947;
+    transition: 0.5s;
+    color: #fff;
+    opacity: 70%;
+  }
+  
+  /*Cabeçalho*/
+    header{
+      display:flex;
+      flex-direction: row;
+    }
+    
+    nav{
+     position: fixed;
+     display: flex;
+     flex-direction: row;
+     gap: 5rem;
+     width: 100%;
+     padding-top: 1rem;
+     background-color: transparent;
+     backdrop-filter: blur(10px);
+     justify-content: center;
+  }
+
+  nav h1{
+    font-size:35px;
+  }
+
+  nav a{
+    color: #bf5947;
+    font-size: 25px;
+  }
+  
+  nav a:hover{
+    text-decoration:underline solid #bf5947;
+  }
+  
+  /*Página 1*/
+  .img1{
+    max-width: 100%;
+  }
+  
+  .pag1{
+    background-color: #f8d7cd;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    font-size: 25px;
+    height: 620px;
+  }
+  
+  .pag1 button{
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+  }
+  
+  /*Página 2*/
+  .img2{
+
+  .pag2{
+    display: flex;
+    align-items: center;
+    height: 620px;
+    border: 1px solid black;
+  }
+}
+  
+  /*responsividade*/
+  @media (max-width: 900px){
+    /*termos gerais*/
+    nav{
+      max-width: 85%;
+      padding-top: 1rem;
+    }
+    
+    nav a{
+      font-size: 15px;
+    }
+   
+   .topo{
+    margin-top: 730px;
+    margin-left: 280px;
+    position: fixed;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+   }
+   
+   .topo:hover{
+     width: 60px;
+     height: 60px;
+   }
+   
+   button{
+     font-size: 15px;
+     width: 100px;
+     height: 30px;
+  }
+  
+  .pag1 button{
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+  }
+  
+    body .pag1, .pag2{
+      width: 100%;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      margin-top: -50px;
+      margin-bottom: -18px;
+    }
+    
+    .pag1{
+      height:600px;
+    }
+    
+    .pag2{
+      height: 900px;
+    }
+
+    footer{
+      font-size: 20px;
+    }
+  }
