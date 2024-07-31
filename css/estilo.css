@@ -45,6 +45,7 @@
     header{
       display:flex;
       flex-direction: row;
+
     }
     
     nav{
@@ -57,6 +58,7 @@
      background-color: transparent;
      backdrop-filter: blur(10px);
      justify-content: center;
+     align-items: center;
   }
 
   nav h1{
@@ -73,10 +75,6 @@
   }
   
   /*Página 1*/
-  .img1{
-    max-width: 100%;
-  }
-  
   .pag1{
     background-color: #f8d7cd;
     display: flex;
@@ -94,73 +92,23 @@
   }
   
   /*Página 2*/
-  .img2{
-
   .pag2{
     display: flex;
-    align-items: center;
-    height: 620px;
+    flex-direction: column;
+    height: 930px;
     border: 1px solid black;
-  }
-}
-  
-  /*responsividade*/
-  @media (max-width: 900px){
-    /*termos gerais*/
-    nav{
-      max-width: 85%;
-      padding-top: 1rem;
-    }
-    
-    nav a{
-      font-size: 15px;
-    }
-   
-   .topo{
-    margin-top: 730px;
-    margin-left: 280px;
-    position: fixed;
-    font-size: 20px;
-    width: 50px;
-    height: 50px;
-    border: 2px solid black;
-   }
-   
-   .topo:hover{
-     width: 60px;
-     height: 60px;
-   }
-   
-   button{
-     font-size: 15px;
-     width: 100px;
-     height: 30px;
-  }
-  
-  .pag1 button{
-    font-size: 15px;
-    width: 100px;
-    height: 40px;
-  }
-  
-    body .pag1, .pag2{
-      width: 100%;
-      font-size: 20px;
-      display: flex;
-      flex-direction: column;
-      margin-top: -50px;
-      margin-bottom: -18px;
-    }
-    
-    .pag1{
-      height:600px;
-    }
-    
-    .pag2{
-      height: 900px;
-    }
 
-    footer{
-      font-size: 20px;
-    }
   }
+
+  .pag2 div{
+    margin: 40px;
+    margin-top: 60px;
+  }
+
+  /*coisas para acrescentar depois:
+  . Colocar a imagem de fundo "fundo1" na pagina 1 (excluir o desenho da manicure).
+  . Colocar imagens condizentes com os topicos da apgina 2.
+  . Pensar na possibilidade de uma terceira página.
+  . Fazer terceira página caso encontre algo bom para colocar.
+  . Fazer tela de cadastro e login.
+  . Linkar a landing page com com tela de login.*/ 
