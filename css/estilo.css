@@ -98,14 +98,29 @@
     flex-direction: column;
     height: 930px;
     border: 1px solid black;
+    span{
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+    }
   }
 
   .pag2 div{
     margin: 40px;
-    margin-top: 60px;
+    margin-top: 40px;
+  }
+  .tex1 div{
+    border: 1px solid crimson;
+    height: 310px;
+
   }
 
+
+  .pag2 h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #bc6d5d;
+  }
+
+  /*Página de login*/
   .pn{
     align-items: center;
     justify-content: center;
