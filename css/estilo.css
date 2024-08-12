@@ -193,7 +193,7 @@
   
   .container input{
     background-color: #fff;
-    border: none;
+    border: 1px solid gray;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
