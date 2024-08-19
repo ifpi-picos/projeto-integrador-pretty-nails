@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 /*Termos gerais*/
 *{
     margin: 0;
@@ -124,17 +125,8 @@
   }
 
   /*Página de login*/
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-/* Termos gerais */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-input {
+body,input {
   font-family: "Poppins", sans-serif;
 }
 
@@ -168,7 +160,7 @@ input {
 }
 
 form {
-  background-color: #fff; /* Adicionado para garantir que o fundo seja branco */
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,7 +191,7 @@ form.sign-in-form {
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #fce4ec; /* Rosa claro */
+  background-color: #f5dcd7;
   margin: 10px 0;
   height: 55px;
   border-radius: 55px;
@@ -212,7 +204,7 @@ form.sign-in-form {
 .input-field i {
   text-align: center;
   line-height: 55px;
-  color: #f48fb1; /* Rosa fraco */
+  color: #d87b6b;
   transition: 0.5s;
   font-size: 1.1rem;
 }
@@ -228,7 +220,7 @@ form.sign-in-form {
 }
 
 .input-field input::placeholder {
-  color: #f48fb1; /* Rosa fraco */
+  color: #d87b6b; 
   font-weight: 500;
 }
 
@@ -236,7 +228,7 @@ form.sign-in-form {
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
-  color: #f48fb1; /* Rosa fraco */
+  color: #d87b6b;
 }
 
 /* Ícones de mídia social */
@@ -254,23 +246,23 @@ form.sign-in-form {
   justify-content: center;
   align-items: center;
   margin: 0 0.45rem;
-  color: #f48fb1; /* Rosa fraco */
+  color: #d87b6b;
   border-radius: 50%;
-  border: 1px solid #f48fb1; /* Rosa fraco */
+  border: 1px solid #d87b6b;
   text-decoration: none;
   font-size: 1.1rem;
   transition: 0.3s;
 }
 
 .social-icon:hover {
-  color: #f06292; /* Tom de rosa mais forte */
-  border-color: #f06292; /* Tom de rosa mais forte */
+  color: #d05f4b;
+  border-color: #d05f4b;
 }
 
 /* Botões */
 .btn {
   width: 150px;
-  background-color: #f48fb1; /* Rosa fraco */
+  background-color: #d87b6b; 
   border: none;
   outline: none;
   height: 49px;
@@ -284,7 +276,7 @@ form.sign-in-form {
 }
 
 .btn:hover {
-  background-color: #f06292; /* Tom de rosa mais forte */
+  background-color: #d05f4b;
 }
 
 /* Contêiner dos painéis */
@@ -306,7 +298,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #f48fb1, #fce4ec); /* Gradiente de rosa claro */
+  background-image: linear-gradient(-45deg, #d05f4b, #f5dcd7); /* Gradiente de rosa claro */
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -541,9 +533,6 @@ form.sign-in-form {
 
   
   /*coisas para acrescentar depois:
-  . Colocar a imagem de fundo "fundo1" na pagina 1 (excluir o desenho da manicure).
   . Colocar imagens condizentes com os topicos da apgina 2.
   . Pensar na possibilidade de uma terceira página.
   . Fazer terceira página caso encontre algo bom para colocar.
-  . Fazer tela de cadastro e login.
-  . Linkar a landing page com com tela de login.*/ 
