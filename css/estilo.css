@@ -100,22 +100,71 @@
   .pag2{
     display: flex;
     flex-direction: column;
-    height: 930px;
-    border: 1px solid black;
+    height: 990px;
     span{
       font-family: Verdana, Geneva, Tahoma, sans-serif;
 
     }
   }
 
-  .pag2 div{
+  .pag2{
     margin: 40px;
-    margin-top: 40px;
   }
-  .tex1 div{
-    border: 1px solid crimson;
-    height: 310px;
 
+  .topico1,.topico2,.topico3{
+    height: 310px;
+    margin-bottom: 20px;
+  }
+
+  .topico1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .texto1{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imagem1 img{
+    margin-top: 0;
+    max-height: 100%;
+    max-width: auto;
+  }
+
+  .topico2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .texto2{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imagem2 img{
+    margin-top: 0;
+    max-height: 100%;
+    max-width: auto;
+  }
+
+  .topico3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .texto3{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imagem3 img{
+    margin-top: 0;
+    max-height: 100%;
+    max-width: auto;
   }
 
 
@@ -533,6 +582,5 @@ form.sign-in-form {
 
   
   /*coisas para acrescentar depois:
-  . Colocar imagens condizentes com os topicos da apgina 2.
   . Pensar na possibilidade de uma terceira página.
   . Fazer terceira página caso encontre algo bom para colocar.
