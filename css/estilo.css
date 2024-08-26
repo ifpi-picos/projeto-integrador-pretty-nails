@@ -554,6 +554,53 @@ form.sign-in-form {
   }
 }
 
+footer{
+  background-color:#f8d7cd
+}
+.minha{
+  display: flex;
+  
+}
+.minha ul{
+  width: 25%;
+}
+.minha h3{
+  margin-top: 20px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+  font-weight: 800;
+  font-size: large;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #36140e;
+}
+.redes-sociais{
+  margin-left: 16px;
+  color: #36140e;
+  margin-bottom:90px;
+  font-size: x-large;
+
+  
+
+}
+.minha ul > p{
+  margin-bottom: 20px;
+}
+.minha li{
+  margin: 10px 0;
+}
+.minha a{
+  color: #36140e;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  margin-left: 16px;
+}
+.minha p{
+  color: #36140e;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  margin-left: 16px;
+
+}
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
@@ -579,8 +626,3 @@ form.sign-in-form {
     left: 50%;
   }
 }
-
-  
-  /*coisas para acrescentar depois:
-  . Pensar na possibilidade de uma terceira página.
-  . Fazer terceira página caso encontre algo bom para colocar.
