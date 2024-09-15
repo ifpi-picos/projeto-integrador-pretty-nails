@@ -1,0 +1,180 @@
+/* Importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+/* Termos gerais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+span {
+  color: #bf5947;
+}
+
+main {
+  font-size: 20px;
+}
+
+button {
+  color: #bf5947;
+  background: transparent;
+  border: 2px solid #bf5947;
+  padding: 5px;
+  border-radius: 18px;
+  font-size: 18px;
+  width: 150px;
+  height: 40px;
+}
+
+button:hover {
+  background: #bf5947;
+  color: #fff;
+  opacity: 70%;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* Cabeçalho */
+header {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: smaller;
+}
+
+nav {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  width: 100%;
+  padding-top: 1rem;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  color: #bf5947;
+  font-size: 18px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Página 1 */
+.pag1 {
+  background-color: #f8d7cd;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.pag1 button {
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 18px;
+}
+
+/* Página 2 */
+.pag2 {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+}
+
+.topico1, .topico2, .topico3 {
+  height: 310px;
+  margin-bottom: 20px;
+}
+
+.topico1, .topico2, .topico3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.texto1, .texto2, .texto3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.imagem1 img, .imagem2 img, .imagem3 img {
+  margin-top: 0;
+  max-height: 100%;
+  max-width: auto;
+}
+
+.pag2 h3 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #bc6d5d;
+}
+
+/* Rodapé */
+footer {
+  background-color: #f8d7cd;
+}
+
+.minha {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.minha ul {
+  width: 25%;
+}
+
+.minha h3 {
+  margin-top: 20px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+  font-weight: 800;
+  font-size: large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #36140e;
+}
+
+.redes-sociais {
+  margin-left: 16px;
+  color: #36140e;
+  margin-bottom: 90px;
+  font-size: x-large;
+}
+
+.minha ul > p {
+  margin-bottom: 20px;
+}
+
+.minha li {
+  margin: 10px 0;
+}
+
+.minha a {
+  color: #36140e;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  margin-left: 16px;
+}
+
+.minha p {
+  color: #36140e;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  margin-left: 16px;
+}
