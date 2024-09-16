@@ -99,7 +99,9 @@ nav a:hover {
   margin: 40px;
 }
 
+
 .topico1, .topico2, .topico3 {
+  margin-top: 70px;
   height: 310px;
   margin-bottom: 20px;
 }
@@ -129,52 +131,165 @@ nav a:hover {
 /* Rodapé */
 footer {
   background-color: #f8d7cd;
+  width: 100%; /* Ocupa toda a largura da página */
+  padding: 30px 0;
+  box-sizing: border-box;
 }
-
-.minha {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.minha ul {
-  width: 25%;
-}
-
-.minha h3 {
+.pf{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: left; /* Alinha o texto à esquerda */
+  padding-right: 150px; /* Espaço da borda direita */
+  padding-left: 100px;
+  margin-bottom: 30px; /* Espaço abaixo da seção de perguntas frequentes */
   margin-top: 20px;
+}
+
+.perguntas {
+  text-align: left; /* Alinha o texto à esquerda */
+  padding-right: 150px; /* Espaço da borda direita */
+  padding-left: 500px;
+  margin-bottom: 100px; /* Espaço abaixo da seção de perguntas frequentes */
+  
+}
+
+.perguntas h1 {
+  font-size: 24px;
+  color: #36140e;
+  margin-bottom: 20px;
+}
+
+.perguntas {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #36140e;
+  font-size: small;
+}
+
+.perguntas hr {
+  border: 0;
+  height: 1px; /* Ajusta a altura da linha para visualização mais fina */
+  background-color: #36140e; /* Cor da linha */
+  margin: 10px 0; /* Espaçamento em torno da linha */
+}
+
+.perguntas h3 {
+  margin: 30px;
+  padding: 10px 0;
+  font-size: 18px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1400px; /* Define a largura máxima para centralizar */
+  margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+  padding: 0 20px; /* Adiciona um pequeno espaçamento interno nas laterais */
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+.footer-col {
+  flex: 1; /* Permite que cada coluna ocupe uma quantidade igual de espaço */
+  min-width: 250px; /* Define uma largura mínima para cada coluna */
+  margin: 10px; /* Adiciona margem ao redor das colunas */
+}
+
+.footer-col h3 {
+  margin-top: 0;
   margin-bottom: 16px;
-  margin-left: 16px;
   font-weight: 800;
   font-size: large;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #36140e;
+  text-align: center; /* Centraliza o título */
 }
 
-.redes-sociais {
-  margin-left: 16px;
+.footer-col p, .footer-col ul {
   color: #36140e;
-  margin-bottom: 90px;
-  font-size: x-large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  text-align: center; /* Centraliza o texto do parágrafo e lista */
 }
 
-.minha ul > p {
-  margin-bottom: 20px;
+.footer-col ul {
+  list-style-type: none; /* Remove os marcadores da lista */
+  padding: 0; /* Remove o padding */
 }
 
-.minha li {
+.footer-col ul li {
   margin: 10px 0;
 }
 
-.minha a {
+.footer-col a {
   color: #36140e;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: small;
-  margin-left: 16px;
 }
 
-.minha p {
-  color: #36140e;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: small;
-  margin-left: 16px;
+.footer-col a:hover {
+  text-decoration: underline;
 }
+
+.logo-nome {
+  display: flex;
+  align-items: center; /* Alinha verticalmente a logo e o nome */
+  justify-content: flex-start; /* Alinha à esquerda */
+  flex: 1;
+}
+
+.img-logo img {
+  border-radius: 50%; /* Faz a logo ficar redonda */
+  width: 70px; /* Define o tamanho da logo */
+  height: 70px; /* Define o tamanho da logo */
+  margin-right: 15px; /* Espaço entre a logo e o nome */
+  border: 1px solid #000000;
+}
+
+.nome-redes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha o texto e ícones à esquerda */
+}
+
+.nome-redes h3 {
+  margin: 0;
+  font-size: 24px; /* Ajusta o tamanho da fonte do nome */
+}
+
+.redes-sociais {
+  margin-top: 10px;
+}
+
+.redes-sociais a {
+  margin-right: 10px;
+  color: #36140e;
+  font-size: x-large;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Empilha as colunas verticalmente */
+    padding: 0 10px;
+  }
+
+  .footer-col {
+    width: 100%; /* Em telas pequenas, ocupa toda a largura */
+    margin: 10px 0;
+  }
+
+  .perguntas {
+    max-width: 100%;
+    margin: 10px 0;
+    padding-right: 0;
+  }
+}
+/* Compensar a altura do cabeçalho fixo ao rolar para as seções */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-padding-top: 80px; /* Ajuste este valor para a altura do seu cabeçalho */
+}
+
+
+
+

@@ -1,0 +1,159 @@
+/* Reseta o estilo padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos do header */
+header {
+    display: flex;
+    justify-content: space-between; /* Espaçamento entre os elementos principais */
+    align-items: center; /* Alinhamento vertical */
+    padding: 30px 40px;
+    background-color: #ffbfdf;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+/* Estilo do botão de menu */
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 30px; /* Tamanho do ícone do menu */
+    cursor: pointer;
+    color: #333;
+}
+
+/* Estilo do título centralizado */
+.titulo1 {
+    font-size: 50px;
+    color: #ff2a95; /* Rosa fraco */
+    margin: 0;
+    text-align: center;
+    flex-grow: 1; /* O título cresce para centralizar */
+    font-family: "Arrius W00 Regular";
+}
+
+.topinfos{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+
+.topinfos .titulo2 {
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffbfdf;
+    border-radius: 25px;
+    background-color: #ffbfdf;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Estilo do container de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #333;
+}
+
+.search-container input {
+    display: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+/* Quando a classe hidden é removida, o input aparece */
+.search-container input.show {
+    display: block;
+}
+
+/* Estilos para o menu dropdown */
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 114px;
+    left: 1px;
+    background-color: #ff2a95;
+    width: 180px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}   
+
+.menu-dropdown img {
+    border-radius: 100%;
+    width: 100px; /* Defina a largura desejada */
+    height: auto; /* Mantém a proporção da altura */
+    margin: 10px auto; /* Centraliza a imagem dentro do menu */
+    display: block; /* Faz a imagem ser um bloco para centralizar */
+}
+.menu-dropdown ul 
+    margin-top: 20px;
+    list-style: none;
+    padding: 10px;
+}
+
+.lista{
+    margin-top: 30px;
+}
+
+.menu-dropdown ul li {
+    
+    padding: 10px 5px;
+    border-bottom: 1px solid #ffbfdf;
+    cursor: pointer;
+    text-align: center;
+}
+
+.menu-dropdown ul li:hover {
+    background-color: #ffbfdf;
+}
+
+.menu-dropdown ul li:last-child {
+    border-bottom: none;
+}
+
+/* Exibe o menu dropdown quando a classe show é aplicada */
+.menu-dropdown.show {
+    display: block;
+}
+
+/* Outros ajustes */
+.hidden {
+    display: none;
+}
