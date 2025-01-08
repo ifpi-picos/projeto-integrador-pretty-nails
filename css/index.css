@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
+:root{
+  --branco:#fff;
+  --preto:#000;
+  --preto-tom2:#2a2a2a;
+  --tom1:#d05f4b;
+  --tom2:#d87b6b;
+  --tom3:#e0978a;
+  --tom4:#e8b2a9;
+  --tom5:#ecc0b8;
+  --tom6:#f1cec8;
+  --tom7:#f5dcd7;
+}
+
 /* Termos gerais */
 * {
   margin: 0;
@@ -54,21 +67,21 @@ header {
 }
 
 nav {
-  position: fixed;
+  position: fixed; 
   display: flex;
   flex-direction: row;
-  gap: 5rem;
+  gap: 8rem;
   width: 100%;
-  padding-top: 1rem;
-  background-color: transparent;
-  backdrop-filter: blur(10px);
-  justify-content: center;
-  align-items: center;
-  z-index:1;
+  height: 5rem; 
+  background-color: var(--tom1);
+  justify-content: center; 
+  align-items: center; 
+  z-index: 1;
+  padding: 0;
 }
 
 nav a {
-  color: #bf5947;
+  color: var(--branco);
   font-size: 18px;
 }
 
@@ -76,25 +89,70 @@ nav a:hover {
   text-decoration: underline;
 }
 
+nav button{
+  color: var(--branco);
+  background: transparent;
+  border: 2px solid var(--branco);
+  padding: 5px;
+  border-radius: 18px;
+  font-size: 18px;
+  width: 150px;
+  height: 40px;
+}
+
+nav button:hover{
+  background: var(--branco);
+  color: var(--preto);
+  opacity: 70%;
+  transition: 0.5s, color 0.5s;
+}
+
 /* Página 1 */
 .pag1 {
-  background-image: linear-gradient(#fabcb0,#f5dcd7);
-  height: 100vh;
+  height: 100vh; 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0; 
+  padding: 0;
+  overflow: hidden; 
 }
 
-.anipag1{
+.anipag1 {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-.pag1 button {
-  font-size: 20px;
-  width: 200px;
-  height: 50px;
-  border-radius: 18px;
+.container-de-slides {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
+
+.slides {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background-color: #f4f4f4;
+  border-radius: 50px;
+}
+/*slide1*/
+.slide1{
+  font-size: 25px;
+} 
 
 /* Página 2 */
 .pag2 {
