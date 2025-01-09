@@ -22,6 +22,7 @@
                 <div class="page-content">
                     <div class="container">
 
+                        <!--fazer login-->
                         <div class="form-box login">
                             <form action="">
                                 <h1>Login</h1>
@@ -36,7 +37,9 @@
                                 <div class="esqueci-a-senha">
                                     <a href="#">Esqueceu a sua senha?</a>
                                 </div>
-                                <a href="menu_principal.html"><button type="submit" class="btn">Login</button></a>
+                                <a href="menu_principal.html">
+                                    <button type="submit" class="btn">Login</button>
+                                </a>
                                 <p>Ou faça login com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
                                     <a href="#"><i class="mdi mdi-google"></i></a>
@@ -45,22 +48,25 @@
                             </form>
                         </div>
 
+                        <!--cadastrar-->
                         <div class="form-box cadastro">
                             <form action="">
                                 <h1>Cadastro</h1>
                                 <div class="input-box">
-                                    <input type="text" placeholder="Nome de usuário" required>
+                                    <input id="nome" type="text" placeholder="Nome de usuário" required>
                                     <i class="mdi mdi-account"></i>
                                 </div>
                                 <div class="input-box">
-                                    <input type="email" placeholder="Email" required>
+                                    <input id="email" type="email" placeholder="Email" required>
                                     <i class="mdi mdi-email"></i>
                                 </div>
                                 <div class="input-box">
-                                    <input type="password" placeholder="Senha" required>
+                                    <input id="senha" type="password" placeholder="Senha" required>
                                     <i class="mdi mdi-lock"></i>
                                 </div>
-                                <a href="menu_principal.html"><button type="submit" class="btn">Cadastre-se</button></a>
+                                <a href="menu_principal.html">
+                                    <button onclick="adicionarUsuario()" type="submit" class="btn">Cadastre-se</button>
+                                </a>
                                 <p>Ou Cadastre-se com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
                                     <a href="#"><i class="mdi mdi-google"></i></a>
@@ -87,6 +93,7 @@
         </div>
     </div>
     <script src="js/script.js"></script>
+    <script src="js/users.js"></script>
 </body>
 
 </html>
