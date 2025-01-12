@@ -9,7 +9,7 @@ async function adicionarUsuario() {
       password: campoSenha.value
     }
   
-    const resposta = await fetch('https://back-end-6der.onrender.com', {
+    const resposta = await fetch('https://back-end-6der.onrender.com/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
