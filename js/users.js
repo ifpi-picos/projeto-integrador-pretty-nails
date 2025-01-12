@@ -26,4 +26,6 @@ async function adicionarUsuario() {
     } else {
       console.log('Erro ao realizar cadastro!!')
     }
+
+    module.exports = { usuario };
 }
