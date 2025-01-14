@@ -14,6 +14,7 @@
   --tom7:#f5dcd7;
 }
 
+
 /* Termos gerais */
 * {
   margin: 0;
@@ -101,8 +102,9 @@ nav button{
 }
 
 nav button:hover{
-  background: var(--branco);
   color: var(--preto);
+  background-color: var(--branco);
+  border-color: var(--preto);
   opacity: 70%;
   transition: 0.5s, color 0.5s;
 }
@@ -189,7 +191,7 @@ nav button:hover{
 
 /*Página 3 */
 .pag3 {
-  background-color: #f8d7cd;
+  background-color: var(--tom2);
   width: 100%;
   padding: 30px 0;
   box-sizing: border-box;
