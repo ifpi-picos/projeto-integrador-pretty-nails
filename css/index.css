@@ -158,7 +158,7 @@ nav {
 @media screen and (max-width: 768px) {
   .slide {
     min-width: 100%; 
-    height: 50vh;
+    height: 25vh;
   }
 }
 
