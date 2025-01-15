@@ -30,7 +30,7 @@ async function loginUsuario() {
       // Salva os dados do usuário no localStorage e redireciona
       localStorage.setItem('name', usuarioValido.name);
       localStorage.setItem('email', usuarioValido.email);
-      window.location.href = '/principal.html';
+      window.location.href = 'https://nailan-nobre.github.io/pretty-nails-mobile-prototipo/www/';
     } else {
       console.log('Email ou senha inválidos!');
       alert('Email ou senha inválidos!');

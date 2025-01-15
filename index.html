@@ -11,10 +11,16 @@
     <!--Cabeçalho-->
     <header class="Cabecalho">
         <nav>
-            <a href="#inicio"><strong>Início</strong></a>
-            <a href="#sobre"><strong>Sobre</strong></a>
-            <a href="#Suporte"><strong>Suporte</strong></a>
-            <a href="login.html"><button><strong>Cadastre-se</strong></button></a>
+            <div class="logo">Pretty Nails</div>
+            <div class="menu-hamburguer" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio"><strong>Início</strong></a></li>
+                <li><a href="#sobre"><strong>Sobre</strong></a></li>
+                <li><a href="#Suporte"><strong>Suporte</strong></a></li>
+                <li><a href="login.html"><button><strong>Cadastre-se</strong></button></a></li>
+            </ul>
         </nav>
     </header>
 
@@ -24,87 +30,80 @@
             <div class="anipag1">
                 <div class="container-de-slides">
                     <div class="slides">
-                        <div class="slide active">
-                            <div class="slide1">
-                                        <h3>A Focus in Beauty vos apresenta:</h3>
-                                        <h1><span>Pretty Nails!</span></h1>
-                                        <p>A demora no agendamento acabou!<br> Cadastre-se e aproveite sua experiência.</p>
-                                        <!--Alguma imagem de fundo só pra não ficar vazio.
-                                        A imagem tem que estar mas escura e as letras tem que estar bem claras.
-                                        Claro, a gente pode só colocar uma imagem feita no canva passando no fundo -->
-                            </div>
-                        </div>
-                        <div class="slide">
-                            <h1>Slide 2</h1>
-                        </div>
-                        <div class="slide">
-                            <h1>Slide 3</h1>
-                        </div>
-                        <div class="slide">
-                            <h1>Slide 4</h1>
-                        </div>
+                      <div class="slide active">
+                        <h1>Slide 1</h1>
+                      </div>
+                      <div class="slide">
+                        <h1>Slide 2</h1>
+                      </div>
+                      <div class="slide">
+                        <h1>Slide 3</h1>
+                      </div>
+                      <div class="slide">
+                        <h1>Slide 4</h1>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
         </div><!--fim de "pag1"-->
         
-        <!--Página 2: sobre mim-->
+        <!--Página 2: sobre-->
         <div class="pag2" id="sobre">
-            <div class="topico1">
-                <div class="texto1">
-                    <h2><span>| O QUE É O APLICATIVO PRETTY NAILS?</span></h2>
-                    <br>
-                    <h3>Pretty Nails é um aplicativo de agenda <br> que permite que a cliente tenha acesso<br> direto aos horários disponíveis às manicures.</h3>
+            <div class="container-de-topico">
+                <div class="topico1">
+                    <div class="texto1">
+                        <h2><span>| O QUE É O APLICATIVO PRETTY NAILS?</span></h2>
+                        <br>
+                        <h3>Pretty Nails é um aplicativo de agenda <br> que permite que a cliente tenha acesso<br> direto aos horários disponíveis às manicures.</h3>
+                    </div>
+                    <div class="imagem1">
+                        <img src="imagens/1.png" alt="Imagem 1" />
+                    </div>
                 </div>
-                <div class="imagem1">
-                    <img src="imagens/1.png" alt="Imagem 1" />
+                
+                <div class="topico2">
+                    <div class="imagem2">
+                        <img src="imagens/2.png" alt="Imagem 2" />
+                    </div>
+                    <div class="texto2">
+                        <h2><span>| POR QUÊ USAR O PRETTY NAILS?</span></h2>
+                        <br>
+                        <h3>O Pretty Nails é o app perfeito para quem busca praticidade <br> e organização no dia a dia de manicures. <br> Ele profissionaliza o trabalho das manicures, permitindo <br> o agendamento fácil e rápido de horários, <br> além de simplificar o processo para os clientes, <br> que podem agendar serviços com apenas alguns cliques.
+                    </div>
                 </div>
-            </div>
             
-            <div class="topico2">
-                <div class="imagem2">
-                    <img src="imagens/2.png" alt="Imagem 2" />
-                </div>
-                <div class="texto2">
-                    <h2><span>| POR QUÊ USAR O PRETTY NAILS?</span></h2>
-                    <br>
-                    <h3>O Pretty Nails é o app perfeito para quem busca praticidade <br> e organização no dia a dia de manicures. <br> Ele profissionaliza o trabalho das manicures, permitindo <br> o agendamento fácil e rápido de horários, <br> além de simplificar o processo para os clientes, <br> que podem agendar serviços com apenas alguns cliques.
-                </div>
-            </div>
-        
-            <div class="topico3">
-                <div class="texto3">
-                    <h2><span>| VANTAGENS DE QUEM USA PRETTY NAILS</span></h2>
-                    <br>
-                    <h3> - Valorização do seu trabalho; <br> - Auxílio; <br> - Facilidade; <br> - Inspiração; <br> - Contato prático; <br> - Clientes.</h3>
-                </div>
-                <div class="imagem3">
-                    <img src="imagens/3.png" alt="Imagem 3" />
+                <div class="topico3">
+                    <div class="texto3">
+                        <h2><span>| VANTAGENS DE QUEM USA PRETTY NAILS</span></h2>
+                        <br>
+                        <h3> - Valorização do seu trabalho; <br> - Auxílio; <br> - Facilidade; <br> - Inspiração; <br> - Contato prático; <br> - Clientes.</h3>
+                    </div>
+                    <div class="imagem3">
+                        <img src="imagens/3.png" alt="Imagem 3" />
+                    </div>
                 </div>
             </div>
         </div><!--fim de "pag2"-->
         
-        <div class="pag3"></div><!--fim de "pag3"-->
-    </main>
-
-    <div class="pag3" id="Suporte">
-        <div class="pf">
-            <h1>Perguntas Frequentes</h1>
-        </div>
-        <div class="perguntas">
-            <div class="pfs">
-                <hr>
-                <h3>O aplicativo é gratuito?</h3>
-                <hr>
-                <h3>Posso cancelar ou remarcar meu agendamento?</h3>
-                <hr>
-                <h3>Como posso agendar um horário?</h3>
-                <hr>
+        <div class="pag3" id="Suporte">
+            <div class="pf">
+                <h1>Perguntas Frequentes</h1>
+            </div>
+            <div class="perguntas">
+                <div class="pfs">
+                    <hr>
+                    <h3>O aplicativo é gratuito?</h3>
+                    <hr>
+                    <h3>Posso cancelar ou remarcar meu agendamento?</h3>
+                    <hr>
+                    <h3>Como posso agendar um horário?</h3>
+                    <hr>
+                </div>
             </div>
         </div>
-    </div>
-        <hr>
-        
+            <hr>
+        <!--Rodapé-->
         <footer>
             <div class="footer-col logo-nome">
                 <div class="img-logo">
@@ -125,12 +124,12 @@
                     </div>
                 </div>
             </div>
-
+    
             <div class="footer-col">
                 <h3>Quem somos nós?</h3>
                 <p>Somos a Focus In Beauty, onde cada detalhe conta. Mais que uma empresa, somos sua parceira para realçar beleza e confiança, com uma equipe dedicada a oferecer serviços personalizados e excepcionais.</p>
             </div>
-
+    
             <div class="footer-col">
                 <h3>Links</h3>
                 <ul>
@@ -139,7 +138,7 @@
                     <li><a href="#">Saiba mais</a></li>
                 </ul>
             </div>
-
+    
             <div class="footer-col">
                 <h3>Nos Contrate</h3>
                 <ul>
@@ -149,7 +148,8 @@
                     <li><p>Brasil</p></li>
                 </ul>
             </div>
-        </div>
+        </footer>    
+    </main>
 </body>
 <script src="js/index.js"></script>
 <script src="js/ani_lading.js"></script>

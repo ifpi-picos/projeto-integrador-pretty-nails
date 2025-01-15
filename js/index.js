@@ -1,3 +1,10 @@
+//menu caso esteja no celular (responsivo)
+function toggleMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
+}
+
+//slides passando
 let currentSlide = 0;
 
 function autoSlide() {
