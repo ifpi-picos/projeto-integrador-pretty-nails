@@ -22,8 +22,9 @@ async function adicionarUsuario() {
       const user = await resposta.json();
       localStorage.setItem('name', user.name)
       localStorage.setItem('email', user.email)
-      window.location.href = '/principal.html'
+      window.location.href = 'https://nailan-nobre.github.io/pretty-nails-mobile-prototipo/www/'
     } else {
-      console.log('Erro ao realizar cadastro!!')
+      console.error('Erro no cadastro:', error);
+      alert('Erro ao realizar cadastro. Tente novamente mais tarde.');
     }
 }
