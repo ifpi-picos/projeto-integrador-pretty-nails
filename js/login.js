@@ -9,8 +9,8 @@ async function fazerLogin() {
 
   try {
     // Envia a requisição POST para a rota /users no back-end
-    const resposta = await fetch('https://back-end-6der.onrender.com/login', {
-      method: 'POST',
+    const resposta = await fetch('https://back-end-6der.onrender.com/users', {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       },
