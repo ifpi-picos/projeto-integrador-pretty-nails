@@ -1,37 +1,42 @@
-async function fazerLogin() {
-  const campoEmailInserido = document.querySelector("#emailInserido");
-  const campoSenhaInserida = document.querySelector("#senhaInserida");
+async function loginUsuario() {
+  const campoEmail = document.querySelector("#email");
+  const campoSenha = document.querySelector("#senha");
 
-  const usuarioLogin = {
-    email: campoEmailInserido.value,
-    password: campoSenhaInserida.value
-  };
+  const email = campoEmail.value;
+  const password = campoSenha.value;
 
   try {
-    // Envia a requisição POST para a rota /users no back-end
+    // Requisição ao servidor para obter todos os usuários
     const resposta = await fetch('https://back-end-6der.onrender.com/users', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(usuarioLogin)
+      }
     });
 
-    if (resposta.ok) {
-      const user = await resposta.json(); // Recebe os dados do usuário autenticado
+    if (!resposta.ok) {
+      throw new Error('Erro ao obter dados dos usuários');
+    }
 
-      // Se o login for bem-sucedido, armazena as informações no localStorage
-      localStorage.setItem('name', user.name);
-      localStorage.setItem('email', user.email);
+    const usuarios = await resposta.json();
 
-      // Redireciona para a página principal
+    // Verifica se existe um usuário com o email e senha fornecidos
+    const usuarioValido = usuarios.find(
+      usuario => usuario.email === email && usuario.password === password
+    );
+
+    if (usuarioValido) {
+      console.log('Login realizado com sucesso!');
+      // Salva os dados do usuário no localStorage e redireciona
+      localStorage.setItem('name', usuarioValido.name);
+      localStorage.setItem('email', usuarioValido.email);
       window.location.href = '/principal.html';
     } else {
-      console.log('Credenciais inválidas');
-      alert("Login ou senha inválidos. Tente novamente.");
+      console.log('Email ou senha inválidos!');
+      alert('Email ou senha inválidos!');
     }
   } catch (error) {
-    console.log('Erro ao tentar fazer login:', error);
-    alert("Houve um erro na comunicação com o servidor. Tente novamente.");
+    console.error('Erro no login:', error);
+    alert('Erro ao realizar login. Tente novamente mais tarde.');
   }
 }

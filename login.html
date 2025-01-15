@@ -22,24 +22,22 @@
                 <div class="page-content">
                     <div class="container">
 
-                        <!--fazer login-->
+                        <!--Login-->
                         <div class="form-box login">
-                            <form action="">
+                            <form onsubmit="event.preventDefault(); loginUsuario();">
                                 <h1>Login</h1>
                                 <div class="input-box">
-                                    <input type="email" id="emailInserido" placeholder="Email" required>
+                                    <input type="email" id="email" placeholder="Email" required>
                                     <i class="mdi mdi-account"></i>
                                 </div>
                                 <div class="input-box">
-                                    <input type="password" id="senhaInserida" placeholder="Senha" required>
+                                    <input type="password" id="senha" placeholder="Senha" required>
                                     <i class="mdi mdi-lock"></i>
                                 </div>
                                 <div class="esqueci-a-senha">
                                     <a href="#">Esqueceu a sua senha?</a>
                                 </div>
-                                <a href="principal.html">
-                                    <button onclick="fazerLogin()" type="submit" class="btn">Login</button>
-                                </a>
+                                <button type="submit" class="btn">Login</button>
                                 <p>Ou faça login com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
                                     <a href="#"><i class="fa-brands fa-google"></i></a>
@@ -50,7 +48,7 @@
 
                         <!--cadastrar-->
                         <div class="form-box cadastro">
-                            <form action="">
+                            <form onsubmit="event.preventDefault(); adicionarUsuario();">
                                 <h1>Cadastro</h1>
                                 <div class="input-box">
                                     <input id="nome" type="text" placeholder="Nome de usuário" required>
@@ -64,9 +62,7 @@
                                     <input id="senha" type="password" placeholder="Senha" required>
                                     <i class="mdi mdi-lock"></i>
                                 </div>
-                                <a href="principal.html">
-                                    <button onclick="adicionarUsuario()" type="submit" class="btn">Cadastre-se</button>
-                                </a>
+                                <button type="submit" class="btn">Cadastre-se</button>
                                 <p>Ou Cadastre-se com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
                                     <a href="#"><i class="fa-brands fa-google"></i></a>
