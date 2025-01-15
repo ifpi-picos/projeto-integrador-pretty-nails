@@ -2,19 +2,19 @@ async function fazerLogin() {
   const campoEmailInserido = document.querySelector("#emailInserido");
   const campoSenhaInserida = document.querySelector("#senhaInserida");
 
-  const usuario = {
+  const usuarioLogin = {
     email: campoEmailInserido.value,
     password: campoSenhaInserida.value
   };
 
   try {
     // Envia a requisição POST para a rota /users no back-end
-    const resposta = await fetch('https://back-end-6der.onrender.com/users', {
+    const resposta = await fetch('https://back-end-6der.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(usuario)
+      body: JSON.stringify(usuarioLogin)
     });
 
     if (resposta.ok) {
