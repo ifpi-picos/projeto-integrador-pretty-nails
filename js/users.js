@@ -22,10 +22,8 @@ async function adicionarUsuario() {
       const user = await resposta.json();
       localStorage.setItem('name', user.name)
       localStorage.setItem('email', user.email)
-      window.location.href = 'menu_principal.html'
+      window.location.href = '/principal.html'
     } else {
       console.log('Erro ao realizar cadastro!!')
     }
-
-    module.exports = { usuario };
 }

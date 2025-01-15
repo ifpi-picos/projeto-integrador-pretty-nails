@@ -1,24 +1,37 @@
-import { usuario } from './users.js';
+async function fazerLogin() {
+  const campoEmailInserido = document.querySelector("#emailInserido");
+  const campoSenhaInserida = document.querySelector("#senhaInserida");
 
-async function comparandoLogin() {
-    const campoEmail = document.querySelector("#email");
-    const campoSenha = document.querySelector("#senha");
-  
-    // Pegando os dados inseridos pelo usuário
-    const emailInserido = campoEmail.value;
-    const senhaInserida = campoSenha.value;
-  
-    // Comparando com os dados do "banco de dados"
-    if (emailInserido === usuario.email && senhaInserida === usuario.password) {
-      window.location.href = 'menu_principal.html';
+  const usuario = {
+    email: campoEmailInserido.value,
+    password: campoSenhaInserida.value
+  };
+
+  try {
+    // Envia a requisição POST para a rota /users no back-end
+    const resposta = await fetch('https://back-end-6der.onrender.com/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(usuario)
+    });
+
+    if (resposta.ok) {
+      const user = await resposta.json(); // Recebe os dados do usuário autenticado
+
+      // Se o login for bem-sucedido, armazena as informações no localStorage
+      localStorage.setItem('name', user.name);
+      localStorage.setItem('email', user.email);
+
+      // Redireciona para a página principal
+      window.location.href = '/principal.html';
     } else {
-      alert('Email ou senha incorretos');
+      console.log('Credenciais inválidas');
+      alert("Login ou senha inválidos. Tente novamente.");
     }
+  } catch (error) {
+    console.log('Erro ao tentar fazer login:', error);
+    alert("Houve um erro na comunicação com o servidor. Tente novamente.");
+  }
 }
-  
-document.querySelector("form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    comparandoLogin();
-});
-
-  
