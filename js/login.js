@@ -7,7 +7,7 @@ async function loginUsuario() {
 
   try {
     // Requisição ao servidor para obter todos os usuários
-    const resposta = await fetch('https://back-end-1-d4fx.onrender.com/users', {
+    const resposta = await fetch('https://back-end-u9vj.onrender.com/users', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
