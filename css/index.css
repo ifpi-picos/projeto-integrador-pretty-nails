@@ -358,9 +358,25 @@ footer {
 }
 
 /* Perguntas Frequentes */
+.faq-answer {
+  display: none;
+  padding: 10px 0;
+  color: #000000;
+}
+
+.faq-question {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.faq-question:hover {
+  color: #ffffff;
+}
+
 @media screen and (max-width: 768px) {
   .perguntas {
-    padding-left: 20px; 
-    padding-right: 20px; 
+      padding-left: 20px;
+      padding-right: 20px;
   }
 }
+

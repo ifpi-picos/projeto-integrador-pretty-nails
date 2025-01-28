@@ -17,3 +17,11 @@ function autoSlide() {
 
 // Muda o slide automaticamente a cada 5 segundos
 setInterval(autoSlide, 5000);
+
+//Perguntas frequentes
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+  });
+});
