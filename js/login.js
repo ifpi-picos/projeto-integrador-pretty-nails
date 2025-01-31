@@ -6,35 +6,25 @@ async function loginUsuario() {
   const password = campoSenha.value;
 
   try {
-    // Requisição ao servidor para obter todos os usuários
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/users', {
-      method: 'GET',
+    const resposta = await fetch('https://back-end-u9vj.onrender.com/login', {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
     });
 
     if (!resposta.ok) {
-      throw new Error('Erro ao obter dados dos usuários');
+      throw new Error('Email ou senha inválidos');
     }
 
-    const usuarios = await resposta.json();
+    const { user, token } = await resposta.json();
 
-    // Verifica se existe um usuário com o email e senha fornecidos
-    const usuarioValido = usuarios.find(
-      usuario => usuario.email === email && usuario.password === password
-    );
+    // Salva apenas o token no localStorage (não armazene informações sensíveis)
+    localStorage.setItem('token', token);
 
-    if (usuarioValido) {
-      console.log('Login realizado com sucesso!');
-      // Salva os dados do usuário no localStorage e redireciona
-      localStorage.setItem('name', usuarioValido.name);
-      localStorage.setItem('email', usuarioValido.email);
-      window.location.href = 'https://nailan-nobre.github.io/pretty-nails-mobile-prototipo/www/';
-    } else {
-      console.log('Email ou senha inválidos!');
-      alert('Email ou senha inválidos!');
-    }
+    // Redireciona para a página inicial
+    window.location.href = 'https://nailan-nobre.github.io/pretty-nails-mobile-prototipo/www/';
   } catch (error) {
     console.error('Erro no login:', error);
     alert('Erro ao realizar login. Tente novamente mais tarde.');

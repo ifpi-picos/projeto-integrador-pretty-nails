@@ -9,7 +9,7 @@ async function adicionarUsuario() {
       password: campoSenha.value
     }
   
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/users', {
+    const resposta = await fetch('https://back-end-u9vj.onrender.com/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -21,7 +21,6 @@ async function adicionarUsuario() {
       console.log('Cadastro realizado com sucesso!!')
       const user = await resposta.json();
       localStorage.setItem('name', user.name)
-      localStorage.setItem('email', user.email)
       window.location.href = 'https://nailan-nobre.github.io/pretty-nails-mobile-prototipo/www/'
     } else {
       console.error('Erro no cadastro:', error);
