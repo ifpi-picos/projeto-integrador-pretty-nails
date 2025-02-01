@@ -15,8 +15,33 @@ function autoSlide() {
     `translateX(-${currentSlide * 100}%)`;
 }
 
-// Muda o slide automaticamente a cada 5 segundos
-setInterval(autoSlide, 5000);
+setInterval(autoSlide, 5000); // Muda o slide automaticamente a cada 5 segundos
+
+//animações de entrada dos tópicos 12 e 3.
+document.addEventListener('DOMContentLoaded', function() {
+
+  ScrollReveal().reveal('.topico1', {
+      origin: 'left',
+      easing: 'ease-out',
+      duration: 700,
+      distance: '40%'
+  });
+
+  ScrollReveal().reveal('.topico2', {
+      origin: 'right',
+      easing: 'ease-out',
+      duration: 700,
+      distance: '40%'
+  });
+
+  ScrollReveal().reveal('.topico3', {
+      origin: 'left',
+      easing: 'ease-out',
+      duration: 700,
+      distance: '40%'
+  });
+
+});
 
 //Perguntas frequentes
 document.querySelectorAll('.faq-question').forEach(question => {
