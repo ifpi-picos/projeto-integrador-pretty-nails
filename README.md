@@ -2,8 +2,6 @@
 
 Este projeto consiste em um sistema de agendamento para manicures, desenvolvido com o objetivo de facilitar o gerenciamento de reservas de horários e oferecer uma experiência prática para os clientes. O site permite aos usuários verificar disponibilidade, escolher serviços e agendar atendimentos de maneira simples e rápida.
 
-![Imagem do Site](https://via.placeholder.com/800x400 "Exemplo da Interface do Site")
-
 ## Funcionalidades
 
 - **Cadastro de Usuários:** Permite que os clientes criem contas para gerenciar seus agendamentos.
