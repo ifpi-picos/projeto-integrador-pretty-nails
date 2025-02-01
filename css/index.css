@@ -216,12 +216,15 @@ nav {
 
   .topico1 {
     flex-direction: column-reverse;
+    margin-left: -250px;
   }
   .topico2 {
-    flex-direction: column; 
+    flex-direction: column;
+    margin-right: -250px; 
   }
   .topico3 {
-    flex-direction: column-reverse; 
+    flex-direction: column-reverse;
+    margin-left: -250px; 
   }
 
   .imagem1 img, .imagem2 img, .imagem3 img {
