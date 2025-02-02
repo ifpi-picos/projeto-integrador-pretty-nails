@@ -9,6 +9,51 @@
   <title>Pretty Nails</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+
+  <!--Login com gloogle-->
+<!-- Biblioteca JWT Decode -->
+<script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+<script src="https://accounts.google.com/gsi/client" async></script>
+
+<script>
+    function handleCredentialResponse(response) {
+if (response && response.credential) {
+    try {
+        const data = jwt_decode(response.credential);
+        console.log("Dados do usuário decodificados:", data);
+
+        alert("Login realizado! Redirecionando...");
+        window.location.href = "principal.html"; // URL de teste
+    } catch (error) {
+        console.error("Erro ao decodificar o token JWT:", error);
+    }
+} else {
+    alert("Token não recebido. O redirecionamento foi cancelado.");
+    console.error("Token não recebido.");
+}
+}
+
+
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "495511510189-goo1hjj4u82qeu2ccngim4p4i6l020g1.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"), { 
+                theme: "outline", 
+                size: "large",
+                type: "icon",
+                shape: "circle",
+                text: "signin_with"
+            }
+        );
+
+        google.accounts.id.prompt(); // Exibir o One Tap
+    }
+</script>
+
 </head>
 
 <body>
@@ -40,8 +85,8 @@
                                 <button type="submit" class="btn">Login</button>
                                 <p>Ou faça login com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
-                                    <a href="#"><i class="fa-brands fa-google"></i></a>
-                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                    <div id="buttonDiv"></div>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -65,8 +110,8 @@
                                 <button type="submit" class="btn">Cadastre-se</button>
                                 <p>Ou Cadastre-se com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
-                                    <a href="#"><i class="fa-brands fa-google"></i></a>
-                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                    <!--button login aqui -->
+                                    <div id="buttonDiv"></div>
                                 </div>
                             </form>
                         </div>
