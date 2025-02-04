@@ -1,4 +1,6 @@
-/* Reseta o estilo padrão */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arrius+W00+Regular&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,153 +9,288 @@
 }
 
 body {
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
+    padding-top: 120px; /* Ajuste a altura para evitar que o conteúdo fique por trás do header fixo */
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5dcd7;
+    flex-direction: column; /* Garante que a área rosa vai ocupar o espaço restante */
 }
 
-/* Estilos do header */
-header {
-    display: flex;
-    justify-content: space-between; /* Espaçamento entre os elementos principais */
-    align-items: center; /* Alinhamento vertical */
-    padding: 30px 40px;
-    background-color: #ffbfdf;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-}
-
-/* Estilo do botão de menu */
-.menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+main {
+    padding-top: 20px; /* Ajuste para afastar um pouco o conteúdo da parte superior */
+    padding: 20px;
+    position: relative; /* Ajuste para permitir a rolagem no conteúdo */
     width: 100%;
+    background-color: #d05f4b; /* Cor desejada */
+    padding-left: calc(82px + 20px);
+    z-index: 1;
 }
 
-.menu-btn {
-    background: none;
-    border: none;
-    font-size: 30px; /* Tamanho do ícone do menu */
-    cursor: pointer;
-    color: #333;
-}
 
-/* Estilo do título centralizado */
-.titulo1 {
-    font-size: 50px;
-    color: #ff2a95; /* Rosa fraco */
-    margin: 0;
+main h1 {
     text-align: center;
-    flex-grow: 1; /* O título cresce para centralizar */
-    font-family: "Arrius W00 Regular";
-}
-
-.topinfos{
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    font-family: 'Arrius W00 Regular', sans-serif; /* Aplicando a fonte Arrius W00 Regular */
+    font-size: 50px; /* Tamanho da fonte (ajuste conforme necessário) */
+    color: #ecc0b8; /* Cor do texto (ajuste conforme necessário) */
 }
 
-
-
-.topinfos .titulo2 {
-    width: 50%;
-    margin-top: 20px;
-    padding: 10px;
+.button-container {
     display: flex;
+    justify-content: center; /* Centraliza os botões de tema */
     align-items: center;
-    justify-content: center;
-    border: 2px solid #ffbfdf;
-    border-radius: 25px;
-    background-color: #ffbfdf;
+    gap: 20px;
+    width: calc(100% - 82px); /* Ajusta os botões para a largura restante */
+    max-width: 300px; /* Define a mesma largura máxima para os botões */
+    margin-left: 82px; /* Garante que os botões fiquem após a barra lateral */
+}
+
+#sidebar {
     display: flex;
     flex-direction: column;
-    
+    justify-content: space-between;
+    background-color: #ffffff;
+    position: fixed; /* Altera para 'fixed' para ficar fixa na tela */
+    top: 0; /* Coloca no topo da tela */
+    left: 0; /* Alinha à esquerda */
+    width: 82px; /* Define a largura da barra lateral */
+    height: 100vh; /* Define a altura total da tela */
+    border-radius: 0px 18px 18px 0px;
+    z-index: 9999; /* Garante que a barra lateral fique acima de tudo */
+    transition: all .5s;
+    left: 1px;
+    margin-top: 2px;
 }
 
-/* Estilo do container de pesquisa */
-.search-container {
+
+
+#sidebar_content {
+    padding: 12px;
+    overflow-y: auto; /* Caso queira permitir rolagem no conteúdo interno da barra */
+}
+
+#user {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
-.search-btn {
-    background: none;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-    color: #333;
+#user_avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
-.search-container input {
-    display: none;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px;
-    margin-left: 10px;
+#user_infos {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Quando a classe hidden é removida, o input aparece */
-.search-container input.show {
-    display: block;
+#user_infos span:last-child {
+    color: #6b6b6b;
+    font-size: 12px;
 }
 
-/* Estilos para o menu dropdown */
-.menu-dropdown {
-    display: none;
-    position: absolute;
-    top: 114px;
-    left: 1px;
-    background-color: #ff2a95;
-    width: 180px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}   
-
-.menu-dropdown img {
-    border-radius: 100%;
-    width: 100px; /* Defina a largura desejada */
-    height: auto; /* Mantém a proporção da altura */
-    margin: 10px auto; /* Centraliza a imagem dentro do menu */
-    display: block; /* Faz a imagem ser um bloco para centralizar */
-}
-.menu-dropdown ul 
-    margin-top: 20px;
+#side_items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     list-style: none;
-    padding: 10px;
 }
 
-.lista{
-    margin-top: 30px;
-}
-
-.menu-dropdown ul li {
-    
-    padding: 10px 5px;
-    border-bottom: 1px solid #ffbfdf;
+.side-item {
+    border-radius: 8px;
+    padding: 14px;
     cursor: pointer;
+}
+
+.side-item.active {
+    background-color: #d05f4b;
+}
+
+.side-item:hover:not(.active),
+#logout_btn:hover {
+    background-color: #f1cec8;
+}
+
+.side-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0a;
+}
+
+.side-item.active a {
+    color: #e3e9f7;
+}
+
+.side-item a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#logout {
+    border-top: 1px solid #e3e9f7;
+    padding: 12px;
+}
+
+#logout_btn {
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 8px;
+    text-align: start;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+#open_btn {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    background-color: #d05f4b;
+    color: #e3e9f7;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#open_btn_icon {
+    transition: transform .3s ease;
+}
+
+.open-sidebar #open_btn_icon {
+    transform: rotate(180deg);
+}
+
+.item-description {
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+
+#sidebar.open-sidebar {
+    min-width: 15%;
+}
+
+#sidebar.open-sidebar .item-description {
+    width: 150px;
+    height: auto;
+}
+
+#sidebar.open-sidebar .side-item a {
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.app-header {
+    background: linear-gradient(to right, #ffccff, #ff99cc);
+    color: white;
     text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    font-family: 'Arrius W00 Regular', sans-serif;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.menu-dropdown ul li:hover {
-    background-color: #ffbfdf;
+/* Atualizações na área rosa para permitir rolagem */
+.pink-area {
+    background-color: #e0978a; /* Rosa suave */
+    padding: 20px;
+    margin: 30px auto; /* Centraliza e dá espaçamento */
+    width: 80%; /* Define uma largura confortável */
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: white;
+    max-height: 80vh; /* Limita a altura para que a rolagem seja visível */
+    overflow-y: auto; /* Permite rolar o conteúdo */
+    display: grid; /* Usando grid para organizar as janelas */
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas de igual largura */
+    grid-template-rows: repeat(3, 1fr); /* 3 linhas de igual altura */
+    gap: 20px; /* Espaçamento entre os botões */
 }
 
-.menu-dropdown ul li:last-child {
-    border-bottom: none;
+.pink-area .button-box {
+    background-color: #ffffff;
+    color: #d05f4b;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 20vh;
+}
+    
+    
+
+.pink-area .button-box:hover {
+    background-color: #d05f4b;
+    color: #ffffff;
 }
 
-/* Exibe o menu dropdown quando a classe show é aplicada */
-.menu-dropdown.show {
-    display: block;
+#app-header {
+    background-color: #d05f4b; /* Cor de fundo do header */
+    width: 100%;
+    padding: 20px 0; /* Espaçamento em cima e embaixo */
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Torna o header fixo */
+    top: 0; /* Coloca o header no topo da tela */
+    left: 0; /* Alinha o header à esquerda */
+    z-index: 1000; /* Garante que o header fique acima de tudo */
+    width: 100%; /* Garante que o header ocupe toda a largura */
 }
 
-/* Outros ajustes */
-.hidden {
-    display: none;
+#app-header h1 {
+    font-family: 'Arrius W00 Regular', sans-serif; /* Fonte Arrius */
+    font-size: 50px; /* Tamanho do texto */
+    color: #ffffff; /* Cor do texto */
+    margin: 0; /* Remove a margem padrão */
+}
+
+#temas {
+    display: flex;
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    background-color: #e0978a; /* Cor de fundo da div */
+    padding: 5px;
+    border-radius: 15px; /* Cantos arredondados */
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    width: calc(100% - 82px); /* A largura vai ocupar toda a tela, subtraindo a largura da barra lateral */
+    max-width: 290px; /* Define um limite máximo para a largura da div */
+    margin-left: 40%; /* Garante que a div fique após a barra lateral */
+    margin-top: 10px; /* Ajuste conforme necessário */
+}
+
+
+
+#temas h1{
+    font-size: 25px;
+    color: #ffffff; /* Cor do texto */
+    margin: 0; /* Remove a margem padrão */
 }
