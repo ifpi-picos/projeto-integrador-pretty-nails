@@ -1,4 +1,4 @@
-const container = document.querySelector('.container'); 
+const container = document.querySelector('.container');
 const cadastroBtn = document.querySelector('.cadastro-btn');
 const loginBtn = document.querySelector('.login-btn');
 

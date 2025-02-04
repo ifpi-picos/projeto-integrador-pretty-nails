@@ -2,57 +2,59 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/login.css" />
-  <title>Pretty Nails</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Pretty Nails</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
 
-  <!--Login com gloogle-->
-<!-- Biblioteca JWT Decode -->
-<script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
-<script src="https://accounts.google.com/gsi/client" async></script>
+    <!--Login com gloogle-->
+    <!-- Biblioteca JWT Decode -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
 
-<script>
-    function handleCredentialResponse(response) {
-if (response && response.credential) {
-    try {
-        const data = jwt_decode(response.credential);
-        console.log("Dados do usuário decodificados:", data);
+    <script>
+        function handleCredentialResponse(response) {
+            if (response && response.credential) {
+                try {
+                    const data = jwt_decode(response.credential);
+                    console.log("Dados do usuário decodificados:", data);
 
-        alert("Login realizado! Redirecionando...");
-        window.location.href = "principal.html"; // URL de teste
-    } catch (error) {
-        console.error("Erro ao decodificar o token JWT:", error);
-    }
-} else {
-    alert("Token não recebido. O redirecionamento foi cancelado.");
-    console.error("Token não recebido.");
-}
-}
-
-
-    window.onload = function () {
-        google.accounts.id.initialize({
-            client_id: "495511510189-goo1hjj4u82qeu2ccngim4p4i6l020g1.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-        });
-
-        google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"), { 
-                type:"icon",
-                shape:"circle",
-                theme:"filled_blue",
-                text:"signin_with",
-                size:"large",
+                    alert("Login realizado! Redirecionando...");
+                    window.location.href = "principal.html"; // URL de teste
+                } catch (error) {
+                    console.error("Erro ao decodificar o token JWT:", error);
+                }
+            } else {
+                alert("Token não recebido. O redirecionamento foi cancelado.");
+                console.error("Token não recebido.");
             }
-        );
+        }
 
-        google.accounts.id.prompt(); // Exibir o One Tap
-    }
-</script>
+
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "495511510189-goo1hjj4u82qeu2ccngim4p4i6l020g1.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"), {
+                type: "icon",
+                shape: "circle",
+                theme: "filled_blue",
+                text: "signin_with",
+                size: "large",
+            }
+            );
+
+            google.accounts.id.prompt(); // Exibir o One Tap
+        }
+    </script>
 
 </head>
 
@@ -86,7 +88,7 @@ if (response && response.credential) {
                                 <p>Ou faça login com plataformas digitais:</p>
                                 <div class="plataformas-digitais">
                                     <div id="buttonDiv"></div>
-                                    
+
                                 </div>
                             </form>
                         </div>
@@ -115,7 +117,7 @@ if (response && response.credential) {
                                 </div>
                             </form>
                         </div>
-                        
+
                         <div class="toggle-box">
                             <div class="toggle-panel toggle-left">
                                 <h1>Bem vindo!</h1>
@@ -135,7 +137,6 @@ if (response && response.credential) {
     </div>
     <script src="js/script.js"></script>
     <script src="js/users.js"></script>
-    <script src="js/login.js"></script>
 </body>
 
 </html>
