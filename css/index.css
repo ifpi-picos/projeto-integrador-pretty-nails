@@ -105,7 +105,7 @@ nav {
     position: absolute;
     top: 5rem;
     right: 0;
-    background: var(--tom1);
+    background: linear-gradient(95deg, var(--tom3), var(--tom2));
     width: 100%;
     text-align: center;
     display: none;
@@ -198,6 +198,11 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  word-wrap: break-word; 
+  word-break: break-word; 
+  overflow-wrap: break-word; 
+  padding: 10px; 
+  max-width: 100%;
 }
 
 .imagem1 img, .imagem2 img, .imagem3 img {
@@ -214,22 +219,38 @@ nav {
 /* Responsividade Página 2 */
 @media screen and (max-width: 768px) {
 
+  .topico1, .topico2, .topico3{
+    margin: 0;
+    width: 95%;
+  }
+
   .topico1 {
     flex-direction: column-reverse;
-    margin: 0;
     margin-bottom: 20px;
-    font-size: 14px;
   }
   .topico2 {
     flex-direction: column;
-    margin: 0;
     margin-bottom: 20px;
-    font-size: 14px;
+
   }
   .topico3 {
     flex-direction: column-reverse; 
-    margin: 0;
-    font-size: 14px;
+  }
+
+  .texto1, .texto2, .texto3{
+    font-size: 14px; 
+    word-wrap: break-word; 
+    word-break: break-word; 
+    overflow-wrap: break-word; 
+    padding: 10px; 
+    max-width: 100%;
+  }
+
+  .pag2 h3 {
+    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .imagem1 img, .imagem2 img, .imagem3 img {
