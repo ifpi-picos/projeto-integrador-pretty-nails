@@ -1,4 +1,4 @@
-//FUNÇÃO PARA ADICIONAR USUÁRIO
+// FUNÇÃO PARA ADICIONAR USUÁRIO
 async function adicionarUsuario() {
   const campoNome = document.querySelector("#nome");
   const campoEmail = document.querySelector("#email");
@@ -35,7 +35,6 @@ async function adicionarUsuario() {
     alert('Erro ao realizar cadastro. Verifique sua conexão ou tente mais tarde.');
   }
 }
-
 
 //FUNÇÃO PARA FAZER LOGIN
 async function loginUsuario() {
