@@ -1,72 +1,57 @@
 // FUNÇÃO PARA ADICIONAR USUÁRIO
-async function adicionarUsuario() {
-  const campoNome = document.querySelector("#nome");
-  const campoEmail = document.querySelector("#email");
-  const campoSenha = document.querySelector("#senha");
+function adicionarUsuario() {
+  const campoNome = document.querySelector("#nome").value;
+  const campoEmail = document.querySelector("#email").value;
+  const campoSenha = document.querySelector("#senha").value;
 
   const usuario = {
-    name: campoNome.value,
-    email: campoEmail.value,
-    password: campoSenha.value,
+    name: campoNome,
+    email: campoEmail,
+    password: campoSenha,
   };
 
-  try {
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(usuario),
-    });
+  fetch('https://back-end-u9vj.onrender.com/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(usuario)
+  }).then(response => {
+    response.json().then(data => {
+      console.log("Usuário cadastrado com sucesso: ", data)
+      window.location.href = '/principal.html'
+    })
+  }).catch(error => {
+    console.log("Erro ao cadastrar usuário: ", error)
+  })
 
-    if (!resposta.ok) {
-      const erro = await resposta.json();
-      console.error('Erro no cadastro:', erro);
-      alert(`Erro ao realizar cadastro: ${erro.message || 'Tente novamente mais tarde.'}`);
-      return;
-    }
-
-    console.log('Cadastro realizado com sucesso!!');
-    const user = await resposta.json();
-    localStorage.setItem('name', user.name);
-    window.location.href = 'principal.html';
-  } catch (error) {
-    console.error('Erro no cadastro:', error);
-    alert('Erro ao realizar cadastro. Verifique sua conexão ou tente mais tarde.');
-  }
 }
 
 //FUNÇÃO PARA FAZER LOGIN
-async function loginUsuario() {
-  const campoEmail = document.querySelector("#email");
-  const campoSenha = document.querySelector("#senha");
+function login() {
+  const campoEmail = document.querySelector("#email").value;
+  const campoSenha = document.querySelector("#senha").value;
 
   const usuario = {
-    email: campoEmail.value,
-    password: campoSenha.value
-  }
+    email: campoEmail,
+    password: campoSenha,
+  };
 
-  try {
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(usuario),
-    });
-
-    if (!resposta.ok) {
-      throw new Error('Email ou senha inválidos');
-    }
-
-    const { user, token } = await resposta.json();
-
-    localStorage.setItem('token', token);
-
-    // Redireciona para a página inicial
-    window.location.href = 'principal.html';
-  } catch (error) {
-    console.error('Erro no login:', error);
-    alert('Erro ao realizar login. Tente novamente mais tarde.');
-  }
+  fetch('https://back-end-u9vj.onrender.com/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(usuario)
+  }).then(response => {
+    response.json().then(data => {
+      console.log("Usuário logado com sucesso: ", data)
+      const { user, token } = data
+      localStorage.setItem('token', token)
+      localStorage.setItem('user', JSON.stringify(usuario))
+      window.location.href = '/usuarios.html'
+    })
+  }).catch(error => {
+    console.log("Erro ao logar usuário: ", error)
+  })
 }
