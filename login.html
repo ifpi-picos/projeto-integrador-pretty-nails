@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -12,8 +12,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
 
-    <!--Login com gloogle-->
-    <!-- Biblioteca JWT Decode -->
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async></script>
 
@@ -59,77 +57,31 @@
 </head>
 
 <body>
-    <!-- App root element -->
-    <div id="app">
-        <!-- Your main view, should have "view-main" class -->
-        <div class="view view-main">
-            <!-- Initial Page, "data-name" contains page name -->
-            <div data-name="index" class="page">
-                <!-- Scrollable page content -->
-                <div class="page-content">
-                    <div class="container">
+    <div class="container-login">
+        <div class="form-container-login">
+            <form onsubmit="event.preventDefault(); loginUsuario()">
+                <h1>Entrar</h1>
 
-                        <!--Login-->
-                        <div class="form-box login">
-                            <form onsubmit="event.preventDefault(); loginUsuario();">
-                                <h1>Login</h1>
-                                <div class="input-box">
-                                    <input type="email" id="email" placeholder="Email" required>
-                                    <i class="mdi mdi-account"></i>
-                                </div>
-                                <div class="input-box">
-                                    <input type="password" id="senha" placeholder="Senha" required>
-                                    <i class="mdi mdi-lock"></i>
-                                </div>
-                                <div class="esqueci-a-senha">
-                                    <a href="#">Esqueceu a sua senha?</a>
-                                </div>
-                                <button type="submit" class="btn">Login</button>
-                                <p>Ou faça login com plataformas digitais:</p>
-                                <div class="plataformas-digitais">
-                                    <div id="buttonDiv"></div>
-                                </div>
-                            </form>
-                        </div>
+                <input type="email"    id="email" placeholder="Email" />
+                <input type="password" id="senha" placeholder="Senha" />
+                <button>Entrar</button>
 
-                        <!--cadastrar-->
-                        <div class="form-box cadastro">
-                            <form onsubmit="event.preventDefault(); adicionarUsuario();">
-                                <h1>Cadastro</h1>
-                                <div class="input-box">
-                                    <input id="nome" type="text" placeholder="Nome de usuário" required>
-                                    <i class="mdi mdi-account"></i>
-                                </div>
-                                <div class="input-box">
-                                    <input id="email" type="email" placeholder="Email" required>
-                                    <i class="mdi mdi-email"></i>
-                                </div>
-                                <div class="input-box">
-                                    <input id="senha" type="password" placeholder="Senha" required>
-                                    <i class="mdi mdi-lock"></i>
-                                </div>
-                                <button type="submit" class="btn">Cadastre-se</button>
-                            </form>
-                        </div>
+                <a href="#">Esqueceu sua senha?</a>
 
-                        <div class="toggle-box">
-                            <div class="toggle-panel toggle-left">
-                                <h1>Bem vindo!</h1>
-                                <p>Ainda não tem uma conta?</p>
-                                <button class="btn cadastro-btn">Cadastre-se</button>
-                            </div>
-                            <div class="toggle-panel toggle-right">
-                                <h1>Já tem uma conta?</h1>
-                                <p>Entre com seu login</p>
-                                <button class="btn login-btn">Entrar</button>
-                            </div>
-                        </div>
-                    </div>
+                <p>Não tem uma conta?<a href="cadastro.html">Cadastre-se</a></p>
+
+                <p>ou faça login com google</p>
+                <div class="plataformas-digitais">
+                    <div id="buttonDiv"></div>
                 </div>
-            </div>
+
+            </form>
+        </div>
+        <div class="container-de-informacoes">
+            
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/users.js"></script>
 </body>
 

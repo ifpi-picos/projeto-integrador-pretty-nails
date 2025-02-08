@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css" />
+    <title>Pretty Nails</title>
+</head>
+
+<body>
+    <div class="container-cadastro">
+        <div class="form-container-cadastro">
+            <form onsubmit="event.preventDefault(); adicionarUsuario()">
+                <h1>Criar Conta</h1>
+                
+                <div class="preencher">
+                    <div class="ladoEsquerdo">
+                        <div class="imagem">
+                            <div class="bloco1">
+                                <input type="image"    id="imagem"    placeholder="Foto de perfil" />
+                            </div>
+                        </div>
+                        <div class="radio">
+                            <div class="escolha">
+                                <input type="radio" id="cliente" name="tipo" value="cliente" checked>
+                                <label for="cliente">Cliente</label>
+                            </div>
+                            <div class="escolha">
+                                <input type="radio" id="manicure" name="tipo" value="manicure">
+                                <label for="manicure">Manicure</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="perguntas">
+                        <div class="bloco2">
+                            <input type="text"     id="nome"      placeholder="Nome" />
+                            <input type="text"     id="biografia" placeholder="Sobre você" />
+                            <input type="email"    id="email"     placeholder="Email" />
+                        </div>
+                        <div class="bloco3">
+                            <input type="text"     id="estado"    placeholder="Estado" />
+                            <input type="text"     id="cidade"    placeholder="Cidade" />
+                            <input type="password" id="senha"     placeholder="Senha" />
+                        </div>
+                    </div>
+                </div>
+                <div class="cadastrar">
+                    <button>Cadastrar</button>
+                    <p>Já tem uma conta?<a href="login.html">fazer login</a></p>
+                </div>
+            
+            </form>
+        </div>
+        <script src="js/users.js"></script>
+</body>
+
+</html>
