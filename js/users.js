@@ -49,7 +49,7 @@ function login() {
       const { user, token } = data
       localStorage.setItem('token', token)
       localStorage.setItem('user', JSON.stringify(usuario))
-      window.location.href = '/usuarios.html'
+      window.location.href = '/principal.html'
     })
   }).catch(error => {
     console.log("Erro ao logar usuário: ", error)
