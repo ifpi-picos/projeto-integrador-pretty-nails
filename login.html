@@ -62,27 +62,29 @@
             <form onsubmit="event.preventDefault(); loginUsuario()">
                 <h1>Entrar</h1>
 
-                <input type="email"    id="email" placeholder="Email" />
-                <input type="password" id="senha" placeholder="Senha" />
-                <button>Entrar</button>
+                <div class="preencher">
+                    <input type="email"    id="email" placeholder="Email" />
+                    <input type="password" id="senha" placeholder="Senha" />
 
-                <a href="#">Esqueceu sua senha?</a>
+                    <div class="fazer-login">
+                        <button>Entrar</button>
 
-                <p>Não tem uma conta?<a href="cadastro.html">Cadastre-se</a></p>
-
-                <p>ou faça login com google</p>
-                <div class="plataformas-digitais">
-                    <div id="buttonDiv"></div>
+                        <p>Não tem uma conta?<a href="cadastro.html">Cadastre-se</a></p>
+                        <p>ou faça login com google</p>
+                        <div class="plataformas-digitais">
+                            <div id="buttonDiv"></div>
+                        </div>
+                    </div>
                 </div>
 
             </form>
         </div>
         <div class="container-de-informacoes">
-            
+
         </div>
     </div>
-    <script src="js/login.js"></script>
     <script src="js/users.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

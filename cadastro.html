@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/cadastro.css" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
     <title>Pretty Nails</title>
 </head>
 
@@ -15,12 +16,18 @@
                 <h1>Criar Conta</h1>
                 
                 <div class="preencher">
-                    <div class="ladoEsquerdo">
-                        <div class="imagem">
-                            <div class="bloco1">
-                                <input type="image"    id="imagem"    placeholder="Foto de perfil" />
+                    <div class="lado-esquerdo">
+                        
+                        <div class="imagem-container">
+                            <div class="imagem">
+                                <img id="preview" src="#" style="display: none;">
+                                <i class="mdi mdi-account-circle"></i>
+                            </div>
+                            <div class="escolher-imagem">
+                                <input type="file" id="imagem" accept="image/*" onchange="previewImage(event)">
                             </div>
                         </div>
+                        
                         <div class="radio">
                             <div class="escolha">
                                 <input type="radio" id="cliente" name="tipo" value="cliente" checked>
@@ -53,6 +60,8 @@
             </form>
         </div>
         <script src="js/users.js"></script>
+        <script src="js/cadastro.js"></script>
+
 </body>
 
 </html>
