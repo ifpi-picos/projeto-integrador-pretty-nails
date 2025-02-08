@@ -28,7 +28,7 @@ function adicionarUsuario() {
 }
 
 //FUNÇÃO PARA FAZER LOGIN
-function login() {
+function loginUsuario() {
   const campoEmail = document.querySelector("#email").value;
   const campoSenha = document.querySelector("#senha").value;
 
