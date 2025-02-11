@@ -52,8 +52,8 @@ async function loginUsuario() {
     const { user, token } = await resposta.json();
 
     localStorage.setItem('token', token);
-    localStorage.setItem('nome', name);
-    localStorage.setItem('email', email);
+    localStorage.setItem('nome', campoNome);
+    localStorage.setItem('email', campoEmail);
 
     // Redireciona para a página inicial
     window.location.href = 'principal.html';
