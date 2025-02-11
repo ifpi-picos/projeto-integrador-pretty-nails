@@ -23,8 +23,9 @@
                                 <img id="preview" src="#" style="display: none;">
                                 <i class="mdi mdi-account-circle"></i>
                             </div>
-                            <div class="escolher-imagem">
-                                <input type="file" id="imagem" accept="image/*" onchange="previewImage(event)">
+                            <div class="botao">
+                                <button type="button" onclick="document.getElementById('imagem').click()">Escolher imagem</button>
+                                <input type="file" id="imagem" accept="image/*" style="display: none;" onchange="previewImage(event)">
                             </div>
                         </div>
                         
@@ -40,15 +41,43 @@
                         </div>
                     </div>
                     <div class="perguntas">
-                        <div class="bloco2">
+                        <div class="bloco-questionario">
                             <input type="text"     id="nome"      placeholder="Nome" />
-                            <input type="text"     id="biografia" placeholder="Sobre você" />
                             <input type="email"    id="email"     placeholder="Email" />
-                        </div>
-                        <div class="bloco3">
-                            <input type="text"     id="estado"    placeholder="Estado" />
-                            <input type="text"     id="cidade"    placeholder="Cidade" />
                             <input type="password" id="senha"     placeholder="Senha" />
+                            <select id="estado">
+                                <option value="" disabled selected>Estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select></select>
+                            <select id="cidade">
+                                <option value="" disabled selected>Cidade</option>
+                            </select></select>
                         </div>
                     </div>
                 </div>

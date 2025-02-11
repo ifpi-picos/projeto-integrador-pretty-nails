@@ -3,19 +3,12 @@ function adicionarUsuario() {
   const campoNome = document.querySelector("#nome").value;
   const campoEmail = document.querySelector("#email").value;
   const campoSenha = document.querySelector("#senha").value;
-  const campoImagem = document.querySelector("#imagem").value;
-  const campoBiografia = document.querySelector("#biografia").value;
-  const campoEstado = document.querySelector("#estado").value;
-  const campoCidade = document.querySelector("#cidade").value;
+
 
   const usuario = {
     name: campoNome,
     email: campoEmail,
     password: campoSenha,
-    imagem: campoImagem,
-    biografia: campoBiografia,
-    estado: campoEstado,
-    cidade: campoCidade,
   };
 
   fetch('https://back-end-u9vj.onrender.com/signup', {

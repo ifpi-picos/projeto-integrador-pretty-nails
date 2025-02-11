@@ -75,9 +75,19 @@ form {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding: 0 20px 0 20px;
 }
 
 input {
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  width: 100%;
+  margin: 8px 0; 
+  border-radius: 10px;
+}
+
+select {
   background: #eee;
   border: none;
   padding: 12px 15px;
@@ -102,6 +112,10 @@ input {
   align-items: center;
 }
 
+.botao {
+  padding: 10px;
+}
+
 .imagem {
   border-radius: 50%;
   height: 150px;
@@ -116,10 +130,6 @@ input {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-}
-
-.escolher-imagem{
-  width: 140px;
 }
 
 .cadastrar{
