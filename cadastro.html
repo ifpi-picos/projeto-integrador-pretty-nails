@@ -29,23 +29,18 @@
                             </div>
                         </div>
                         
-                        <div class="radio">
-                            <div class="escolha">
-                                <input type="radio" id="cliente" name="tipo" value="cliente" checked>
-                                <label for="cliente">Cliente</label>
-                            </div>
-                            <div class="escolha">
-                                <input type="radio" id="manicure" name="tipo" value="manicure">
-                                <label for="manicure">Manicure</label>
-                            </div>
-                        </div>
+                        <select class="tipo" id="tipo">
+                            <option value="" disabled selected>Tipo de usuário</option>
+                            <option value="MANICURE">Manicure</option>
+                            <option value="CLIENTE">Cliente</option>
+                        </select>
                     </div>
                     <div class="perguntas">
                         <div class="bloco-questionario">
-                            <input type="text"     id="nome"      placeholder="Nome" />
-                            <input type="email"    id="email"     placeholder="Email" />
-                            <input type="password" id="senha"     placeholder="Senha" />
-                            <input type="tel"      id="numero"    placeholder="N° de telefone" />
+                            <input type="text"     id="nome"      placeholder="Nome" required>
+                            <input type="email"    id="email"     placeholder="Email" required>
+                            <input type="password" id="senha"     placeholder="Senha" required>
+                            <input type="tel"      id="numero"    placeholder="N° de telefone" required>
                             <select id="estado">
                                 <option value="" disabled selected>Estado</option>
                                 <option value="AC">Acre</option>
@@ -78,6 +73,7 @@
                             </select></select>
                             <select id="cidade">
                                 <option value="" disabled selected>Cidade</option>
+                                <option value="picos">Picos</option>
                             </select></select>
                         </div>
                     </div>

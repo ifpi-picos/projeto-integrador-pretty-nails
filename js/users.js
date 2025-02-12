@@ -3,20 +3,25 @@ function adicionarUsuario() {
   const campoNome = document.querySelector("#nome").value;
   const campoEmail = document.querySelector("#email").value;
   const campoSenha = document.querySelector("#senha").value;
+  const campoTelefone = document.querySelector("#telefone").value;
+  const campoEstado = document.querySelector("#estado").value;
+  const campoCidade = document.querySelector("#cidade").value;
+  const campoTipo = document.querySelector("#tipo").value;
+  const campoFoto = document.querySelector("#imagem").files[0]; // Obtém o arquivo de imagem
 
+  const formData = new FormData();
+  formData.append('name', campoNome);
+  formData.append('email', campoEmail);
+  formData.append('password', campoSenha);
+  formData.append('telefone', campoTelefone);
+  formData.append('estado', campoEstado);
+  formData.append('cidade', campoCidade);
+  formData.append('tipo', campoTipo);
+  formData.append('foto', campoFoto); // Adiciona a imagem ao FormData
 
-  const usuario = {
-    name: campoNome,
-    email: campoEmail,
-    password: campoSenha,
-  };
-
-  fetch('https://back-end-u9vj.onrender.com/signup', {
+  fetch('https://back-end-u9vj.onrender.com/upload', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(usuario)
+    body: formData
   }).then(response => {
     response.json().then(data => {
       console.log("Usuário cadastrado com sucesso: ", data);
@@ -52,8 +57,7 @@ async function loginUsuario() {
     const { user, token } = await resposta.json();
 
     localStorage.setItem('token', token);
-    localStorage.setItem('nome', campoNome);
-    localStorage.setItem('email', campoEmail);
+    localStorage.setItem('email', email);
 
     // Redireciona para a página inicial
     window.location.href = 'principal.html';

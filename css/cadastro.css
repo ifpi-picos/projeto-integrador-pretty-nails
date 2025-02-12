@@ -141,7 +141,7 @@ select {
   gap: 5px;
 }
 
-.radio{
+.tipo{
   display: flex;
   justify-content: space-around;
   align-items: center;
