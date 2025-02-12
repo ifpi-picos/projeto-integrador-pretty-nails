@@ -19,18 +19,22 @@ function adicionarUsuario() {
   formData.append('tipo', campoTipo);
   formData.append('foto', campoFoto); // Adiciona a imagem ao FormData
 
-  fetch('https://back-end-u9vj.onrender.com/upload', {
-    method: 'POST',
-    body: formData
-  }).then(response => {
-    response.json().then(data => {
-      console.log("Usuário cadastrado com sucesso: ", data);
-      window.location.href = 'principal.html';
-    });
-  }).catch(error => {
+  fetch('https://back-end-u9vj.onrender.com/signup', {
+  method: 'POST',
+  body: formData,
+  headers: {
+    // NÃO definir 'Content-Type', pois o navegador já define automaticamente para `multipart/form-data`
+  }
+}).then(response => response.json())
+  .then(data => {
+    console.log("Usuário cadastrado com sucesso: ", data);
+    window.location.href = 'principal.html';
+  })
+  .catch(error => {
     console.log("Erro ao cadastrar usuário: ", error);
-  });
-}
+    });
+  }
+
 
 //FUNÇÃO PARA FAZER LOGIN
 async function loginUsuario() {
