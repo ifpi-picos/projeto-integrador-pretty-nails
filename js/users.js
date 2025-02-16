@@ -9,38 +9,30 @@ function adicionarUsuario() {
   const campoTipo = document.querySelector("#tipo").value;
   //const campoFoto = document.querySelector("#imagem").files[0];
 
-  // Validações básicas
-  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone || !campoEstado || !campoCidade || !campoTipo) {
-    alert("Por favor, preencha todos os campos obrigatórios.");
-    return;
-  }
-
-  if (!/\S+@\S+\.\S+/.test(campoEmail)) {
-    alert("Por favor, insira um email válido.");
-    return;
-  }
-
   if (campoSenha.length < 5) {
     alert("A senha deve ter pelo menos 5 caracteres.");
     return;
   }
+  
+  const usuario = {
+    name: campoNome,
+    email: campoEmail,
+    password: campoSenha,
+    telefone: campoTelefone,
+    estado: campoEstado,
+    cidade: campoCidade,
+    tipo: campoTipo,
+    //photo: campoFoto,
+  };
 
-  const formData = new FormData();
-  formData.append("name", campoNome);
-  formData.append("email", campoEmail);
-  formData.append("password", campoSenha);
-  formData.append("telefone", campoTelefone);
-  formData.append("estado", campoEstado);
-  formData.append("cidade", campoCidade);
-  formData.append("tipo", campoTipo);
-  //formData.append("foto", campoFoto);
-
-  fetch("https://back-end-u9vj.onrender.com/signup", {
-    method: "POST",
-    body: formData,
-  })
-    .then(async (response) => {
-      if (!response.ok) {
+  fetch('https://back-end-u9vj.onrender.com/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(usuario)
+  }).then(async (response) => {
+    if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Erro ao cadastrar usuário.");
       }
@@ -62,17 +54,6 @@ function adicionarUsuario() {
 async function loginUsuario() {
   const campoEmail = document.querySelector("#email").value;
   const campoSenha = document.querySelector("#senha").value;
-
-  // Validações básicas
-  if (!campoEmail || !campoSenha) {
-    alert("Por favor, preencha todos os campos.");
-    return;
-  }
-
-  if (!/\S+@\S+\.\S+/.test(campoEmail)) {
-    alert("Por favor, insira um email válido.");
-    return;
-  }
 
   const usuario = {
     email: campoEmail,
