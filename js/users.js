@@ -10,7 +10,7 @@ function adicionarUsuario() {
   //const campoFoto = document.querySelector("#imagem").files[0];
 
   // Validações básicas
-  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone) {
+  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone || !campoEstado || !campoCidade || !campoTipo) {
     alert("Por favor, preencha todos os campos obrigatórios.");
     return;
   }
