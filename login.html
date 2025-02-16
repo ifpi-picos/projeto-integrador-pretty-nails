@@ -23,7 +23,7 @@
                     console.log("Dados do usuário decodificados:", data);
 
                     alert("Login realizado! Redirecionando...");
-                    window.location.href = "principal.html"; // URL de teste
+                    window.location.href = "principal.html";
                 } catch (error) {
                     console.error("Erro ao decodificar o token JWT:", error);
                 }
@@ -50,7 +50,7 @@
             }
             );
 
-            google.accounts.id.prompt(); // Exibir o One Tap
+            google.accounts.id.prompt();
         }
     </script>
 

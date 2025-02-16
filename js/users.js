@@ -1,12 +1,12 @@
 //FUNÇÃO PARA CADASTRAR
 function adicionarUsuario() {
   const campoNome = document.querySelector("#nome").value.trim();
-  const campoEmail = document.querySelector("#email").value.trim();
+  const campoEmail = document.querySelector("#email").value;
   const campoSenha = document.querySelector("#senha").value;
-  const campoTelefone = document.querySelector("#telefone").value.trim();
-  const campoEstado = document.querySelector("#estado").value.trim();
-  const campoCidade = document.querySelector("#cidade").value.trim();
-  const campoTipo = document.querySelector("#tipo").value.trim();
+  const campoTelefone = document.querySelector("#telefone").value;
+  const campoEstado = document.querySelector("#estado").value;
+  const campoCidade = document.querySelector("#cidade").value;
+  const campoTipo = document.querySelector("#tipo").value;
   //const campoFoto = document.querySelector("#imagem").files[0];
 
   // Validações básicas
@@ -20,7 +20,7 @@ function adicionarUsuario() {
     return;
   }
 
-  if (campoSenha.length < 6) {
+  if (campoSenha.length < 5) {
     alert("A senha deve ter pelo menos 6 caracteres.");
     return;
   }
@@ -60,7 +60,7 @@ function adicionarUsuario() {
 
 //FUNÇÃO PARA FAZER LOGIN
 async function loginUsuario() {
-  const campoEmail = document.querySelector("#email").value.trim();
+  const campoEmail = document.querySelector("#email").value;
   const campoSenha = document.querySelector("#senha").value;
 
   // Validações básicas
