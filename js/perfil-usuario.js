@@ -1,23 +1,34 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const userId = localStorage.getItem('userId');
-    console.log("Recuperando userId:", userId); // Para depuração
 
     if (!userId) {
-        console.warn("Redirecionando para login pois userId não foi encontrado.");
+        console.warn("Usuário não autenticado. Redirecionando para login.");
         window.location.href = 'login.html';
         return;
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/usuario/${userId}`);
+        const response = await fetch(`https://back-end-u9vj.onrender.com/users/${userId}`);
+
+        if (!response.ok) {
+            throw new Error("Erro ao buscar usuário: " + response.statusText);
+        }
+
         const usuario = await response.json();
 
-        if (usuario) {
-            document.getElementById('nomeUsuario').textContent = usuario.nome;
-            document.getElementById('emailUsuario').textContent = usuario.email;
-            document.getElementById('fotoUsuario').src = usuario.foto || 'imagens/avatar.jpg';
+        if (!usuario || !usuario.id) {
+            console.warn("Usuário não encontrado, redirecionando para login.");
+            window.location.href = 'login.html';
+            return;
         }
+
+        document.getElementById('nome').textContent = nome; // Correção do nome do campo
+        document.getElementById('email').textContent = email;
+        document.getElementById('foto').src = foto || 'imagens/avatar.jpg'; // Avatar padrão
+        document.getElementById('telefone').textContent = telefone;
+
     } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
+        alert("Erro ao carregar perfil. Tente novamente mais tarde.");
     }
 });

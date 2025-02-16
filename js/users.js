@@ -1,12 +1,29 @@
+//FUNÇÃO PARA CADASTRAR
 function adicionarUsuario() {
-  const campoNome = document.querySelector("#nome").value;
-  const campoEmail = document.querySelector("#email").value;
+  const campoNome = document.querySelector("#nome").value.trim();
+  const campoEmail = document.querySelector("#email").value.trim();
   const campoSenha = document.querySelector("#senha").value;
-  const campoTelefone = document.querySelector("#telefone").value;
-  const campoEstado = document.querySelector("#estado").value;
-  const campoCidade = document.querySelector("#cidade").value;
-  const campoTipo = document.querySelector("#tipo").value;
-  const campoFoto = document.querySelector("#imagem").files[0];
+  const campoTelefone = document.querySelector("#telefone").value.trim();
+  const campoEstado = document.querySelector("#estado").value.trim();
+  const campoCidade = document.querySelector("#cidade").value.trim();
+  const campoTipo = document.querySelector("#tipo").value.trim();
+  //const campoFoto = document.querySelector("#imagem").files[0];
+
+  // Validações básicas
+  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone || !campoEstado || !campoCidade || !campoTipo) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
+  }
+
+  if (!/\S+@\S+\.\S+/.test(campoEmail)) {
+    alert("Por favor, insira um email válido.");
+    return;
+  }
+
+  if (campoSenha.length < 6) {
+    alert("A senha deve ter pelo menos 6 caracteres.");
+    return;
+  }
 
   const formData = new FormData();
   formData.append("name", campoNome);
@@ -16,19 +33,26 @@ function adicionarUsuario() {
   formData.append("estado", campoEstado);
   formData.append("cidade", campoCidade);
   formData.append("tipo", campoTipo);
-  formData.append("foto", campoFoto);
+  //formData.append("foto", campoFoto);
 
   fetch("https://back-end-u9vj.onrender.com/signup", {
     method: "POST",
     body: formData,
   })
-    .then((response) => response.json())
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erro ao cadastrar usuário.");
+      }
+      return response.json();
+    })
     .then((data) => {
-      console.log("Usuário cadastrado com sucesso: ", data);
+      alert("Usuário cadastrado com sucesso!");
       window.location.href = "principal.html";
     })
     .catch((error) => {
-      console.log("Erro ao cadastrar usuário: ", error);
+      alert(error.message);
+      console.error("Erro ao cadastrar usuário:", error);
     });
 }
 
@@ -36,35 +60,48 @@ function adicionarUsuario() {
 
 //FUNÇÃO PARA FAZER LOGIN
 async function loginUsuario() {
-  const campoEmail = document.querySelector("#email").value;
+  const campoEmail = document.querySelector("#email").value.trim();
   const campoSenha = document.querySelector("#senha").value;
+
+  // Validações básicas
+  if (!campoEmail || !campoSenha) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
+  if (!/\S+@\S+\.\S+/.test(campoEmail)) {
+    alert("Por favor, insira um email válido.");
+    return;
+  }
 
   const usuario = {
     email: campoEmail,
-    password: campoSenha
+    password: campoSenha,
   };
+
   try {
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/login', {
-      method: 'POST',
+    const resposta = await fetch("https://back-end-u9vj.onrender.com/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(usuario),
     });
 
     if (!resposta.ok) {
-      throw new Error('Email ou senha inválidos');
+      const errorData = await resposta.json();
+      throw new Error(errorData.message || "Email ou senha inválidos.");
     }
 
     const { user, token } = await resposta.json();
+    
+    localStorage.setItem("token", token);
+    localStorage.setItem("email", campoEmail);
 
-    localStorage.setItem('token', token);
-    localStorage.setItem('email', email);
-
-    // Redireciona para a página inicial
-    window.location.href = 'principal.html';
+    alert("Login realizado com sucesso!");
+    window.location.href = "principal.html";
   } catch (error) {
-    console.error('Erro no login:', error);
-    alert('Erro ao realizar login. Tente novamente mais tarde.');
+    alert(error.message);
+    console.error("Erro no login:", error);
   }
 }
