@@ -10,7 +10,7 @@ function adicionarUsuario() {
   //const campoFoto = document.querySelector("#imagem").files[0];
 
   // Validações básicas
-  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone || !campoEstado || !campoCidade || !campoTipo) {
+  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone) {
     alert("Por favor, preencha todos os campos obrigatórios.");
     return;
   }
@@ -21,7 +21,7 @@ function adicionarUsuario() {
   }
 
   if (campoSenha.length < 5) {
-    alert("A senha deve ter pelo menos 6 caracteres.");
+    alert("A senha deve ter pelo menos 5 caracteres.");
     return;
   }
 
