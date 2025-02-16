@@ -18,14 +18,14 @@
         <div class="profile-header">
             <div class="profile-info">
                 <div class="profile-picture">
-                    <img src="imagens/perfil_cliente.png" alt="Foto de Perfil">
+                    <img id="profile-img" src="imagens/perfil_cliente.png" alt="Foto de Perfil">
                     <button class="edit-icon">✎</button>
                 </div>
                 <div class="profile-details">
-                    <h2>Nome do Usuário</h2>
-                    <p><strong>Email:</strong> usuario@example.com</p>
-                    <p><strong>Telefone:</strong> (11) 99999-9999</p>
-                    <p><strong>Endereço:</strong> Rua Exemplo, 123</p>
+                    <h2 id="user-name">Nome do Usuário</h2>
+                    <p><strong>Email:</strong> <span id="user-email">usuario@example.com</span></p>
+                    <p><strong>Telefone:</strong> <span id="user-phone">(11) 99999-9999</span></p>
+                    <p><strong>Endereço:</strong> <span id="user-address">Rua Exemplo, 123</span></p>
                     <button class="edit-button">Editar Perfil</button>
                 </div>
             </div>
@@ -35,52 +35,8 @@
         <div class="favorite-manicurists">
             <h3>Manicures Favoritas</h3>
             <div class="carousel">
-                <div class="carousel-items">
-                    <div class="carousel-item">
-                        <a href="#" class="profile-link">
-                            <div class="profile-box">
-                                <!-- Foto de Perfil da Manicure A -->
-                                <img src="imagens/manicure1.png"  class="profile-img">
-                                <p>Camila Lima</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#" class="profile-link">
-                            <div class="profile-box">
-                                <!-- Foto de Perfil da Manicure B -->
-                                <img src="imagens/manicure2.png" class="profile-img">
-                                <p>Renata Souza</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#" class="profile-link">
-                            <div class="profile-box">
-                                <!-- Foto de Perfil da Manicure C -->
-                                <img src="imagens/manicure3.png" class="profile-img">
-                                <p>Joana Alves</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#" class="profile-link">
-                            <div class="profile-box">
-                                <!-- Foto de Perfil da Manicure D -->
-                                <img src="imagens/manicure4.png" class="profile-img">
-                                <p>Beatriz Costa</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#" class="profile-link">
-                            <div class="profile-box">
-                                <!-- Foto de Perfil da Manicure E -->
-                                <img src="imagens/manicure5.png"  class="profile-img">
-                                <p>Mariana Oliveira</p>
-                            </div>
-                        </a>
-                    </div>
+                <div class="carousel-items" id="favorite-manicurists">
+                    <!-- Manicures Favoritas serão inseridas aqui via JavaScript -->
                 </div>
             </div>
         </div>
@@ -88,25 +44,8 @@
         <!-- Seção de Temas de Unhas Favoritos (Grid com imagens) -->
         <div class="favorite-nail-themes">
             <h3>Temas de Unhas Favoritos</h3>
-            <div class="themes-grid">
-                <div class="theme-item" style="background-image: url('imagens/tema1.jpg');">
-                    <p class="theme-name">Tema 1</p>
-                </div>
-                <div class="theme-item" style="background-image: url('imagens/tema2.jpg');">
-                    <p class="theme-name">Tema 2</p>
-                </div>
-                <div class="theme-item" style="background-image: url('imagens/tema3.jpg');">
-                    <p class="theme-name">Tema 3</p>
-                </div>
-                <div class="theme-item" style="background-image: url('imagens/tema4.jpg');">
-                    <p class="theme-name">Tema 4</p>
-                </div>
-                <div class="theme-item" style="background-image: url('imagens/tema5.jpg');">
-                    <p class="theme-name">Tema 5</p>
-                </div>
-                <div class="theme-item" style="background-image: url('imagens/tema6.jpg');">
-                    <p class="theme-name">Tema 6</p>
-                </div>
+            <div class="themes-grid" id="favorite-themes">
+                <!-- Temas de Unhas serão inseridos aqui via JavaScript -->
             </div>
         </div>
     </div>

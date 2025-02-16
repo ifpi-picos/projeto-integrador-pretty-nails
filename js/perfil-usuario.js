@@ -1,16 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const userId = localStorage.getItem('userId'); // Supondo que o ID do usuário esteja salvo no localStorage
+document.addEventListener('DOMContentLoaded', async () => {
+    const userId = localStorage.getItem('userId');
+    console.log("Recuperando userId:", userId); // Para depuração
 
-    fetch(`https://back-end-u9vj.onrender.com/users/${userId}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('profile-picture').src = data.foto || 'imagens/perfil_cliente.png';
-            document.getElementById('user-name').textContent = data.name;
-            document.getElementById('user-email').textContent = data.email;
-            document.getElementById('user-telefone').textContent = data.telefone;
-            document.getElementById('user-endereco').textContent = `${data.estado}, ${data.cidade}`;
-        })
-        .catch(error => {
-            console.error('Erro ao buscar dados do usuário:', error);
-        });
+    if (!userId) {
+        console.warn("Redirecionando para login pois userId não foi encontrado.");
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/usuario/${userId}`);
+        const usuario = await response.json();
+
+        if (usuario) {
+            document.getElementById('nomeUsuario').textContent = usuario.nome;
+            document.getElementById('emailUsuario').textContent = usuario.email;
+            document.getElementById('fotoUsuario').src = usuario.foto || 'imagens/avatar.jpg';
+        }
+    } catch (error) {
+        console.error('Erro ao buscar dados do usuário:', error);
+    }
 });

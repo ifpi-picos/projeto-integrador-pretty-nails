@@ -50,3 +50,4 @@ document.querySelectorAll('.faq-question').forEach(question => {
     answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
   });
 });
+
