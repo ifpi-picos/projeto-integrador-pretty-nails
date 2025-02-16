@@ -36,11 +36,6 @@ function adicionarUsuario() {
         const errorData = await response.json();
         throw new Error(errorData.message || "Erro ao cadastrar usuário.");
       }
-
-      localStorage.setItem("email", campoEmail);
-      localStorage.setItem("nome", campoNome);
-      localStorage.setItem("telefone", campoTelefone);
-
       return response.json();
     })
     .then((data) => {
