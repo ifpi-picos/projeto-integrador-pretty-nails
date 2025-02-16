@@ -40,7 +40,6 @@ function adicionarUsuario() {
       localStorage.setItem("email", campoEmail);
       localStorage.setItem("nome", campoNome);
       localStorage.setItem("telefone", campoTelefone);
-      localStorage.setItem("token", token);
 
       return response.json();
     })
