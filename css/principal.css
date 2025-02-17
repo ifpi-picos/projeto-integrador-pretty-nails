@@ -294,3 +294,75 @@ main h1 {
     color: #ffffff; /* Cor do texto */
     margin: 0; /* Remove a margem padrão */
 }
+
+
+
+#perfis-bem-avaliados {
+    display: flex;
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    background-color: #e0978a; /* Cor de fundo igual à do título "Temas" */
+    padding: 10px;
+    border-radius: 15px; /* Cantos arredondados */
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    width: calc(100% - 82px); /* Ocupa toda a tela, subtraindo a barra lateral */
+    max-width: 290px; /* Define um limite máximo */
+    margin-left: 40%; /* Garante alinhamento igual ao "Temas" */
+    margin-top: 10px; /* Ajuste conforme necessário */
+}
+
+#perfis-bem-avaliados h1 {
+    font-size: 20px;
+    color: #ffffff; /* Cor do texto */
+    margin: 0; /* Remove margem padrão */
+}
+
+#perfis-container {
+    display: flex;
+    overflow-x: auto; /* Permite rolagem horizontal */
+    gap: 20px;
+    padding: 10px;
+    white-space: nowrap;
+    max-width: 80%;
+    margin: 10px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    scrollbar-width: none; /* Remove a barra no Firefox */
+    -ms-overflow-style: none; /* Remove a barra no Edge e IE */
+}
+
+#perfis-container::-webkit-scrollbar {
+    display: none; /* Remove a barra no Chrome, Safari e Edge */
+}
+
+.perfil {
+    flex: 0 0 auto;
+    text-align: center;
+    width: 150px;
+    padding: 10px;
+    background-color: #f5dcd7;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perfil img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.perfil-nome {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.estrelas {
+    font-size: 18px;
+    color: #FFD700; /* Cor dourada para as estrelas */
+}

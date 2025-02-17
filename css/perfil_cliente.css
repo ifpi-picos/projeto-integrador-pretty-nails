@@ -255,3 +255,18 @@ header h1 {
 .theme-item:hover {
     background-color: var(--tom4);
 }
+
+/* Estilização do botão de voltar */
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.back-button img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
