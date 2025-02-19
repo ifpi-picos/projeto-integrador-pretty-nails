@@ -4,20 +4,6 @@ function toggleFilters() {
 
 document.addEventListener("DOMContentLoaded", function () {
     carregarEstados();
-    carregarUsuarios();
-
-    document.querySelector(".apply-btn").addEventListener("click", function () {
-        const estado = document.getElementById("estado").value;
-        const cidade = document.getElementById("cidade").value;
-        carregarUsuarios(estado, cidade);
-    });
-
-    document.getElementById("searchInput").addEventListener("input", function () {
-        const searchTerm = this.value.toLowerCase();
-        const estado = document.getElementById("estado").value;
-        const cidade = document.getElementById("cidade").value;
-        carregarUsuarios(estado, cidade, searchTerm);
-    });
 });
 
 const estadosCidades = {
@@ -76,44 +62,303 @@ function carregarCidades() {
     }
 }
 
-function carregarUsuarios(estado = "", cidade = "", searchTerm = "") {
-    let url = 'https://back-end-u9vj.onrender.com/users?tipo=MANICURE';
+document.addEventListener("DOMContentLoaded", function () {
+    carregarEstados();
+    adicionarPerfis();
 
-    if (estado) {
-        url += `&estado=${estado}`;
-    }
-    if (cidade) {
-        url += `&cidade=${cidade}`;
-    }
+    document.querySelector(".apply-btn").addEventListener("click", function () {
+        const estado = document.getElementById("estado").value;
+        const cidade = document.getElementById("cidade").value;
+        adicionarPerfis(estado, cidade);
+    });
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const perfilContainer = document.getElementById("perfilContainer");
-            perfilContainer.innerHTML = ""; // Limpa o contêiner antes de adicionar novos perfis
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase();
+        const estado = document.getElementById("estado").value;
+        const cidade = document.getElementById("cidade").value;
+        adicionarPerfis(estado, cidade, searchTerm);
+    });
+});
 
-            data.forEach(perfil => {
-                if ((estado === "" || perfil.estado === estado) &&
-                    (cidade === "" || perfil.cidade === cidade) &&
-                    (searchTerm === "" || perfil.name.toLowerCase().includes(searchTerm))) {
-                    const perfilDiv = document.createElement("div");
-                    perfilDiv.classList.add("perfil");
+function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome = "") {
+    const perfis = [
+        {
+            nome: "Maria Silva",
+            estrelas: 5,
+            estado: "SP",
+            cidade: "São Paulo",
+            foto: "imagens/manicure4.png"
+        },
+        {
+            nome: "Ana Souza",
+            estrelas: 4,
+            estado: "RJ",
+            cidade: "Rio de Janeiro",
+            foto: "imagens/ana_souza.jpg"
+        },
+        {
+            nome: "João Pereira",
+            estrelas: 3,
+            estado: "MG",
+            cidade: "Belo Horizonte",
+            foto: "imagens/joao_pereira.jpg"
+        },
+        {
+            nome: "Clara Nunes",
+            estrelas: 5,
+            estado: "BA",
+            cidade: "Salvador",
+            foto: "imagens/clara_nunes.jpg"
+        },
+        {
+            nome: "Pedro Santos",
+            estrelas: 4,
+            estado: "RS",
+            cidade: "Porto Alegre",
+            foto: "imagens/pedro_santos.jpg"
+        },
+        {
+            nome: "Fernanda Lima",
+            estrelas: 5,
+            estado: "PR",
+            cidade: "Curitiba",
+            foto: "imagens/fernanda_lima.jpg"
+        }
+        ,
+        {
+            nome: "Juliana Alves",
+            estrelas: 5,
+            estado: "SP",
+            cidade: "Campinas",
+            foto: "https://randomuser.me/api/portraits/women/1.jpg"
+        },
+        {
+            nome: "Patrícia Oliveira",
+            estrelas: 4,
+            estado: "RJ",
+            cidade: "Niterói",
+            foto: "https://randomuser.me/api/portraits/women/2.jpg"
+        },
+        {
+            nome: "Carla Mendes",
+            estrelas: 3,
+            estado: "MG",
+            cidade: "Uberlândia",
+            foto: "https://randomuser.me/api/portraits/women/3.jpg"
+        },
+        {
+            nome: "Renata Costa",
+            estrelas: 5,
+            estado: "BA",
+            cidade: "Feira de Santana",
+            foto: "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        {
+            nome: "Luciana Lima",
+            estrelas: 4,
+            estado: "RS",
+            cidade: "Caxias do Sul",
+            foto: "https://randomuser.me/api/portraits/women/5.jpg"
+        },
+        {
+            nome: "Mariana Rocha",
+            estrelas: 5,
+            estado: "PR",
+            cidade: "Londrina",
+            foto: "https://randomuser.me/api/portraits/women/6.jpg"
+        },
+        {
+            nome: "Fernanda Ribeiro",
+            estrelas: 4,
+            estado: "SC",
+            cidade: "Joinville",
+            foto: "https://randomuser.me/api/portraits/women/7.jpg"
+        },
+        {
+            nome: "Camila Santos",
+            estrelas: 5,
+            estado: "PE",
+            cidade: "Recife",
+            foto: "https://randomuser.me/api/portraits/women/8.jpg"
+        },
+        {
+            nome: "Aline Souza",
+            estrelas: 3,
+            estado: "CE",
+            cidade: "Fortaleza",
+            foto: "https://randomuser.me/api/portraits/women/9.jpg"
+        },
+        {
+            nome: "Beatriz Almeida",
+            estrelas: 4,
+            estado: "GO",
+            cidade: "Goiânia",
+            foto: "https://randomuser.me/api/portraits/women/10.jpg"
+        },
+        {
+            nome: "Daniela Ferreira",
+            estrelas: 5,
+            estado: "ES",
+            cidade: "Vitória",
+            foto: "https://randomuser.me/api/portraits/women/11.jpg"
+        },
+        {
+            nome: "Elaine Martins",
+            estrelas: 4,
+            estado: "MT",
+            cidade: "Cuiabá",
+            foto: "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        {
+            nome: "Fabiana Silva",
+            estrelas: 5,
+            estado: "MS",
+            cidade: "Campo Grande",
+            foto: "https://randomuser.me/api/portraits/women/13.jpg"
+        },
+        {
+            nome: "Gabriela Lima",
+            estrelas: 3,
+            estado: "PA",
+            cidade: "Belém",
+            foto: "https://randomuser.me/api/portraits/women/14.jpg"
+        },
+        {
+            nome: "Helena Costa",
+            estrelas: 4,
+            estado: "PB",
+            cidade: "João Pessoa",
+            foto: "https://randomuser.me/api/portraits/women/15.jpg"
+        },
+        {
+            nome: "Isabela Oliveira",
+            estrelas: 5,
+            estado: "PI",
+            cidade: "Teresina",
+            foto: "https://randomuser.me/api/portraits/women/16.jpg"
+        },
+        {
+            nome: "Jéssica Mendes",
+            estrelas: 4,
+            estado: "RN",
+            cidade: "Natal",
+            foto: "https://randomuser.me/api/portraits/women/17.jpg"
+        },
+        {
+            nome: "Larissa Ribeiro",
+            estrelas: 5,
+            estado: "RO",
+            cidade: "Porto Velho",
+            foto: "https://randomuser.me/api/portraits/women/18.jpg"
+        },
+        {
+            nome: "Michele Santos",
+            estrelas: 3,
+            estado: "RR",
+            cidade: "Boa Vista",
+            foto: "https://randomuser.me/api/portraits/women/19.jpg"
+        },
+        {
+            nome: "Natália Souza",
+            estrelas: 4,
+            estado: "SE",
+            cidade: "Aracaju",
+            foto: "https://randomuser.me/api/portraits/women/20.jpg"
+        },
+        {
+            nome: "Olivia Lima",
+            estrelas: 5,
+            estado: "TO",
+            cidade: "Palmas",
+            foto: "https://randomuser.me/api/portraits/women/21.jpg"
+        },
+        {
+            nome: "Paula Ferreira",
+            estrelas: 4,
+            estado: "AC",
+            cidade: "Rio Branco",
+            foto: "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        {
+            nome: "Rafaela Martins",
+            estrelas: 5,
+            estado: "AL",
+            cidade: "Maceió",
+            foto: "https://randomuser.me/api/portraits/women/23.jpg"
+        },
+        {
+            nome: "Sabrina Costa",
+            estrelas: 3,
+            estado: "AP",
+            cidade: "Macapá",
+            foto: "https://randomuser.me/api/portraits/women/24.jpg"
+        },
+        {
+            nome: "Tatiana Silva",
+            estrelas: 4,
+            estado: "AM",
+            cidade: "Manaus",
+            foto: "https://randomuser.me/api/portraits/women/25.jpg"
+        },
+        {
+            nome: "Vanessa Oliveira",
+            estrelas: 5,
+            estado: "MA",
+            cidade: "São Luís",
+            foto: "https://randomuser.me/api/portraits/women/26.jpg"
+        },
+        {
+            nome: "Yasmin Ribeiro",
+            estrelas: 4,
+            estado: "DF",
+            cidade: "Brasília",
+            foto: "https://randomuser.me/api/portraits/women/27.jpg"
+        },
+        {
+            nome: "Zélia Mendes",
+            estrelas: 5,
+            estado: "PI",
+            cidade: "Parnaíba",
+            foto: "https://randomuser.me/api/portraits/women/28.jpg"
+        },
+        {
+            nome: "Adriana Lima",
+            estrelas: 4,
+            estado: "PE",
+            cidade: "Olinda",
+            foto: "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        {
+            nome: "Bianca Souza",
+            estrelas: 5,
+            estado: "CE",
+            cidade: "Caucaia",
+            foto: "https://randomuser.me/api/portraits/women/30.jpg"
+        }
+    ];
 
-                    perfilDiv.innerHTML = `
-                        <div class="perfil-foto-container">
-                            <img src="${perfil.foto}" alt="Foto de ${perfil.name}" class="perfil-foto">
-                        </div>
-                        <div class="perfil-info">
-                            <h4>${perfil.name}</h4>
-                            <p>${perfil.cidade}, ${perfil.estado}</p>
-                        </div>
-                    `;
+    const perfilContainer = document.getElementById("perfilContainer");
+    perfilContainer.innerHTML = ""; // Limpa os perfis existentes
 
-                    perfilContainer.appendChild(perfilDiv);
-                }
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao carregar usuários:", error);
-        });
+    perfis.forEach(perfil => {
+        if ((filtroEstado === "" || perfil.estado === filtroEstado) &&
+            (filtroCidade === "" || perfil.cidade === filtroCidade) &&
+            (filtroNome === "" || perfil.nome.toLowerCase().includes(filtroNome))) {
+            const perfilDiv = document.createElement("div");
+            perfilDiv.classList.add("perfil");
+
+            perfilDiv.innerHTML = `
+                <div class="perfil-foto-container">
+                    <img src="${perfil.foto}" alt="Foto de ${perfil.nome}" class="perfil-foto">
+                </div>
+                <div class="perfil-info">
+                    <h4>${perfil.nome}</h4>
+                    <p>⭐ ${perfil.estrelas}</p>
+                    <p>${perfil.cidade}, ${perfil.estado}</p>
+                </div>
+            `;
+
+            perfilContainer.appendChild(perfilDiv);
+        }
+    });
 }
