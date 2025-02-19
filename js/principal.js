@@ -38,3 +38,8 @@ container.addEventListener("mousemove", (e) => {
     const walk = (x - startX) * 2; // Velocidade do arrasto
     container.scrollLeft = scrollLeft - walk;
 });
+
+function logout() {
+    localStorage.clear();
+    openPage('login.html');
+}
