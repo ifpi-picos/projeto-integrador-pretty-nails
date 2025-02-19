@@ -4,6 +4,20 @@ function toggleFilters() {
 
 document.addEventListener("DOMContentLoaded", function () {
     carregarEstados();
+    carregarUsuarios();
+
+    document.querySelector(".apply-btn").addEventListener("click", function () {
+        const estado = document.getElementById("estado").value;
+        const cidade = document.getElementById("cidade").value;
+        carregarUsuarios(estado, cidade);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase();
+        const estado = document.getElementById("estado").value;
+        const cidade = document.getElementById("cidade").value;
+        carregarUsuarios(estado, cidade, searchTerm);
+    });
 });
 
 const estadosCidades = {
@@ -62,93 +76,44 @@ function carregarCidades() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    carregarEstados();
-    adicionarPerfis();
+function carregarUsuarios(estado = "", cidade = "", searchTerm = "") {
+    let url = 'https://back-end-u9vj.onrender.com/users?tipo=MANICURE';
 
-    document.querySelector(".apply-btn").addEventListener("click", function () {
-        const estado = document.getElementById("estado").value;
-        const cidade = document.getElementById("cidade").value;
-        adicionarPerfis(estado, cidade);
-    });
+    if (estado) {
+        url += `&estado=${estado}`;
+    }
+    if (cidade) {
+        url += `&cidade=${cidade}`;
+    }
 
-    document.getElementById("searchInput").addEventListener("input", function () {
-        const searchTerm = this.value.toLowerCase();
-        const estado = document.getElementById("estado").value;
-        const cidade = document.getElementById("cidade").value;
-        adicionarPerfis(estado, cidade, searchTerm);
-    });
-});
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const perfilContainer = document.getElementById("perfilContainer");
+            perfilContainer.innerHTML = ""; // Limpa o contêiner antes de adicionar novos perfis
 
-function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome = "") {
-    const perfis = [
-        {
-            nome: "Maria Silva",
-            estrelas: 5,
-            estado: "SP",
-            cidade: "São Paulo",
-            foto: "imagens/manicure4.png"
-        },
-        {
-            nome: "Ana Souza",
-            estrelas: 4,
-            estado: "RJ",
-            cidade: "Rio de Janeiro",
-            foto: "imagens/ana_souza.jpg"
-        },
-        {
-            nome: "João Pereira",
-            estrelas: 3,
-            estado: "MG",
-            cidade: "Belo Horizonte",
-            foto: "imagens/joao_pereira.jpg"
-        },
-        {
-            nome: "Clara Nunes",
-            estrelas: 5,
-            estado: "BA",
-            cidade: "Salvador",
-            foto: "imagens/clara_nunes.jpg"
-        },
-        {
-            nome: "Pedro Santos",
-            estrelas: 4,
-            estado: "RS",
-            cidade: "Porto Alegre",
-            foto: "imagens/pedro_santos.jpg"
-        },
-        {
-            nome: "Fernanda Lima",
-            estrelas: 5,
-            estado: "PR",
-            cidade: "Curitiba",
-            foto: "imagens/fernanda_lima.jpg"
-        }
-        // Adicione mais perfis conforme necessário
-    ];
+            data.forEach(perfil => {
+                if ((estado === "" || perfil.estado === estado) &&
+                    (cidade === "" || perfil.cidade === cidade) &&
+                    (searchTerm === "" || perfil.nome.toLowerCase().includes(searchTerm))) {
+                    const perfilDiv = document.createElement("div");
+                    perfilDiv.classList.add("perfil");
 
-    const perfilContainer = document.getElementById("perfilContainer");
-    perfilContainer.innerHTML = ""; // Limpa os perfis existentes
+                    perfilDiv.innerHTML = `
+                        <div class="perfil-foto-container">
+                            <img src="${perfil.foto}" alt="Foto de ${perfil.nome}" class="perfil-foto">
+                        </div>
+                        <div class="perfil-info">
+                            <h4>${perfil.nome}</h4>
+                            <p>${perfil.cidade}, ${perfil.estado}</p>
+                        </div>
+                    `;
 
-    perfis.forEach(perfil => {
-        if ((filtroEstado === "" || perfil.estado === filtroEstado) &&
-            (filtroCidade === "" || perfil.cidade === filtroCidade) &&
-            (filtroNome === "" || perfil.nome.toLowerCase().includes(filtroNome))) {
-            const perfilDiv = document.createElement("div");
-            perfilDiv.classList.add("perfil");
-
-            perfilDiv.innerHTML = `
-                <div class="perfil-foto-container">
-                    <img src="${perfil.foto}" alt="Foto de ${perfil.nome}" class="perfil-foto">
-                </div>
-                <div class="perfil-info">
-                    <h4>${perfil.nome}</h4>
-                    <p>⭐ ${perfil.estrelas}</p>
-                    <p>${perfil.cidade}, ${perfil.estado}</p>
-                </div>
-            `;
-
-            perfilContainer.appendChild(perfilDiv);
-        }
-    });
+                    perfilContainer.appendChild(perfilDiv);
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao carregar usuários:", error);
+        });
 }
