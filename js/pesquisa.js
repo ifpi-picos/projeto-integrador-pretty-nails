@@ -95,16 +95,16 @@ function carregarUsuarios(estado = "", cidade = "", searchTerm = "") {
             data.forEach(perfil => {
                 if ((estado === "" || perfil.estado === estado) &&
                     (cidade === "" || perfil.cidade === cidade) &&
-                    (searchTerm === "" || perfil.nome.toLowerCase().includes(searchTerm))) {
+                    (searchTerm === "" || perfil.name.toLowerCase().includes(searchTerm))) {
                     const perfilDiv = document.createElement("div");
                     perfilDiv.classList.add("perfil");
 
                     perfilDiv.innerHTML = `
                         <div class="perfil-foto-container">
-                            <img src="${perfil.foto}" alt="Foto de ${perfil.nome}" class="perfil-foto">
+                            <img src="${perfil.foto}" alt="Foto de ${perfil.name}" class="perfil-foto">
                         </div>
                         <div class="perfil-info">
-                            <h4>${perfil.nome}</h4>
+                            <h4>${perfil.name}</h4>
                             <p>${perfil.cidade}, ${perfil.estado}</p>
                         </div>
                     `;
