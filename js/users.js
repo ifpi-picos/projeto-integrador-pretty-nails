@@ -37,7 +37,7 @@ function adicionarUsuario() {
   })
   .then((data) => {
     // Salvar o ID do usuário no localStorage
-    localStorage.setItem("userId", data.userId);
+    localStorage.setItem("userId", data.Id);
     
     // Salvar também os outros dados do usuário
     localStorage.setItem("userName", usuario.name);
@@ -48,10 +48,54 @@ function adicionarUsuario() {
     localStorage.setItem("userTipo", usuario.tipo);
 
     alert("Usuário cadastrado com sucesso!");
-    window.location.href = "perfil_cliente.html"; // Redireciona para o perfil após cadastro
+    window.location.href = "login.html";
   })
   .catch((error) => {
     alert(error.message);
     console.error("Erro ao cadastrar usuário:", error);
   });
+}
+
+
+//FUNÇÃO PARA FAZER LOGIN
+async function loginUsuario() {
+  const campoEmail = document.querySelector("#email").value;
+  const campoSenha = document.querySelector("#senha").value;
+
+  const usuario = {
+    email: campoEmail,
+    password: campoSenha,
+  };
+
+  try {
+    const resposta = await fetch("https://back-end-u9vj.onrender.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+
+    if (!resposta.ok) {
+      const errorData = await resposta.json();
+      throw new Error(errorData.message || "Email ou senha inválidos.");
+    }
+
+    const { user, token } = await resposta.json();
+    
+    localStorage.setItem("token", token);
+    localStorage.setItem("email", campoEmail);
+    localStorage.setItem("userId", user.Id);
+    localStorage.setItem("userName", user.name);
+    localStorage.setItem("userTelefone", user.telefone);
+    localStorage.setItem("userEstado", user.estado);
+    localStorage.setItem("userCidade", user.cidade);
+    localStorage.setItem("userTipo", user.tipo);
+
+    alert("Login realizado com sucesso!");
+    window.location.href = "principal.html";
+  } catch (error) {
+    alert(error.message);
+    console.error("Erro no login:", error);
+  }
 }
