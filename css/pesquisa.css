@@ -30,7 +30,7 @@ html, body {
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    background-color: var(--tom1);
+    background: linear-gradient(45deg, var(--tom2), var(--tom3), var(--tom2));
     color: var(--branco);
     box-sizing: border-box;
 }
@@ -51,25 +51,24 @@ html, body {
 .search-box input {
     width: 100%;
     padding: 12px;
-    border: 2px solid var(--tom4);
-    border-radius: 5px;
     font-size: 16px;
+    border-radius: 20px;
+    border: none;
 }
 
 /* Botão de filtros */
 .filter-btn {
     padding: 12px 20px;
     border: none;
-    background-color: var(--tom2);
+    background: none;
     color: var(--branco);
-    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background 0.3s;
 }
 
 .filter-btn:hover {
-    background-color: var(--tom3);
+    color: var(--preto);
 }
 
 /* PAINEL DE FILTROS */
@@ -83,7 +82,8 @@ html, body {
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: right 0.3s ease;
-    overflow-y: auto; /* Adiciona rolagem apenas dentro do painel */
+    overflow-y: auto; /* Adiciona rolagem apenas dentro do painel */ 
+    border-radius: 40px 0 0 40px;
 }
 
 .filter-panel.open {
@@ -106,18 +106,61 @@ html, body {
     width: 100%;
     padding: 8px;
     border: 2px solid var(--tom3);
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 14px;
 }
 
 /* Botões dentro do painel */
 .apply-btn, .close-btn {
     margin-top: 10px;
+    padding: 8px;
     width: 100%;
+    border-radius: 10px;
+    border: none;
 }
 
 /* Garante que nenhum elemento ultrapasse a largura da tela */
 * {
     max-width: 100%;
     box-sizing: border-box;
+}
+
+.perfil-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    background-color: var(--branco);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 5px 7px 5px rgba(0, 0, 0, 0.3);
+}
+
+.perfil-foto-container {
+    width: 120px;
+    height: 120px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    margin-right: 30px;
+    background-color: var(--tom4);
+    border: 1px solid var(--tom3);
+    overflow: hidden;
+}
+
+.perfil-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.perfil-info {
+    flex: 1;
+    text-align: left;
 }
