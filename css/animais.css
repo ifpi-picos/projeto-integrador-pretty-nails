@@ -1,0 +1,65 @@
+:root {
+    --branco: #fff;
+    --preto: #000;
+    --preto-tom2: #2a2a2a;
+    --tom1: #d05f4b;
+    --tom2: #d87b6b;
+    --tom3: #e0978a;
+    --tom4: #e8b2a9;
+    --tom5: #ecc0b8;
+    --tom6: #f1cec8;
+    --tom7: #f5dcd7;
+}
+
+/* Remove rolagem horizontal e corrige problemas de layout */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Remove todas as barras de rolagem */
+    background-color: var(--tom7);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+.header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: linear-gradient(45deg, var(--tom2), var(--tom3), var(--tom2));
+    color: var(--branco);
+    box-sizing: border-box;
+    position: fixed; /* Fixa o header no topo da tela */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+}
+
+/* Botão de voltar */
+.back-button img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Centraliza a div com o h1 no meio da tela */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa a altura total da tela */
+    text-align: center;
+    width: 100%;
+    padding-top: 60px; /* Espaço para o cabeçalho fixo */
+    box-sizing: border-box;
+}
+
+/* Estilo do h1 dentro da div centralizada */
+.main-content h1 {
+    font-size: 2em;
+    color: var(--preto);
+}

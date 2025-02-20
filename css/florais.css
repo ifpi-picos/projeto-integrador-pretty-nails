@@ -1,0 +1,124 @@
+:root {
+    --branco: #fff;
+    --preto: #000;
+    --preto-tom2: #2a2a2a;
+    --tom1: #d05f4b;
+    --tom2: #d87b6b;
+    --tom3: #e0978a;
+    --tom4: #e8b2a9;
+    --tom5: #ecc0b8;
+    --tom6: #f1cec8;
+    --tom7: #f5dcd7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--tom7);
+    color: var(--preto);
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--branco);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: var(--tom1);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-item label {
+    font-size: 1.2rem;
+}
+
+.setting-item select,
+.setting-item input[type="checkbox"] {
+    background-color: var(--tom5);
+    border: 1px solid var(--tom2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--tom2);
+    color: var(--branco);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--tom1);
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--preto-tom2);
+}
+
+footer p {
+    font-size: 1rem;
+    color: var(--preto-tom2);
+}
+
+/* Estilos para o tema escuro */
+body.dark {
+    background-color: var(--preto-tom2);
+    color: var(--branco);
+}
+
+body.dark .container {
+    background-color: var(--preto);
+}
+
+body.dark header h1 {
+    color: var(--tom3);
+}
+
+body.dark .setting-item select,
+body.dark .setting-item input[type="checkbox"] {
+    background-color: var(--tom2);
+    border: 1px solid var(--tom3);
+}
+
+body.dark button {
+    background-color: var(--tom3);
+}
+
+body.dark button:hover {
+    background-color: var(--tom1);
+}

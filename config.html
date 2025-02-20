@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="css/config.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a href="principal.html" class="back-button">
+                <img src="imagens/—Pngtree—vector back icon_4267356.png" alt="Voltar">
+            </a>
+            <h1>Configurações</h1>
+        </div>
+    </header>
+    
+    <div class="main-content">
+        <section class="settings">
+            <div class="settings-section">
+                <h2>Geral</h2>
+                <div class="setting-item">
+                    <label for="theme">Modo de Tema</label>
+                    <select id="theme" onchange="changeTheme()">
+                        <option value="light">Claro</option>
+                        <option value="dark">Escuro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Privacidade & Segurança</h2>
+                <div class="setting-item">
+                    <button id="privacyBtn" onclick="openPrivacySettings()">Privacidade</button>
+                </div>
+                <div class="setting-item">
+                    <button id="securityBtn" onclick="openSecuritySettings()">Segurança</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Minha Conta</h2>
+                <div class="setting-item">
+                    <button id="accountBtn" onclick="openAccountSettings()">Minha Conta</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Documentos Legais</h2>
+                <div class="setting-item">
+                    <button id="termsBtn" onclick="openTerms()">Termos e Condições</button>
+                </div>
+                <div class="setting-item">
+                    <button id="privacyPolicyBtn" onclick="openPrivacyPolicy()">Política de Privacidade</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

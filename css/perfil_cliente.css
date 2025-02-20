@@ -223,7 +223,7 @@ header h1 {
 .themes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
+    gap: 25px;
 }
 
 .theme-item {
@@ -236,7 +236,7 @@ header h1 {
     color: var(--preto-tom2);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    height: 150px;
+    height: 10px ;
 }
 
 .theme-item .theme-name {
