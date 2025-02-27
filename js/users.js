@@ -36,10 +36,8 @@ function adicionarUsuario() {
     return response.json();
   })
   .then((data) => {
-    // Salvar o ID do usuário no localStorage
+
     localStorage.setItem("userId", data.id);
-    
-    // Salvar também os outros dados do usuário
     localStorage.setItem("userName", usuario.name);
     localStorage.setItem("userEmail", usuario.email);
     localStorage.setItem("userTelefone", usuario.telefone);
