@@ -91,7 +91,7 @@ async function loginUsuario() {
     localStorage.setItem("userTipo", user.tipo);
 
     alert("Login realizado com sucesso!");
-    window.location.href = "../app/sideBar.html";
+    window.location.href = "../app/html/sideBar.html";
   } catch (error) {
     alert(error.message);
     console.error("Erro no login:", error);
