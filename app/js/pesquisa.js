@@ -88,8 +88,6 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         }
         const manicures = await resposta.json();
 
-        console.log('manicures', manicures);
-
         const container = document.getElementById("perfilContainer");
         container.innerHTML = ""; // Limpa os perfis existentes
 
