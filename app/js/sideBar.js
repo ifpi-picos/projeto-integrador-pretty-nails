@@ -40,5 +40,5 @@ document.querySelectorAll('#sidebar button').forEach(button => {
 
 document.getElementById('logout_btn').addEventListener('click', function () {
     localStorage.clear();
-    window.location.href = '../login.html';
+    window.location.href = '../landingPage/html/login.html';
 });
