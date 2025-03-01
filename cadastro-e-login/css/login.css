@@ -26,8 +26,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    overflow-y: auto;
 }
 
 .container-login {
@@ -44,7 +45,6 @@ body {
 }
 
 .form-container-login {
-
     top: 0;
     height: 100%;
     width: 50%;
@@ -53,7 +53,7 @@ body {
 .form-container-login h1{
     display: flex;
     justify-content: center;
-  }
+}
 
 form {
     display: flex;
@@ -71,7 +71,7 @@ input {
     border-radius: 10px;
 }
 
-.preencher{
+.preencher {
     display: flex;
     flex-direction: column;
     margin-top: 50px;
@@ -118,7 +118,7 @@ a {
     width: 50%;
 }
 
-.informacoes{
+.informacoes {
     height: 100%;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -127,4 +127,24 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .container-login {
+        flex-direction: column;
+        height: 95%;
+        width: 97%;
+        padding: 20px;
+        align-items: center;
+    }
+    .form-container-login, .container-de-informacoes {
+        width: 100%;
+    }
+    .preencher {
+        margin-top: 20px;
+    }
+    button {
+        width: 100%;
+    }
 }
