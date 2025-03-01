@@ -1,0 +1,47 @@
+<header>
+    <div class="header">
+        <h1>Configurações</h1>
+    </div>
+</header>
+
+<div class="main-content">
+    <section class="settings">
+        <div class="settings-section">
+            <h2>Geral</h2>
+            <div class="setting-item">
+                <label for="theme">Modo de Tema</label>
+                <select id="theme" onchange="changeTheme()">
+                    <option value="light">Claro</option>
+                    <option value="dark">Escuro</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Privacidade & Segurança</h2>
+            <div class="setting-item">
+                <button id="privacyBtn" onclick="openPrivacySettings()">Privacidade</button>
+            </div>
+            <div class="setting-item">
+                <button id="securityBtn" onclick="openSecuritySettings()">Segurança</button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Minha Conta</h2>
+            <div class="setting-item">
+                <button id="accountBtn" onclick="openAccountSettings()">Minha Conta</button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Documentos Legais</h2>
+            <div class="setting-item">
+                <button id="termsBtn" onclick="openTerms()">Termos e Condições</button>
+            </div>
+            <div class="setting-item">
+                <button id="privacyPolicyBtn" onclick="openPrivacyPolicy()">Política de Privacidade</button>
+            </div>
+        </div>
+    </section>
+</div>

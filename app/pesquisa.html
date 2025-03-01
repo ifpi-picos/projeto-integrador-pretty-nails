@@ -1,0 +1,37 @@
+<header>
+    <div class="container-de-filtros">
+        <div class="header">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar perfil...">
+            </div>
+            <button class="filter-btn" onclick="toggleFilters()">Filtros</button>
+        </div>
+        
+        <div class="filter-panel" id="filterPanel">
+            <h3>Filtros</h3>
+            <label for="estado">Estado:</label>
+            <select id="estado" onchange="carregarCidades()">
+                <option value="">Selecione</option>
+            </select>
+            
+            <label for="cidade">Cidade:</label>
+            <select id="cidade">
+                <option value="">Selecione</option>
+            </select>
+            
+            <label for="servico">Serviço:</label>
+            <select id="servico">
+                <option value="">Selecione</option>
+                <option value="manicure">Manicure</option>
+                <option value="pedicure">Pedicure</option>
+            </select>
+            
+            <button class="apply-btn">Aplicar</button>
+            <button class="close-btn" onclick="toggleFilters()">Fechar</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="perfilContainer" class="perfil-container"></div>
+</main>
