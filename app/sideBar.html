@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,100 +12,77 @@
     <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="css/pesquisa.css">
     <link rel="stylesheet" href="css/notificacao.css">
-    <link rel="stylesheet" href="css/perfil-cliente.css">
-    <script defer src="js/perfil-usuario.js"></script>
+    <link rel="stylesheet" href="css/perfil_cliente.css">
     <link rel="stylesheet" href="css/config.css">
+    <script defer src="js/perfil-usuario.js"></script>
     <title>Pretty Nails</title>
 </head>
 <body>
-    <main>
-        <nav id="sidebar">
-            <div id="sidebar_content">
-                <div id="user">
-                    <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
-    
-                    <p id="user_infos">
-                        <span class="item-description">
-                            Fulano de Tal
-                        </span>
-                        <span class="item-description">
-                            (Cliente)
-                        </span>
-                    </p>
-                </div>
-    
-                <ul id="side_items">
-                    <li class="side-item active">
-                        <a href="principal.html">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="item-description">
-                                Inicio
-                            </span>
-                        </a>
-                    </li>
-    
-                    <li class="side-item">
-                        <a href="pesquisa.html">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <span class="item-description">
-                                Pesquisar
-                            </span>
-                        </a>
-                    </li>
-    
-                    <li class="side-item">
-                        <a href="notificacao.html">
-                            <i class="fa-solid fa-bell"></i>
-                            <span class="item-description">
-                                Notificações
-                            </span>
-                        </a>
-                    </li>
-    
-                    <li class="side-item">
-                        <a href="perfil_cliente.html">
-                            <i class="fa-solid fa-user"></i>
-                            <span class="item-description">
-                                Perfil
-                            </span>
-                        </a>
-                    </li>
-    
-                    <li class="side-item">
-                        <a href="config.html">
-                            <i class="fa-solid fa-gear"></i>
-                            <span class="item-description">
-                                Configurações
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-    
-                <button id="open_btn">
-                    <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-                </button>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
+                <p id="user_infos">
+                    <span class="item-description">Fulano de Tal</span>
+                    <span class="item-description">(Cliente)</span>
+                </p>
             </div>
-    
-            <div id="logout">
-                <button id="logout_btn" onclick="logout()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="item-description">
-                    Logout
-                </span>
-                </button>
-            </div>
-        </nav>
 
-        <div class="telas" id="telas">
-            <!-- As telas do app ficarão aqui -->
+            <ul id="side_items">
+                <li class="side-item active">
+                    <a href="principal.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="item-description">Início</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="pesquisa.html">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="item-description">Pesquisar</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="notificacao.html">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="item-description">Notificações</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="perfil_cliente.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">Perfil</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="config.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
-        
+
+        <div id="logout">
+            <button id="logout_btn" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">Logout</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="telas" id="telas">
+            <!-- Conteúdo da aplicação aqui -->
+        </div>
     </main>
 
     <script src="js/sideBar.js"></script>
     <script src="js/principal.js"></script>
     <script src="js/pesquisa.js"></script>
-    <!-- <script src="js/notificacao.js"></script> -->
     <script src="js/perfil-usuario.js"></script>
     <script src="js/config.js"></script>
 </body>

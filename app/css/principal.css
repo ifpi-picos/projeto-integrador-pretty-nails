@@ -8,7 +8,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.menu{
+html, body {
+    height: auto; /* Permite que a altura da página seja maior que a tela */
+    min-height: 100vh; /* Garante que a página possa crescer além da tela */
+    overflow-y: auto; /* Ativa a rolagem vertical */
+}
+
+body {
+    padding-top: 80px; /* Evita que o conteúdo fique escondido pelo header fixo */
+}
+
+.menu {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +30,10 @@
     padding: 20px;
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: fixed; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Mantém o cabeçalho acima de outros elementos */
 }
 
 #app-header h1 {
@@ -42,16 +55,16 @@
     font-weight: bold;
     color: white;
     width: 30%;
-    margin-top: calc(90px + 30px);
+    margin-top: 30px;
 }
 
-#temas h1{
+#temas h1 {
     font-size: 25px;
     color: #ffffff; 
     margin: 0; 
 }
 
-/* Atualizações na área rosa para permitir rolagem */
+/* Ajuste para garantir que a área rosa permita rolagem */
 .pink-area {
     background-color: #e0978a; 
     margin: 30px auto; 
@@ -63,7 +76,6 @@
     font-size: 18px;
     color: white;
     justify-content: center;
-    overflow: hidden;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -155,7 +167,6 @@
     font-size: 18px;
     color: #FFD700; 
 }
-
 
 .theme-box {
     width: 350px;

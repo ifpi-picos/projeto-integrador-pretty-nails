@@ -1,3 +1,11 @@
+document.getElementById('open_btn').addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('open-sidebar');
+});
+
+function openPage(url) {
+    window.location.href = url;
+}
+
 // Rolagem perfil bem avaliados
 const container = document.getElementById("perfis-container");
 
@@ -44,19 +52,16 @@ async function adicionarPerfis() {
         const container = document.getElementById("perfis-container");
         container.innerHTML = ""; // Limpa os perfis existentes
 
-        manicuresFiltradas.forEach(manicure => {
+        manicures.forEach(manicure => {
             const card = document.createElement("div");
             card.classList.add("perfil");
             card.innerHTML = `
-                <a href="perfil_manicure.html?id=${manicure.id}">
-                    <img src="${manicure.foto || 'https://via.placeholder.com/150'}" alt="${manicure.name}">
-                    <div class="perfil-nome">${manicure.name}</div>
-                    <div class="estrelas">${'★'.repeat(manicure.rating)}</div>
-                </a>
+                <img src="${manicure.foto || 'https://via.placeholder.com/150'}" alt="${manicure.name}">
+                <div class="perfil-nome">${manicure.name}</div>
+                <div class="estrelas">★★★★★</div> <!-- Ajuste conforme necessário para a avaliação -->
             `;
             container.appendChild(card);
         });
-        
     } catch (error) {
         console.error("Erro ao carregar manicures:", error);
     }
