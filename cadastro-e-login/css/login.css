@@ -42,6 +42,7 @@ body {
     width: 900px;
     max-width: 100%;
     min-height: 550px;
+    border: 1px solid green;
 }
 
 .form-container-login {
@@ -133,16 +134,13 @@ a {
 @media (max-width: 768px) {
     .container-login {
         flex-direction: column;
-        height: 95%;
-        width: 97%;
+        height: 100%;
+        width: 100%;
         padding: 20px;
         align-items: center;
     }
     .form-container-login, .container-de-informacoes {
         width: 100%;
-    }
-    .preencher {
-        margin-top: 20px;
     }
     button {
         width: 100%;
