@@ -1,14 +1,5 @@
-document.getElementById('open_btn').addEventListener('click', function () {
-    document.getElementById('sidebar').classList.toggle('open-sidebar');
-});
-
-function openPage(url) {
-    window.location.href = url;
-}
-
 // Rolagem perfil bem avaliados
 const container = document.getElementById("perfis-container");
-
 let isDown = false;
 let startX;
 let scrollLeft;

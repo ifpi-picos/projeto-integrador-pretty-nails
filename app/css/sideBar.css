@@ -40,6 +40,10 @@ main {
     transition: all .5s;
 }
 
+#sidebar i{
+    color: black;
+}
+
 #sidebar_content {
     padding: 12px;
 }
@@ -82,7 +86,7 @@ main {
 }
 
 .side-item.active {
-    background-color: #d05f4b;
+    background-color: #f1cec8;
 }
 
 .side-item:hover:not(.active),
@@ -96,10 +100,6 @@ main {
     align-items: center;
     justify-content: center;
     color: #0a0a0a;
-}
-
-.side-item.active a {
-    color: #e3e9f7;
 }
 
 .side-item a i {
@@ -160,7 +160,7 @@ main {
 }
 
 #sidebar.open-sidebar {
-    min-width: 20%;
+    min-width: 15%;
 }
 
 #sidebar.open-sidebar .item-description {

@@ -1,37 +1,51 @@
-<header>
-    <div class="container-de-filtros">
-        <div class="header">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Pesquisar perfil...">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pesquisa.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container-de-filtros">
+            <div class="header">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Pesquisar perfil...">
+                </div>
+                <button class="filter-btn" onclick="toggleFilters()">Filtros</button>
             </div>
-            <button class="filter-btn" onclick="toggleFilters()">Filtros</button>
+            
+            <div class="filter-panel" id="filterPanel">
+                <h3>Filtros</h3>
+                <label for="estado">Estado:</label>
+                <select id="estado" onchange="carregarCidades()">
+                    <option value="">Selecione</option>
+                </select>
+                
+                <label for="cidade">Cidade:</label>
+                <select id="cidade">
+                    <option value="">Selecione</option>
+                </select>
+                
+                <label for="servico">Serviço:</label>
+                <select id="servico">
+                    <option value="">Selecione</option>
+                    <option value="manicure">Manicure</option>
+                    <option value="pedicure">Pedicure</option>
+                </select>
+                
+                <button class="apply-btn">Aplicar</button>
+                <button class="close-btn" onclick="toggleFilters()">Fechar</button>
+            </div>
         </div>
-        
-        <div class="filter-panel" id="filterPanel">
-            <h3>Filtros</h3>
-            <label for="estado">Estado:</label>
-            <select id="estado" onchange="carregarCidades()">
-                <option value="">Selecione</option>
-            </select>
-            
-            <label for="cidade">Cidade:</label>
-            <select id="cidade">
-                <option value="">Selecione</option>
-            </select>
-            
-            <label for="servico">Serviço:</label>
-            <select id="servico">
-                <option value="">Selecione</option>
-                <option value="manicure">Manicure</option>
-                <option value="pedicure">Pedicure</option>
-            </select>
-            
-            <button class="apply-btn">Aplicar</button>
-            <button class="close-btn" onclick="toggleFilters()">Fechar</button>
-        </div>
-    </div>
-</header>
+    </header>
+    
+    <main>
+        <div id="perfilContainer" class="perfil-container"></div>
+    </main>
 
-<main>
-    <div id="perfilContainer" class="perfil-container"></div>
-</main>
+    <script src="js/pesquisa.js"></script>
+
+</body>
+</html>
