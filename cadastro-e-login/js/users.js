@@ -23,30 +23,26 @@ function adicionarUsuario() {
     tipo: campoTipo,
   };
 
-  if (campoFoto) {
-    const reader = new FileReader();
-    reader.readAsDataURL(campoFoto);
-    reader.onload = function () {
-      usuario.fotoBase64 = reader.result.split(",")[1]; // Converte a imagem para Base64
+  const formData = new FormData();
+  formData.append("name", campoNome);
+  formData.append("email", campoEmail);
+  formData.append("password", campoSenha);
+  formData.append("telefone", campoTelefone);
+  formData.append("estado", campoEstado);
+  formData.append("cidade", campoCidade);
+  formData.append("tipo", campoTipo);
 
-      enviarDados(usuario);
-    };
-    reader.onerror = function (error) {
-      alert("Erro ao carregar a imagem. Tente novamente.");
-      console.error("Erro ao carregar a imagem:", error);
-    };
-  } else {
-    enviarDados(usuario); // Envia os dados mesmo sem imagem
+  if (campoFoto) {
+    formData.append("foto", campoFoto); // Adiciona a imagem ao FormData
   }
+
+  enviarDados(formData); // Envia os dados usando FormData
 }
 
-function enviarDados(usuario) {
+function enviarDados(formData) {
   fetch("https://back-end-u9vj.onrender.com/signup", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(usuario),
+    body: formData, // Usando FormData no corpo da requisição
   })
     .then(async (response) => {
       if (!response.ok) {
@@ -63,7 +59,6 @@ function enviarDados(usuario) {
       console.error("Erro ao cadastrar usuário:", error);
     });
 }
-
 
 //FUNÇÃO PARA FAZER LOGIN
 async function loginUsuario() {
