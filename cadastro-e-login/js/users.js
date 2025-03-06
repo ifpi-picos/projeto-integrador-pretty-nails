@@ -36,20 +36,10 @@ function adicionarUsuario() {
     return response.json();
   })
   .then((data) => {
-
-    localStorage.setItem("userId", data.id);
-    localStorage.setItem("userName", usuario.name);
-    localStorage.setItem("userEmail", usuario.email);
-    localStorage.setItem("userTelefone", usuario.telefone);
-    localStorage.setItem("userEstado", usuario.estado);
-    localStorage.setItem("userCidade", usuario.cidade);
-    localStorage.setItem("userTipo", usuario.tipo);
-
-    alert("Usuário cadastrado com sucesso!");
     window.location.href = "login.html";
   })
   .catch((error) => {
-    alert(error.message);
+    alert("Erro ao cadastrar. Confira suas informações e tente novamente.");
     console.error("Erro ao cadastrar usuário:", error);
   });
 }
@@ -90,12 +80,9 @@ async function loginUsuario() {
     localStorage.setItem("userCidade", user.cidade);
     localStorage.setItem("userTipo", user.tipo);
 
-    alert("Login realizado com sucesso!");
-    window.location.href = "../app/sideBar.html";
+    window.location.href = "../app/principal.html";
   } catch (error) {
-    alert(error.message);
+    alert("Erro ao realizar login.");
     console.error("Erro no login:", error);
   }
 }
-
-

@@ -17,28 +17,18 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Remove barra de rolagem lateral */
     background-color: var(--tom7);
     font-family: Arial, sans-serif;
-    box-sizing: border-box;
 }
 
 /* HEADER */
 .header {
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 15px;
     background: linear-gradient(45deg, var(--tom2), var(--tom3), var(--tom2));
     color: var(--branco);
-    box-sizing: border-box;
-}
-
-/* Botão de voltar */
-.back-button img {
-    width: 30px;
-    height: 30px;
 }
 
 /* Barra de pesquisa */
@@ -132,7 +122,7 @@ html, body {
     padding: 20px;
 }
 
-/* .perfil {
+ .perfil {
     display: flex;
     align-items: center;
     width: 60%;
@@ -164,4 +154,3 @@ html, body {
     flex: 1;
     text-align: left;
 }
- */
