@@ -6,6 +6,7 @@ function adicionarUsuario() {
   const campoEstado = document.querySelector("#estado").value;
   const campoCidade = document.querySelector("#cidade").value;
   const campoTipo = document.querySelector("#tipo").value;
+  const campoFoto = document.querySelector("#foto").files[0]; // Obtém o arquivo da imagem
 
   if (campoSenha.length < 5) {
     alert("A senha deve ter pelo menos 5 caracteres.");
@@ -22,26 +23,45 @@ function adicionarUsuario() {
     tipo: campoTipo,
   };
 
-  fetch('https://back-end-u9vj.onrender.com/signup', {
-    method: 'POST',
+  if (campoFoto) {
+    const reader = new FileReader();
+    reader.readAsDataURL(campoFoto);
+    reader.onload = function () {
+      usuario.fotoBase64 = reader.result.split(",")[1]; // Converte a imagem para Base64
+
+      enviarDados(usuario);
+    };
+    reader.onerror = function (error) {
+      alert("Erro ao carregar a imagem. Tente novamente.");
+      console.error("Erro ao carregar a imagem:", error);
+    };
+  } else {
+    enviarDados(usuario); // Envia os dados mesmo sem imagem
+  }
+}
+
+function enviarDados(usuario) {
+  fetch("https://back-end-u9vj.onrender.com/signup", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(usuario)
-  }).then(async (response) => {
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Erro ao cadastrar usuário.");
-    }
-    return response.json();
+    body: JSON.stringify(usuario),
   })
-  .then((data) => {
-    window.location.href = "login.html";
-  })
-  .catch((error) => {
-    alert("Erro ao cadastrar. Confira suas informações e tente novamente.");
-    console.error("Erro ao cadastrar usuário:", error);
-  });
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erro ao cadastrar usuário.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      window.location.href = "login.html";
+    })
+    .catch((error) => {
+      alert("Erro ao cadastrar. Confira suas informações e tente novamente.");
+      console.error("Erro ao cadastrar usuário:", error);
+    });
 }
 
 
@@ -79,6 +99,7 @@ async function loginUsuario() {
     localStorage.setItem("userEstado", user.estado);
     localStorage.setItem("userCidade", user.cidade);
     localStorage.setItem("userTipo", user.tipo);
+    localStorage.setItem("userFoto", user.fotoUrl);
 
     window.location.href = "../app/principal.html";
   } catch (error) {
