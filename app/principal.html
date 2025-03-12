@@ -23,11 +23,12 @@
                 <div id="user">
                     <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
                     <p id="user_infos">
-                        <span class="item-description">Fulano de Tal</span>
+                        <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
+                        <span class="item-description" id="user-name">Fulano de tal</span> 
                         <span class="item-description">(Cliente)</span>
                     </p>
                 </div>
-    
+
                 <ul id="side_items">
                     <li class="side-item active">
                         <a href="principal.html">
@@ -85,7 +86,7 @@
             <a href="nude.html">
                 <div class="button-box theme-box" style="background-image: url('imagens/nude.jpg');"></div>
             </a>
-            <a href="">
+            <a href="florais.html">
                 <div class="button-box theme-box" style="background-image: url('imagens/florais.jpg');"></div>
             </a>
             <a href="metalica.html">
@@ -113,51 +114,7 @@
         </div>
         <br>
         <div id="perfis-container">
-            <div class="perfil">                                                                                                                                                                                                                                                
-                <img src="imagens/manicure5.png" alt="Manicure 1">
-                <div class="perfil-nome">Ana Souza</div>
-                <div class="estrelas">★★★★★</div>
-            </div>
-            <div class="perfil">
-                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" alt="Manicure 2">
-                <div class="perfil-nome">Beatriz Lima</div>
-                <div class="estrelas">★★★★☆</div>
-            </div>
-            <div class="perfil">
-                <img src="https://images.pexels.com/photos/1181424/pexels-photo-1181424.jpeg" alt="Manicure 3">
-                <div class="perfil-nome">Camila Rocha</div>
-                <div class="estrelas">★★★★★</div>
-            </div>
-            <div class="perfil">
-                <img src="imagens/manicure2.png" alt="Manicure 4">
-                <div class="perfil-nome">Daniela Martins</div>
-                <div class="estrelas">★★★☆☆</div>
-            </div>
-            <div class="perfil">
-                <img src="https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg" alt="Manicure 5">
-                <div class="perfil-nome">Elisa Ferreira</div>
-                <div class="estrelas">★★★★☆</div>
-            </div>
-            <div class="perfil">
-                <img src="imagens/manicure4.png" alt="Manicure 6">
-                <div class="perfil-nome">Fernanda Alves</div>
-                <div class="estrelas">★★★★★</div>
-            </div>
-            <div class="perfil">
-                <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg" alt="Manicure 7">
-                <div class="perfil-nome">Gabriela Nunes</div>
-                <div class="estrelas">★★★★☆</div>
-            </div>
-            <div class="perfil">
-                <img src="imagens/manicure1.png" alt="Manicure 8">
-                <div class="perfil-nome">Helena Costa</div>
-                <div class="estrelas">★★★★★</div>
-            </div>
-            <div class="perfil">
-                <img src="imagens/-manicure.png" alt="Manicure 9">
-                <div class="perfil-nome">Isabela Ramos</div>
-                <div class="estrelas">★★★☆☆</div>
-            </div>
+            
         </div>
         
         <div id="modalPerfil" class="modal">
@@ -175,6 +132,41 @@
     
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
+    
+    <script>
+        // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                console.warn("Redirecionando para login pois userId não foi encontrado.");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Pegando o nome completo do usuário salvo no localStorage
+            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
+            
+            // Pegando apenas o primeiro nome
+            let primeiroNome = nomeCompleto.split(' ')[0];  
+
+            // Exibir o primeiro nome na sidebar
+            document.getElementById('user-name').textContent = primeiroNome;
+
+            try {
+                const response = await fetch(`http://localhost:3000/usuario/${userId}`);
+                const usuario = await response.json();
+
+                if (usuario) {
+                    primeiroNome = usuario.nome.split(' ')[0]; // Pegando o primeiro nome da API
+                    document.getElementById('user-name').textContent = primeiroNome;
+                    document.getElementById('user_avatar').src = usuario.foto || 'imagens/avatar.jpg';
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados do usuário:', error);
+            }
+        });
+    </script>
 
 </body>
 </html>

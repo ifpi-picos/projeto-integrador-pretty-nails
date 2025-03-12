@@ -1,62 +1,42 @@
-// Rolagem perfil bem avaliados
-const container = document.getElementById("perfis-container");
-let isDown = false;
-let startX;
-let scrollLeft;
-
-container.addEventListener("mousedown", (e) => {
-    isDown = true;
-    container.classList.add("active"); // Adiciona um efeito ao clicar
-    startX = e.pageX - container.offsetLeft;
-    scrollLeft = container.scrollLeft;
-});
-
-container.addEventListener("mouseleave", () => {
-    isDown = false;
-    container.classList.remove("active");
-});
-
-container.addEventListener("mouseup", () => {
-    isDown = false;
-    container.classList.remove("active");
-});
-
-container.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - container.offsetLeft;
-    const walk = (x - startX) * 3; // Ajuste a velocidade de rolagem
-    container.scrollLeft = scrollLeft - walk;
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Script principal.js carregado!");
+    adicionarPerfis();
 });
 
 // Função para adicionar os perfis das manicures na tela principal
 async function adicionarPerfis() {
     try {
+        console.log("Carregando perfis...");
+
         const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures");
+
         if (!resposta.ok) {
             throw new Error("Erro ao buscar manicures.");
         }
-        const manicures = await resposta.json();
 
-        console.log('manicures', manicures);
+        const manicures = await resposta.json();
+        console.log("Dados recebidos da API:", manicures);
 
         const container = document.getElementById("perfis-container");
         container.innerHTML = ""; // Limpa os perfis existentes
+
+        if (manicures.length === 0) {
+            container.innerHTML = "<p>Nenhum perfil encontrado.</p>";
+            return;
+        }
 
         manicures.forEach(manicure => {
             const card = document.createElement("div");
             card.classList.add("perfil");
             card.innerHTML = `
-                <img src="${manicure.foto || 'https://via.placeholder.com/150'}" alt="${manicure.name}">
+                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
                 <div class="perfil-nome">${manicure.name}</div>
-                <div class="estrelas">★★★★★</div> <!-- Ajuste conforme necessário para a avaliação -->
+                <div class="estrelas">★★★★★</div>
             `;
             container.appendChild(card);
         });
     } catch (error) {
         console.error("Erro ao carregar manicures:", error);
+        document.getElementById("perfis-container").innerHTML = "<p>Erro ao carregar perfis.</p>";
     }
 }
-
-// Chama a função para exibir os perfis assim que a página for carregada
-document.addEventListener("DOMContentLoaded", adicionarPerfis);
