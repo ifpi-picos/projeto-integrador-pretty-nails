@@ -1,0 +1,137 @@
+:root {
+    --branco: #fff;
+    --preto: #000;
+    --preto-tom2: #2a2a2a;
+    --tom1: #d05f4b;
+    --tom2: #d87b6b;
+    --tom3: #e0978a;
+    --tom4: #e8b2a9;
+    --tom5: #ecc0b8;
+    --tom6: #f1cec8;
+    --tom7: #f5dcd7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--tom7);
+    padding: 20px;
+}
+
+/* Ajusta a altura da tela e remove o scroll horizontal */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+/* Estiliza o container principal */
+.container {
+    max-width: 400px;
+    margin: auto;
+    background: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: var(--preto);
+    margin-bottom: 20px;
+}
+
+/* Layout responsivo */
+.semana {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.dia {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(--tom5);
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    .dia {
+        width: 48%;
+    }
+}
+
+.dia span {
+    font-size: 18px;
+    color: var(--preto-tom2);
+}
+
+.dia button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--preto);
+}
+
+input[type="time"] {
+    border: 1px solid var(--tom4);
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+/* Lista de horários */
+.lista-horarios {
+    list-style: none;
+    margin-top: 10px;
+    padding-left: 20px;
+    width: 100%;
+}
+
+.horario-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--tom6);
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.remover-horario {
+    background: var(--tom1);
+    color: var(--branco);
+    border: none;
+    padding: 2px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remover-horario:hover {
+    background: var(--tom2);
+}
+
+/* Botão de voltar */
+.button {
+    background: var(--tom1);
+    padding: 15px 25px;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 15%;
+    left: 20px;
+}
+
+.button a {
+    color: var(--branco);
+    text-decoration: none;
+}
