@@ -68,3 +68,12 @@ function carregarCidades() {
         });
     }
 }
+
+document.getElementById("tipo").addEventListener("change", function() {
+  const tipoSelecionado = document.querySelector('input[name="tipo"]:checked').value;
+  if (tipoSelecionado === "CLIENTE") {
+    window.location.href = "../app/cliente/principal.html";
+  } else if (tipoSelecionado === "MANICURE") {
+    window.location.href = "../app/manicure/principal.html";
+  }
+});
