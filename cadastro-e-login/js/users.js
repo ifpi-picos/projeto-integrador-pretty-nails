@@ -96,7 +96,11 @@ async function loginUsuario() {
     localStorage.setItem("userTipo", user.tipo);
     localStorage.setItem("userFoto", user.fotoUrl);
 
-    window.location.href = "../app/principal.html";
+    if (user.tipo === "MANICURE") {
+      window.location.href = "../app/manicure/principal.html";
+    } else if (user.tipo === "CLIENTE") {
+      window.location.href = "../app/cliente/principal.html";
+    }
   } catch (error) {
     alert("Erro ao realizar login.");
     console.error("Erro no login:", error);

@@ -9,3 +9,8 @@ document.addEventListener('click', function (event) {
         sidebar.classList.remove('open-sidebar');
     }
 });
+
+document.getElementById('logout_btn').addEventListener('click', function () {
+    localStorage.clear();
+    window.location.href = 'login.html';
+});
