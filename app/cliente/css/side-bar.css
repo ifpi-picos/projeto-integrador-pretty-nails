@@ -1,8 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arrius+W00+Regular&display=swap');
 
+
+:root {
+    --branco: #ffff;
+    --gelo: #f1f1f1;
+    --preto: #2a2a2a;
+    --cinza: #cbcbcb;
+    --tom1: #f08080;
+    --tom2: #f4978e;
+    --tom3: #f8ad9d;
+    --tom4: #fbc4ab;
+    --tom5: #ffdab9;
+}
+
 body {
-    background-color: #f5dcd7;
     margin-left: 82px;
 }
 
@@ -19,6 +31,7 @@ body {
     border-radius: 0px 18px 18px 0px;
     z-index: 9999; /* Garante que a barra lateral fique acima de tudo */
     transition: all .5s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar i{
@@ -72,7 +85,7 @@ body {
 
 .side-item:hover:not(.active),
 #logout_btn:hover {
-    background-color: #f1cec8;
+    background-color: var(--gelo);
 }
 
 .side-item a {

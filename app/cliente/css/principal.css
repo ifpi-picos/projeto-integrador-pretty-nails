@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arrius+W00+Regular&display=swap');
 
+:root {
+    --branco: #ffff;
+    --gelo: #f1f1f1;
+    --preto: #2a2a2a;
+    --cinza: #cbcbcb;
+    --tom1: #f08080;
+    --tom2: #f4978e;
+    --tom3: #f8ad9d;
+    --tom4: #fbc4ab;
+    --tom5: #ffdab9;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,14 +20,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
-html, body {
-    height: auto; /* Permite que a altura da página seja maior que a tela */
-    min-height: 100vh; /* Garante que a página possa crescer além da tela */
-    overflow-y: auto; /* Ativa a rolagem vertical */
-}
-
 body {
-    padding-top: 80px; /* Evita que o conteúdo fique escondido pelo header fixo */
+    height: auto; 
+    min-height: 100vh;
+    overflow-y: auto; 
+    padding-top: 80px;
 }
 
 .menu {
@@ -25,7 +34,7 @@ body {
 }
 
 #app-header {
-    background-color: #d05f4b;
+    background: linear-gradient(45deg, var(--tom2), var(--tom3), var(--tom2));
     width: 100%;
     padding: 20px;
     text-align: center;
@@ -47,7 +56,7 @@ body {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    background-color: #e0978a; 
+    background-color: var(--tom2); 
     padding: 5px;
     border-radius: 15px;
     text-align: center;
@@ -64,17 +73,14 @@ body {
     margin: 0; 
 }
 
-/* Ajuste para garantir que a área rosa permita rolagem */
 .pink-area {
-    background-color: #e0978a; 
+    background-color: var(--gelo); 
     margin: 30px auto; 
     width: 80%;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     font-size: 18px;
-    color: white;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -83,8 +89,6 @@ body {
 }
 
 .pink-area .button-box {
-    background-color: #ffffff;
-    color: #d05f4b;
     font-size: 24px;
     display: flex;
     justify-content: center;
@@ -92,20 +96,14 @@ body {
     border-radius: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: background-color 0.3s ease;
     width: auto;
-}
-
-.pink-area .button-box:hover {
-    background-color: #d05f4b;
-    color: #ffffff;
 }
 
 #perfis-bem-avaliados {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    background-color: #e0978a; 
+    background-color: var(--tom2); 
     padding: 5px;
     border-radius: 15px;
     text-align: center;
@@ -117,7 +115,6 @@ body {
 
 #perfis-bem-avaliados h1 {
     font-size: 25px;
-    color: #ffffff; 
     margin: 0; 
 }
 
@@ -129,7 +126,7 @@ body {
     white-space: nowrap;
     max-width: 80%;
     margin: 10px auto;
-    background-color: #ffffff;
+    background-color: var(--gelo);
     border-radius: 10px;
     padding: 20px;
     scrollbar-width: none;
@@ -145,9 +142,15 @@ body {
     text-align: center;
     width: 150px;
     padding: 10px;
-    background-color: #f5dcd7;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perfil:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 .perfil img {
@@ -161,6 +164,9 @@ body {
     font-size: 16px;
     font-weight: bold;
     margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .estrelas {

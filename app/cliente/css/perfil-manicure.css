@@ -1,0 +1,125 @@
+:root {
+    --branco: #ffff;
+    --gelo: #f1f1f1;
+    --preto: #2a2a2a;
+    --cinza: #cbcbcb;
+    --tom1: #f08080;
+    --tom2: #f4978e;
+    --tom3: #f8ad9d;
+    --tom4: #fbc4ab;
+    --tom5: #ffdab9;
+}
+
+/* Corpo da Página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Contêiner Principal */
+.main-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+/* Contêiner do Perfil */
+.profile-container {
+    width: 100%;
+    max-width: 1000px;
+    background-color: var(--branco);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Seção de Perfil com fundo rosa */
+.profile-header {
+    background-color: var(--tom1);
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Informação de Perfil */
+.profile-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid var(--tom1);
+    object-fit: cover;
+}
+
+.profile-picture .edit-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: var(--tom1);
+    color: var(--branco);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile-details {
+    flex: 1;
+    color: var(--branco);
+}
+
+.profile-details h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.profile-details p {
+    margin: 5px 0;
+}
+
+.edit-button {
+    background-color: var(--tom2);
+    color: var(--branco);
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.edit-button:hover {
+    background-color: var(--tom3);
+}

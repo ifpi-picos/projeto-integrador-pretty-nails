@@ -1,16 +1,13 @@
 :root {
-    --branco: #fff;
-    --preto: #000;
-    --preto-tom2: #222;
-    --preto-tom3: #333;
-    --preto-tom4: #444;
-    --tom1: #d05f4b;
-    --tom2: #d87b6b;
-    --tom3: #e0978a;
-    --tom4: #e8b2a9;
-    --tom5: #ecc0b8;
-    --tom6: #f1cec8;
-    --tom7: #f5dcd7;
+    --branco: #ffff;
+    --gelo: #f1f1f1;
+    --preto: #2a2a2a;
+    --cinza: #cbcbcb;
+    --tom1: #f08080;
+    --tom2: #f4978e;
+    --tom3: #f8ad9d;
+    --tom4: #fbc4ab;
+    --tom5: #ffdab9;
 }
 
 * {
@@ -51,6 +48,7 @@ html, body {
     font-size: 16px;
     border-radius: 20px;
     border: none;
+    outline: none;
 }
 
 .highlight {
@@ -142,7 +140,7 @@ html, body {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 80%; 
+    width: 70%; 
     padding: 15px;
 }
 
@@ -163,11 +161,11 @@ html, body {
 .profile-info h3 {
     margin: 0;
     font-size: 18px;
-    color: var(--preto-tom4);
+    color: var(--preto);
 }
 
 .profile-info p {
     margin: 5px 0 0;
     font-size: 14px;
-    color: var(--preto-tom4);
+    color: var(--preto);
 }

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!userId) {
         console.warn("Redirecionando para login pois userId não foi encontrado.");
-        window.location.href = 'login.html';
+        window.location.href = '../cadastro-e-login/login.html';
         return;
     }
 

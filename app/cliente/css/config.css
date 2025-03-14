@@ -1,14 +1,13 @@
 :root {
-    --branco: #fff;
-    --preto: #000;
-    --preto-tom2: #2a2a2a;
-    --tom1: #d05f4b;
-    --tom2: #d87b6b;
-    --tom3: #e0978a;
-    --tom4: #e8b2a9;
-    --tom5: #ecc0b8;
-    --tom6: #f1cec8;
-    --tom7: #f5dcd7;
+    --branco: #ffff;
+    --gelo: #f1f1f1;
+    --preto: #2a2a2a;
+    --cinza: #cbcbcb;
+    --tom1: #f08080;
+    --tom2: #f4978e;
+    --tom3: #f8ad9d;
+    --tom4: #fbc4ab;
+    --tom5: #ffdab9;
 }
 
 /* Remove rolagem horizontal e corrige problemas de layout */

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Script principal.js carregado!");
     adicionarPerfis();
 });
 

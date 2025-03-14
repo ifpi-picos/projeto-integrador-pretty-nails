@@ -80,18 +80,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+let manicuresCache = [];
+
 async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome = "") {
     try {
-        const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures");
-        if (!resposta.ok) {
-            throw new Error("Erro ao buscar manicures.");
+        if (manicuresCache.length === 0) {
+            const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures");
+            if (!resposta.ok) {
+                throw new Error("Erro ao buscar manicures.");
+            }
+            manicuresCache = await resposta.json();
         }
-        const manicures = await resposta.json();
 
         const container = document.getElementById("perfil-container");
         container.innerHTML = ""; // Limpa os perfis existentes
 
-        const manicuresFiltradas = manicures.filter(manicure => 
+        const manicuresFiltradas = manicuresCache.filter(manicure => 
             (filtroEstado === "" || manicure.estado === filtroEstado) &&
             (filtroCidade === "" || manicure.cidade === filtroCidade) &&
             (filtroNome === "" || manicure.name.toLowerCase().startsWith(filtroNome.toLowerCase()))
@@ -110,13 +114,13 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
             // Se houver um filtro de nome, destacar as letras iniciais em negrito
             if (filtroNome) {
                 const regex = new RegExp(`^(${filtroNome})`, "i"); // Match apenas no começo
-                nomeFormatado = manicure.name.replace(regex, `<span class="highlight">$1</span>`);
+                nomeFormatado = manicure.name.replace(regex, `<span class="highlight" style="font-size: 1.06em;">$1</span>`);
             }
 
             const card = document.createElement("div");
             card.classList.add("profile-card");
             card.innerHTML = `
-                <img src="${manicure.foto || 'imagens/user.svg'}" alt="${manicure.name}">
+                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
                 <div class="profile-info">
                     <h3>${nomeFormatado}</h3>
                     <p>${manicure.cidade}, ${manicure.estado}</p>
