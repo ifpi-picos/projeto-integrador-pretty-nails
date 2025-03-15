@@ -27,14 +27,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 function preencherPerfil(manicure) {
     const foto = document.getElementById("profile-img");
     const nome = document.getElementById("nome");
-    const email = document.getElementById("email");
     const telefone = document.getElementById("telefone");
     const endereco = document.getElementById("endereco");
-
     foto.src = manicure.foto || "imagens/perfil_cliente.png";
     foto.alt = manicure.name;
     nome.textContent = manicure.name;
-    email.textContent = manicure.email || "Email não informado";
     telefone.textContent = manicure.telefone || "Telefone não informado";
     endereco.textContent = `${manicure.rua || "Rua não informada"}, ${manicure.numero || ""} ${manicure.cidade || ""}, ${manicure.estado || ""}`;
 }
