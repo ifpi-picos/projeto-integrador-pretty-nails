@@ -117,16 +117,19 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
                 nomeFormatado = manicure.name.replace(regex, `<span class="highlight" style="font-size: 1.06em;">$1</span>`);
             }
 
-            const card = document.createElement("div");
-            card.classList.add("profile-card");
-            card.innerHTML = `
-                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
-                <div class="profile-info">
-                    <h3>${nomeFormatado}</h3>
-                    <p>${manicure.cidade}, ${manicure.estado}</p>
+            const link = document.createElement("a");
+            link.href = `perfil-manicure.html?id=${manicure.id}`;
+            link.classList.add("perfil-link");  
+            link.innerHTML = `
+                <div class="profile-card">
+                    <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
+                    <div class="profile-info">
+                        <h3>${nomeFormatado}</h3>
+                        <p>${manicure.cidade}, ${manicure.estado}</p>
+                    </div>
                 </div>
             `;
-            container.appendChild(card);
+            container.appendChild(link);
         });
 
     } catch (error) {

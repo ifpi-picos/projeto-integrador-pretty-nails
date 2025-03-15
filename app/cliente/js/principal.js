@@ -25,17 +25,21 @@ async function adicionarPerfis() {
         }
 
         manicures.forEach(manicure => {
-            const card = document.createElement("div");
-            card.classList.add("perfil");
-            card.innerHTML = `
-                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
-                <div class="perfil-nome">${manicure.name}</div>
-                <div class="estrelas">★★★★★</div>
+            const link = document.createElement("a");
+            link.href = `perfil-manicure.html?id=${manicure.id}`;
+            link.classList.add("perfil-link");
+            link.innerHTML = `
+                <div class="perfil">
+                    <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
+                    <div class="perfil-nome">${manicure.name}</div>
+                    <div class="estrelas">★★★★★</div>
+                </div>
             `;
-            container.appendChild(card);
+            container.appendChild(link);
         });
     } catch (error) {
         console.error("Erro ao carregar manicures:", error);
         document.getElementById("perfis-container").innerHTML = "<p>Erro ao carregar perfis.</p>";
     }
 }
+
