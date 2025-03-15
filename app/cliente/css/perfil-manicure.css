@@ -79,17 +79,6 @@ body {
     object-fit: cover;
 }
 
-.profile-picture .edit-icon {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background-color: var(--tom2);
-    color: var(--branco);
-    padding: 5px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
 .profile-details {
     flex: 1;
     color: var(--preto);
@@ -105,23 +94,6 @@ body {
     margin: 5px 0;
 }
 
-.edit-button {
-    background-color: var(--tom2);
-    color: var(--branco);
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 25px;
-}
-
-.edit-button:hover {
-    background-color: var(--tom3);
-}
-
 /*Horários*/
 .horarios-container{
     padding: 20px;
@@ -133,4 +105,9 @@ body {
 .dia{
     display: flex;
     flex-direction: column;
+}
+
+.agendar-btn{
+    display: flex;
+    padding: 10px;
 }
