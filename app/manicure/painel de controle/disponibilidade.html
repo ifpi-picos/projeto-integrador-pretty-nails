@@ -5,81 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/painel de controle/disponibilidade.css">
     <title>Editar disponibilidades</title>
-    
-    </style>
 </head>
 <body>
     <div id="horarios-semana">
-        <h2>Selecione os horários por dia da semana</h2>
-        <form id="form-horarios">
+        <!-- Título -->
+        <div class="titulo-container">
+            <h2>Selecione os horários por dia da semana</h2>
+        </div>
+
+        <!-- Dias da semana -->
+        <div class="dias-container">
             <div class="dia-semana">
+                <input type="checkbox" id="segunda-selecionar" name="segunda-selecionar">
                 <label for="segunda">Segunda-feira:</label>
                 <select id="segunda-turno" name="segunda-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="segunda-horario" name="segunda-horario">
+                <label for="segunda-horario-inicio">De:</label>
+                <input type="time" id="segunda-horario-inicio" name="segunda-horario-inicio">
+                <label for="segunda-horario-fim">Até:</label>
+                <input type="time" id="segunda-horario-fim" name="segunda-horario-fim">
             </div>
+
             <div class="dia-semana">
+                <input type="checkbox" id="terca-selecionar" name="terca-selecionar">
                 <label for="terca">Terça-feira:</label>
                 <select id="terca-turno" name="terca-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="terca-horario" name="terca-horario">
+                <label for="terca-horario-inicio">De:</label>
+                <input type="time" id="terca-horario-inicio" name="terca-horario-inicio">
+                <label for="terca-horario-fim">Até:</label>
+                <input type="time" id="terca-horario-fim" name="terca-horario-fim">
             </div>
+
             <div class="dia-semana">
+                <input type="checkbox" id="quarta-selecionar" name="quarta-selecionar">
                 <label for="quarta">Quarta-feira:</label>
                 <select id="quarta-turno" name="quarta-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="quarta-horario" name="quarta-horario">
+                <label for="quarta-horario-inicio">De:</label>
+                <input type="time" id="quarta-horario-inicio" name="quarta-horario-inicio">
+                <label for="quarta-horario-fim">Até:</label>
+                <input type="time" id="quarta-horario-fim" name="quarta-horario-fim">
             </div>
+
             <div class="dia-semana">
+                <input type="checkbox" id="quinta-selecionar" name="quinta-selecionar">
                 <label for="quinta">Quinta-feira:</label>
                 <select id="quinta-turno" name="quinta-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="quinta-horario" name="quinta-horario">
+                <label for="quinta-horario-inicio">De:</label>
+                <input type="time" id="quinta-horario-inicio" name="quinta-horario-inicio">
+                <label for="quinta-horario-fim">Até:</label>
+                <input type="time" id="quinta-horario-fim" name="quinta-horario-fim">
             </div>
+
             <div class="dia-semana">
+                <input type="checkbox" id="sexta-selecionar" name="sexta-selecionar">
                 <label for="sexta">Sexta-feira:</label>
                 <select id="sexta-turno" name="sexta-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="sexta-horario" name="sexta-horario">
+                <label for="sexta-horario-inicio">De:</label>
+                <input type="time" id="sexta-horario-inicio" name="sexta-horario-inicio">
+                <label for="sexta-horario-fim">Até:</label>
+                <input type="time" id="sexta-horario-fim" name="sexta-horario-fim">
             </div>
+
             <div class="dia-semana">
+                <input type="checkbox" id="sabado-selecionar" name="sabado-selecionar">
                 <label for="sabado">Sábado:</label>
                 <select id="sabado-turno" name="sabado-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="sabado-horario" name="sabado-horario">
+                <label for="sabado-horario-inicio">De:</label>
+                <input type="time" id="sabado-horario-inicio" name="sabado-horario-inicio">
+                <label for="sabado-horario-fim">Até:</label>
+                <input type="time" id="sabado-horario-fim" name="sabado-horario-fim">
             </div>
+
             <div class="dia-semana">
+                <input type="checkbox" id="domingo-selecionar" name="domingo-selecionar">
                 <label for="domingo">Domingo:</label>
                 <select id="domingo-turno" name="domingo-turno">
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>
                     <option value="noite">Noite</option>
                 </select>
-                <input type="time" id="domingo-horario" name="domingo-horario">
+                <label for="domingo-horario-inicio">De:</label>
+                <input type="time" id="domingo-horario-inicio" name="domingo-horario-inicio">
+                <label for="domingo-horario-fim">Até:</label>
+                <input type="time" id="domingo-horario-fim" name="domingo-horario-fim">
             </div>
+        </div>
+
+        <!-- Botão de salvar -->
+        <div class="botao-container">
             <button type="submit">Salvar Horários</button>
-        </form>
+        </div>
     </div>
-
-
-    
 </body>
 </html>
