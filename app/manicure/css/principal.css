@@ -9,13 +9,13 @@
 }
 
 html, body {
-    height: auto; /* Permite que a altura da página seja maior que a tela */
-    min-height: 100vh; /* Garante que a página possa crescer além da tela */
-    overflow-y: auto; /* Ativa a rolagem vertical */
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 body {
-    padding-top: 80px; /* Evita que o conteúdo fique escondido pelo header fixo */
+    padding-top: 80px;
 }
 
 .menu {
@@ -33,7 +33,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; /* Mantém o cabeçalho acima de outros elementos */
+    z-index: 1000;
 }
 
 #app-header h1 {
@@ -55,172 +55,75 @@ body {
     font-weight: bold;
     color: white;
     width: 30%;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
-#temas h1 {
-    font-size: 25px;
-    color: #ffffff; 
-    margin: 0; 
-}
-
-/* Ajuste para garantir que a área rosa permita rolagem */
-.pink-area {
-    background-color: #e0978a; 
-    margin: 30px auto; 
-    width: 80%;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 18px;
-    color: white;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 20px; 
-}
-
-.pink-area .button-box {
-    background-color: #ffffff;
-    color: #d05f4b;
-    font-size: 24px;
+#button-grid {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: auto;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 50px;
 }
 
-.pink-area .button-box:hover {
-    background-color: #d05f4b;
-    color: #ffffff;
-}
-
-#perfis-bem-avaliados {
+.row {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    background-color: #e0978a; 
-    padding: 5px;
-    border-radius: 15px;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.button-card {
+    flex: 1;
     text-align: center;
-    font-size: 15px;
+    padding: 70px; /* Ajustado para um tamanho maior */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    font-size: 20px; /* Aumentei o tamanho do texto */
     font-weight: bold;
-    color: white;
-    width: 30%;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-#perfis-bem-avaliados h1 {
-    font-size: 25px;
-    color: #ffffff; 
-    margin: 0; 
+.button-card:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
 }
 
-#perfis-container {
-    display: flex;
-    overflow-x: auto; 
-    gap: 20px;
-    padding: 10px;
-    white-space: nowrap;
-    max-width: 80%;
-    margin: 10px auto;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
+/* para adiconar imagens de fundo nos botões */
 
-#perfis-container::-webkit-scrollbar {
-    display: none; 
-}
-
-.perfil {
-    flex: 0 0 auto;
-    text-align: center;
-    width: 150px;
-    padding: 10px;
-    background-color: #f5dcd7;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.perfil img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.perfil-nome {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-.estrelas {
-    font-size: 18px;
-    color: #FFD700; 
-}
-
-.theme-box {
-    width: 350px;
-    height: 150px;
+.btn-agendamentos {
+    background-image: url('imagens/agendamentos.jpg');
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.theme-box:hover {
-    transform: scale(1.05);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+.btn-referencias {
+    background-image: url('imagens/referencias.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-/* Estilo básico para o modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
+.btn-agenda-do-dia {
+    background-image: url('imagens/agenda_do_dia.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+.btn-proximos-agendamentos {
+    background-image: url('imagens/proximos_agendamentos.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.btn-editar-disponibilidade {
+    background-image: url('imagens/editar_disponibilidade.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.btn-nao-faco-ideia {
+    background-image: url('imagens/nao_faco_ideia.jpg');
+    background-size: cover;
+    background-position: center;
 }
