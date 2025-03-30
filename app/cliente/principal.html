@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="css/side-bar.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="menu">
-    
+
         <div id="app-header">
             <h1>Pretty Nails</h1>
         </div>
@@ -24,7 +27,7 @@
                     <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
                     <p id="user_infos">
                         <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
-                        <span class="item-description" id="user-name">Fulano de tal</span> 
+                        <span class="item-description" id="user-name">Fulano de tal</span>
                         <span class="item-description">(Cliente)</span>
                     </p>
                 </div>
@@ -61,12 +64,12 @@
                         </a>
                     </li>
                 </ul>
-    
+
                 <button id="open_btn">
                     <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-    
+
             <div id="logout">
                 <button id="logout_btn" onclick="logout()">
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -74,65 +77,74 @@
                 </button>
             </div>
         </nav>
-        
-        <div id="temas">
-            <h1>Temas</h1>
-        </div>
-        
-        <div class="pink-area">
-            <a href="francesinha.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/francesinha.jpg');"></div>
-            </a>
-            <a href="nude.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/nude.jpg');"></div>
-            </a>
-            <a href="florais.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/florais.jpg');"></div>
-            </a>
-            <a href="metalica.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/metalica.jpg');"></div>
-            </a>
-            <a href="gliter.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/gliter.jpg');"></div>
-            </a>
-            <a href="neon.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/neon.jpg');"></div>
-            </a>
-            <a href="transparente.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/transparente.jpg');"></div>
-            </a>
-            <a href="animais.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/animais.jpg');"></div>
-            </a>
-            <a href="frutas.html">
-                <div class="button-box theme-box" style="background-image: url('imagens/frutas.jpg');"></div>
-            </a>
-        </div>
-        
-        <div id="perfis-bem-avaliados">
-            <h1>Perfis bem avaliados</h1>
-        </div>
-        <br>
-        <div id="perfis-container">
-            
-        </div>
-        
-        <div id="modalPerfil" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <img id="modalFoto" src="" alt="Foto da Manicure">
-                <h2 id="modalNome"></h2>
-                <p id="modalEstado"></p>
-                <p id="modalCidade"></p>
-                <p id="modalAvaliacao"></p>
-                <p id="modalDescricao"></p>
+
+        <div class="pag-content">
+            <!-- Nova Div Sessões -->
+            <div id="sessoes">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Sessões</span>
+                <span id="notification-count" class="notification"></span>
+            </div>
+
+            <div id="temas">
+                <h1>Temas</h1>
+            </div>
+
+            <div class="pink-area">
+                <a href="francesinha.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/francesinha.jpg');"></div>
+                </a>
+                <a href="nude.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/nude.jpg');"></div>
+                </a>
+                <a href="florais.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/florais.jpg');"></div>
+                </a>
+                <a href="metalica.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/metalica.jpg');"></div>
+                </a>
+                <a href="gliter.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/gliter.jpg');"></div>
+                </a>
+                <a href="neon.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/neon.jpg');"></div>
+                </a>
+                <a href="transparente.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/transparente.jpg');"></div>
+                </a>
+                <a href="animais.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/animais.jpg');"></div>
+                </a>
+                <a href="frutas.html">
+                    <div class="button-box theme-box" style="background-image: url('imagens/frutas.jpg');"></div>
+                </a>
+            </div>
+
+            <div id="perfis-bem-avaliados">
+                <h1>Perfis bem avaliados</h1>
+            </div>
+            <br>
+            <div id="perfis-container">
+
+            </div>
+
+            <div id="modalPerfil" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <img id="modalFoto" src="" alt="Foto da Manicure">
+                    <h2 id="modalNome"></h2>
+                    <p id="modalEstado"></p>
+                    <p id="modalCidade"></p>
+                    <p id="modalAvaliacao"></p>
+                    <p id="modalDescricao"></p>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
-    
+
     <script>
         // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
         document.addEventListener('DOMContentLoaded', async () => {
@@ -146,9 +158,9 @@
 
             // Pegando o nome completo do usuário salvo no localStorage
             let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
-            
+
             // Pegando apenas o primeiro nome
-            let primeiroNome = nomeCompleto.split(' ')[0];  
+            let primeiroNome = nomeCompleto.split(' ')[0];
 
             // Exibir o primeiro nome na sidebar
             document.getElementById('user-name').textContent = primeiroNome;
@@ -169,4 +181,5 @@
     </script>
 
 </body>
+
 </html>
