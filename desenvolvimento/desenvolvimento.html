@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Desenvolvimento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #fff0f6 0%, #ffdeeb 100%);
+        }
+        .heart-beat {
+            animation: heartBeat 1.5s ease infinite;
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4 font-sans">
+    <div class="max-w-md mx-auto text-center px-6 py-12 rounded-3xl bg-white bg-opacity-50 backdrop-blur-sm shadow-lg">
+        <div class="floating mb-8">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Em desenvolvimento" class="w-32 h-32 mx-auto heart-beat">
+        </div>
+        
+        <h1 class="text-4xl font-bold text-pink-700 mb-4">
+            Em Desenvolvimento
+        </h1>
+        
+        <p class="text-xl text-pink-800 font-medium">
+            Estamos fazendo o nosso melhor!
+        </p>
+        
+        <div class="mt-8 flex justify-center space-x-4">
+            <div class="w-3 h-3 rounded-full bg-pink-400 animate-pulse"></div>
+            <div class="w-3 h-3 rounded-full bg-pink-400 animate-pulse" style="animation-delay: 0.2s"></div>
+            <div class="w-3 h-3 rounded-full bg-pink-400 animate-pulse" style="animation-delay: 0.4s"></div>
+        </div>
+    </div>
+
+    <script>
+        // Adiciona algumas flores flutuantes no fundo
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('body');
+            const flowers = ['🌸', '🌺', '🌷', '💮', '🏵️'];
+            
+            for (let i = 0; i < 10; i++) {
+                const flower = document.createElement('div');
+                flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.className = 'absolute text-pink-300 opacity-70 text-xl';
+                
+                // Posição aleatória
+                const startPosX = Math.random() * window.innerWidth;
+                const startPosY = Math.random() * window.innerHeight;
+                flower.style.left = `${startPosX}px`;
+                flower.style.top = `${startPosY}px`;
+                
+                // Animação
+                const animationDuration = 10 + Math.random() * 20;
+                flower.style.animation = `float ${animationDuration}s linear infinite`;
+                
+                container.appendChild(flower);
+            }
+        });
+    </script>
+</body>
+</html>

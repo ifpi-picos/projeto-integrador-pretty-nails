@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+:root{
+    --branco:#fff;
+    --preto:#000;
+    --preto-tom2:#2a2a2a;
+    --tom1:#d05f4b;
+    --tom2:#d87b6b;
+    --tom3:#e0978a;
+    --tom4:#e8b2a9;
+    --tom5:#ecc0b8;
+    --tom6:#f1cec8;
+    --tom7:#f5dcd7;
+    --tom8:#f7e1e0;
+    --tom9:#f8e3e2;
+    --tom10:#f9e5e4;
+    --tom11:#fae7e6;
+    --tom12:#fbe9e8;
+    --tom13:#fcebe9;
+}
+
+/* Barra de navegação */
+nav {
+    position: fixed; 
+    width: 100%; 
+    background: linear-gradient(45deg, var(--tom3), var(--tom2));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem; 
+    z-index: 1000;
+    height: 80px; 
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    color: var(--branco);
+    border: 1px solid var(--preto);
+}
+
+.logo h1{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+nav img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: var(--branco);
+}
+  
+.menu-hamburguer {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--branco);
+    cursor: pointer;
+  }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 5rem; 
+}
+  
+.nav-links a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+  
+.nav-links a:hover {
+    text-decoration: underline;
+}
+  
+.nav-links button {
+    border: none;
+    padding: 0.5rem 1rem;
+    background: var(--branco);
+    color: var(--preto);
+    border-radius: 10px;
+}
+  
+.nav-links button:hover{
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .menu-hamburguer {
+      display: block;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      position: absolute;
+      top: 5rem;
+      right: 0;
+      background: linear-gradient(95deg, var(--tom3), var(--tom2));
+      width: 100%;
+      text-align: center;
+      display: none;
+      gap: 3rem; 
+      padding-top: 80px;
+      transition: width ease-in-out 0.3s;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  }
+
+/* Sessões */
+.content{
+    background-color: green;
+    opacity: 60%;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--preto);
+    height: 100dvh;
+}

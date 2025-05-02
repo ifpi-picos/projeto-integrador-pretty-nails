@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="css/side-bar.css">
+    <link rel="stylesheet" href="css/skeleton.css">
     <title>Document</title>
 </head>
 
@@ -92,31 +93,31 @@
 
             <div class="pink-area">
                 <a href="francesinha.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/francesinha.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/francesinha.jpg');"></div>
                 </a>
                 <a href="nude.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/nude.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/nude.jpg');"></div>
                 </a>
                 <a href="florais.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/florais.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/florais.jpg');"></div>
                 </a>
                 <a href="metalica.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/metalica.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/metalica.jpg');"></div>
                 </a>
                 <a href="gliter.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/gliter.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/gliter.jpg');"></div>
                 </a>
                 <a href="neon.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/neon.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/neon.jpg');"></div>
                 </a>
                 <a href="transparente.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/transparente.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/transparente.jpg');"></div>
                 </a>
                 <a href="animais.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/animais.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/animais.jpg');"></div>
                 </a>
                 <a href="frutas.html">
-                    <div class="button-box theme-box" style="background-image: url('imagens/frutas.jpg');"></div>
+                    <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/frutas.jpg');"></div>
                 </a>
             </div>
 
@@ -125,25 +126,96 @@
             </div>
             <br>
             <div id="perfis-container">
-
-            </div>
-
-            <div id="modalPerfil" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <img id="modalFoto" src="" alt="Foto da Manicure">
-                    <h2 id="modalNome"></h2>
-                    <p id="modalEstado"></p>
-                    <p id="modalCidade"></p>
-                    <p id="modalAvaliacao"></p>
-                    <p id="modalDescricao"></p>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
                 </div>
-            </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+                <div class="perfil" data-skeleton>
+                    <img src="" alt="" data-skeleton>
+                    <div class="perfil-nome" data-skeleton></div>
+                    <div class="estrelas" data-skeleton></div>
+                </div>
+            </div> 
         </div>
     </div>
 
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
+    <script src="js/skeleton.js"></script>
+    
+    <script>
+        // Configura o carregamento do avatar do usuário
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userId = localStorage.getItem('userId');
+            const userAvatar = document.getElementById('user_avatar');
+    
+            if (userAvatar) {
+                userAvatar.onload = function() {
+                    window.skeletonLoader.remove(userAvatar);
+                };
+            }
+    
+            if (!userId) {
+                console.warn("Redirecionando para login pois userId não foi encontrado.");
+                window.location.href = 'login.html';
+                return;
+            }
+    
+            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
+            let primeiroNome = nomeCompleto.split(' ')[0];
+            document.getElementById('user-name').textContent = primeiroNome;
+    
+            try {
+                const response = await fetch(`http://localhost:3000/usuario/${userId}`);
+                const usuario = await response.json();
+    
+                if (usuario) {
+                    primeiroNome = usuario.nome.split(' ')[0];
+                    document.getElementById('user-name').textContent = primeiroNome;
+                    
+                    if (usuario.foto) {
+                        userAvatar.src = usuario.foto;
+                    } else {
+                        window.skeletonLoader.remove(userAvatar);
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados do usuário:', error);
+                window.skeletonLoader.remove(userAvatar);
+            }
+        });
+    </script>
 
     <script>
         // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
@@ -152,7 +224,7 @@
 
             if (!userId) {
                 console.warn("Redirecionando para login pois userId não foi encontrado.");
-                window.location.href = 'login.html';
+                window.location.href = '../../cadastro-e-login/login.html';
                 return;
             }
 
