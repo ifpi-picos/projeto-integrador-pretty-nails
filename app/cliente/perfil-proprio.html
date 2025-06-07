@@ -17,60 +17,61 @@
     </header>
     
     <nav id="sidebar">
-        <div id="sidebar_content">
-            <div id="user">
-                <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
-                <p id="user_infos">
-                    <span class="item-description">Fulano de Tal</span>
-                    <span class="item-description">(Cliente)</span>
-                </p>
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
+                    <p id="user_infos">
+                        <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
+                        <span class="item-description" id="user-name">Fulano de tal</span>
+                        <span class="item-description">(Cliente)</span>
+                    </p>
+                </div>
+
+                <ul id="side_items">
+                    <li class="side-item" data-label="Inicio"> 
+                        <a href="principal.html">
+                            <i class="fa-solid fa-house"></i>
+                            <span class="item-description">Início</span>
+                        </a>
+                    </li>
+                    <li class="side-item" data-label="Pesquisa">
+                        <a href="pesquisa.html">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span class="item-description">Pesquisar</span>
+                        </a>
+                    </li>
+                    <li class="side-item" data-label="Notificações">
+                        <a href="#" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="item-description">Notificações</span>
+                        </a>
+                    </li>
+                    <li class="side-item active" data-label="Perfil">
+                        <a href="perfil-proprio.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="item-description">Perfil</span>
+                        </a>
+                    </li>
+                    <li class="side-item" data-label="Configurações">
+                        <a href="#" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description">Configurações</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <button id="open_btn">
+                    <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
 
-            <ul id="side_items">
-                <li class="side-item">
-                    <a href="principal.html">
-                        <i class="fa-solid fa-house"></i>
-                        <span class="item-description">Início</span>
-                    </a>
-                </li>
-                <li class="side-item">
-                    <a href="pesquisa.html">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span class="item-description">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="side-item">
-                    <a href="notificacao.html">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="item-description">Notificações</span>
-                    </a>
-                </li>
-                <li class="side-item active">
-                    <a href="perfil-proprio.html">
-                        <i class="fa-solid fa-user"></i>
-                        <span class="item-description">Perfil</span>
-                    </a>
-                </li>
-                <li class="side-item">
-                    <a href="config.html">
-                        <i class="fa-solid fa-gear"></i>
-                        <span class="item-description">Configurações</span>
-                    </a>
-                </li>
-            </ul>
-
-            <button id="open_btn">
-                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <div id="logout">
-            <button id="logout_btn" onclick="logout()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="item-description">Logout</span>
-            </button>
-        </div>
-    </nav>
+            <div id="logout">
+                <button id="logout_btn" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="item-description">Logout</span>
+                </button>
+            </div>
+        </nav>
 
     <div class="main-container">
         <div class="profile-container">

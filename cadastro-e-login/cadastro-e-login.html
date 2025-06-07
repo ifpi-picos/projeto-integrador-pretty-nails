@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <title>Pretty Nails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cadastro-e-login.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+
+    <script>
+        function handleCredentialResponse(response) {
+            if (response && response.credential) {
+                try {
+                    const data = jwt_decode(response.credential);
+                    console.log("Dados do usuário decodificados:", data);
+
+                    alert("Login realizado! Redirecionando...");
+                    window.location.href = "principal.html";
+                } catch (error) {
+                    console.error("Erro ao decodificar o token JWT:", error);
+                }
+            } else {
+                alert("Token não recebido. O redirecionamento foi cancelado.");
+                console.error("Token não recebido.");
+            }
+        }
+
+
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "495511510189-goo1hjj4u82qeu2ccngim4p4i6l020g1.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"), {
+                type: "icon",
+                shape: "circle",
+                theme: "filled_blue",
+                text: "signin_with",
+                size: "large",
+            }
+            );
+
+            google.accounts.id.prompt();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <!-- Formulário de Cadastro -->
+        <div class="form-container sign-up-container">
+            <form onsubmit="event.preventDefault(); adicionarUsuario()">
+                <h1>Criar Conta</h1>
+                <input type="text"     id="nome"           placeholder="Nome"        required />
+                <input type="email"    id="cadastro-email" placeholder="Email" required />
+                <input type="password" id="cadastro-senha" placeholder="Senha" required />
+                <input type="tel"      id="telefone"       placeholder="Telefone"    required />
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <select id="estado" onchange="carregarCidades()" style="width: 50%;">
+                        <option value="" disabled selected>estado</option>
+                    </select>
+                    <select id="cidade" style="width: 50%;">
+                        <option value="" disabled selected>Cidade</option>
+                    </select>
+                </div>
+                <select id="tipo">
+                    <option value="" disabled selected>Tipo de usuário</option>
+                    <option value="MANICURE">Manicure</option>
+                    <option value="CLIENTE">Cliente</option>
+                </select>
+                <button>Cadastrar</button>
+            </form>
+        </div>
+
+        <!-- Formulário de Login -->
+        <div class="form-container sign-in-container">
+            <form onsubmit="event.preventDefault(); loginUsuario()">
+                <h1>Entrar</h1>
+                <input type="email"    id="login-email" placeholder="Email" required />
+                <input type="password" id="login-senha" placeholder="Senha" required />
+                <button>Entrar</button>
+                <div class="plataformas-digitais">
+                    <div style="display: flex; justify-content: center; margin-top: 16px;">
+                        <div id="buttonDiv"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Painel lateral com animação -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h2>Já tem conta?</h2>
+                    <p>Entre agora mesmo para ver suas unhas favoritas!</p>
+                    <button class="ghost" id="signIn">Entrar</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h2>Nova por aqui?</h2>
+                    <p>Crie uma conta e descubra os estilos mais lindos!</p>
+                    <button class="ghost" id="signUp">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="cadastro-e-login.js"></script>
+    <script src="users.js"></script>
+</body>
+
+</html>

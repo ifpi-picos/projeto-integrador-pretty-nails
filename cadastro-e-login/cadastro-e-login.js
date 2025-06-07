@@ -1,12 +1,14 @@
-function previewImage(event) {
-    const reader = new FileReader();
-    reader.onload = function() {
-      const preview = document.getElementById('preview');
-      preview.src = reader.result;
-      preview.style.display = 'block';
-    }
-    reader.readAsDataURL(event.target.files[0]);
-  }
+const container = document.getElementById('container');
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+
+signUpButton.addEventListener('click', () => {
+  container.classList.add('right-panel-active');
+});
+
+signInButton.addEventListener('click', () => {
+  container.classList.remove('right-panel-active');
+});
 
   // estados e cidades
   document.addEventListener("DOMContentLoaded", function () {
@@ -68,12 +70,3 @@ function carregarCidades() {
         });
     }
 }
-
-document.getElementById("tipo").addEventListener("change", function() {
-  const tipoSelecionado = document.querySelector('input[name="tipo"]:checked').value;
-  if (tipoSelecionado === "CLIENTE") {
-    window.location.href = "../app/cliente/principal.html";
-  } else if (tipoSelecionado === "MANICURE") {
-    window.location.href = "../app/manicure/principal.html";
-  }
-});

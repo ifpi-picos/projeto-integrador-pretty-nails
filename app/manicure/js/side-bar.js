@@ -12,5 +12,5 @@ document.addEventListener('click', function (event) {
 
 document.getElementById('logout_btn').addEventListener('click', function () {
     localStorage.clear();
-    window.location.href = 'login.html';
+    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
 });
