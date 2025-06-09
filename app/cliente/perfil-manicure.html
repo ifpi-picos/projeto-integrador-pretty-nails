@@ -1,100 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/perfil-manicure.css">
-    <title>Document</title>
-</head>
+    <title>Agendamento de Manicure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
+        body {
+            background-color: #f9e7e7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            color: #d14d8b;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .agendamento-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .form-section, .info-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h2, .info-section h2 {
+            color: #d14d8b;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #d14d8b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #b33c72;
+        }
+
+        .servicos-list {
+            margin-top: 20px;
+        }
+
+        .servico-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .servico-item:last-child {
+            border-bottom: none;
+        }
+
+        .horarios-disponiveis {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .horario-btn {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .horario-btn:hover, .horario-btn.selected {
+            background: #d14d8b;
+            color: white;
+            border-color: #d14d8b;
+        }
+
+        .info-card {
+            background: #fff9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #d14d8b;
+        }
+
+        .info-card h3 {
+            color: #d14d8b;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .agendamento-container {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-section, .info-section {
+                width: 100%;
+            }
+            
+            .horarios-disponiveis {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-section, .info-section {
+                padding: 15px;
+            }
+            
+            .horarios-disponiveis {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
 <body>
-    <div class="main-container">
-        <div class="profile-container">
-            <!-- Seção de Perfil com fundo rosa -->
-            <div class="profile-header">
-                <div class="profile-info" id="profile-info">
-                    <div class="profile-picture">
-                        <img id="profile-img" src="imagens/perfil_cliente.png" alt="Foto de Perfil">
+    <div class="container">
+        <header>
+            <h1>Agende Seu Horário de Manicure</h1>
+            <p>Preencha o formulário abaixo para reservar seu horário</p>
+        </header>
+
+        <div class="agendamento-container">
+            <section class="form-section">
+                <h2>Dados do Agendamento</h2>
+                <form id="agendamento-form">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required>
                     </div>
-                    <div class="profile-details">
-                        <h2 id="nome">Nome do Usuário</h2>
-                        <p><strong>Telefone:</strong> <span id="telefone">(11) 99999-9999</span></p>
-                        <p><strong>Endereço:</strong> <span id="endereco">Rua Exemplo, 123</span></p>
-                        <div class="biografia">
-                            <p><span id="biografia"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur minus aliquid molestias consequatur nesciunt odit provident autem odio eligendi? Dolor molestiae molestias delectus neque, nostrum placeat. Unde, aspernatur quia.</span></p>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data">Data do Agendamento</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Horários Disponíveis</label>
+                        <div class="horarios-disponiveis">
+                            <div class="horario-btn">09:00</div>
+                            <div class="horario-btn">10:00</div>
+                            <div class="horario-btn">11:00</div>
+                            <div class="horario-btn">13:00</div>
+                            <div class="horario-btn">14:00</div>
+                            <div class="horario-btn">15:00</div>
+                            <div class="horario-btn">16:00</div>
+                            <div class="horario-btn">17:00</div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="horarios-container">
-                <div class="horarios" id="horarios">
-                    <h1>Segunda</h1>
-                    <div class="dia" id="segunda">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
+
+                    <div class="form-group">
+                        <label for="servico">Serviço Desejado</label>
+                        <select id="servico" name="servico" required>
+                            <option value="">Selecione um serviço</option>
+                            <option value="manicure">Manicure Completa</option>
+                            <option value="pedicure">Pedicure Completa</option>
+                            <option value="podologia">Podologia</option>
+                            <option value="esmaltação">Esmaltação em Gel</option>
+                            <option value="alongamento">Alongamento de Unhas</option>
+                            <option value="manutencao">Manutenção de Unhas</option>
+                            <option value="outro">Outro</option>
+                        </select>
                     </div>
-                    <h1>Terça</h1>
-                    <div class="dia" id="terca">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
+
+                    <div class="form-group">
+                        <label for="observacoes">Observações</label>
+                        <textarea id="observacoes" name="observacoes"></textarea>
                     </div>
-                    <h1>Quarta</h1>
-                    <div class="dia" id="quarta">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
+
+                    <button type="submit">Agendar Horário</button>
+                </form>
+            </section>
+
+            <section class="info-section">
+                <h2>Nossos Serviços</h2>
+                <div class="servicos-list">
+                    <div class="servico-item">
+                        <span>Manicure Completa</span>
+                        <span>R$ 40,00</span>
                     </div>
-                    <h1>Quinta</h1>
-                    <div class="dia" id="quinta">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
+                    <div class="servico-item">
+                        <span>Pedicure Completa</span>
+                        <span>R$ 50,00</span>
                     </div>
-                    <h1>Sexta</h1>
-                    <div class="dia" id="sexta">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
-                        <label for="">00:00</label>
-                        <input type="radio">
+                    <div class="servico-item">
+                        <span>Podologia</span>
+                        <span>R$ 80,00</span>
+                    </div>
+                    <div class="servico-item">
+                        <span>Esmaltação em Gel</span>
+                        <span>R$ 60,00</span>
+                    </div>
+                    <div class="servico-item">
+                        <span>Alongamento de Unhas</span>
+                        <span>R$ 120,00</span>
+                    </div>
+                    <div class="servico-item">
+                        <span>Manutenção de Unhas</span>
+                        <span>R$ 80,00</span>
                     </div>
                 </div>
-                <button class="agendar-btn">Agendar</button>
-            </div>
+
+                <div class="info-card">
+                    <h3>Informações Importantes</h3>
+                    <p>• Cancelamentos devem ser feitos com 24h de antecedência</p>
+                    <p>• Chegar 5 minutos antes do horário marcado</p>
+                    <p>• Aceitamos todos os cartões</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Contato</h3>
+                    <p>Telefone: (11) 99999-9999</p>
+                    <p>E-mail: contato@manicure.com.br</p>
+                    <p>Endereço: Rua das Unhas, 123 - Centro</p>
+                </div>
+            </section>
         </div>
     </div>
-    <script src="js/perfil-manicure.js"></script>
-</body>
 
+    <script>
+        // Seleciona todos os botões de horário
+        const horarioBtns = document.querySelectorAll('.horario-btn');
+        
+        // Adiciona evento de clique para cada botão de horário
+        horarioBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove a classe 'selected' de todos os botões
+                horarioBtns.forEach(b => b.classList.remove('selected'));
+                
+                // Adiciona a classe 'selected' apenas ao botão clicado
+                this.classList.add('selected');
+            });
+        });
+        
+        // Validação do formulário
+        document.getElementById('agendamento-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Verifica se um horário foi selecionado
+            const horarioSelecionado = document.querySelector('.horario-btn.selected');
+            if (!horarioSelecionado) {
+                alert('Por favor, selecione um horário disponível');
+                return;
+            }
+            
+            // Aqui você pode adicionar o código para enviar o formulário
+            alert('Agendamento realizado com sucesso! Entraremos em contato para confirmar.');
+            this.reset();
+            horarioBtns.forEach(b => b.classList.remove('selected'));
+        });
+    </script>
+</body>
 </html>
