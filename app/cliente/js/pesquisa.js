@@ -4,6 +4,20 @@ function toggleFilters() {
 
 document.addEventListener("DOMContentLoaded", function () {
     carregarEstados();
+    adicionarPerfis();
+
+    document.querySelector(".apply-btn").addEventListener("click", function () {
+        const estado = document.getElementById("estado").value;
+        const cidade = document.getElementById("cidade").value;
+        adicionarPerfis(estado, cidade);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase();
+        const estado = document.getElementById("estado").value;
+        const cidade = document.getElementById("cidade").value;
+        adicionarPerfis(estado, cidade, searchTerm);
+    });
 });
 
 const estadosCidades = {
@@ -62,64 +76,55 @@ function carregarCidades() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    carregarEstados();
-    adicionarPerfis();
-
-    document.querySelector(".apply-btn").addEventListener("click", function () {
-        const estado = document.getElementById("estado").value;
-        const cidade = document.getElementById("cidade").value;
-        adicionarPerfis(estado, cidade);
-    });
-
-    document.getElementById("searchInput").addEventListener("input", function () {
-        const searchTerm = this.value.toLowerCase();
-        const estado = document.getElementById("estado").value;
-        const cidade = document.getElementById("cidade").value;
-        adicionarPerfis(estado, cidade, searchTerm);
-    });
-});
-
 let manicuresCache = [];
 
 async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome = "") {
     try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            throw new Error("Token de autenticação não encontrado.");
+        }
+
         if (manicuresCache.length === 0) {
-            const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures");
+            const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
             if (!resposta.ok) {
                 throw new Error("Erro ao buscar manicures.");
             }
+
             manicuresCache = await resposta.json();
         }
 
         const container = document.getElementById("perfil-container");
-        container.innerHTML = ""; // Limpa os perfis existentes
+        container.innerHTML = "";
 
-        const manicuresFiltradas = manicuresCache.filter(manicure => 
+        const manicuresFiltradas = manicuresCache.filter(manicure =>
             (filtroEstado === "" || manicure.estado === filtroEstado) &&
             (filtroCidade === "" || manicure.cidade === filtroCidade) &&
             (filtroNome === "" || manicure.name.toLowerCase().startsWith(filtroNome.toLowerCase()))
         );
 
-        // Se não houver resultados, exibe uma mensagem
         if (manicuresFiltradas.length === 0) {
             container.innerHTML = `<p class="no-results">Nenhuma manicure encontrada com o nome "${filtroNome}".</p>`;
             return;
         }
 
-        // Se houver resultados, cria os cards
         manicuresFiltradas.forEach(manicure => {
             let nomeFormatado = manicure.name;
-            
-            // Se houver um filtro de nome, destacar as letras iniciais em negrito
+
             if (filtroNome) {
-                const regex = new RegExp(`^(${filtroNome})`, "i"); // Match apenas no começo
+                const regex = new RegExp(`^(${filtroNome})`, "i");
                 nomeFormatado = manicure.name.replace(regex, `<span class="highlight" style="font-size: 1.06em;">$1</span>`);
             }
 
             const link = document.createElement("a");
             link.href = `perfil-manicure.html?id=${manicure.id}`;
-            link.classList.add("perfil-link");  
+            link.classList.add("perfil-link");
             link.innerHTML = `
                 <div class="profile-card">
                     <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
@@ -134,5 +139,6 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
 
     } catch (error) {
         console.error("Erro ao carregar manicures:", error);
+        document.getElementById("perfil-container").innerHTML = "<p class='no-results'>Erro ao carregar perfis. Verifique sua conexão ou login.</p>";
     }
 }

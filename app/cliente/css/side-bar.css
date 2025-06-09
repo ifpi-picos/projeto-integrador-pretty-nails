@@ -9,6 +9,11 @@
     --fonte-padrao: 'Poppins', sans-serif;
     --fonte-nome: 'Quicksand', sans-serif;
     --animacao: all 0.4s ease;
+    --tom1: #f08080;
+    --tom2: #f4978e;
+    --tom3: #f8ad9d;
+    --tom4: #fbc4ab;
+    --tom5: #ffdab9;
 }
 
 body {
@@ -85,14 +90,18 @@ body {
     list-style: none;
     padding-left: 0;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
 }
 
 .side-item {
     position: relative;
     border-radius: 8px;
-    padding: 12px;
+    display: flex;
+    justify-content: center;
+    height: 45px;
+    width: 50px;
     transition: var(--animacao);
     cursor: pointer;
 }
@@ -102,7 +111,7 @@ body {
 }
 
 .side-item.active {
-    background-color: var(--cinza-hover);
+    background-color: var(--tom4);
 }
 
 .side-item a {
@@ -212,4 +221,59 @@ body {
 
 #sidebar.open-sidebar ~ .telas {
     padding-left: 230px;
+}
+
+
+.side-item {
+    position: relative;
+    border-radius: 8px;
+    transition: var(--animacao);
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%; /* Ocupa toda a largura do container pai */
+    padding: 12px;
+}
+
+/* Quando a sidebar estiver FECHADA */
+#sidebar:not(.open-sidebar) .side-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+}
+
+/* Quando a sidebar estiver ABERTA */
+#sidebar.open-sidebar .side-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.side-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--preto);
+    width: 100%;
+    transition: var(--animacao);
+}
+
+/* Ícone centralizado quando fechado */
+#sidebar:not(.open-sidebar) .side-item a {
+    justify-content: center;
+}
+
+/* Ícone alinhado ao texto quando aberto */
+#sidebar.open-sidebar .side-item a {
+    justify-content: flex-start;
+}
+
+/* Ícone com margem 0 quando sidebar aberta */
+#sidebar.open-sidebar .side-item a i {
+    margin: 0;
 }
