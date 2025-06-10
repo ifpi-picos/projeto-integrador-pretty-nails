@@ -1,5 +1,5 @@
 :root {
-    --branco: #ffff;
+    --branco: #fff;
     --gelo: #f1f1f1;
     --preto: #2a2a2a;
     --cinza: #cbcbcb;
@@ -10,104 +10,186 @@
     --tom5: #ffdab9;
 }
 
-/* Corpo da Página */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* Contêiner Principal */
-.main-container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 120px 20px 20px 20px;
     box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* Contêiner do Perfil */
-.profile-container {
-    width: 100%;
-    max-width: 1000px;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+body {
+    background-color: #fff8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
 }
 
-/* Seção de Perfil com fundo rosa */
-.profile-header {
-    background-color: var(--gelo);
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: #d14d8b;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+}
+
+.agendamento-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.form-section,
+.info-section {
+    flex: 1;
+    min-width: 320px;
+    background: white;
     padding: 25px;
     border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.perfil-manicure {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
+    margin-bottom: 30px;
     align-items: center;
 }
 
-/* Informação de Perfil */
-.profile-info {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.profile-picture {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    margin: 0 auto;
-}
-
-.profile-picture img {
-    width: 100%;
-    height: 100%;
+.perfil-manicure img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #d14d8b;
 }
 
-.profile-details {
+.perfil-manicure .info {
     flex: 1;
-    color: var(--preto);
 }
 
-.profile-details h2 {
+.perfil-manicure h2 {
     margin: 0;
-    font-size: 28px;
+    color: #d14d8b;
+}
+
+.perfil-manicure p {
+    margin: 4px 0;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #555;
 }
 
-.profile-details p {
-    margin: 5px 0;
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fefefe;
 }
 
-/*Horários*/
-.horarios-container{
-    padding: 20px;
-    background-color: var(--gelo);
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+textarea {
+    height: 100px;
+    resize: vertical;
 }
 
-.dia{
-    display: flex;
-    flex-direction: column;
+button {
+    background-color: #d14d8b;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 100%;
 }
 
-.agendar-btn{
-    display: flex;
+button:hover {
+    background-color: #b33c72;
+}
+
+.horarios-disponiveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.horario-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
     padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.horario-btn:hover,
+.horario-btn.selected {
+    background: #d14d8b;
+    color: white;
+    border-color: #d14d8b;
+}
+
+.servicos-list {
+    margin-top: 20px;
+}
+
+.servico-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.info-card {
+    background: #fff0f4;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-left: 4px solid #d14d8b;
+}
+
+.info-card h3 {
+    margin-bottom: 10px;
+    color: #d14d8b;
+}
+
+@media (max-width: 768px) {
+    .agendamento-container {
+        flex-direction: column;
+    }
+
+    .perfil-manicure {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
