@@ -102,7 +102,7 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
         mensagemDiv.textContent = 'Usuário não autenticado ou token inválido. Redirecionando para o login...';
         mensagemDiv.style.color = 'red';
         setTimeout(() => {
-          window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+          //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
         }, 2000);
       } else if (resposta.status === 409) {
         mensagemDiv.textContent = resultado.error || 'Horário já agendado para esta manicure.';
