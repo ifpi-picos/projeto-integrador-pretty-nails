@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="css/perfil-manicure.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/perfil-manicure.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Agendamento de Manicure</title>
     <style>
@@ -18,16 +19,19 @@
             user-select: none;
             transition: background-color 0.3s, color 0.3s;
         }
+
         .horario-btn.selected {
-            background-color: #007bff;
-            color: white;
-            border-color: #0056b3;
+            background-color: #c2185b;
+            color: #fff;
         }
+
         .horario-btn:hover {
-            background-color: #e7f1ff;
+            background-color: #f8bbd0;
+            color: #c2185b;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
 
@@ -44,11 +48,7 @@
 
                 <h2>Dados do Agendamento</h2>
                 <form id="agendamento-form">
-                    <div class="form-group">
-                        <label for="data">Data do Agendamento</label>
-                        <input type="date" id="data" name="data" required>
-                    </div>
-
+                    <input type="date" id="data" required>
                     <div class="form-group">
                         <label>Horários Disponíveis</label>
                         <div class="horarios-disponiveis">
@@ -62,27 +62,14 @@
                             <div class="horario-btn" data-value="17">17:00</div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="servico">Serviço Desejado</label>
-                        <select id="servico" name="servico" required>
-                            <option value="">Selecione um serviço</option>
-                            <option value="manicure">Manicure Completa</option>
-                            <option value="pedicure">Pedicure Completa</option>
-                            <option value="podologia">Podologia</option>
-                            <option value="esmaltação">Esmaltação em Gel</option>
-                            <option value="alongamento">Alongamento de Unhas</option>
-                            <option value="manutencao">Manutenção de Unhas</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="observacoes">Observações</label>
-                        <textarea id="observacoes" name="observacoes"></textarea>
-                    </div>
-
-                    <button type="submit">Agendar Horário</button>
+                    <select id="servico" required>
+                        <option value="">Serviço</option>
+                        <option value="manicure">Manicure</option>
+                        <option value="pedicure">Pedicure</option>
+                    </select>
+                    <textarea id="observacoes" placeholder="Observações"></textarea>
+                    <button type="submit">Agendar</button>
+                    <div id="mensagem-agendamento" style="margin-top:10px;"></div>
                 </form>
             </section>
 
@@ -118,4 +105,5 @@
     <script src="js/perfil-manicure.js"></script>
     <script src="js/agendar.js"></script>
 </body>
+
 </html>

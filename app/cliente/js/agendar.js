@@ -1,90 +1,127 @@
-// Selecionar/deselecionar horário ao clicar
 document.querySelectorAll('.horario-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-    });
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
   });
-  
-  document.getElementById('agendamento-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-  
+});
+
+document.getElementById('agendamento-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const mensagemDiv = document.getElementById('mensagem-agendamento');
+  mensagemDiv.textContent = '';
+  mensagemDiv.style.color = '';
+
+  const submitBtn = this.querySelector('button[type="submit"]');
+  if (submitBtn) submitBtn.disabled = true;
+
+  try {
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('Você precisa estar logado para agendar.');
+      mensagemDiv.textContent = 'Você precisa estar logado para agendar. Faça login e tente novamente.';
+      window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+      mensagemDiv.style.color = 'red';
       return;
     }
-  
-    const dataInput = document.getElementById('data').value; // yyyy-mm-dd
+
+    const dataInput = document.getElementById('data').value;
     const horarioSelecionado = document.querySelector('.horario-btn.selected');
-  
+    const servico = document.getElementById('servico').value;
+    const observacoes = document.getElementById('observacoes')?.value || '';
+
     if (!dataInput) {
-      alert('Por favor, selecione uma data.');
+      mensagemDiv.textContent = 'Por favor, selecione uma data.';
+      mensagemDiv.style.color = 'red';
       return;
     }
     if (!horarioSelecionado) {
-      alert('Por favor, selecione um horário disponível.');
+      mensagemDiv.textContent = 'Por favor, selecione um horário disponível.';
+      mensagemDiv.style.color = 'red';
       return;
     }
-  
-    const servico = document.getElementById('servico').value;
     if (!servico) {
-      alert('Por favor, selecione um serviço.');
+      mensagemDiv.textContent = 'Por favor, selecione um serviço.';
+      mensagemDiv.style.color = 'red';
       return;
     }
-  
-    // Para garantir que horário é valor correto, pode ter data-horario nos botões (se quiser)
-    // Aqui uso texto direto, mas pode ajustar se quiser:
+
     const horarioValor = horarioSelecionado.textContent.trim();
-  
-    // Monta a data e hora ISO (exemplo: 2025-06-10T09:00:00)
-    const dataHoraCompleta = new Date(`${dataInput}T${horarioValor}:00`).toISOString();
-  
-    // Pegue o id da manicure da URL
+    if (!/^\d{2}:\d{2}$/.test(horarioValor)) {
+      mensagemDiv.textContent = 'Horário inválido.';
+      mensagemDiv.style.color = 'red';
+      return;
+    }
+
+    const dataHoraCompleta = new Date(`${dataInput}T${horarioValor}:00`);
+    if (isNaN(dataHoraCompleta.getTime())) {
+      mensagemDiv.textContent = 'Data e horário inválidos.';
+      mensagemDiv.style.color = 'red';
+      return;
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const idManicure = urlParams.get('id');
-    if (!idManicure) {
-      alert('ID da manicure não encontrado.');
+    if (!idManicure || isNaN(Number(idManicure))) {
+      mensagemDiv.textContent = 'ID da manicure não encontrado.';
+      mensagemDiv.style.color = 'red';
       return;
     }
-  
-    const observacoes = document.getElementById('observacoes').value;
-  
-    try {
-      const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamentos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          manicureId: Number(idManicure),
-          dataHora: dataHoraCompleta,
-          servico,
-          observacoes,
-        }),
-      });
-  
-      let resultado;
-      try {
-        resultado = await resposta.json();
-      } catch {
-        const texto = await resposta.text();
-        console.error('Resposta não é um JSON válido:', texto);
-        throw new Error('Resposta inválida do servidor.');
-      }
-  
-      if (!resposta.ok) {
-        throw new Error(resultado.error || 'Erro ao agendar horário.');
-      }
-  
-      alert('Agendamento realizado com sucesso! Entraremos em contato para confirmar.');
-      this.reset();
-      document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
-  
-    } catch (erro) {
-      console.error('Erro ao agendar:', erro);
-      alert('Falha ao agendar: ' + erro.message);
+
+    if (dataHoraCompleta < new Date()) {
+      mensagemDiv.textContent = 'Agende apenas para horários futuros.';
+      mensagemDiv.style.color = 'red';
+      return;
     }
-  });
-  
+
+    // ATUALIZAÇÃO DESTA PARTE
+    const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamentos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        manicureId: Number(idManicure),
+        dataHora: dataHoraCompleta.toISOString(),
+        servico,
+        observacoes,
+      }),
+    });
+
+    let resultado;
+    try {
+      resultado = await resposta.json();
+    } catch (e) {
+      mensagemDiv.textContent = 'Erro inesperado ao processar a resposta do servidor.';
+      mensagemDiv.style.color = 'red';
+      return;
+    }
+
+    if (!resposta.ok) {
+      if (resposta.status === 401) {
+        mensagemDiv.textContent = 'Usuário não autenticado ou token inválido. Redirecionando para o login...';
+        mensagemDiv.style.color = 'red';
+        setTimeout(() => {
+          window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+        }, 2000);
+      } else if (resposta.status === 409) {
+        mensagemDiv.textContent = resultado.error || 'Horário já agendado para esta manicure.';
+        mensagemDiv.style.color = 'red';
+      } else {
+        mensagemDiv.textContent = resultado.error || resultado.message || 'Erro ao agendar horário.';
+        mensagemDiv.style.color = 'red';
+      }
+      return;
+    }
+
+    mensagemDiv.textContent = 'Agendamento realizado com sucesso! Entraremos em contato para confirmar.';
+    mensagemDiv.style.color = 'green';
+    this.reset();
+    document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
+  } catch (err) {
+    mensagemDiv.textContent = err.message;
+    mensagemDiv.style.color = 'red';
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+  }
+});
