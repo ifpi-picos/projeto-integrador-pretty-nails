@@ -182,7 +182,89 @@
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
     <script src="js/skeleton.js"></script>
-    
+
+    <script>
+        // Configura o carregamento do avatar do usuário
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userId = localStorage.getItem('userId');
+            const userAvatar = document.getElementById('user_avatar');
+            const token = localStorage.getItem('token');
+            if (!token,!userId) {
+                console.warn("Usuário não identificado. Redirecionando para login.");
+                window.location.href = '../../cadastro-e-login/-cadastro-e-login.html';
+                return;
+            }
+
+            if (userAvatar) {
+                userAvatar.onload = function () {
+                    window.skeletonLoader.remove(userAvatar);
+                };
+            }
+
+            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
+            let primeiroNome = nomeCompleto.split(' ')[0];
+            document.getElementById('user-name').textContent = primeiroNome;
+
+            try {
+                const response = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const usuario = await response.json();
+
+                if (usuario) {
+                    primeiroNome = usuario.nome.split(' ')[0];
+                    document.getElementById('user-name').textContent = primeiroNome;
+
+                    if (usuario.foto) {
+                        userAvatar.src = usuario.foto;
+                    } else {
+                        window.skeletonLoader.remove(userAvatar);
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados do usuário:', error);
+                window.skeletonLoader.remove(userAvatar);
+            }
+        });
+    </script>
+
+    <script>
+        // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                console.warn("Redirecionando para login pois userId não foi encontrado.");
+                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                return;
+            }
+
+            // Pegando o nome completo do usuário salvo no localStorage
+            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
+
+            // Pegando apenas o primeiro nome
+            let primeiroNome = nomeCompleto.split(' ')[0];
+
+            // Exibir o primeiro nome na sidebar
+            document.getElementById('user-name').textContent = primeiroNome;
+
+            try {
+                const response = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`);
+                const usuario = await response.json();
+
+                if (usuario) {
+                    primeiroNome = usuario.nome.split(' ')[0]; // Pegando o primeiro nome da API
+                    document.getElementById('user-name').textContent = primeiroNome;
+                    document.getElementById('user_avatar').src = usuario.foto || 'imagens/avatar.jpg';
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados do usuário:', error);
+            }
+        });
+    </script>
+
 </body>
 
 </html>
