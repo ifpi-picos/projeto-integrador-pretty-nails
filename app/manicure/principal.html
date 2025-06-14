@@ -95,41 +95,6 @@
         
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
-    
-    <script>
-        // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
-        document.addEventListener('DOMContentLoaded', async () => {
-            const userId = localStorage.getItem('userId');
-
-            if (!userId) {
-                console.warn("Redirecionando para login pois userId não foi encontrado.");
-                window.location.href = 'login.html';
-                return;
-            }
-
-            // Pegando o nome completo do usuário salvo no localStorage
-            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
-            
-            // Pegando apenas o primeiro nome
-            let primeiroNome = nomeCompleto.split(' ')[0];  
-
-            // Exibir o primeiro nome na sidebar
-            document.getElementById('user-name').textContent = primeiroNome;
-
-            try {
-                const response = await fetch(`http://localhost:3000/usuario/${userId}`);
-                const usuario = await response.json();
-
-                if (usuario) {
-                    primeiroNome = usuario.nome.split(' ')[0]; // Pegando o primeiro nome da API
-                    document.getElementById('user-name').textContent = primeiroNome;
-                    document.getElementById('user_avatar').src = usuario.foto || 'imagens/avatar.jpg';
-                }
-            } catch (error) {
-                console.error('Erro ao buscar dados do usuário:', error);
-            }
-        });
-    </script>
 
 </body>
 </html>

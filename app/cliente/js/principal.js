@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
 
     if (!userId || !token) {
-        window.location.href = 'login.html';
+        window.location.href = '../../cadastro-e-login/-cadastro-e-login.html';
         return;
     }
 
