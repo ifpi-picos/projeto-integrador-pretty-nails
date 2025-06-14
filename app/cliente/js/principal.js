@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Token inválido - redireciona para login
             localStorage.removeItem('token');
             localStorage.removeItem('userId');
-            window.location.href = 'login.html';
+            window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
             return;
         }
         
