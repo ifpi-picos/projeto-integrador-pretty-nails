@@ -186,7 +186,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
 
-            const mensagemDiv = document.getElementById('mensagem-usuario');
             const nomeUsuarioDiv = document.getElementById('user-name');
             const token = localStorage.getItem('token');
             const tipo = localStorage.getItem('userTipo');
@@ -194,18 +193,13 @@
 
             if (!token || tipo !== 'CLIENTE') {
                 alert('Acesso restrito a clientes.');
-                //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
             }
 
             // Função utilitária para exibir mensagem e redirecionar
-            function exibirMensagemERedirecionar(msg, cor = 'red', tempo = 2000) {
-                const nomeUsuarioDiv = document.getElementById('user-name');
-                const mensagemDiv = document.getElementById('mensagem-usuario');
+            function exibirMensagemERedirecionar(tempo = 2000) {
                 if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = 'Usuário';
-                if (mensagemDiv) {
-                    mensagemDiv.textContent = msg;
-                    mensagemDiv.style.color = cor;
-                }
+
                 setTimeout(() => {
                     window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
                 }, tempo);
