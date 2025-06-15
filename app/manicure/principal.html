@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="css/side-bar.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="menu">
-    
+
         <div id="app-header">
             <h1>Pretty Nails</h1>
         </div>
@@ -24,7 +27,7 @@
                     <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
                     <p id="user_infos">
                         <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
-                        <span class="item-description" id="user-name">Fulano de tal</span> 
+                        <span class="item-description" id="user-name">Fulano de tal</span>
                         <span class="item-description">(Cliente)</span>
                     </p>
                 </div>
@@ -61,12 +64,12 @@
                         </a>
                     </li>
                 </ul>
-    
+
                 <button id="open_btn">
                     <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-    
+
             <div id="logout">
                 <button id="logout_btn" onclick="logout()">
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -74,11 +77,11 @@
                 </button>
             </div>
         </nav>
-        
+
         <div id="temas">
             <h1>Painel de controle</h1>
         </div>
-        
+
         <div id="button-grid">
             <div class="row">
                 <a href="agendamentos.html" class="button-card btn-agendamentos">Agendamentos</a>
@@ -86,15 +89,27 @@
                 <a href="agenda_do_dia.html" class="button-card btn-agenda-do-dia">Agenda do dia</a>
             </div>
             <div class="row">
-                <a href="proximos_agendamentos.html" class="button-card btn-proximos-agendamentos">Próximos agendamentos</a>
-                <a href="painel de controle/disponibilidade.html" class="button-card btn-editar-disponibilidade">Editar disponibilidade</a>
+                <a href="proximos_agendamentos.html" class="button-card btn-proximos-agendamentos">Próximos
+                    agendamentos</a>
+                <a href="painel de controle/disponibilidade.html" class="button-card btn-editar-disponibilidade">Editar
+                    disponibilidade</a>
                 <a href="nao_faco_ideia.html" class="button-card btn-nao-faco-ideia">Não faço ideia</a>
             </div>
         </div>
-        
-        
-    <script src="js/principal.js"></script>
-    <script src="js/side-bar.js"></script>
+
+
+        <script src="js/principal.js"></script>
+        <script src="js/side-bar.js"></script>
+
+        <script>
+            const token = localStorage.getItem('token');
+            const tipo = localStorage.getItem('tipo');
+            if (!token || tipo !== 'MANICURE') {
+                alert('Acesso restrito a manicures.');
+                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+            }
+        </script>
 
 </body>
+
 </html>

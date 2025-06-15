@@ -184,83 +184,69 @@
     <script src="js/skeleton.js"></script>
 
     <script>
-        // Configura o carregamento do avatar do usuário
-        document.addEventListener('DOMContentLoaded', async () => {
-            const userId = localStorage.getItem('userId');
-            const userAvatar = document.getElementById('user_avatar');
+        document.addEventListener('DOMContentLoaded', async function () {
+            
+            const mensagemDiv = document.getElementById('mensagem-usuario');
+            const nomeUsuarioDiv = document.getElementById('user-name');
             const token = localStorage.getItem('token');
-            if (!token,!userId) {
-                console.warn("Usuário não identificado. Redirecionando para login.");
-                window.location.href = '../../cadastro-e-login/-cadastro-e-login.html';
+            const tipo = localStorage.getItem('tipo');
+            const userId = localStorage.getItem('userId'); // ajuste conforme o nome usado no seu login
+            
+            if (!token || tipo !== 'CLIENTE') {
+                alert('Acesso restrito a clientes.');
+                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+            }
+            
+            // Função para exibir mensagem e redirecionar
+            function exibirMensagemERedirecionar(msg, cor = 'red', tempo = 2000) {
+                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = 'Usuário';
+                if (mensagemDiv) {
+                    mensagemDiv.textContent = msg;
+                    mensagemDiv.style.color = cor;
+                }
+                setTimeout(() => {
+                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                }, tempo);
+            }
+
+            if (!token || !userId) {
+                exibirMensagemERedirecionar('Você precisa estar logado para acessar esta página.');
                 return;
             }
 
-            if (userAvatar) {
-                userAvatar.onload = function () {
-                    window.skeletonLoader.remove(userAvatar);
-                };
-            }
-
-            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
-            let primeiroNome = nomeCompleto.split(' ')[0];
-            document.getElementById('user-name').textContent = primeiroNome;
-
             try {
-                const response = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`, {
+                const resposta = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`, {
                     headers: {
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': `Bearer ${token}`,
                     }
                 });
-                const usuario = await response.json();
 
-                if (usuario) {
-                    primeiroNome = usuario.nome.split(' ')[0];
-                    document.getElementById('user-name').textContent = primeiroNome;
+                let usuario = null;
+                try {
+                    usuario = await resposta.json();
+                } catch (e) {
+                    usuario = null;
+                }
 
-                    if (usuario.foto) {
-                        userAvatar.src = usuario.foto;
+                if (!resposta.ok || !usuario || !usuario.nome) {
+                    if (resposta.status === 403) {
+                        exibirMensagemERedirecionar('Você não tem permissão para acessar esta página.');
+                    } else if (resposta.status === 401) {
+                        exibirMensagemERedirecionar('Sessão expirada ou inválida. Redirecionando para o login...');
                     } else {
-                        window.skeletonLoader.remove(userAvatar);
+                        exibirMensagemERedirecionar('Erro ao buscar dados do usuário.');
                     }
+                    return;
                 }
-            } catch (error) {
-                console.error('Erro ao buscar dados do usuário:', error);
-                window.skeletonLoader.remove(userAvatar);
-            }
-        });
-    </script>
 
-    <script>
-        // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
-        document.addEventListener('DOMContentLoaded', async () => {
-            const userId = localStorage.getItem('userId');
+                // Exibe o primeiro nome do usuário
+                const primeiroNome = usuario.nome.split(' ')[0];
+                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
 
-            if (!userId) {
-                console.warn("Redirecionando para login pois userId não foi encontrado.");
-                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                return;
-            }
+                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
 
-            // Pegando o nome completo do usuário salvo no localStorage
-            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
-
-            // Pegando apenas o primeiro nome
-            let primeiroNome = nomeCompleto.split(' ')[0];
-
-            // Exibir o primeiro nome na sidebar
-            document.getElementById('user-name').textContent = primeiroNome;
-
-            try {
-                const response = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`);
-                const usuario = await response.json();
-
-                if (usuario) {
-                    primeiroNome = usuario.nome.split(' ')[0]; // Pegando o primeiro nome da API
-                    document.getElementById('user-name').textContent = primeiroNome;
-                    document.getElementById('user_avatar').src = usuario.foto || 'imagens/avatar.jpg';
-                }
-            } catch (error) {
-                console.error('Erro ao buscar dados do usuário:', error);
+            } catch (err) {
+                exibirMensagemERedirecionar('Erro ao buscar dados do usuário.');
             }
         });
     </script>
