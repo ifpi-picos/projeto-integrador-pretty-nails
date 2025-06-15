@@ -194,19 +194,7 @@
             
             if (!token || tipo !== 'CLIENTE') {
                 alert('Acesso restrito a clientes.');
-                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-            }
-            
-            // Função para exibir mensagem e redirecionar
-            function exibirMensagemERedirecionar(msg, cor = 'red', tempo = 2000) {
-                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = 'Usuário';
-                if (mensagemDiv) {
-                    mensagemDiv.textContent = msg;
-                    mensagemDiv.style.color = cor;
-                }
-                setTimeout(() => {
-                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                }, tempo);
+                //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
             }
 
             if (!token || !userId) {
