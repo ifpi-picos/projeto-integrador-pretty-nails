@@ -193,12 +193,20 @@
 
             if (!token || tipo !== 'CLIENTE') {
                 alert('Acesso restrito a clientes.');
-                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
             }
 
+            // Função utilitária para exibir mensagem e redirecionar
+            function exibirMensagemERedirecionar(tempo = 2000) {
+                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = 'Usuário';
+
+                setTimeout(() => {
+                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                }, tempo);
+            }
 
             if (!token || !userId) {
-                alert('Você precisa estar logado para acessar esta página.');
+                exibirMensagemERedirecionar('Você precisa estar logado para acessar esta página.');
                 return;
             }
 
@@ -218,11 +226,11 @@
 
                 if (!resposta.ok || !usuario || !usuario.nome) {
                     if (resposta.status === 403) {
-                        alert('Você não tem permissão para acessar esta página.');
+                        exibirMensagemERedirecionar('Você não tem permissão para acessar esta página.');
                     } else if (resposta.status === 401) {
-                        alert('Sessão expirada ou inválida. Redirecionando para o login...');
+                        exibirMensagemERedirecionar('Sessão expirada ou inválida. Redirecionando para o login...');
                     } else {
-                        alert('Erro ao buscar dados do usuário.');
+                        exibirMensagemERedirecionar('Erro ao buscar dados do usuário.');
                     }
                     return;
                 }
@@ -234,7 +242,7 @@
                 if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
 
             } catch (err) {
-                alert('Erro ao buscar dados do usuário.');
+                exibirMensagemERedirecionar('Erro ao buscar dados do usuário.');
             }
         });
     </script>
