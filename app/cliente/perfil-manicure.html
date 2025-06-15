@@ -107,7 +107,7 @@
 
     <script>
         const token = localStorage.getItem('token');
-        const tipo = localStorage.getItem('tipo');
+       const tipo = localStorage.getItem('userTipo');
         if (!token || tipo !== 'CLIENTE') {
             alert('Acesso restrito a clientes.');
             window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
