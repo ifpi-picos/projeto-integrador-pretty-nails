@@ -1,0 +1,156 @@
+:root {
+    --branco: #fff;
+    --preto: #000;
+    --preto-tom2: #2a2a2a;
+    --tom1: #d05f4b;
+    --tom2: #d87b6b;
+    --tom3: #e0978a;
+    --tom4: #e8b2a9;
+    --tom5: #ecc0b8;
+    --tom6: #f1cec8;
+    --tom7: #f5dcd7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--tom7);
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: var(--preto-tom2);
+    margin-bottom: 20px;
+}
+
+.manicure-card {
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--tom5);
+    padding-bottom: 15px;
+}
+
+.manicure-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.manicure-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid var(--tom3);
+}
+
+.manicure-info h3 {
+    font-size: 18px;
+    color: var(--preto-tom2);
+    margin-bottom: 5px;
+}
+
+.manicure-info p {
+    font-size: 14px;
+    color: var(--preto-tom2);
+}
+
+.request-item {
+    background: var(--tom6);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.request-date {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.request-time {
+    margin-bottom: 5px;
+}
+
+.status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.status-pendente { background: #FFF3CD; color: #856404; }
+.status-confirmado { background: #D4EDDA; color: #155724; }
+.status-recusado { background: #F8D7DA; color: #721C24; }
+.status-finalizado { background: #D1ECF1; color: #0C5460; }
+
+.feedback-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--tom4);
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+.star {
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+.star.selected {
+    color: #FFD700;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--tom4);
+    border-radius: 5px;
+    resize: vertical;
+    min-height: 70px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.submit-feedback {
+    background: var(--tom1);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+}
+
+.submit-feedback:hover {
+    background: var(--tom2);
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--preto-tom2);
+}

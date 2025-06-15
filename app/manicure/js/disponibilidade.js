@@ -25,7 +25,7 @@ document.querySelector("button[type='submit']").addEventListener("click", (event
     console.log(disponibilidades); // Verifica os dados coletados no console do navegador
 
     // Enviar os dados para o backend
-    fetch('http://localhost:3000/disponibilidades', {
+    fetch('https://back-end-u9vj.onrender.com/disponibilidades', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

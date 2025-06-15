@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Requisições por Manicure</title>
+    <link rel="stylesheet" href="agendamentos.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Minhas Requisições por Manicure</h2>
+
+        <div id="manicures-container">
+            <div class="loading">Carregando suas requisições...</div>
+        </div>
+    </div>
+
+    <script src="agendamentos.js"></script>
+
+    <script>
+        const token = localStorage.getItem('token');
+        const tipo = localStorage.getItem('userTipo');
+        if (!token || tipo !== 'CLIENTE') {
+            alert('Acesso restrito a clientes.');
+            window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+        }
+    </script>
+
+</body>
+
+</html>
