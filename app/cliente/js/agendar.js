@@ -81,7 +81,7 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     }
 
     // Envio padronizado para o banco
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamentos', {
+    const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamento', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
