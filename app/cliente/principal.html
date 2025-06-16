@@ -191,24 +191,24 @@
             const userId = localStorage.getItem('userId');
 
             // Verificação completa de autenticação
-            // if (!token || !userId) {
-            //     exibirMensagemERedirecionar('Acesso restrito. Redirecionando para login...');
-            //     return;
-            // }
+            if (!token || !userId) {
+                exibirMensagemERedirecionar('Acesso restrito. Redirecionando para login...');
+                return;
+            }
 
             try {
                 const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/usuario/${userId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
-                // if (!resposta.ok) {
-                //     if (resposta.status === 401 || resposta.status === 403) {
-                //         exibirMensagemERedirecionar('Permissão negada. Redirecionando...');
-                //     } else {
-                //         exibirMensagemERedirecionar('Erro ao validar usuário');
-                //     }
-                //     return;
-                // }
+                if (!resposta.ok) {
+                    if (resposta.status === 401 || resposta.status === 403) {
+                        exibirMensagemERedirecionar('Permissão negada. Redirecionando...');
+                    } else {
+                        exibirMensagemERedirecionar('Erro ao validar usuário');
+                    }
+                    return;
+                }
 
                 const usuario = await resposta.json();
 
@@ -216,20 +216,20 @@
                 const primeiroNome = usuario.name.split(' ')[0];
                 if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
 
-             } //catch (err) {
-            //     console.error('Erro na validação:', err);
-            //     exibirMensagemERedirecionar('Erro de conexão');
-            // }
+            } catch (err) {
+                console.error('Erro na validação:', err);
+                exibirMensagemERedirecionar('Erro de conexão');
+            }
 
-            // function exibirMensagemERedirecionar(mensagem) {
-            //     if (mensagemDiv) {
-            //         mensagemDiv.textContent = mensagem;
-            //         mensagemDiv.style.color = 'red';
-            //     }
-            //     setTimeout(() => {
-            //         window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-            //     }, 2500);
-            // }
+            function exibirMensagemERedirecionar(mensagem) {
+                if (mensagemDiv) {
+                    mensagemDiv.textContent = mensagem;
+                    mensagemDiv.style.color = 'red';
+                }
+                setTimeout(() => {
+                    //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                }, 2500);
+            }
         });
     </script>
 
