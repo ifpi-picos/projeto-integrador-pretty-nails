@@ -185,56 +185,56 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
-            
             const mensagemDiv = document.getElementById('mensagem-usuario');
             const nomeUsuarioDiv = document.getElementById('user-name');
             const token = localStorage.getItem('token');
-            const tipo = localStorage.getItem('userTipo');
-            const userId = localStorage.getItem('userId'); // ajuste conforme o nome usado no seu login
-            
-            if (!token || tipo !== 'CLIENTE') {
-                alert('Acesso restrito a clientes.');
-                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-            }
+            const userId = localStorage.getItem('userId');
 
+            // Verificação completa de autenticação
             if (!token || !userId) {
-                exibirMensagemERedirecionar('Você precisa estar logado para acessar esta página.');
+                exibirMensagemERedirecionar('Acesso restrito. Redirecionando para login...');
                 return;
             }
 
             try {
-                const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/${userId}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    }
+                const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/usuario/${userId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
                 });
 
-                let usuario = null;
-                try {
-                    usuario = await resposta.json();
-                } catch (e) {
-                    usuario = null;
-                }
-
-                if (!resposta.ok || !usuario || !usuario.nome) {
-                    if (resposta.status === 403) {
-                        exibirMensagemERedirecionar('Você não tem permissão para acessar esta página.');
-                    } else if (resposta.status === 401) {
-                        exibirMensagemERedirecionar('Sessão expirada ou inválida. Redirecionando para o login...');
+                if (!resposta.ok) {
+                    if (resposta.status === 401 || resposta.status === 403) {
+                        exibirMensagemERedirecionar('Permissão negada. Redirecionando...');
                     } else {
-                        exibirMensagemERedirecionar('Erro ao buscar dados do usuário.');
+                        exibirMensagemERedirecionar('Erro ao validar usuário');
                     }
                     return;
                 }
 
-                // Exibe o primeiro nome do usuário
-                const primeiroNome = usuario.nome.split(' ')[0];
-                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
+                const usuario = await resposta.json();
 
+                // Verificar tipo de usuário
+                if (usuario.tipo !== 'CLIENTE') {
+                    exibirMensagemERedirecionar('Acesso restrito a clientes');
+                    return;
+                }
+
+                // Exibir nome
+                const primeiroNome = usuario.name.split(' ')[0];
                 if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
 
             } catch (err) {
-                exibirMensagemERedirecionar('Erro ao buscar dados do usuário.');
+                console.error('Erro na validação:', err);
+                exibirMensagemERedirecionar('Erro de conexão');
+            }
+
+            function exibirMensagemERedirecionar(mensagem) {
+                if (mensagemDiv) {
+                    mensagemDiv.textContent = mensagem;
+                    mensagemDiv.style.color = 'red';
+                }
+                setTimeout(() => {
+                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                }, 2500);
             }
         });
     </script>
