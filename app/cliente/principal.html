@@ -200,8 +200,12 @@
             }
 
             // Verificação completa de autenticação
-            if (!token || !id) {
-                exibirMensagemNoConsole('Acesso restrito. Faça login para continuar.');
+            if (!token) {
+                exibirMensagemNoConsole('Acesso restrito. Faça login para continuar(token).');
+                return;
+            }
+            if (!id) {
+                exibirMensagemNoConsole('Acesso restrito. Faça login para continuar (id).');
                 return;
             }
 
