@@ -12,30 +12,35 @@
     <script src="https://accounts.google.com/gsi/client" async></script>
 
     <script>
-        function handleCredentialResponse(response) {
+        async function handleCredentialResponse(response) {
             if (response && response.credential) {
                 try {
-                    const data = jwt_decode(response.credential);
-                    console.log("Dados do usuário decodificados:", data);
+                    // Envia o token do Google para o backend
+                    const backendResponse = await fetch('https://back-end-u9vj.onrender.com/auth/google', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ token: response.credential })
+                    });
 
-                    // Gera um id único para o usuário Google (use sub do JWT)
-                    const userId = data.sub;
-                    const userName = data.name || data.given_name || '';
-                    const userEmail = data.email || '';
-                    const userTipo = "CLIENTE"; // padrão para login Google
+                    if (!backendResponse.ok) {
+                        alert('Erro ao autenticar com Google.');
+                        return;
+                    }
 
-                    // Salva dados no localStorage
-                    localStorage.setItem("token", response.credential); // token JWT do Google
-                    localStorage.setItem("userId", userId);
-                    localStorage.setItem("userName", userName);
-                    localStorage.setItem("userEmail", userEmail);
-                    localStorage.setItem("tipo", userTipo);
+                    const data = await backendResponse.json();
+
+                    // Salva o token JWT do backend e dados do usuário
+                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("userId", data.id);
+                    localStorage.setItem("userName", data.nome);
+                    localStorage.setItem("userEmail", data.email);
+                    localStorage.setItem("tipo", data.tipo);
 
                     alert("Login realizado! Redirecionando...");
                     window.location.href = "../app/cliente/principal.html";
                 } catch (error) {
                     alert("Erro ao processar o login do Google.");
-                    console.error("Erro ao decodificar o token JWT:", error);
+                    console.error("Erro ao autenticar com o backend:", error);
                 }
             } else {
                 alert("Token não recebido. O redirecionamento foi cancelado.");
