@@ -75,7 +75,8 @@ h1 {
   z-index: 1;
 }
 
-input, select {
+input,
+select {
   background-color: #eee;
   border: none;
   padding: 12px 15px;
@@ -102,6 +103,27 @@ button {
 button:hover {
   background-color: #d66f6f;
   transform: scale(1.05);
+}
+
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 12px;
+  color: #888;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.input-icon input,
+.input-icon select {
+  padding-left: 38px !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 button:focus {
