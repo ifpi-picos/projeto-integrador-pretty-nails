@@ -188,8 +188,7 @@
             const mensagemDiv = document.getElementById('mensagem-usuario');
             const nomeUsuarioDiv = document.getElementById('user-name');
             const token = localStorage.getItem('token');
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get("id");
+            const id = localStorage.getItem('userId');
 
             // Função para exibir mensagem apenas no console
             function exibirMensagemNoConsole(mensagem) {
