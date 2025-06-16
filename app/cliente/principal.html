@@ -191,20 +191,18 @@
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get("id");
 
-            // Função para exibir mensagem e redirecionar somente em caso de erro
-            function exibirMensagemERedirecionar(mensagem) {
+            // Função para exibir mensagem apenas no console
+            function exibirMensagemNoConsole(mensagem) {
                 if (mensagemDiv) {
                     mensagemDiv.textContent = mensagem;
                     mensagemDiv.style.color = 'red';
                 }
-                setTimeout(() => {
-                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                }, 2500000);
+                console.error(mensagem);
             }
 
             // Verificação completa de autenticação
             if (!token || !id) {
-                exibirMensagemERedirecionar('Acesso restrito. Redirecionando para login...');
+                exibirMensagemNoConsole('Acesso restrito. Faça login para continuar.');
                 return;
             }
 
@@ -215,9 +213,9 @@
 
                 if (!resposta.ok) {
                     if (resposta.status === 401 || resposta.status === 403) {
-                        exibirMensagemERedirecionar('Permissão negada. Redirecionando...');
+                        exibirMensagemNoConsole('Permissão negada.');
                     } else {
-                        exibirMensagemERedirecionar('Erro ao validar usuário');
+                        exibirMensagemNoConsole('Erro ao validar usuário');
                     }
                     return;
                 }
@@ -230,9 +228,10 @@
 
             } catch (err) {
                 console.error('Erro na validação:', err);
-                exibirMensagemERedirecionar('Erro de conexão');
+                exibirMensagemNoConsole('Erro de conexão');
             }
         });
+
     </script>
 
 </body>
