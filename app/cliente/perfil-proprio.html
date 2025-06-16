@@ -176,15 +176,6 @@
             <script src="js/perfil-proprio.js"></script>
             <script src="js/side-bar.js"></script>
 
-            <script>
-                const token = localStorage.getItem('token');
-                const tipo = localStorage.getItem('userTipo');
-                if (!token || tipo !== 'CLIENTE') {
-                    alert('Acesso restrito a clientes.');
-                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                }
-            </script>
-
 </body>
 
 </html>
