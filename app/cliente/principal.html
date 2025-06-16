@@ -191,6 +191,17 @@
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get("id");
 
+            // Função para exibir mensagem e redirecionar somente em caso de erro
+            function exibirMensagemERedirecionar(mensagem) {
+                if (mensagemDiv) {
+                    mensagemDiv.textContent = mensagem;
+                    mensagemDiv.style.color = 'red';
+                }
+                setTimeout(() => {
+                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                }, 2500);
+            }
+
             // Verificação completa de autenticação
             if (!token || !id) {
                 exibirMensagemERedirecionar('Acesso restrito. Redirecionando para login...');
@@ -220,16 +231,6 @@
             } catch (err) {
                 console.error('Erro na validação:', err);
                 exibirMensagemERedirecionar('Erro de conexão');
-            }
-
-            function exibirMensagemERedirecionar(mensagem) {
-                if (mensagemDiv) {
-                    mensagemDiv.textContent = mensagem;
-                    mensagemDiv.style.color = 'red';
-                }
-                setTimeout(() => {
-                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                }, 2500);
             }
         });
     </script>
