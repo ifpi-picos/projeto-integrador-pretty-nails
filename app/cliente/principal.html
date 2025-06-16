@@ -197,7 +197,7 @@
             }
 
             try {
-                const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/usuario/${userId}`, {
+                const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/usuario/${id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -227,7 +227,7 @@
                     mensagemDiv.style.color = 'red';
                 }
                 setTimeout(() => {
-                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                    //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
                 }, 2500);
             }
         });
