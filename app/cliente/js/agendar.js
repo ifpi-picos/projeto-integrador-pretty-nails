@@ -16,13 +16,6 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
   if (submitBtn) submitBtn.disabled = true;
 
   try {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      mensagemDiv.textContent = 'Você precisa estar logado para agendar. Faça login e tente novamente.';
-      window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-      mensagemDiv.style.color = 'red';
-      return;
-    }
 
     const dataInput = document.getElementById('data').value;
     const horarioSelecionado = document.querySelector('.horario-btn.selected');
@@ -76,10 +69,6 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     // ATUALIZAÇÃO DESTA PARTE
     const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamentos', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
       body: JSON.stringify({
         manicureId: Number(idManicure),
         dataHora: dataHoraCompleta.toISOString(),
@@ -98,13 +87,8 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     }
 
     if (!resposta.ok) {
-      if (resposta.status === 401) {
-        mensagemDiv.textContent = 'Usuário não autenticado ou token inválido. Redirecionando para o login...';
-        mensagemDiv.style.color = 'red';
-        setTimeout(() => {
-          //window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-        }, 2000);
-      } else if (resposta.status === 409) {
+      
+      if (resposta.status === 409) {
         mensagemDiv.textContent = resultado.error || 'Horário já agendado para esta manicure.';
         mensagemDiv.style.color = 'red';
       } else {
