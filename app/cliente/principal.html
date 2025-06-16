@@ -202,10 +202,12 @@
             // Verificação completa de autenticação
             if (!token) {
                 exibirMensagemNoConsole('Acesso restrito. Faça login para continuar(token).');
+                console.log('Token não encontrado. Usuário não autenticado.');
                 return;
             }
             if (!id) {
                 exibirMensagemNoConsole('Acesso restrito. Faça login para continuar (id).');
+                console.log('ID do usuário não encontrado. Usuário não autenticado.');
                 return;
             }
 
