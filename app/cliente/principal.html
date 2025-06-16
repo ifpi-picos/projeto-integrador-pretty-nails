@@ -188,10 +188,11 @@
             const mensagemDiv = document.getElementById('mensagem-usuario');
             const nomeUsuarioDiv = document.getElementById('user-name');
             const token = localStorage.getItem('token');
-            const userId = localStorage.getItem('userId');
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get("id");
 
             // Verificação completa de autenticação
-            if (!token || !userId) {
+            if (!token || !id) {
                 exibirMensagemERedirecionar('Acesso restrito. Redirecionando para login...');
                 return;
             }
