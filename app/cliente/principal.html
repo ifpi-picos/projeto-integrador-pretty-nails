@@ -206,7 +206,7 @@
             }
 
             try {
-                const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/usuario/${userId}`, {
+                const resposta = await fetch(`https://back-end-u9vj.onrender.com/auth/usuario/${userId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -223,7 +223,7 @@
                 const usuario = await resposta.json();
 
                 // Exibir nome
-                const primeiroNome = usuario.name ? usuario.name.split(' ')[0] : 'Usuário';
+                const primeiroNome = usuario.nome ? usuario.nome.split(' ')[0] : 'Usuário';
                 if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
 
                 // Exibir avatar
