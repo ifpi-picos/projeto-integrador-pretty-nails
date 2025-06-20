@@ -1,0 +1,112 @@
+:root {
+  --branco: #fff;
+  --preto: #000;
+  --preto-tom2: #2a2a2a;
+  --tom1: #d05f4b;
+  --tom2: #d87b6b;
+  --tom3: #e0978a;
+  --tom4: #e8b2a9;
+  --tom5: #ecc0b8;
+  --tom6: #f1cec8;
+  --tom7: #f5dcd7;
+}
+
+header {
+  width: 100%;
+  background-color: var(--tom1);
+  color: var(--branco);
+  text-align: center;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 80px;
+  padding: 0;
+  background: #f7f7f7;
+}
+
+.calendario-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background: var(--tom2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.controle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.controle button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #d05f4b;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.mes-ano {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.semana, .dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.dia-semana {
+  background: var(--tom5);
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.dia {
+  background: white;
+  padding: 6px;
+  border: 1px solid #ddd;
+  height: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.numero-dia {
+  font-weight: bold;
+}
+
+.evento {
+  background: var(--tom3);
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: 6px;
+  margin-top: 5px;
+}

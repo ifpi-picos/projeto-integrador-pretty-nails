@@ -92,39 +92,39 @@
             </div>
 
             <div class="pink-area">
-                <a href="francesinha.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/francesinha.jpg');"></div>
                 </a>
-                <a href="nude.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/nude.jpg');">
                     </div>
                 </a>
-                <a href="florais.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/florais.jpg');"></div>
                 </a>
-                <a href="metalica.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/metalica.jpg');"></div>
                 </a>
-                <a href="gliter.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/gliter.jpg');"></div>
                 </a>
-                <a href="neon.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton style="background-image: url('imagens/neon.jpg');">
                     </div>
                 </a>
-                <a href="transparente.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/transparente.jpg');"></div>
                 </a>
-                <a href="animais.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/animais.jpg');"></div>
                 </a>
-                <a href="frutas.html">
+                <a href="#">
                     <div class="button-box theme-box" data-skeleton
                         style="background-image: url('imagens/frutas.jpg');"></div>
                 </a>
@@ -184,52 +184,62 @@
     <script src="js/skeleton.js"></script>
 
     <script>
-        // Configura o carregamento do avatar do usuário
-        document.addEventListener('DOMContentLoaded', async () => {
-            const userId = localStorage.getItem('userId');
-            const userAvatar = document.getElementById('user_avatar');
+        document.addEventListener('DOMContentLoaded', async function () {
+            const mensagemDiv = document.getElementById('mensagem-usuario');
+            const nomeUsuarioDiv = document.getElementById('user-name');
             const token = localStorage.getItem('token');
-            if (!token,!userId) {
-                console.warn("Usuário não identificado. Redirecionando para login.");
-                window.location.href = '../../cadastro-e-login/-cadastro-e-login.html';
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get("id");
+
+            // Função para exibir mensagem apenas no console
+            function exibirMensagemNoConsole(mensagem) {
+                if (mensagemDiv) {
+                    mensagemDiv.textContent = mensagem;
+                    mensagemDiv.style.color = 'red';
+                }
+                console.error(mensagem);
+            }
+
+            // Verificação completa de autenticação
+            if (!token || !id) {
+                exibirMensagemNoConsole('Acesso restrito. Faça login para continuar.');
                 return;
             }
 
-            if (userAvatar) {
-                userAvatar.onload = function () {
-                    window.skeletonLoader.remove(userAvatar);
-                };
-            }
-
-            let nomeCompleto = localStorage.getItem('userName') || 'Usuário';
-            let primeiroNome = nomeCompleto.split(' ')[0];
-            document.getElementById('user-name').textContent = primeiroNome;
-
             try {
+<<<<<<< HEAD
                 const response = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
+=======
+                const resposta = await fetch(`https://back-end-u9vj.onrender.com/users/usuario/${id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+>>>>>>> 345ed8c22d1b89680185608e815f6ab4789f8fbb
                 });
-                const usuario = await response.json();
 
-                if (usuario) {
-                    primeiroNome = usuario.nome.split(' ')[0];
-                    document.getElementById('user-name').textContent = primeiroNome;
-
-                    if (usuario.foto) {
-                        userAvatar.src = usuario.foto;
+                if (!resposta.ok) {
+                    if (resposta.status === 401 || resposta.status === 403) {
+                        exibirMensagemNoConsole('Permissão negada.');
                     } else {
-                        window.skeletonLoader.remove(userAvatar);
+                        exibirMensagemNoConsole('Erro ao validar usuário');
                     }
+                    return;
                 }
-            } catch (error) {
-                console.error('Erro ao buscar dados do usuário:', error);
-                window.skeletonLoader.remove(userAvatar);
+
+                const usuario = await resposta.json();
+
+                // Exibir nome
+                const primeiroNome = usuario.name.split(' ')[0];
+                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
+
+            } catch (err) {
+                console.error('Erro na validação:', err);
+                exibirMensagemNoConsole('Erro de conexão');
             }
         });
-    </script>
 
+<<<<<<< HEAD
     <script>
         // MODIFICAÇÃO: Código para exibir apenas o primeiro nome do usuário na sidebar
         document.addEventListener('DOMContentLoaded', async () => {
@@ -263,6 +273,8 @@
                 console.error('Erro ao buscar dados do usuário:', error);
             }
         });
+=======
+>>>>>>> 345ed8c22d1b89680185608e815f6ab4789f8fbb
     </script>
 
 </body>

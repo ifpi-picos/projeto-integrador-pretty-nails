@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/perfil_cliente.css">
     <link rel="stylesheet" href="css/side-bar.css">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <h1>Perfil cliente</h1>
     </header>
-    
+
     <nav id="sidebar">
         <div id="sidebar_content">
             <div id="user">
@@ -90,7 +93,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Seção de Manicures Favoritas (Carrossel) -->
             <div class="favorite-manicurists">
                 <h3>Manicures Favoritas</h3>
@@ -100,7 +103,7 @@
                             <a href="#" class="profile-link">
                                 <div class="profile-box">
                                     <!-- Foto de Perfil da Manicure A -->
-                                    <img src="imagens/manicure1.png"  class="profile-img">
+                                    <img src="imagens/manicure1.png" class="profile-img">
                                     <p>Camila Lima</p>
                                 </div>
                             </a>
@@ -136,7 +139,7 @@
                             <a href="#" class="profile-link">
                                 <div class="profile-box">
                                     <!-- Foto de Perfil da Manicure E -->
-                                    <img src="imagens/manicure5.png"  class="profile-img">
+                                    <img src="imagens/manicure5.png" class="profile-img">
                                     <p>Mariana Oliveira</p>
                                 </div>
                             </a>
@@ -144,32 +147,43 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Seção de Temas de Unhas Favoritos (Grid com imagens) -->
-    <div class="favorite-nail-themes">
-        <h3>Temas de Unhas Favoritas</h3>
-        <div class="themes-grid">
-            <a href="temas.html" class="theme-item" style="background-image: url('imagens/nude.jpg');">
-                <p class="theme-name"></p>
-            </a>
-            <a href="temas.html" class="theme-item" style="background-image: url('imagens/florais.jpg');">
-                <p class="theme-name"></p>
-            </a>
-            <a href="temas.html" class="theme-item" style="background-image: url('imagens/neon.jpg');">
-                <p class="theme-name"></p>
-            </a>
-            <a href="temas.html" class="theme-item" style="background-image: url('imagens/animais.jpg');">
-                <p class="theme-name"></p>
-            </a>
-            <a href="temas.html" class="theme-item" style="background-image: url('imagens/metalica.jpg');">
-                <p class="theme-name"></p>
-            </a>
-            <a href="temas.html" class="theme-item" style="background-image: url('imagens/gliter.jpg');">
-                <p class="theme-name"></p>
-            </a>
-        </div>
-    </div>
-    <script src="js/perfil-usuario.js"></script>
-    <script src="js/side-bar.js"></script>
+            <div class="favorite-nail-themes">
+                <h3>Temas de Unhas Favoritas</h3>
+                <div class="themes-grid">
+                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/nude.jpg');">
+                        <p class="theme-name"></p>
+                    </a>
+                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/florais.jpg');">
+                        <p class="theme-name"></p>
+                    </a>
+                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/neon.jpg');">
+                        <p class="theme-name"></p>
+                    </a>
+                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/animais.jpg');">
+                        <p class="theme-name"></p>
+                    </a>
+                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/metalica.jpg');">
+                        <p class="theme-name"></p>
+                    </a>
+                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/gliter.jpg');">
+                        <p class="theme-name"></p>
+                    </a>
+                </div>
+            </div>
+            <script src="js/perfil-usuario.js"></script>
+            <script src="js/side-bar.js"></script>
+
+            <script>
+                const token = localStorage.getItem('token');
+                const tipo = localStorage.getItem('tipo');
+                if (!token || tipo !== 'MANICURE') {
+                    alert('Acesso restrito a manicures.');
+                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+                }
+            </script>
+
 </body>
+
 </html>
