@@ -206,7 +206,7 @@
             document.getElementById('user-name').textContent = primeiroNome;
 
             try {
-                const response = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`, {
+                const response = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -251,7 +251,7 @@
             document.getElementById('user-name').textContent = primeiroNome;
 
             try {
-                const response = await fetch(`https://back-end-u9vj.onrender.com/usuario/${userId}`);
+                const response = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`);
                 const usuario = await response.json();
 
                 if (usuario) {

@@ -74,7 +74,7 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     }
 
     // ATUALIZAÇÃO DESTA PARTE
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamentos', {
+    const resposta = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

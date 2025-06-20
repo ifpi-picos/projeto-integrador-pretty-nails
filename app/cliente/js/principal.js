@@ -34,7 +34,7 @@ async function adicionarPerfis() {
         }
 
         if (!cachedManicures) {
-            const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures", {
+            const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/manicures", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -54,12 +54,15 @@ async function adicionarPerfis() {
 
         container.innerHTML = "";
 
-        if (cachedManicures.length === 0) {
+        // Adaptação: acessar o array de manicures corretamente
+        const listaManicures = cachedManicures.manicures || [];
+
+        if (listaManicures.length === 0) {
             container.innerHTML = "<p>Nenhum perfil encontrado.</p>";
             return;
         }
 
-        cachedManicures.forEach(manicure => {
+        listaManicures.forEach(manicure => {
             const link = document.createElement("a");
             link.href = `perfil-manicure.html?id=${manicure.id}`;
             link.classList.add("perfil-link");
@@ -69,13 +72,13 @@ async function adicionarPerfis() {
             
             const img = document.createElement("img");
             img.src = manicure.foto || 'imagens/perfil_cliente.png';
-            img.alt = manicure.name;
+            img.alt = manicure.nome || "Manicure";
             
             img.onload = () => window.skeletonLoader.remove(img);
             
             const nomeDiv = document.createElement("div");
             nomeDiv.className = "perfil-nome";
-            nomeDiv.textContent = manicure.name;
+            nomeDiv.textContent = manicure.nome || "Sem nome";
             
             const estrelasDiv = document.createElement("div");
             estrelasDiv.className = "estrelas";

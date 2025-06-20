@@ -87,7 +87,7 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         }
 
         if (manicuresCache.length === 0) {
-            const resposta = await fetch("https://back-end-u9vj.onrender.com/manicures", {
+            const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/manicures", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -103,10 +103,12 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         const container = document.getElementById("perfil-container");
         container.innerHTML = "";
 
-        const manicuresFiltradas = manicuresCache.filter(manicure =>
+        const listaManicures = manicuresCache.manicures || [];
+
+        const manicuresFiltradas = listaManicures.filter(manicure =>
             (filtroEstado === "" || manicure.estado === filtroEstado) &&
             (filtroCidade === "" || manicure.cidade === filtroCidade) &&
-            (filtroNome === "" || manicure.name.toLowerCase().startsWith(filtroNome.toLowerCase()))
+            (filtroNome === "" || (manicure.nome && manicure.nome.toLowerCase().startsWith(filtroNome.toLowerCase())))
         );
 
         if (manicuresFiltradas.length === 0) {
@@ -115,11 +117,11 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         }
 
         manicuresFiltradas.forEach(manicure => {
-            let nomeFormatado = manicure.name;
+            let nomeFormatado = manicure.nome;
 
             if (filtroNome) {
                 const regex = new RegExp(`^(${filtroNome})`, "i");
-                nomeFormatado = manicure.name.replace(regex, `<span class="highlight" style="font-size: 1.06em;">$1</span>`);
+                nomeFormatado = manicure.nome.replace(regex, `<span class="highlight" style="font-size: 1.06em;">$1</span>`);
             }
 
             const link = document.createElement("a");
@@ -127,7 +129,7 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
             link.classList.add("perfil-link");
             link.innerHTML = `
                 <div class="profile-card">
-                    <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
+                    <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.nome}">
                     <div class="profile-info">
                         <h3>${nomeFormatado}</h3>
                         <p>${manicure.cidade}, ${manicure.estado}</p>

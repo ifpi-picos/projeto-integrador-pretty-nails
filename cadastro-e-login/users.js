@@ -19,7 +19,7 @@ async function adicionarUsuario() {
   }
 
   const usuario = {
-    name: campoNome,
+    nome: campoNome,
     email: campoEmail,
     password: campoSenha,
     telefone: campoTelefone,
@@ -29,7 +29,7 @@ async function adicionarUsuario() {
   };
 
   try {
-    const resposta = await fetch("https://back-end-u9vj.onrender.com/signup", {
+    const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -64,7 +64,7 @@ async function loginUsuario() {
   };
 
   try {
-    const resposta = await fetch("https://back-end-u9vj.onrender.com/login", {
+    const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -77,12 +77,13 @@ async function loginUsuario() {
       throw new Error(errorData.message || "Email ou senha inválidos.");
     }
 
-    const { user, token } = await resposta.json();
+    const respostaJson = await resposta.json();
+    const { user, access_token } = respostaJson;
 
     // Salva dados no localStorage
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", access_token);
     localStorage.setItem("userId", user.id);
-    localStorage.setItem("userName", user.name);
+    localStorage.setItem("userName", user.nome);
     localStorage.setItem("userEmail", user.email);
     localStorage.setItem("userTelefone", user.telefone);
     localStorage.setItem("userEstado", user.estado);
