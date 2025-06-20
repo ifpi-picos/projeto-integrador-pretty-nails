@@ -37,49 +37,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 
 ## 🛠 Tecnologias Utilizadas
 
-<div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 25px 0;">
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="20" style="margin-right: 8px;"/>
-<span>HTML5</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="20" style="margin-right: 8px;"/>
-<span>CSS3</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="20" style="margin-right: 8px;"/>
-<span>JavaScript</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="20" style="margin-right: 8px;"/>
-<span>Node.js</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="20" style="margin-right: 8px;"/>
-<span>Express</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="20" style="margin-right: 8px;"/>
-<span>PostgreSQL</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="20" style="margin-right: 8px;"/>
-<span>Git</span>
-</div>
-
-<div style="background: #e9ecef; padding: 10px 15px; border-radius: 20px; display: flex; align-items: center;">
-<img src="https://render.com/images/brand/logos/render-logo-square.png" width="20" style="margin-right: 8px;"/>
-<span>Render</span>
-</div>
-
-</div>
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,nodejs,express,postgresql)](https://skillicons.dev)
 
 ## 👩‍💻 Nossa Incrível Equipe
 
