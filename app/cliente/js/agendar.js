@@ -68,7 +68,7 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
 
     const urlParams = new URLSearchParams(window.location.search);
     const idManicure = urlParams.get('id');
-    if (!idManicure || isNaN(Number(idManicure))) {
+    if (!idManicure) {
       mensagemDiv.textContent = 'ID da manicure não encontrado.';
       mensagemDiv.style.color = 'red';
       return;
@@ -80,21 +80,16 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
       return;
     }
 
-<<<<<<< HEAD
     // ATUALIZAÇÃO DESTA PARTE
     const resposta = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos', {
-=======
-    // Envio padronizado para o banco
-    const resposta = await fetch('https://back-end-u9vj.onrender.com/agendamento', {
->>>>>>> 345ed8c22d1b89680185608e815f6ab4789f8fbb
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
-        clienteId: Number(userId), // Usar ID do localStorage
-        manicureId: Number(idManicure),
+        clienteId: userId,
+        manicureId: idManicure,
         dataHora: dataHoraCompleta.toISOString(),
         servico,
         observacoes,
@@ -130,7 +125,7 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
 
     mensagemDiv.textContent = 'Agendamento realizado com sucesso!';
     mensagemDiv.style.color = 'green';
-     setTimeout(() => {
+    setTimeout(() => {
       this.reset();
       document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
     }, 1500);

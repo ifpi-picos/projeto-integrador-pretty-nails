@@ -1,3 +1,4 @@
+
 function toggleFilters() {
     document.getElementById("filterPanel").classList.toggle("open");
 }

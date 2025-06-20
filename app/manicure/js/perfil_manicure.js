@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const manicureId = params.get('id'); // Obtém o ID da manicure da URL
 
     if (manicureId) {
-        fetch(`https://back-end-u9vj.onrender.com/manicures/${manicureId}`)
+        fetch(`http://localhost:3000/manicures/${manicureId}`)
             .then(response => response.json())
             .then(manicure => {
                 const perfilContainer = document.getElementById("perfil-container");

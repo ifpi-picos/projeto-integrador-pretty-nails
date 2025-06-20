@@ -16,7 +16,7 @@
             if (response && response.credential) {
                 try {
                     // Envia o token do Google para o backend
-                    const backendResponse = await fetch('https://back-end-u9vj.onrender.com/auth/google', {
+                    const backendResponse = await fetch('http://localhost:3000/auth/google', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ token: response.credential })

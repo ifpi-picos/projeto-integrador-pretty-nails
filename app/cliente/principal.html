@@ -206,7 +206,7 @@
             }
 
             try {
-                const resposta = await fetch(`https://back-end-u9vj.onrender.com/auth/usuario/${userId}`, {
+                const resposta = await fetch(`http://localhost:3000/auth/usuario/${userId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
