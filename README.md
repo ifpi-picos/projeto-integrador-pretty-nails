@@ -92,7 +92,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <h3 style="margin: 10px 0; color: #333;">Nailan Nobre</h3>
 <p style="color: #666; margin-bottom: 5px;"> Ceo e Desenvolvedor Full Stack</p>
 <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="24"/>
 </div>
 </a>
 </div>
@@ -104,7 +103,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <h3 style="margin: 10px 0; color: #333;">Valéria.g</h3>
 <p style="color: #666; margin-bottom: 5px;">Desenvolvedora front-end/UX</p>
 <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="24"/>
 </div>
 </a>
 </div>
@@ -113,10 +111,9 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s;">
 <a href="https://github.com/VieiraAndreia" target="_blank" style="text-decoration: none; color: inherit;">
 <img src="https://github.com/VieiraAndreia.png" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #6c63ff; margin-bottom: 15px;"/>
-<h3 style="margin: 10px 0; color: #333;">Andréia Vieira 3</h3>
+<h3 style="margin: 10px 0; color: #333;">Andréia Vieira</h3>
 <p style="color: #666; margin-bottom: 5px;">Desenvolvedora front-end</p>
 <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="24"/>
 </div>
 </a>
 </div>
@@ -140,7 +137,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <h3 style="margin: 10px 0; color: #333;">Stela Sofia</h3>
 <p style="color: #666; margin-bottom: 5px;">Designer e social media</p>
 <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="24"/>
 </div>
 </a>
 </div>
@@ -152,7 +148,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <h3 style="margin: 10px 0; color: #333;">Laianny</h3>
 <p style="color: #666; margin-bottom: 5px;">Designer e social media</p>
 <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="24"/>
 </div>
 </a>
 </div>
@@ -164,7 +159,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <h3 style="margin: 10px 0; color: #333;">Ana Victória</h3>
 <p style="color: #666; margin-bottom: 5px;">Contato com cliente</p>
 <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="24"/>
 </div>
 </a>
 </div>
