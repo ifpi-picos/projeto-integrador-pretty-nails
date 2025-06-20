@@ -41,109 +41,95 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 
 ## 👩‍💻 Nossa Incrível Equipe
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin: 40px 0;">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
 
 <!-- Nailan Nobre -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/Nailan-Nobre" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/Nailan-Nobre.png" alt="Nailan Nobre" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/Nailan-Nobre" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/Nailan-Nobre.png" alt="Nailan Nobre" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Nailan Nobre</h3>
-      <p style="margin: 0; color: #666;">CEO e Desenvolvedor Full Stack</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Nailan Nobre</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">CEO e Desenvolvedor Full Stack</p>
     </div>
   </a>
 </div>
 
 <!-- Valéria.g -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/Valeria013" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/Valeria013.png" alt="Valéria.g" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/Valeria013" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/Valeria013.png" alt="Valéria.g" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Valéria.g</h3>
-      <p style="margin: 0; color: #666;">Desenvolvedora Front-end / UX</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Valéria.g</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">Desenvolvedora Front-end / UX</p>
     </div>
   </a>
 </div>
 
 <!-- Andréia Vieira -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/VieiraAndreia" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/VieiraAndreia.png" alt="Andréia Vieira" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/VieiraAndreia" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/VieiraAndreia.png" alt="Andréia Vieira" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Andréia Vieira</h3>
-      <p style="margin: 0; color: #666;">Desenvolvedora Front-end</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Andréia Vieira</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">Desenvolvedora Front-end</p>
     </div>
   </a>
 </div>
 
 <!-- Pedro Lucas -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/Pedroifpi" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/Pedroifpi.png" alt="Pedro Lucas" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/Pedroifpi" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/Pedroifpi.png" alt="Pedro Lucas" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Pedro Lucas</h3>
-      <p style="margin: 0; color: #666;">Desenvolvedor Front-end</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Pedro Lucas</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">Desenvolvedor Front-end</p>
     </div>
   </a>
 </div>
 
 <!-- Stela Sofia -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/StelaDB" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/StelaDB.png" alt="Stela Sofia" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/StelaDB" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/StelaDB.png" alt="Stela Sofia" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Stela Sofia</h3>
-      <p style="margin: 0; color: #666;">Designer e Social Media</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Stela Sofia</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">Designer e Social Media</p>
     </div>
   </a>
 </div>
 
 <!-- Laianny -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/marylay01" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/marylay01.png" alt="Laianny" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/marylay01" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/marylay01.png" alt="Laianny" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Laianny</h3>
-      <p style="margin: 0; color: #666;">Designer e Social Media</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Laianny</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">Designer e Social Media</p>
     </div>
   </a>
 </div>
 
 <!-- Ana Victória -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;">
-  <a href="https://github.com/anavsousa" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px;">
-    <div style="flex-shrink: 0;">
-      <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #e0e0e0;">
-        <img src="https://github.com/anavsousa.png" alt="Ana Victória" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
+<div style="background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s;">
+  <a href="https://github.com/anavsousa" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+    <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; border: 1px solid #e0e0e0;">
+      <img src="https://github.com/anavsousa.png" alt="Ana Victória" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div>
-      <h3 style="margin: 0 0 5px 0; color: #333;">Ana Victória</h3>
-      <p style="margin: 0; color: #666;">Contato com Cliente</p>
+      <h4 style="margin: 0 0 3px 0; color: #333; font-size: 16px;">Ana Victória</h4>
+      <p style="margin: 0; color: #666; font-size: 13px;">Contato com Cliente</p>
     </div>
   </a>
 </div>
