@@ -60,8 +60,8 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <a href="https://github.com/Valeria013" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/Valeria013.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
-<h3 style="margin: 0 0 5px 0; color: #333;">Valéria.g</h3>
-<p style="color: #666; margin: 0;">Desenvolvedora front-end/UX</p>
+<h3 style="margin: 0 0 5px 0; color: #333;">Valéria.G</h3>
+<p style="color: #666; margin: 0;">Desenvolvedora front-end</p>
 </div>
 </a>
 </div>
