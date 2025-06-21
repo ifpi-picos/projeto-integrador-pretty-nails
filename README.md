@@ -44,7 +44,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin: 40px 0;">
 
 <!-- Membro 1 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/Nailan-Nobre" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/Nailan-Nobre.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -53,10 +53,10 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
+
 
 <!-- Membro 2 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/Valeria013" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/Valeria013.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -65,10 +65,9 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
 
 <!-- Membro 3 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/VieiraAndreia" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/VieiraAndreia.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -77,10 +76,9 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
 
 <!-- Membro 4 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/Pedroifpi" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/Pedroifpi.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -89,10 +87,9 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
 
 <!-- Membro 5 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/StelaDB" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/StelaDB.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -101,10 +98,9 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
 
 <!-- Membro 6 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/marylay01" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/marylay01.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -113,10 +109,9 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
 
 <!-- Membro 7 -->
-<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/anavsousa" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/anavsousa.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
@@ -125,7 +120,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
-##.
 
 </div>
 
