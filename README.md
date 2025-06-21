@@ -123,6 +123,6 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 
 </div>
 
-<div style="text-align: center; margin-top: 50px; color: #6c63ff; font-size: 14px;">
+## <div style="text-align: center; margin-top: 50px; color: #6c63ff; font-size: 14px;">
 💖 Feito com amor pela equipe Focus in Beauty
 </div>
