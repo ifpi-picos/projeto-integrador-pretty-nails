@@ -44,7 +44,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin: 40px 0;">
 
 <!-- Membro 1 -->
-## <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
+<div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
 <a href="https://github.com/Nailan-Nobre" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 20px; width: 100%;">
 <img src="https://github.com/Nailan-Nobre.png" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0;"/>
 <div>
