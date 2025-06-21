@@ -33,36 +33,36 @@
                 </div>
 
                 <ul id="side_items">
-                    <li class="side-item active" data-label="Inicio">
-                        <a href="principal.html">
+                    <a href="principal.html" class="side-item-link">
+                        <li class="side-item active" data-label="Inicio">
                             <i class="fa-solid fa-house"></i>
                             <span class="item-description">Início</span>
-                        </a>
-                    </li>
-                    <li class="side-item" data-label="Pesquisa">
-                        <a href="pesquisa.html">
+                        </li>
+                    </a>
+                    <a href="pesquisa.html" class="side-item-link">
+                        <li class="side-item" data-label="Pesquisa">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <span class="item-description">Pesquisar</span>
-                        </a>
-                    </li>
-                    <li class="side-item" data-label="Notificações">
-                        <a href="#" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
-                            <i class="fa-solid fa-bell"></i>
-                            <span class="item-description">Notificações</span>
-                        </a>
-                    </li>
-                    <li class="side-item" data-label="Perfil">
-                        <a href="perfil-proprio.html">
+                        </li>
+                    </a>
+                    <a href="agendamentos.html" class="side-item-link">
+                        <li class="side-item" data-label="Agendamentos">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span class="item-description">Agendamentos</span>
+                        </li>
+                    </a>
+                    <a href="perfil-proprio.html" class="side-item-link">
+                        <li class="side-item" data-label="Perfil">
                             <i class="fa-solid fa-user"></i>
                             <span class="item-description">Perfil</span>
-                        </a>
-                    </li>
-                    <li class="side-item" data-label="Configurações">
-                        <a href="#" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                        </li>
+                    </a>
+                    <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                        <li class="side-item" data-label="Configurações">
                             <i class="fa-solid fa-gear"></i>
                             <span class="item-description">Configurações</span>
-                        </a>
-                    </li>
+                        </li>
+                    </a>
                 </ul>
 
                 <button id="open_btn">
@@ -79,11 +79,6 @@
         </nav>
 
         <div class="pag-content">
-            <a href="agendamentos.html" id="sessoes" style="text-decoration: none; color: inherit;">
-                <i class="fa-solid fa-calendar-check"></i>
-                <span>Sessões</span>
-                <span id="notification-count" class="notification"></span>
-            </a>
 
             <div id="temas">
                 <h1>Temas</h1>
@@ -180,63 +175,6 @@
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
     <script src="js/skeleton.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', async function () {
-            const mensagemDiv = document.getElementById('mensagem-usuario');
-            const nomeUsuarioDiv = document.getElementById('user-name');
-            const avatarUsuario = document.getElementById('user_avatar');
-            const token = localStorage.getItem('token');
-            const userId = localStorage.getItem('userId');
-
-            // Função para exibir mensagem apenas no console e na tela
-            function exibirMensagemNoConsole(mensagem) {
-                if (mensagemDiv) {
-                    mensagemDiv.textContent = mensagem;
-                    mensagemDiv.style.color = 'red';
-                }
-                console.error(mensagem);
-            }
-
-            // Verificação completa de autenticação
-            if (!token || !userId) {
-                exibirMensagemNoConsole('Acesso restrito. Faça login para continuar.');
-                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                return;
-            }
-
-            try {
-                const resposta = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
-                if (!resposta.ok) {
-                    if (resposta.status === 401 || resposta.status === 403) {
-                        exibirMensagemNoConsole('Permissão negada.');
-                        window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                    } else {
-                        exibirMensagemNoConsole('Erro ao validar usuário');
-                    }
-                    return;
-                }
-
-                const usuario = await resposta.json();
-
-                // Exibir nome
-                const primeiroNome = usuario.nome ? usuario.nome.split(' ')[0] : 'Usuário';
-                if (nomeUsuarioDiv) nomeUsuarioDiv.textContent = primeiroNome;
-
-                // Exibir avatar
-                if (avatarUsuario && usuario.foto) {
-                    avatarUsuario.src = usuario.foto;
-                }
-
-            } catch (err) {
-                console.error('Erro na validação:', err);
-                exibirMensagemNoConsole('Erro de conexão');
-            }
-        });
-    </script>
 
 </body>
 

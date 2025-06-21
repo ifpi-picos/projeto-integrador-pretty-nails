@@ -11,7 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="css/side-bar.css">
-    <title>Document</title>
+    <title>Pretty Nails</title>
 </head>
 
 <body>
@@ -26,43 +26,42 @@
                 <div id="user">
                     <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
                     <p id="user_infos">
-                        <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
                         <span class="item-description" id="user-name">Fulano de tal</span>
                         <span class="item-description">(Cliente)</span>
                     </p>
                 </div>
 
                 <ul id="side_items">
-                    <li class="side-item active">
-                        <a href="principal.html">
+                    <a href="principal.html" class="side-item-link">
+                        <li class="side-item active" data-label="Inicio">
                             <i class="fa-solid fa-house"></i>
                             <span class="item-description">Início</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a href="pesquisa.html">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    </a>
+                    <a href="calendario.html" class="side-item-link">
+                        <li class="side-item" data-label="calendario">
+                            <i class="fa-regular fa-calendar-days"></i>
                             <span class="item-description">Pesquisar</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a href="notificacao.html">
-                            <i class="fa-solid fa-bell"></i>
-                            <span class="item-description">Notificações</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a href="perfil_cliente.html">
+                        </li>
+                    </a>
+                    <a href="agendamentos.html" class="side-item-link">
+                        <li class="side-item" data-label="Agendamentos">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span class="item-description">Agendamentos</span>
+                        </li>
+                    </a>
+                    <a href="perfil-proprio.html" class="side-item-link">
+                        <li class="side-item" data-label="Perfil">
                             <i class="fa-solid fa-user"></i>
                             <span class="item-description">Perfil</span>
-                        </a>
-                    </li>
-                    <li class="side-item">
-                        <a href="config.html">
+                        </li>
+                    </a>
+                    <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                        <li class="side-item" data-label="Configurações">
                             <i class="fa-solid fa-gear"></i>
                             <span class="item-description">Configurações</span>
-                        </a>
-                    </li>
+                        </li>
+                    </a>
                 </ul>
 
                 <button id="open_btn">
@@ -78,38 +77,23 @@
             </div>
         </nav>
 
-        <div id="temas">
-            <h1>Painel de controle</h1>
-        </div>
+        <div class="pag-content">
 
-        <div id="button-grid">
-            <div class="row">
-                <a href="agendamentos.html" class="button-card btn-agendamentos">Agendamentos</a>
-                <a href="referencias.html" class="button-card btn-referencias">Referências</a>
-                <a href="agenda_do_dia.html" class="button-card btn-agenda-do-dia">Agenda do dia</a>
+            <div class="pink-area">
+                <div class="dev-container" style="text-align: center; align-items: center; padding: 40px;">
+                    <h2 style="color: #d63384; margin-bottom: 20px;">Estamos em desenvolvimento!</h2>
+                    <p style="font-size: 1.2em; margin-bottom: 30px;">Esta tela estará disponível em breve.</p>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+                        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Trabalhando" style="width: 180px; border-radius: 10px;">
+                        <img src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif" alt="Em obras" style="width: 180px; border-radius: 10px;">
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <a href="proximos_agendamentos.html" class="button-card btn-proximos-agendamentos">Próximos
-                    agendamentos</a>
-                <a href="painel de controle/disponibilidade.html" class="button-card btn-editar-disponibilidade">Editar
-                    disponibilidade</a>
-                <a href="nao_faco_ideia.html" class="button-card btn-nao-faco-ideia">Não faço ideia</a>
-            </div>
-        </div>
 
+    </div>
 
-        <script src="js/principal.js"></script>
-        <script src="js/side-bar.js"></script>
-
-        <script>
-            const token = localStorage.getItem('token');
-            const tipo = localStorage.getItem('tipo');
-            if (!token || tipo !== 'MANICURE') {
-                alert('Acesso restrito a manicures.');
-                window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-            }
-        </script>
-
+    <script src="js/principal.js"></script>
+    <script src="js/side-bar.js"></script>
 </body>
 
 </html>

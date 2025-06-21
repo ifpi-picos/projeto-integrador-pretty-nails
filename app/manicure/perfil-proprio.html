@@ -9,7 +9,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/perfil_cliente.css">
+    <link rel="stylesheet" href="css/perfil-proprio.css">
     <link rel="stylesheet" href="css/side-bar.css">
     <title>Document</title>
 </head>
@@ -24,42 +24,43 @@
             <div id="user">
                 <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
                 <p id="user_infos">
-                    <span class="item-description">Fulano de Tal</span>
+                    <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
+                    <span class="item-description" id="user-name">Fulano de tal</span>
                     <span class="item-description">(Cliente)</span>
                 </p>
             </div>
 
             <ul id="side_items">
-                <li class="side-item">
-                    <a href="principal.html">
-                        <i class="fa-solid fa-house"></i>
-                        <span class="item-description">Início</span>
+                <a href="principal.html" class="side-item-link">
+                        <li class="side-item" data-label="Inicio">
+                            <i class="fa-solid fa-house"></i>
+                            <span class="item-description">Início</span>
+                        </li>
                     </a>
-                </li>
-                <li class="side-item">
-                    <a href="pesquisa.html">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span class="item-description">Pesquisar</span>
+                    <a href="calendario.html" class="side-item-link">
+                        <li class="side-item" data-label="calendario">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span class="item-description">Pesquisar</span>
+                        </li>
                     </a>
-                </li>
-                <li class="side-item">
-                    <a href="notificacao.html">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="item-description">Notificações</span>
+                    <a href="agendamentos.html" class="side-item-link">
+                        <li class="side-item" data-label="Agendamentos">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span class="item-description">Agendamentos</span>
+                        </li>
                     </a>
-                </li>
-                <li class="side-item active">
-                    <a href="perfil_cliente.html">
-                        <i class="fa-solid fa-user"></i>
-                        <span class="item-description">Perfil</span>
+                    <a href="perfil-proprio.html" class="side-item-link">
+                        <li class="side-item active" data-label="Perfil">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="item-description">Perfil</span>
+                        </li>
                     </a>
-                </li>
-                <li class="side-item">
-                    <a href="config.html">
-                        <i class="fa-solid fa-gear"></i>
-                        <span class="item-description">Configurações</span>
+                    <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                        <li class="side-item" data-label="Configurações">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description">Configurações</span>
+                        </li>
                     </a>
-                </li>
             </ul>
 
             <button id="open_btn">
@@ -172,17 +173,8 @@
                     </a>
                 </div>
             </div>
-            <script src="js/perfil-usuario.js"></script>
+            <script src="js/perfil-proprio.js"></script>
             <script src="js/side-bar.js"></script>
-
-            <script>
-                const token = localStorage.getItem('token');
-                const tipo = localStorage.getItem('tipo');
-                if (!token || tipo !== 'MANICURE') {
-                    alert('Acesso restrito a manicures.');
-                    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
-                }
-            </script>
 
 </body>
 

@@ -10,6 +10,13 @@
     --tom5: #ffdab9;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 /* Corpo da Página */
 body {
     font-family: Arial, sans-serif;

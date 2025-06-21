@@ -1,42 +1,103 @@
+let cachedManicures = null;
+
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Script principal.js carregado!");
+    // Inicia o carregamento dos perfis
     adicionarPerfis();
+    
+    // Configura o carregamento das imagens de tema
+    setupThemeImages();
 });
 
-// Função para adicionar os perfis das manicures na tela principal
+// Configura o carregamento das imagens de tema
+function setupThemeImages() {
+    const themeBoxes = document.querySelectorAll('.theme-box[data-skeleton]');
+    
+    themeBoxes.forEach(box => {
+        const img = new Image();
+        img.src = box.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
+        
+        img.onload = () => window.skeletonLoader.remove(box);
+        img.onerror = () => setTimeout(() => window.skeletonLoader.remove(box), 500);
+    });
+}
+
 async function adicionarPerfis() {
+    const container = document.getElementById("perfis-container");
+    
     try {
         console.log("Carregando perfis...");
 
-        const resposta = await fetch("https://back-end-jf0v.onrender.com/manicures");
+        const token = localStorage.getItem('token'); // Busca o token salvo após login
 
-        if (!resposta.ok) {
-            throw new Error("Erro ao buscar manicures.");
+        if (!token) {
+            throw new Error("Token não encontrado. Usuário não autenticado.");
         }
 
-        const manicures = await resposta.json();
-        console.log("Dados recebidos da API:", manicures);
+        if (!cachedManicures) {
+            const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/manicures", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` // Adiciona o token no cabeçalho
+                }
+            });
 
-        const container = document.getElementById("perfis-container");
-        container.innerHTML = ""; // Limpa os perfis existentes
+            if (!resposta.ok) {
+                throw new Error("Erro ao buscar manicures.");
+            }
 
-        if (manicures.length === 0) {
+            cachedManicures = await resposta.json();
+            console.log("Dados recebidos da API:", cachedManicures);
+        } else {
+            console.log("Usando dados em cache:", cachedManicures);
+        }
+
+        container.innerHTML = "";
+
+        // Adaptação: acessar o array de manicures corretamente
+        const listaManicures = cachedManicures.manicures || [];
+
+        if (listaManicures.length === 0) {
             container.innerHTML = "<p>Nenhum perfil encontrado.</p>";
             return;
         }
 
-        manicures.forEach(manicure => {
-            const card = document.createElement("div");
-            card.classList.add("perfil");
-            card.innerHTML = `
-                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.name}">
-                <div class="perfil-nome">${manicure.name}</div>
-                <div class="estrelas">★★★★★</div>
-            `;
-            container.appendChild(card);
+        listaManicures.forEach(manicure => {
+            const link = document.createElement("a");
+            link.href = `perfil-manicure.html?id=${manicure.id}`;
+            link.classList.add("perfil-link");
+            
+            const perfilDiv = document.createElement("div");
+            perfilDiv.className = "perfil";
+            
+            const img = document.createElement("img");
+            img.src = manicure.foto || 'imagens/perfil_cliente.png';
+            img.alt = manicure.nome || "Manicure";
+            
+            img.onload = () => window.skeletonLoader.remove(img);
+            
+            const nomeDiv = document.createElement("div");
+            nomeDiv.className = "perfil-nome";
+            nomeDiv.textContent = manicure.nome || "Sem nome";
+            
+            const estrelasDiv = document.createElement("div");
+            estrelasDiv.className = "estrelas";
+            estrelasDiv.textContent = "★★★★★";
+            
+            perfilDiv.appendChild(img);
+            perfilDiv.appendChild(nomeDiv);
+            perfilDiv.appendChild(estrelasDiv);
+            link.appendChild(perfilDiv);
+            container.appendChild(link);
+
+            window.skeletonLoader.remove(nomeDiv);
+            window.skeletonLoader.remove(estrelasDiv);
         });
+
     } catch (error) {
         console.error("Erro ao carregar manicures:", error);
-        document.getElementById("perfis-container").innerHTML = "<p>Erro ao carregar perfis.</p>";
+        container.innerHTML = "<p>Erro ao carregar perfis.</p>";
+    } finally {
+        window.skeletonLoader.removeAll();
     }
 }
