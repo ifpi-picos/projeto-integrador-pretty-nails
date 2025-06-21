@@ -8,7 +8,7 @@ async function adicionarPerfis() {
     try {
         console.log("Carregando perfis...");
 
-        const resposta = await fetch("http://localhost:3000/manicures");
+        const resposta = await fetch("https://back-end-jf0v.onrender.com/manicures");
 
         if (!resposta.ok) {
             throw new Error("Erro ao buscar manicures.");

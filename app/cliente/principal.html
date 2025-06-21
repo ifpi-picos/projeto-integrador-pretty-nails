@@ -79,11 +79,11 @@
         </nav>
 
         <div class="pag-content">
-            <div id="sessoes">
+            <a href="agendamentos.html" id="sessoes" style="text-decoration: none; color: inherit;">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Sessões</span>
                 <span id="notification-count" class="notification"></span>
-            </div>
+            </a>
 
             <div id="temas">
                 <h1>Temas</h1>
@@ -206,7 +206,7 @@
             }
 
             try {
-                const resposta = await fetch(`http://localhost:3000/auth/usuario/${userId}`, {
+                const resposta = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 

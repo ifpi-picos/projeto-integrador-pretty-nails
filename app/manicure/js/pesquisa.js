@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome = "") {
     try {
-        const resposta = await fetch("http://localhost:3000/manicures");
+        const resposta = await fetch("https://back-end-jf0v.onrender.com/manicures");
         if (!resposta.ok) {
             throw new Error("Erro ao buscar manicures.");
         }

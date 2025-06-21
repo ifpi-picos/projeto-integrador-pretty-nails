@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('endereco').textContent = `${cidade}, ${estado}`;
 
     try {
-        const response = await fetch(`http://localhost:3000/usuario/${userId}`);
+        const response = await fetch(`https://back-end-jf0v.onrender.com/usuario/${userId}`);
         const usuario = await response.json();
 
         if (usuario) {

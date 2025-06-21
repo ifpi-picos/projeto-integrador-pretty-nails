@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Requisições por Manicure</title>
-    <link rel="stylesheet" href="agendamentos.css">
+    <title>Meus Agendamentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/agendamentos.css">
 </head>
-
 <body>
-    <div class="container">
-        <h2>Minhas Requisições por Manicure</h2>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-calendar-alt"></i> Meus Agendamentos</h1>
+        </header>
 
-        <div id="manicures-container">
-            <div class="loading">Carregando suas requisições...</div>
-        </div>
+        <main class="app-content">
+            <div class="agendamentos-container" id="manicures-container">
+                <div class="loading-animation">
+                    <div class="spinner"></div>
+                    <p>Carregando seus agendamentos...</p>
+                </div>
+            </div>
+        </main>
+
+        <div class="notification" id="notification"></div>
     </div>
 
-    <script src="agendamentos.js"></script>
-
+    <script src="js/agendamentos.js"></script>
 </body>
-
 </html>

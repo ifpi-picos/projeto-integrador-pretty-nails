@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const resposta = await fetch(`http://localhost:3000/auth/manicures/${id}`, {
+        const resposta = await fetch(`https://back-end-jf0v.onrender.com/auth/manicures/${id}`, {
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"

@@ -1,82 +1,40 @@
-// Dados mockados para teste visual
-const mockData = [
-    {
-        manicure: {
-            id: 1,
-            nome: "Maria Silva",
-            foto: "https://randomuser.me/api/portraits/women/43.jpg",
-            servicos: ["Manicure", "Pedicure", "Alongamento"],
-            cidade: "Picos-PI",
-            bairro: "Centro"
-        },
-        requisicoes: [
-            {
-                id: 101,
-                data: "2023-06-15T14:00:00",
-                horaInicio: "14:00",
-                horaFim: "15:00",
-                status: "FINALIZADO",
-                feedback: null
-            },
-            {
-                id: 102,
-                data: "2023-06-22T10:00:00",
-                horaInicio: "10:00",
-                horaFim: "11:00",
-                status: "CONFIRMADO",
-                feedback: null
-            }
-        ]
-    },
-    {
-        manicure: {
-            id: 2,
-            nome: "Ana Souza",
-            foto: "https://randomuser.me/api/portraits/women/65.jpg",
-            servicos: ["Manicure", "Design de Unhas"],
-            cidade: "Picos-PI",
-            bairro: "Junco"
-        },
-        requisicoes: [
-            {
-                id: 201,
-                data: "2023-06-18T16:00:00",
-                horaInicio: "16:00",
-                horaFim: "17:00",
-                status: "PENDENTE",
-                feedback: null
-            }
-        ]
-    }
-];
-
 // Função para renderizar os dados
-function renderManicures(data) {
+function renderManicures(agendamentos) {
     const container = document.getElementById('manicures-container');
     container.innerHTML = '';
 
-    data.forEach(({ manicure, requisicoes }) => {
+    agendamentos.forEach(agendamento => {
+        const manicure = agendamento.manicure || {};
+        const date = new Date(agendamento.data_hora);
+        const dateStr = date.toLocaleDateString('pt-BR', { 
+            weekday: 'long', 
+            day: 'numeric', 
+            month: 'long' 
+        });
+
         const manicureCard = document.createElement('div');
         manicureCard.className = 'manicure-card';
-        
+
         manicureCard.innerHTML = `
             <div class="manicure-header">
-                <img src="${manicure.foto}" alt="${manicure.nome}" class="manicure-photo">
+                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.nome || 'Manicure'}" class="manicure-photo">
                 <div class="manicure-info">
-                    <h3>${manicure.nome}</h3>
-                    <p>${manicure.servicos.join(' • ')}</p>
-                    <p>${manicure.cidade} - ${manicure.bairro}</p>
+                    <h3>${manicure.nome || 'Manicure'}</h3>
                 </div>
             </div>
             <div class="requests-list">
-                ${requisicoes.map(req => createRequestHtml(req)).join('')}
+                <div class="request-item" data-request-id="${agendamento.id}">
+                    <div class="request-date">${dateStr}</div>
+                    <div class="request-time">${date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
+                    <div class="status status-${agendamento.status.toLowerCase()}">${agendamento.status}</div>
+                    <div class="service">Serviço: ${agendamento.servico}</div>
+                    <div class="observacoes">${agendamento.observacoes ? 'Obs: ' + agendamento.observacoes : ''}</div>
+                </div>
             </div>
         `;
-        
+
         container.appendChild(manicureCard);
     });
-
-    setupStarRating();
 }
 
 // Função para criar o HTML de cada requisição
@@ -152,7 +110,28 @@ function setupStarRating() {
     });
 }
 
-// Simula um carregamento assíncrono
-setTimeout(() => {
-    renderManicures(mockData);
-}, 800);
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Faça login para ver seus agendamentos', 'error');
+        return;
+    }
+
+    fetch('https://back-end-jf0v.onrender.com/api/agendamentos/meus-agendamentos', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao buscar agendamentos');
+        return response.json();
+    })
+    .then(res => {
+    const data = res.agendamentos?.comoCliente || [];
+    renderManicures(data);
+})
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao carregar agendamentos', 'error');
+    });
+});
