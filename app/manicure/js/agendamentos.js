@@ -1,137 +1,174 @@
-// Função para renderizar os dados
-function renderManicures(agendamentos) {
-    const container = document.getElementById('manicures-container');
+// Função para renderizar os agendamentos para manicure
+function renderSolicitacoes(agendamentos) {
+    const container = document.getElementById('solicitacoes-container');
     container.innerHTML = '';
 
+    if (agendamentos.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-calendar-check"></i>
+                <p>Nenhuma solicitação pendente no momento</p>
+            </div>
+        `;
+        return;
+    }
+
     agendamentos.forEach(agendamento => {
-        const manicure = agendamento.manicure || {};
+        // Garante que o objeto cliente sempre exista
+        const cliente = agendamento.cliente || {
+            nome: 'Cliente',
+            foto: 'imagens/perfil_cliente.png'
+        };
+
         const date = new Date(agendamento.data_hora);
         const dateStr = date.toLocaleDateString('pt-BR', { 
             weekday: 'long', 
             day: 'numeric', 
-            month: 'long' 
+            month: 'long',
+            year: 'numeric'
         });
+        const timeStr = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
-        const manicureCard = document.createElement('div');
-        manicureCard.className = 'manicure-card';
+        const solicitacaoCard = document.createElement('div');
+        solicitacaoCard.className = 'solicitacao-card';
+        solicitacaoCard.dataset.id = agendamento.id;
 
-        manicureCard.innerHTML = `
-            <div class="manicure-header">
-                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.nome || 'Manicure'}" class="manicure-photo">
-                <div class="manicure-info">
-                    <h3>${manicure.nome || 'Manicure'}</h3>
+        solicitacaoCard.innerHTML = `
+            <div class="solicitacao-header">
+                <img src="${cliente.foto}" alt="${cliente.nome}" class="cliente-photo">
+                <div class="cliente-info">
+                    <h3>${cliente.nome}</h3>
+                    <div class="cliente-rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.8</span>
+                    </div>
                 </div>
             </div>
-            <div class="requests-list">
-                <div class="request-item" data-request-id="${agendamento.id}">
-                    <div class="request-date">${dateStr}</div>
-                    <div class="request-time">${date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
-                    <div class="status status-${agendamento.status.toLowerCase()}">${agendamento.status}</div>
-                    <div class="service">Serviço: ${agendamento.servico}</div>
-                    <div class="observacoes">${agendamento.observacoes ? 'Obs: ' + agendamento.observacoes : ''}</div>
+            
+            <div class="solicitacao-details">
+                <div class="detail-row">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>${dateStr}</span>
                 </div>
+                <div class="detail-row">
+                    <i class="fas fa-clock"></i>
+                    <span>${timeStr}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <span>${agendamento.servico}</span>
+                </div>
+                ${agendamento.observacoes ? `
+                <div class="detail-row">
+                    <i class="fas fa-comment"></i>
+                    <span>${agendamento.observacoes}</span>
+                </div>
+                ` : ''}
             </div>
-        `;
-
-        container.appendChild(manicureCard);
-    });
-}
-
-// Função para criar o HTML de cada requisição
-function createRequestHtml(request) {
-    const date = new Date(request.data);
-    const dateStr = date.toLocaleDateString('pt-BR', { 
-        weekday: 'long', 
-        day: 'numeric', 
-        month: 'long' 
-    });
-
-    let feedbackHtml = '';
-    if (request.status === 'FINALIZADO' && !request.feedback) {
-        feedbackHtml = `
-            <div class="feedback-section">
-                <h4>Avalie o serviço:</h4>
-                <div class="rating" data-request-id="${request.id}">
-                    <span class="star" data-value="1">★</span>
-                    <span class="star" data-value="2">★</span>
-                    <span class="star" data-value="3">★</span>
-                    <span class="star" data-value="4">★</span>
-                    <span class="star" data-value="5">★</span>
-                </div>
-                <textarea placeholder="Como foi seu atendimento?"></textarea>
-                <button class="submit-feedback">Enviar Avaliação</button>
+            
+            <div class="solicitacao-actions">
+                <button class="btn-accept" data-id="${agendamento.id}">
+                    <i class="fas fa-check"></i> Aceitar
+                </button>
+                <button class="btn-reject" data-id="${agendamento.id}">
+                    <i class="fas fa-times"></i> Recusar
+                </button>
             </div>
         `;
-    }
 
-    return `
-        <div class="request-item" data-request-id="${request.id}">
-            <div class="request-date">${dateStr}</div>
-            <div class="request-time">${request.horaInicio} às ${request.horaFim}</div>
-            <div class="status status-${request.status.toLowerCase()}">${request.status}</div>
-            ${feedbackHtml}
-        </div>
-    `;
-}
-
-// Configura o sistema de avaliação por estrelas
-function setupStarRating() {
-    document.querySelectorAll('.star').forEach(star => {
-        star.addEventListener('click', function() {
-            const stars = this.parentElement.querySelectorAll('.star');
-            const value = parseInt(this.getAttribute('data-value'));
-            
-            stars.forEach((star, index) => {
-                if (index < value) {
-                    star.classList.add('selected');
-                } else {
-                    star.classList.remove('selected');
-                }
-            });
-        });
+        container.appendChild(solicitacaoCard);
     });
 
-    // Simula o envio de feedback
-    document.querySelectorAll('.submit-feedback').forEach(button => {
-        button.addEventListener('click', function() {
-            const requestItem = this.closest('.request-item');
-            const stars = requestItem.querySelectorAll('.star.selected').length;
-            
-            if (stars === 0) {
-                alert('Por favor, selecione uma avaliação');
-                return;
-            }
-            
-            alert('Avaliação enviada com sucesso! (Simulação)');
-            requestItem.querySelector('.feedback-section').innerHTML = `
-                <p style="text-align: center; color: green;">Obrigado pelo seu feedback!</p>
-            `;
-        });
+    // Configura os eventos dos botões
+    setupActionButtons();
+}
+
+function setupActionButtons() {
+    document.querySelectorAll('.btn-accept').forEach(btn => {
+        btn.addEventListener('click', () => updateAgendamentoStatus(btn.dataset.id, 'confirmado'));
+    });
+
+    document.querySelectorAll('.btn-reject').forEach(btn => {
+        btn.addEventListener('click', () => updateAgendamentoStatus(btn.dataset.id, 'recusado'));
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Função para atualizar o status do agendamento
+function updateAgendamentoStatus(id, status) {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('Faça login para ver seus agendamentos', 'error');
+        showNotification('Faça login para continuar', 'error');
         return;
     }
 
-    fetch('https://back-end-jf0v.onrender.com/api/agendamentos/meus-agendamentos', {
+    fetch(`https://back-end-jf0v.onrender.com/api/agendamentos/${id}/status`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ status })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao atualizar agendamento');
+        return response.json();
+    })
+    .then(data => {
+        showNotification(`Agendamento ${status === 'confirmado' ? 'aceito' : 'recusado'} com sucesso`, 'success');
+        // Remove o card da solicitação
+        document.querySelector(`.solicitacao-card[data-id="${id}"]`).remove();
+        
+        // Se não houver mais solicitações, mostra o empty state
+        if (document.querySelectorAll('.solicitacao-card').length === 0) {
+            document.getElementById('solicitacoes-container').innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-calendar-check"></i>
+                    <p>Nenhuma solicitação pendente no momento</p>
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showNotification('Erro ao atualizar agendamento', 'error');
+    });
+}
+
+// Função para mostrar notificação
+function showNotification(message, type) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.className = `notification ${type}`;
+    notification.style.display = 'block';
+    
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+// Carrega as solicitações quando a página é carregada
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        showNotification('Faça login para ver suas solicitações', 'error');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    fetch('https://back-end-jf0v.onrender.com/api/agendamentos/pendentes', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
     })
     .then(response => {
-        if (!response.ok) throw new Error('Erro ao buscar agendamentos');
+        if (!response.ok) throw new Error('Erro ao carregar solicitações');
         return response.json();
     })
-    .then(res => {
-    const data = res.agendamentos?.comoCliente || [];
-    renderManicures(data);
-})
+   .then(data => {
+    renderSolicitacoes(data.agendamentos || []);
+    })
     .catch(error => {
         console.error('Erro:', error);
-        alert('Erro ao carregar agendamentos', 'error');
+        showNotification('Erro ao carregar solicitações', 'error');
     });
 });
