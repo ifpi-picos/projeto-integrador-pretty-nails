@@ -53,6 +53,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 <!-- Membro 2 -->
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
@@ -64,6 +65,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 <!-- Membro 3 -->
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
@@ -75,6 +77,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 <!-- Membro 4 -->
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
@@ -86,6 +89,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 <!-- Membro 5 -->
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
@@ -97,6 +101,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 <!-- Membro 6 -->
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
@@ -108,6 +113,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 <!-- Membro 7 -->
 <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
@@ -119,6 +125,7 @@ Este projeto consiste em um sistema de agendamento para manicures, desenvolvido 
 </div>
 </a>
 </div>
+##
 
 </div>
 
