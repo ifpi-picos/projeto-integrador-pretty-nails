@@ -130,7 +130,7 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
             link.classList.add("perfil-link");
             link.innerHTML = `
                 <div class="profile-card">
-                    <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.nome}">
+                    <img src="${manicure.foto || 'imagens/user.png'}" alt="${manicure.nome}">
                     <div class="profile-info">
                         <h3>${nomeFormatado}</h3>
                         <p>${manicure.cidade}, ${manicure.estado}</p>

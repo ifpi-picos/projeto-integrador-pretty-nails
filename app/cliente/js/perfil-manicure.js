@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function preencherPerfil(manicure) {
-    document.getElementById("profile-img").src = manicure.foto || "imagens/perfil_cliente.png";
+    document.getElementById("profile-img").src = manicure.foto || "imagens/user.png";
     document.getElementById("profile-img").alt = manicure.nome || "Manicure";
 
     document.getElementById("nome").textContent = manicure.nome || "Nome não informado";

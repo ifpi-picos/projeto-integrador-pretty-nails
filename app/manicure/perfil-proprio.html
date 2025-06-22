@@ -22,7 +22,7 @@
     <nav id="sidebar">
         <div id="sidebar_content">
             <div id="user">
-                <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
+                <img src="imagens/user.png" id="user_avatar" alt="Avatar">
                 <p id="user_infos">
                     <!-- MODIFICAÇÃO: Adicionado id para exibir o primeiro nome do usuário dinamicamente -->
                     <span class="item-description" id="user-name">Fulano de tal</span>
@@ -37,9 +37,9 @@
                             <span class="item-description">Início</span>
                         </li>
                     </a>
-                    <a href="calendario.html" class="side-item-link">
-                        <li class="side-item" data-label="calendario">
-                            <i class="fa-regular fa-calendar-days"></i>
+                    <a href="pesquisa.html" class="side-item-link">
+                        <li class="side-item" data-label="Pesquisa">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                             <span class="item-description">Pesquisar</span>
                         </li>
                     </a>
@@ -82,7 +82,7 @@
             <div class="profile-header">
                 <div class="profile-info" id="profile-info">
                     <div class="profile-picture">
-                        <img id="profile-img" src="imagens/perfil_cliente.png" alt="Foto de Perfil">
+                        <img id="profile-img" src="imagens/user.png" alt="Foto de Perfil">
                         <button class="edit-icon">✎</button>
                     </div>
                     <div class="profile-details">
@@ -92,85 +92,6 @@
                         <p><strong>Endereço:</strong> <span id="endereco">Rua Exemplo, 123</span></p>
                         <button class="edit-button">Editar Perfil</button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Seção de Manicures Favoritas (Carrossel) -->
-            <div class="favorite-manicurists">
-                <h3>Manicures Favoritas</h3>
-                <div class="carousel">
-                    <div class="carousel-items">
-                        <div class="carousel-item">
-                            <a href="#" class="profile-link">
-                                <div class="profile-box">
-                                    <!-- Foto de Perfil da Manicure A -->
-                                    <img src="imagens/manicure1.png" class="profile-img">
-                                    <p>Camila Lima</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#" class="profile-link">
-                                <div class="profile-box">
-                                    <!-- Foto de Perfil da Manicure B -->
-                                    <img src="imagens/manicure2.png" class="profile-img">
-                                    <p>Renata Souza</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#" class="profile-link">
-                                <div class="profile-box">
-                                    <!-- Foto de Perfil da Manicure C -->
-                                    <img src="imagens/manicure3.png" class="profile-img">
-                                    <p>Joana Alves</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#" class="profile-link">
-                                <div class="profile-box">
-                                    <!-- Foto de Perfil da Manicure D -->
-                                    <img src="imagens/manicure4.png" class="profile-img">
-                                    <p>Beatriz Costa</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#" class="profile-link">
-                                <div class="profile-box">
-                                    <!-- Foto de Perfil da Manicure E -->
-                                    <img src="imagens/manicure5.png" class="profile-img">
-                                    <p>Mariana Oliveira</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Seção de Temas de Unhas Favoritos (Grid com imagens) -->
-            <div class="favorite-nail-themes">
-                <h3>Temas de Unhas Favoritas</h3>
-                <div class="themes-grid">
-                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/nude.jpg');">
-                        <p class="theme-name"></p>
-                    </a>
-                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/florais.jpg');">
-                        <p class="theme-name"></p>
-                    </a>
-                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/neon.jpg');">
-                        <p class="theme-name"></p>
-                    </a>
-                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/animais.jpg');">
-                        <p class="theme-name"></p>
-                    </a>
-                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/metalica.jpg');">
-                        <p class="theme-name"></p>
-                    </a>
-                    <a href="temas.html" class="theme-item" style="background-image: url('imagens/gliter.jpg');">
-                        <p class="theme-name"></p>
-                    </a>
                 </div>
             </div>
             <script src="js/perfil-proprio.js"></script>

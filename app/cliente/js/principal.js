@@ -71,7 +71,7 @@ async function adicionarPerfis() {
             perfilDiv.className = "perfil";
             
             const img = document.createElement("img");
-            img.src = manicure.foto || 'imagens/perfil_cliente.png';
+            img.src = manicure.foto || 'imagens/user.png';
             img.alt = manicure.nome || "Manicure";
             
             img.onload = () => window.skeletonLoader.remove(img);

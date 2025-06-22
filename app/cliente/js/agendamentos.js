@@ -17,7 +17,7 @@ function renderManicures(agendamentos) {
 
         manicureCard.innerHTML = `
             <div class="manicure-header">
-                <img src="${manicure.foto || 'imagens/perfil_cliente.png'}" alt="${manicure.nome || 'Manicure'}" class="manicure-photo">
+                <img src="${manicure.foto || 'imagens/user.png'}" alt="${manicure.nome || 'Manicure'}" class="manicure-photo">
                 <div class="manicure-info">
                     <h3>${manicure.nome || 'Manicure'}</h3>
                 </div>
@@ -47,7 +47,7 @@ function createRequestHtml(request) {
     });
 
     let feedbackHtml = '';
-    if (request.status === 'FINALIZADO' && !request.feedback) {
+    if (request.status === 'concluido' && !request.feedback) {
         feedbackHtml = `
             <div class="feedback-section">
                 <h4>Avalie o serviço:</h4>

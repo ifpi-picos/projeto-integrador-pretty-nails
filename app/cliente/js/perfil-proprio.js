@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const telefone = localStorage.getItem('userTelefone') || '(00) 00000-0000';
     const estado = localStorage.getItem('userEstado') || 'Estado';
     const cidade = localStorage.getItem('userCidade') || 'Cidade';
-    const fotoUrl = localStorage.getItem('userFoto') || 'imagens/perfil_cliente.jpg';
+    const fotoUrl = localStorage.getItem('userFoto') || 'imagens/user.png';
 
     // Exibir os dados da variável localStorage na tela de perfil
     document.getElementById('nome').textContent = nome;
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('profile-img').src = fotoUrl; 
 
     try {
-        const response = await fetch(`https://back-end-jf0v.onrender.com/usuario/${userId}`);
+        const response = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`);
         if (!response.ok) {
             throw new Error('Erro ao buscar dados do usuário.');
         }
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('email').textContent = usuario.email || email;
             document.getElementById('telefone').textContent = usuario.telefone || telefone;
             document.getElementById('endereco').textContent = `${usuario.cidade || cidade}, ${usuario.estado || estado}`;
-            document.getElementById('profile-img').src = usuario.foto || 'imagens/perfil_cliente.jpg';
+            document.getElementById('profile-img').src = usuario.foto || 'imagens/user.png';
         }
     } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);

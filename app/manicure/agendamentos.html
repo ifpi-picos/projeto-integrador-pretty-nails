@@ -18,10 +18,10 @@
         <nav id="sidebar">
             <div id="sidebar_content">
                 <div id="user">
-                    <img src="imagens/avatar.jpg" id="user_avatar" alt="Avatar">
+                    <img src= "imagens/user.png" id="user_avatar" alt="Avatar">
                     <p id="user_infos">
                         <span class="item-description" id="user-name">Fulano de tal</span>
-                        <span class="item-description">(Cliente)</span>
+                        <span class="item-description">(Manicure)</span>
                     </p>
                 </div>
 
@@ -33,9 +33,9 @@
                         </li>
                     </a>
                     <a href="calendario.html" class="side-item-link">
-                        <li class="side-item" data-label="calendario">
+                        <li class="side-item" data-label="Calendário">
                             <i class="fa-regular fa-calendar-days"></i>
-                            <span class="item-description">Pesquisar</span>
+                            <span class="item-description">Calendário</span>
                         </li>
                     </a>
                     <a href="agendamentos.html" class="side-item-link">
@@ -72,10 +72,46 @@
         </nav>
         
         <main class="app-content">
-            <div class="agendamentos-container" id="solicitacoes-container">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="pendentes">Pendentes</button>
+                <button class="tab-button" data-tab="confirmados">Confirmados</button>
+                <button class="tab-button" data-tab="em-andamento">Em andamento</button>
+                <button class="tab-button" data-tab="concluido">Concluidos</button>
+                <button class="tab-button" data-tab="historico">Histórico</button>
+            </div>
+            
+            <div class="agendamentos-container" id="pendentes-container">
                 <div class="loading-animation">
                     <div class="spinner"></div>
-                    <p>Carregando seus agendamentos...</p>
+                    <p>Carregando agendamentos pendentes...</p>
+                </div>
+            </div>
+            
+            <div class="agendamentos-container hidden" id="confirmados-container">
+                <div class="loading-animation">
+                    <div class="spinner"></div>
+                    <p>Carregando agendamentos confirmados...</p>
+                </div>
+            </div>
+
+            <div class="agendamentos-container hidden" id="em-andamento-container">
+                <div class="loading-animation">
+                    <div class="spinner"></div>
+                    <p>Carregando agendamentos em andamento...</p>
+                </div>
+            </div>
+
+            <div class="agendamentos-container hidden" id="concluido-container">
+                <div class="loading-animation">
+                    <div class="spinner"></div>
+                    <p>Carregando agendamentos concluídos...</p>
+                </div>
+            </div>
+            
+            <div class="agendamentos-container hidden" id="historico-container">
+                <div class="loading-animation">
+                    <div class="spinner"></div>
+                    <p>Carregando histórico de agendamentos...</p>
                 </div>
             </div>
         </main>
