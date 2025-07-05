@@ -29,7 +29,7 @@ async function adicionarUsuario() {
   };
 
   try {
-    const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/signup", {
+    const resposta = await fetch(`${API_BASE_URL}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -64,7 +64,7 @@ async function loginUsuario() {
   };
 
   try {
-    const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/login", {
+    const resposta = await fetch(`${API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

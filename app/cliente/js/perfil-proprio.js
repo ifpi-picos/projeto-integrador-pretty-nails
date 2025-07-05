@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('profile-img').src = fotoUrl; 
 
     try {
-        const response = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`);
+        const response = await fetch(`${API_BASE_URL}/auth/usuario/${userId}`);
         if (!response.ok) {
             throw new Error('Erro ao buscar dados do usuário.');
         }

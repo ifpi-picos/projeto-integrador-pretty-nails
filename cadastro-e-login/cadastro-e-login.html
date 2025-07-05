@@ -7,7 +7,8 @@
     <title>Pretty Nails</title>
     <link rel="stylesheet" href="cadastro-e-login.css" />
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
-
+    <script src="config.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async></script>
 
@@ -16,7 +17,7 @@
             if (response && response.credential) {
                 try {
                     // Envia o token do Google para o backend
-                    const backendResponse = await fetch('https://back-end-jf0v.onrender.com/auth/google', {
+                    const backendResponse = await fetch(`${API_BASE_URL}/auth/google`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ token: response.credential })

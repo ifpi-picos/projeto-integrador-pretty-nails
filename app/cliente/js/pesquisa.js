@@ -88,7 +88,7 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         }
 
         if (manicuresCache.length === 0) {
-            const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/manicures", {
+            const resposta = await fetch(`${API_BASE_URL}/auth/manicures`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    fetch('https://back-end-jf0v.onrender.com/api/agendamentos/meus-agendamentos', {
+    fetch(`${API_BASE_URL}/api/agendamentos/meus-agendamentos`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

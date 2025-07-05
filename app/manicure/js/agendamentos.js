@@ -87,7 +87,7 @@ function updateAgendamentoStatus(id, status) {
         return;
     }
 
-    fetch(`https://back-end-jf0v.onrender.com/api/agendamentos/${id}/status`, {
+    fetch(`${API_BASE_URL}/api/agendamentos/${id}/status`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -266,7 +266,7 @@ async function handleAgendamentoAction(id, action, type) {
     }
 
     let status;
-    let endpoint = `https://back-end-jf0v.onrender.com/api/agendamentos/${id}/status`;
+    let endpoint = `${API_BASE_URL}/api/agendamentos/${id}/status`;
 
     switch(action) {
         case 'confirmar': status = 'confirmado'; break;
@@ -323,35 +323,35 @@ async function loadAgendamentos() {
 
     try {
         // Pendentes
-        const pendentesResponse = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos/pendentes', {
+        const pendentesResponse = await fetch(`${API_BASE_URL}/api/agendamentos/pendentes`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const pendentesData = await pendentesResponse.json();
         renderAgendamentos('pendentes-container', pendentesData.agendamentos, 'pendentes');
 
         // Confirmados
-        const confirmadosResponse = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos/confirmados', {
+        const confirmadosResponse = await fetch(`${API_BASE_URL}/api/agendamentos/confirmados`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const confirmadosData = await confirmadosResponse.json();
         renderAgendamentos('confirmados-container', confirmadosData.agendamentos, 'confirmados');
 
         // Em andamento
-        const andamentoResponse = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos/em-andamento', {
+        const andamentoResponse = await fetch(`${API_BASE_URL}/api/agendamentos/em-andamento`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const andamentoData = await andamentoResponse.json();
         renderAgendamentos('em-andamento-container', andamentoData.agendamentos, 'em_andamento');
         
         // Em andamento
-        const concluidoResponse = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos/concluidos', {
+        const concluidoResponse = await fetch(`${API_BASE_URL}/api/agendamentos/concluidos`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const concluidoData = await concluidoResponse.json();
         renderAgendamentos('concluido-container', concluidoData.agendamentos, 'concluidos');
 
         // Histórico
-        const historicoResponse = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos/historico', {
+        const historicoResponse = await fetch(`${API_BASE_URL}/api/agendamentos/historico`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const historicoData = await historicoResponse.json();
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch('https://back-end-jf0v.onrender.com/api/agendamentos/pendentes', {
+        fetch(`${API_BASE_URL}/api/agendamentos/pendentes`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

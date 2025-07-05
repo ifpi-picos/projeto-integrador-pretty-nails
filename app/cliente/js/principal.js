@@ -34,7 +34,7 @@ async function adicionarPerfis() {
         }
 
         if (!cachedManicures) {
-            const resposta = await fetch("https://back-end-jf0v.onrender.com/auth/manicures", {
+            const resposta = await fetch(`${API_BASE_URL}/auth/manicures`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

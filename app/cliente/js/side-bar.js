@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     try {
-        const resposta = await fetch(`https://back-end-jf0v.onrender.com/auth/usuario/${userId}`, {
+        const resposta = await fetch(`${API_BASE_URL}/auth/usuario/${userId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

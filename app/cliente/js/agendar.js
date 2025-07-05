@@ -81,7 +81,7 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     }
 
     // ATUALIZAÇÃO DESTA PARTE
-    const resposta = await fetch('https://back-end-jf0v.onrender.com/api/agendamentos', {
+    const resposta = await fetch(`${API_BASE_URL}/api/agendamentos`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
