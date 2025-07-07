@@ -285,32 +285,31 @@ a {
     }
 
     #side_items {
+        display: flex;
+        justify-content: center;
         width: 100%;
         flex-direction: row;
         margin: 0;
-        gap: 0;
+        gap: 1px;
     }
 
     .side-item {
         flex-direction: column;
         height: 70px !important;
-        width: 100% !important;
+        width: 70px !important;
         padding: 8px 5px !important;
         border-radius: 0 !important;
         justify-content: center;
         gap: 5px;
-        border: 1px solid black;
     }
 
     .side-item i {
-        font-size: 18px !important;
+        font-size: 25px;
         margin: 0 !important;
     }
 
     .item-description {
-        font-size: 11px !important;
-        opacity: 1 !important;
-        display: block !important;
+        display: none !important;
     }
 
     .side-item::after {
@@ -338,3 +337,4 @@ a {
         display: none !important;
     }
 }
+
