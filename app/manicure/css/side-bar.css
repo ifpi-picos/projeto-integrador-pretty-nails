@@ -290,7 +290,7 @@ a {
         width: 100%;
         flex-direction: row;
         margin: 0;
-        gap: 25px;
+        gap: 1px;
     }
 
     .side-item {
@@ -304,14 +304,12 @@ a {
     }
 
     .side-item i {
-        font-size: 18px !important;
+        font-size: 25px;
         margin: 0 !important;
     }
 
     .item-description {
-        font-size: 11px !important;
-        opacity: 1 !important;
-        display: block !important;
+        display: none !important;
     }
 
     .side-item::after {
@@ -339,3 +337,4 @@ a {
         display: none !important;
     }
 }
+
