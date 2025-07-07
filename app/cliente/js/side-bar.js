@@ -78,3 +78,24 @@ document.getElementById('logout_btn').addEventListener('click', function () {
     localStorage.clear();
     window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
 });
+
+
+// Adicione esta função para lidar com a responsividade
+function handleResponsiveSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const isMobile = window.innerWidth <= 600;
+    
+    if (isMobile) {
+        sidebar.classList.remove('open-sidebar');
+        document.body.classList.remove('sidebar-aberta');
+    }
+}
+
+// Chame a função quando a página carregar e quando a janela for redimensionada
+document.addEventListener('DOMContentLoaded', function() {
+    handleResponsiveSidebar();
+    
+    // Seu código existente de validação de usuário...
+});
+
+window.addEventListener('resize', handleResponsiveSidebar);

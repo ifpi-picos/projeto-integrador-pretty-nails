@@ -256,3 +256,85 @@ a {
     margin-right: 12px;       /* Espaço entre ícone e texto */
     margin-left: 0;
 }
+
+/* Responsividade - Transforma em navbar inferior em telas pequenas */
+@media (max-width: 600px) {
+    #sidebar {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        border-right: none;
+        border-top: 1px solid var(--cinza-borda);
+        z-index: 1000;
+    }
+
+    #sidebar_content {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #user, #open_btn, #user_infos, #logout {
+        display: none !important;
+    }
+
+    #side_items {
+        width: 100%;
+        flex-direction: row;
+        margin: 0;
+        gap: 0;
+    }
+
+    .side-item {
+        flex-direction: column;
+        height: 70px !important;
+        width: 100% !important;
+        padding: 8px 5px !important;
+        border-radius: 0 !important;
+        justify-content: center;
+        gap: 5px;
+        border: 1px solid black;
+    }
+
+    .side-item i {
+        font-size: 18px !important;
+        margin: 0 !important;
+    }
+
+    .item-description {
+        font-size: 11px !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+
+    .side-item::after {
+        display: none !important;
+    }
+
+    .side-item.active {
+        background-color: transparent;
+        color: var(--tom1);
+    }
+
+    .side-item.active .item-description {
+        color: var(--tom1);
+    }
+
+    .telas {
+        padding-left: 0 !important;
+        padding-bottom: 70px !important;
+    }
+}
+
+/* Esconde o botão de abrir/fechar em telas muito pequenas */
+@media (max-width: 400px) {
+    #open_btn {
+        display: none !important;
+    }
+}
