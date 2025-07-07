@@ -299,6 +299,11 @@ body {
 
 /* Celular (<= 600px) */
 @media (max-width: 600px) {
+       
+       .menu {
+              margin-bottom: 70px;
+       }
+       
        #app-header h1 {
               font-size: 32px;
        }
