@@ -8,6 +8,7 @@
     --tom3: #f8ad9d;
     --tom4: #fbc4ab;
     --tom5: #ffdab9;
+    --destaque: #FF6B6B; /* Nova cor adicionada */
 }
 
 * {
@@ -18,7 +19,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--tom7);
+    background-color: var(--gelo);
     font-family: Arial, sans-serif;
 }
 
@@ -41,33 +42,33 @@ body {
 
 .search-box input {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 14px;
     border-radius: 20px;
     border: none;
     outline: none;
 }
 
 .highlight {
-    font-size: 18.5px;
+    font-size: 16px;
     color: var(--preto);
 }
 
 .no-results {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: var(--preto);
     margin-top: 20px;
 }
 
 .filter-btn {
-    padding: 12px 20px;
+    padding: 10px 18px;
     border: none;
     background: none;
     color: var(--branco);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background 0.3s;
 }
 
@@ -96,12 +97,14 @@ body {
     margin-top: 0;
     color: var(--tom1);
     text-align: center;
+    font-size: 16px;
 }
 
 .filter-panel label {
     display: block;
     margin: 10px 0 5px;
-    color: var(--preto-tom2);
+    color: var(--preto);
+    font-size: 14px;
 }
 
 .filter-panel select {
@@ -118,49 +121,54 @@ body {
     width: 100%;
     border-radius: 10px;
     border: none;
+    font-size: 14px;
 }
 
 .perfil-container {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    padding: 20px;
-    gap: 20px;
+    padding: 15px;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .perfil-link {
     text-decoration: none;
     display: block;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 100%;
     max-width: 600px;
-
 }
 
 .profile-card {
     display: flex;
     align-items: center;
-    background: var(--gelo);
-    border-radius: 12px;
+    background: var(--branco);
+    border-radius: 8px;
     overflow: hidden;
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     transition: box-shadow 0.3s;
+    position: relative;
+    border-left: 6px solid var(--destaque); /* Canto destacado mais grosso */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-card:hover {
     transform: scale(1.01) translateY(-3px);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
 }   
 
 .profile-card img {
-    width: 120px; 
-    height: 120px;
+    width: 80px; /* Tamanho reduzido */
+    height: 80px; /* Tamanho reduzido */
     border-radius: 50%; 
-    object-fit: contain;
-    margin-right: 20px;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid var(--cinza);
 }
 
 .profile-info {
@@ -171,12 +179,66 @@ body {
 
 .profile-info h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px; /* Fonte reduzida */
     color: var(--preto);
 }
 
 .profile-info p {
-    margin: 5px 0 0;
-    font-size: 14px;
+    margin: 4px 0 0;
+    font-size: 13px; /* Fonte reduzida */
     color: var(--preto);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .search-box {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .profile-card {
+        padding: 8px;
+    }
+    
+    .profile-card img {
+        width: 70px;
+        height: 70px;
+        margin-right: 10px;
+    }
+    
+    .profile-info h3 {
+        font-size: 15px;
+    }
+    
+    .profile-info p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .profile-card img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .perfil-container {
+        padding: 10px;
+    }
 }
