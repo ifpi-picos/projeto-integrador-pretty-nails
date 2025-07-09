@@ -1,4 +1,3 @@
-
 function toggleFilters() {
     document.getElementById("filterPanel").classList.toggle("open");
 }
@@ -113,7 +112,17 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         );
 
         if (manicuresFiltradas.length === 0) {
-            container.innerHTML = `<p class="no-results">Nenhuma manicure encontrada com o nome "${filtroNome}".</p>`;
+            let mensagem = "Nenhuma manicure encontrada.";
+            if (filtroNome && filtroEstado && filtroCidade) {
+                mensagem = `Nenhuma manicure encontrada com o nome "${filtroNome}" em ${filtroCidade} - ${filtroEstado}.`;
+            } else if (filtroNome) {
+                mensagem = `Nenhuma manicure encontrada com o nome "${filtroNome}".`;
+            } else if (filtroEstado && filtroCidade) {
+                mensagem = `Nenhuma manicure encontrada em ${filtroCidade} - ${filtroEstado}.`;
+            } else if (filtroEstado) {
+                mensagem = `Nenhuma manicure encontrada no estado ${filtroEstado}.`;
+            }
+            container.innerHTML = `<p class="no-results">${mensagem}</p>`;
             return;
         }
 

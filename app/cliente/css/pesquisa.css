@@ -87,6 +87,7 @@ body {
     padding: 20px;
     transition: right 0.3s ease;
     border-radius: 40px 0 0 40px;
+    z-index: 1;
 }
 
 .filter-panel.open {
@@ -189,7 +190,6 @@ body {
 /* Responsividade */
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
         gap: 10px;
         padding: 10px;
     }
@@ -200,7 +200,6 @@ body {
     }
     
     .filter-btn {
-        width: 100%;
         text-align: center;
     }
     
@@ -225,7 +224,6 @@ body {
 
 @media (max-width: 480px) {
     .profile-card {
-        flex-direction: column;
         text-align: center;
         padding: 15px;
     }
@@ -237,5 +235,6 @@ body {
     
     .perfil-container {
         padding: 10px;
+        margin-bottom: 70px;
     }
 }
