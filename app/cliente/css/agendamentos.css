@@ -11,11 +11,11 @@
     --warning: #FFC107;
     --danger: #DC3545;
     --info: #17A2B8;
-    
+
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
     --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-    
+
     --transition: all 0.3s ease;
     --radius: 12px;
     --radius-sm: 8px;
@@ -194,7 +194,7 @@ body {
 .status-pendente { background-color: #FFF3CD; color: #856404; border-left-color: #FFC107; }
 .status-confirmado { background-color: #D4EDDA; color: #155724; border-left-color: #28A745; }
 .status-cancelado { background-color: #F8D7DA; color: #721C24; border-left-color: #DC3545; }
-.status-finalizado { background-color: #E2F0FD; color: #0C5460; border-left-color: #17A2B8; }
+.status-concluido { background-color: #E2F0FD; color: #0C5460; border-left-color: #17A2B8; }
 
 /* Feedback Section */
 .feedback-section {
@@ -231,6 +231,23 @@ body {
 
 .star.selected ~ .star {
     color: #ddd !important;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-container textarea {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    margin-bottom: 10px;
+    resize: none;
+    padding: 0.4em;
 }
 
 .feedback-text {
@@ -342,12 +359,12 @@ body {
     .app-container {
         padding: 1rem;
     }
-    
+
     .manicure-header {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .manicure-photo {
         margin-right: 0;
         margin-bottom: 1rem;
