@@ -63,7 +63,10 @@ function createRequestHtml(request) {
                     <span class="star" data-value="4">★</span>
                     <span class="star" data-value="5">★</span>
                 </div>
-                <textarea placeholder="Como foi seu atendimento?"></textarea>
+                <h4>Escreva sobre sua experiência:</h4>
+                <div class="text-container">
+                    <textarea id="text-feedback"></textarea>
+                </div>
                 <button class="submit-feedback">Enviar Avaliação</button>
             </div>
         `;
