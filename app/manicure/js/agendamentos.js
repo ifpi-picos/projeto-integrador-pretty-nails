@@ -13,6 +13,9 @@ function renderSolicitacoes(agendamentos) {
         return;
     }
 
+    // Ordenar agendamentos pendentes por data (mais recente primeiro)
+    agendamentos.sort((a, b) => new Date(b.data_hora) - new Date(a.data_hora));
+
     agendamentos.forEach(agendamento => {
         const cliente = agendamento.cliente || {
             nome: 'Cliente',
@@ -77,44 +80,6 @@ function renderSolicitacoes(agendamentos) {
 
         container.appendChild(solicitacaoCard);
     });
-
-}
-
-function updateAgendamentoStatus(id, status) {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        showNotification('Faça login para continuar', 'error');
-        return;
-    }
-
-    fetch(`${API_BASE_URL}/api/agendamentos/${id}/status`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ status })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Erro ao atualizar agendamento');
-        return response.json();
-    })
-    .then(data => {
-        showNotification(`Agendamento ${status === 'confirmado' ? 'aceito' : 'recusado'} com sucesso`, 'success');
-        document.querySelector(`.solicitacao-card[data-id="${id}"]`).remove();
-        if (document.querySelectorAll('.solicitacao-card').length === 0) {
-            document.getElementById('solicitacoes-container').innerHTML = `
-                <div class="empty-state">
-                    <i class="fas fa-calendar-check"></i>
-                    <p>Nenhuma solicitação pendente no momento</p>
-                </div>
-            `;
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        showNotification('Erro ao atualizar agendamento', 'error');
-    });
 }
 
 // NOVAS FUNÇÕES PARA TABS E AGENDAMENTOS POR STATUS
@@ -131,6 +96,29 @@ function renderAgendamentos(containerId, agendamentos, type) {
         `;
         return;
     }
+
+    // Definir prioridades de status
+    const statusPriority = {
+        'pendente': 1,
+        'confirmado': 2,
+        'concluido': 3,
+        'cancelado': 4,
+        'recusado': 5
+    };
+
+    // Ordenar agendamentos
+    agendamentos.sort((a, b) => {
+        // Primeiro ordena por prioridade de status
+        const priorityA = statusPriority[a.status.toLowerCase()] || 6;
+        const priorityB = statusPriority[b.status.toLowerCase()] || 6;
+        
+        if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+        }
+        
+        // Depois ordena por data (mais recente primeiro)
+        return new Date(b.data_hora) - new Date(a.data_hora);
+    });
 
     container.innerHTML = '';
 
@@ -196,8 +184,6 @@ function getEmptyStateText(type) {
     switch(type) {
         case 'pendentes': return 'pendente';
         case 'confirmados': return 'confirmado';
-        case 'em_andamento': return 'em andamento';
-        case 'concluidos': return 'concluído';
         case 'historico': return 'no histórico';
         default: return '';
     }
@@ -218,8 +204,8 @@ function getActionButtons(type, status) {
     if (type === 'confirmados') {
         if (status === 'confirmado') {
             return `
-                <button class="action-button btn-secondary" data-action="iniciar">
-                    <i class="fas fa-play"></i> Iniciar
+             <button class="action-button btn-confirm" data-action="concluir">
+                    <i class="fas fa-flag-checkered"></i> Concluir
                 </button>
                 <button class="action-button btn-cancel" data-action="cancelar">
                     <i class="fas fa-times"></i> Cancelar
@@ -271,7 +257,6 @@ async function handleAgendamentoAction(id, action, type) {
     switch(action) {
         case 'confirmar': status = 'confirmado'; break;
         case 'recusar': status = 'recusado'; break;
-        case 'iniciar': status = 'em_andamento'; break;
         case 'concluir': status = 'concluido'; break;
         case 'cancelar': status = 'cancelado'; break;
         default: return;
@@ -335,20 +320,6 @@ async function loadAgendamentos() {
         });
         const confirmadosData = await confirmadosResponse.json();
         renderAgendamentos('confirmados-container', confirmadosData.agendamentos, 'confirmados');
-
-        // Em andamento
-        const andamentoResponse = await fetch(`${API_BASE_URL}/api/agendamentos/em-andamento`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        const andamentoData = await andamentoResponse.json();
-        renderAgendamentos('em-andamento-container', andamentoData.agendamentos, 'em_andamento');
-        
-        // Em andamento
-        const concluidoResponse = await fetch(`${API_BASE_URL}/api/agendamentos/concluidos`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        const concluidoData = await concluidoResponse.json();
-        renderAgendamentos('concluido-container', concluidoData.agendamentos, 'concluidos');
 
         // Histórico
         const historicoResponse = await fetch(`${API_BASE_URL}/api/agendamentos/historico`, {

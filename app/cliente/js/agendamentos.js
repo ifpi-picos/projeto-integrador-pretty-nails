@@ -1,9 +1,42 @@
-// Função para renderizar os dados
+function sortAgendamentos(agendamentos) {
+    // Definir a ordem de prioridade dos status
+    const statusOrder = {
+        'pendente': 1,
+        'confirmado': 2,
+        'concluido': 3,
+        'cancelado': 4
+    };
+
+    // Ordenar os agendamentos
+    return agendamentos.sort((a, b) => {
+        // Primeiro ordena por status
+        const statusComparison = statusOrder[a.status] - statusOrder[b.status];
+        if (statusComparison !== 0) return statusComparison;
+        
+        // Se status for igual, ordena por data (mais recente primeiro)
+        return new Date(b.data_hora) - new Date(a.data_hora);
+    });
+}
+
+// Função para renderizar os dados com a ordenação correta
 function renderManicures(agendamentos) {
     const container = document.getElementById('manicures-container');
     container.innerHTML = '';
 
-    agendamentos.forEach(agendamento => {
+    // Ordenar os agendamentos antes de renderizar
+    const sortedAgendamentos = sortAgendamentos(agendamentos);
+
+    if (sortedAgendamentos.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-calendar-check"></i>
+                <p>Nenhum agendamento encontrado</p>
+            </div>
+        `;
+        return;
+    }
+
+    sortedAgendamentos.forEach(agendamento => {
         const manicure = agendamento.manicure || {};
         const date = new Date(agendamento.data_hora);
         const dateStr = date.toLocaleDateString('pt-BR', { 
@@ -15,12 +48,12 @@ function renderManicures(agendamentos) {
         const manicureCard = document.createElement('div');
         manicureCard.className = 'manicure-card';
 
-        // Usa createRequestHtml para inserir o bloco de avaliação se necessário
         manicureCard.innerHTML = `
             <div class="manicure-header">
                 <img src="${manicure.foto || 'imagens/user.png'}" alt="${manicure.nome || 'Manicure'}" class="manicure-photo">
                 <div class="manicure-info">
                     <h3>${manicure.nome || 'Manicure'}</h3>
+                    <span class="status-badge status-${agendamento.status}">${formatStatus(agendamento.status)}</span>
                 </div>
             </div>
             <div class="requests-list">
@@ -42,7 +75,18 @@ function renderManicures(agendamentos) {
     setupStarRating(); // Ativa os eventos de avaliação
 }
 
-// Função para criar o HTML de cada requisição
+// Função para formatar o status para exibição
+function formatStatus(status) {
+    const statusMap = {
+        'pendente': 'Pendente',
+        'confirmado': 'Confirmado',
+        'concluido': 'Concluído',
+        'cancelado': 'Cancelado'
+    };
+    return statusMap[status] || status;
+}
+
+// Função para criar o HTML de cada requisição (mantida igual)
 function createRequestHtml(request) {
     const date = new Date(request.data);
     const dateStr = date.toLocaleDateString('pt-BR', { 
@@ -74,15 +118,28 @@ function createRequestHtml(request) {
 
     return `
         <div class="request-item" data-request-id="${request.id}">
-            <div class="request-date">${dateStr}</div>
-            <div class="request-time">${request.horaInicio} às ${request.horaFim}</div>
-            <div class="status status-${request.status.toLowerCase()}">${request.status}</div>
+            <div class="request-meta">
+                <div class="request-date">${dateStr}</div>
+                <div class="request-time">${request.horaInicio}${request.horaFim ? ' às ' + request.horaFim : ''}</div>
+            </div>
+            <div class="request-details">
+                <div class="detail-row">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <span>${request.servico}</span>
+                </div>
+                ${request.observacoes ? `
+                <div class="detail-row">
+                    <i class="fas fa-comment"></i>
+                    <span>${request.observacoes}</span>
+                </div>
+                ` : ''}
+            </div>
             ${feedbackHtml}
         </div>
     `;
 }
 
-// Configura o sistema de avaliação por estrelas
+// Configura o sistema de avaliação por estrelas (mantida igual)
 function setupStarRating() {
     document.querySelectorAll('.rating').forEach(ratingDiv => {
         const stars = Array.from(ratingDiv.querySelectorAll('.star'));
@@ -144,9 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
     })
     .then(res => {
-    const data = res.agendamentos?.comoCliente || [];
-    renderManicures(data);
-})
+        const data = res.agendamentos?.comoCliente || [];
+        renderManicures(data);
+    })
     .catch(error => {
         console.error('Erro:', error);
         alert('Erro ao carregar agendamentos', 'error');
