@@ -252,7 +252,7 @@ body {
 .status-pendente { background-color: #FFF3CD; color: #856404; }
 .status-confirmado { background-color: #D4EDDA; color: #155724; }
 .status-cancelado { background-color: #F8D7DA; color: #721C24; }
-.status-finalizado { background-color: #E2F0FD; color: #0C5460; }
+.status-concluido { background-color: #E2F0FD; color: #0C5460; }
 
 /* Empty State */
 .empty-state {
@@ -335,6 +335,11 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+
+    .app-content{
+        margin-bottom: 60px;
+    }
+
     .app-container {
         padding: 1rem;
     }

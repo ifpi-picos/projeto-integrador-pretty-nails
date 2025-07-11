@@ -1,260 +1,232 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
-  <title>Perfil Profissional</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff0f5;
-      margin: 0;
-      padding: 0;
-    }
-
-    .profile-container {
-      max-width: 800px;
-      margin: 30px auto;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255, 182, 193, 0.4);
-      overflow: hidden;
-    }
-
-    .profile-header {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      background-color: #ffb6c1;
-      color: #4b004b;
-      position: relative;
-    }
-
-    .profile-header img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-right: 20px;
-      border: 3px solid #fff;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .profile-header img:hover {
-      transform: scale(1.05);
-    }
-
-    .profile-header input[type="file"] {
-      position: absolute;
-      left: 20px;
-      top: 90px;
-      font-size: 10px;
-      opacity: 0.8;
-    }
-
-    .profile-header h2 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    .info-section {
-      padding: 20px;
-    }
-
-    .info-box {
-      background-color: #ffe6ee;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      transition: background-color 0.3s ease;
-    }
-
-    .info-box:hover {
-      background-color: #ffdbe8;
-    }
-
-    .info-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-      color: #a3005b;
-    }
-
-    .days, .hours {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .day, .hour {
-      padding: 6px 12px;
-      background-color: #ffcce0;
-      border-radius: 6px;
-      font-weight: bold;
-      color: #6e004c;
-      transition: transform 0.2s ease;
-    }
-
-    .day:hover, .hour:hover {
-      transform: scale(1.05);
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px 20px;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .buttons button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.2s ease;
-    }
-
-    .buttons button:hover {
-      background-color: #ff4081;
-      transform: translateY(-2px);
-    }
-
-    .edit-section {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 15px;
-      background-color: #fff5f9;
-      border-top: 1px solid #ffc0cb;
-      opacity: 0;
-      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
-    }
-
-    .edit-section.show {
-      max-height: 500px;
-      opacity: 1;
-      padding: 15px;
-    }
-
-    .edit-section h3 {
-      margin-top: 0;
-      color: #a3005b;
-    }
-
-    input[type="text"], input[type="email"], input[type="tel"], input[type="time"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ffb6c1;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    .checkbox-group label {
-      display: inline-block;
-      margin-right: 10px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/perfil-proprio.css">
+  <link rel="stylesheet" href="css/side-bar.css">
 </head>
+
 <body>
 
-<div class="profile-container">
-  <div class="profile-header">
-    <img id="profilePic" src="https://via.placeholder.com/100" alt="Foto de Perfil">
-    <input type="file" accept="image/*" onchange="loadPhoto(event)">
-    <div>
-      <h2>Maria das Graças</h2>
-      <p>maria@exemplo.com.br</p>
-    </div>
-  </div>
+  <nav id="sidebar">
+    <div id="sidebar_content">
+      <div id="user">
+        <img src="imagens/user.png" id="user_avatar" alt="Avatar">
+        <p id="user_infos">
+          <span class="item-description" id="user-name">Fulano de tal</span>
+          <span class="item-description">(Cliente)</span>
+        </p>
+      </div>
 
-  <div class="info-section">
-    <div class="info-box">
-      <div class="info-title">Seus dias de trabalho:</div>
-      <div class="days" id="diasAtuais">
-        <div class="day">S</div>
-        <div class="day">T</div>
-        <div class="day">Q</div>
-        <div class="day">Q</div>
-        <div class="day">S</div>
-        <div class="day">S</div>
-        <div class="day">D</div>
+      <ul id="side_items">
+        <a href="principal.html" class="side-item-link">
+          <li class="side-item" data-label="Inicio">
+            <i class="fa-solid fa-house"></i>
+            <span class="item-description">Início</span>
+          </li>
+        </a>
+        <a href="calendario.html" class="side-item-link">
+          <li class="side-item" data-label="calendario">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span class="item-description">Calendário</span>
+          </li>
+        </a>
+        <a href="agendamentos.html" class="side-item-link">
+          <li class="side-item" data-label="Agendamentos">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span class="item-description">Agendamentos</span>
+          </li>
+        </a>
+        <a href="perfil-proprio.html" class="side-item-link">
+          <li class="side-item active" data-label="Perfil">
+            <i class="fa-solid fa-user"></i>
+            <span class="item-description">Perfil</span>
+          </li>
+        </a>
+        <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+          <li class="side-item" data-label="Configurações">
+            <i class="fa-solid fa-gear"></i>
+            <span class="item-description">Configurações</span>
+          </li>
+        </a>
+      </ul>
+
+      <button id="open_btn">
+        <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div id="logout">
+      <button id="logout_btn" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span class="item-description">Logout</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="app-container">
+    <div class="profile-header">
+      <div class="profile-banner"></div>
+      <div class="profile-content">
+        <div class="profile-pic-container">
+          <img id="foto" src="">
+          <div class="profile-overlay">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+        <div class="profile-info">
+          <h1 id="nome">Carregando...</h1>
+          <p id="email"><i class="fas fa-envelope"></i> carregando...</p>
+          <p id="telefone"><i class="fas fa-phone"></i> carregando...</p>
+          <p id="endereco"><i class="fas fa-map-marker-alt"></i> carregando...</p>
+        </div>
       </div>
     </div>
 
-    <div class="info-box">
-      <div class="info-title">Seus horários:</div>
-      <div class="hours" id="horariosAtuais">
-        <div class="hour">08:00 - 12:00</div>
-        <div class="hour">14:00 - 18:00</div>
+    <div class="profile-details">
+      <div class="detail-card">
+        <div class="detail-header">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Dias de Trabalho</h3>
+        </div>
+        <div class="days-container" id="workDays">
+
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-header">
+          <i class="fas fa-clock"></i>
+          <h3>Horários</h3>
+        </div>
+        <div class="hours-container" id="workHours">
+
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-header">
+          <i class="fas fa-cut"></i>
+          <h3>Serviços</h3>
+        </div>
+        <div class="services-container" id="servicesList">
+
+        </div>
+      </div>
+    </div>
+
+    <button class="edit-button" id="editProfileBtn">
+      <i class="fas fa-edit"></i> Editar Perfil
+    </button>
+  </div>
+
+  <!-- Modal de Edição -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Editar Perfil</h2>
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="editPhoto">Foto de Perfil</label>
+          <div class="photo-upload">
+            <img id="editPhotoPreview" src="https://via.placeholder.com/150" alt="Preview">
+            <input type="file" id="editPhoto" accept="image/*">
+            <label for="editPhoto" class="upload-btn">
+              <i class="fas fa-camera"></i> Alterar Foto
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editName"><i class="fas fa-user"></i> Nome Completo</label>
+          <input type="text" id="editName" placeholder="Seu nome completo">
+        </div>
+
+        <div class="form-group">
+          <label for="editEmail"><i class="fas fa-envelope"></i> Email</label>
+          <input type="email" id="editEmail" placeholder="seu@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="editPhone"><i class="fas fa-phone"></i> Telefone</label>
+          <input type="tel" id="editPhone" placeholder="(00) 00000-0000">
+        </div>
+
+        <div class="form-group">
+          <label for="editCity"><i class="fas fa-city"></i> Cidade</label>
+          <input type="text" id="editCity" placeholder="Sua cidade">
+        </div>
+
+        <div class="form-group">
+          <label for="editState"><i class="fas fa-map-marked-alt"></i> Estado</label>
+          <select id="editState">
+            <option value="">Selecione</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <!-- outros estados -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> Dias de Trabalho</label>
+          <div class="days-checkbox">
+            <label><input type="checkbox" name="workDay" value="0"> D</label>
+            <label><input type="checkbox" name="workDay" value="1"> S</label>
+            <label><input type="checkbox" name="workDay" value="2"> T</label>
+            <label><input type="checkbox" name="workDay" value="3"> Q</label>
+            <label><input type="checkbox" name="workDay" value="4"> Q</label>
+            <label><input type="checkbox" name="workDay" value="5"> S</label>
+            <label><input type="checkbox" name="workDay" value="6"> S</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-clock"></i> Horários de Trabalho</label>
+          <div class="time-slots">
+            <div class="time-slot">
+              <input type="time" id="timeFrom1" value="08:00">
+              <span>às</span>
+              <input type="time" id="timeTo1" value="12:00">
+            </div>
+            <div class="time-slot">
+              <input type="time" id="timeFrom2" value="14:00">
+              <span>às</span>
+              <input type="time" id="timeTo2" value="18:00">
+            </div>
+            <button type="button" class="add-time-btn">
+              <i class="fas fa-plus"></i> Adicionar horário
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-cut"></i> Serviços Oferecidos</label>
+          <div class="services-checkbox">
+            <label><input type="checkbox" name="service" value="Manicure"> Manicure</label>
+            <label><input type="checkbox" name="service" value="Pedicure"> Pedicure</label>
+            <label><input type="checkbox" name="service" value="Design de Unhas"> Design de Unhas</label>
+            <label><input type="checkbox" name="service" value="Alongamento"> Alongamento</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" id="cancelEditBtn">Cancelar</button>
+        <button class="save-btn" id="saveProfileBtn">Salvar Alterações</button>
       </div>
     </div>
   </div>
 
-  <div class="buttons">
-    <button onclick="toggleSection('editPerfil')">Editar perfil</button>
-    <button onclick="toggleSection('editDias')">Editar seus dias de trabalho</button>
-    <button onclick="toggleSection('editHoras')">Editar horários</button>
-  </div>
-
-  <!-- Editar Perfil -->
-  <div class="edit-section" id="editPerfil">
-    <h3>Editar Perfil</h3>
-    <label>Nome:<br><input type="text" value="Maria das Graças"></label>
-    <label>Email:<br><input type="email" value="maria@exemplo.com.br"></label>
-    <label>Telefone:<br><input type="tel" value="(00) 00000-0000"></label>
-  </div>
-
-  <!-- Editar Dias -->
-  <div class="edit-section" id="editDias">
-    <h3>Editar Dias de Trabalho</h3>
-    <div class="checkbox-group">
-      <label><input type="checkbox" checked> S</label>
-      <label><input type="checkbox" checked> T</label>
-      <label><input type="checkbox" checked> Q</label>
-      <label><input type="checkbox" checked> Q</label>
-      <label><input type="checkbox" checked> S</label>
-      <label><input type="checkbox" checked> S</label>
-      <label><input type="checkbox" checked> D</label>
-    </div>
-  </div>
-
-  <!-- Editar Horários -->
-  <div class="edit-section" id="editHoras">
-    <h3>Editar Horários</h3>
-    <label>Horário 1:<br>
-      <input type="time" value="08:00"> até 
-      <input type="time" value="12:00">
-    </label>
-    <br>
-    <label>Horário 2:<br>
-      <input type="time" value="14:00"> até 
-      <input type="time" value="18:00">
-    </label>
-  </div>
-</div>
-
-<script>
-  function toggleSection(id) {
-    const sections = document.querySelectorAll('.edit-section');
-    sections.forEach(sec => {
-      if (sec.id === id) {
-        sec.classList.toggle('show');
-      } else {
-        sec.classList.remove('show');
-      }
-    });
-  }
-
-  function loadPhoto(event) {
-    const output = document.getElementById('profilePic');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  }
-</script>
-
+  <script src="../../config.js"></script>
+  <script src="js/perfil-proprio.js"></script>
+  <script src="js/side-bar.js"></script>
 </body>
+
 </html>

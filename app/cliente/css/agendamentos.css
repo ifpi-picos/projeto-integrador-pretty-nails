@@ -62,7 +62,6 @@ body {
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     margin-bottom: 65px;
-    border: 1px solid green;
 }
 
 .app-content:hover {

@@ -25,7 +25,11 @@ async function adicionarUsuario() {
     telefone: campoTelefone,
     estado: campoEstado,
     cidade: campoCidade,
-    tipo: campoTipo
+    tipo: campoTipo,
+    dias_trabalho: diasSelecionados, 
+    horarios: horariosSelecionados, 
+    servicos: servicosSelecionados,
+    regras: regrasDigitadas
   };
 
   try {
@@ -46,7 +50,7 @@ async function adicionarUsuario() {
 
     // Troca para o formulário de login
     container.classList.remove('right-panel-active');
-    
+
   } catch (error) {
     alert(error.message);
     console.error("Erro ao cadastrar usuário:", error);
