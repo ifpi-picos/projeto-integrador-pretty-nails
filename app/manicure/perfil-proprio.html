@@ -93,9 +93,7 @@
           <i class="fas fa-calendar-alt"></i>
           <h3>Dias de Trabalho</h3>
         </div>
-        <div class="days-container" id="workDays">
-
-        </div>
+        <div class="days-container" id="workDays"></div>
       </div>
 
       <div class="detail-card">
@@ -103,9 +101,7 @@
           <i class="fas fa-clock"></i>
           <h3>Horários</h3>
         </div>
-        <div class="hours-container" id="workHours">
-
-        </div>
+        <div class="hours-container" id="workHours"></div>
       </div>
 
       <div class="detail-card">
@@ -113,9 +109,7 @@
           <i class="fas fa-cut"></i>
           <h3>Serviços</h3>
         </div>
-        <div class="services-container" id="servicesList">
-
-        </div>
+        <div class="services-container" id="servicesList"></div>
       </div>
     </div>
 
@@ -136,7 +130,7 @@
         <div class="form-group">
           <label for="editPhoto">Foto de Perfil</label>
           <div class="photo-upload">
-            <img id="editPhotoPreview" src="https://via.placeholder.com/150" alt="Preview">
+            <img id="editPhotoPreview" src="">
             <input type="file" id="editPhoto" accept="image/*">
             <label for="editPhoto" class="upload-btn">
               <i class="fas fa-camera"></i> Alterar Foto
@@ -145,8 +139,8 @@
         </div>
 
         <div class="form-group">
-          <label for="editName"><i class="fas fa-user"></i> Nome Completo</label>
-          <input type="text" id="editName" placeholder="Seu nome completo">
+          <label for="editName"><i class="fas fa-user"></i> Nome </label>
+          <input type="text" id="editName" placeholder="Seu nome">
         </div>
 
         <div class="form-group">
@@ -176,7 +170,7 @@
 
         <div class="form-group">
           <label><i class="fas fa-calendar-alt"></i> Dias de Trabalho</label>
-          <div class="days-checkbox">
+          <div class="days-checkbox" id="workDaysCheckbox">
             <label><input type="checkbox" name="workDay" value="0"> D</label>
             <label><input type="checkbox" name="workDay" value="1"> S</label>
             <label><input type="checkbox" name="workDay" value="2"> T</label>
@@ -189,18 +183,11 @@
 
         <div class="form-group">
           <label><i class="fas fa-clock"></i> Horários de Trabalho</label>
-          <div class="time-slots">
+          <div class="time-slots" id="timeSlotsContainer">
             <div class="time-slot">
-              <input type="time" id="timeFrom1" value="08:00">
-              <span>às</span>
-              <input type="time" id="timeTo1" value="12:00">
+             
             </div>
-            <div class="time-slot">
-              <input type="time" id="timeFrom2" value="14:00">
-              <span>às</span>
-              <input type="time" id="timeTo2" value="18:00">
-            </div>
-            <button type="button" class="add-time-btn">
+            <button type="button" class="add-time-btn" id="addTimeBtn">
               <i class="fas fa-plus"></i> Adicionar horário
             </button>
           </div>
@@ -208,11 +195,13 @@
 
         <div class="form-group">
           <label><i class="fas fa-cut"></i> Serviços Oferecidos</label>
-          <div class="services-checkbox">
-            <label><input type="checkbox" name="service" value="Manicure"> Manicure</label>
-            <label><input type="checkbox" name="service" value="Pedicure"> Pedicure</label>
-            <label><input type="checkbox" name="service" value="Design de Unhas"> Design de Unhas</label>
-            <label><input type="checkbox" name="service" value="Alongamento"> Alongamento</label>
+          <div class="serv-slots" id="servSlotsContainer">
+            <div class="serv-slot">
+              
+            </div>
+            <button type="button" class="add-serv-btn" id="addServBtn">
+              <i class="fas fa-plus"></i> Adicionar serviço
+            </button>
           </div>
         </div>
       </div>

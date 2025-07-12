@@ -22,11 +22,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const editPhone = document.getElementById('editPhone');
     const editCity = document.getElementById('editCity');
     const editState = document.getElementById('editState');
+    const addTimeBtn = document.getElementById('addTimeBtn');
+    const addServBtn = document.getElementById('addServBtn');
+    const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+    const servSlotsContainer = document.getElementById('servSlotsContainer');
+    const workDaysCheckbox = document.getElementById('workDaysCheckbox');
 
     // Verificar autenticação
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-    const userType = localStorage.getItem('userType'); // 'cliente' ou 'profissional'
+    const userType = localStorage.getItem('userType');
 
     if (!token || !userId) {
         window.location.href = 'login.html';
@@ -53,30 +58,72 @@ document.addEventListener('DOMContentLoaded', async () => {
             telefone.innerHTML = `<i class="fas fa-phone"></i> ${data.telefone || 'Telefone não informado'}`;
             endereco.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${data.cidade || 'Cidade não informada'}, ${data.estado || 'Estado não informado'}`;
 
-            // Dias de trabalho dinâmico
-            if (data.dias_trabalho && data.dias_trabalho.length > 0) {
-                const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-                workDaysContainer.innerHTML = data.dias_trabalho
-                    .map(idx => `<span class="day">${days[idx]}</span>`)
-                    .join('');
-            } else {
-                workDaysContainer.innerHTML = '<span class="day">Nenhum dia cadastrado</span>';
+            // Preencher dados do modal
+            editPhotoPreview.src = data.foto || 'imagens/user.png';
+            editName.value = data.nome || '';
+            editEmail.value = data.email || '';
+            editPhone.value = data.telefone || '';
+            editCity.value = data.cidade || '';
+            editState.value = data.estado || '';
+            if (data.dias_trabalho && Array.isArray(data.dias_trabalho)) {
+                document.querySelectorAll('input[name="workDay"]').forEach(checkbox => {
+                    checkbox.checked = data.dias_trabalho.includes(parseInt(checkbox.value));
+                });
             }
 
-            // Horários de trabalho dinâmico
+            // Dias de trabalho
+            if (data.dias_trabalho && Array.isArray(data.dias_trabalho) && data.dias_trabalho.length > 0) {
+                // Exemplo de nomes dos dias da semana (ajuste conforme necessário)
+                const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+                workDaysContainer.innerHTML = data.dias_trabalho
+                    .map(dia => `<span class="hour">${diasSemana[dia]}</span>`)
+                    .join('');
+            } else {
+                workDaysContainer.innerHTML = '<span class="work-day">Nenhum dia cadastrado</span>';
+            }
+
+            // Horários
             if (data.horarios && data.horarios.length > 0) {
                 workHoursContainer.innerHTML = data.horarios
-                    .map(h => `<span class="hour">${h.inicio} - ${h.fim}</span>`)
+                    .map(h => `<span class="hour">${h}</span>`)
                     .join('');
+
+                // Preencher horários no modal
+                timeSlotsContainer.innerHTML = '';
+                data.horarios.forEach(horario => {
+                    addTimeSlot(horario);
+                });
+                // Adiciona o botão de adicionar horário
+                const addTimeBtn = document.createElement('button');
+                addTimeBtn.type = 'button';
+                addTimeBtn.className = 'add-time-btn';
+                addTimeBtn.id = 'addTimeBtn';
+                addTimeBtn.innerHTML = '<i class="fas fa-plus"></i> Adicionar horário';
+                addTimeBtn.addEventListener('click', () => addTimeSlot());
+                timeSlotsContainer.appendChild(addTimeBtn);
             } else {
                 workHoursContainer.innerHTML = '<span class="hour">Nenhum horário cadastrado</span>';
             }
 
-            // Serviços oferecidos dinâmico
+            // Serviços oferecidos
             if (data.servicos && data.servicos.length > 0) {
                 servicesList.innerHTML = data.servicos
                     .map(s => `<span class="service">${s.nome ? s.nome : s}${s.preco ? ` (R$${s.preco})` : ''}</span>`)
                     .join('');
+
+                // Preencher serviços no modal
+                servSlotsContainer.innerHTML = '';
+                data.servicos.forEach(servico => {
+                    addServSlot(servico.nome || servico, servico.preco);
+                });
+                // Adiciona o botão de adicionar serviço
+                const addServBtn = document.createElement('button');
+                addServBtn.type = 'button';
+                addServBtn.className = 'add-serv-btn';
+                addServBtn.id = 'addServBtn';
+                addServBtn.innerHTML = '<i class="fas fa-plus"></i> Adicionar serviço';
+                addServBtn.addEventListener('click', () => addServSlot());
+                servSlotsContainer.appendChild(addServBtn);
             } else {
                 servicesList.innerHTML = '<span class="service">Nenhum serviço cadastrado</span>';
             }
@@ -94,6 +141,49 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             editModal.classList.remove('active');
         }
+    }
+
+    // Função para adicionar novo time-slot
+    function addTimeSlot(horario = '') {
+        const timeSlot = document.createElement('div');
+        timeSlot.className = 'time-slot';
+        timeSlot.innerHTML = `
+        <input type="time" class="timeFrom" value="${horario}">
+        <button type="button" class="remove-btn">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+        const addBtn = timeSlotsContainer.querySelector('.add-time-btn');
+        timeSlotsContainer.insertBefore(timeSlot, addBtn);
+
+        const removeBtn = timeSlot.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', () => {
+            timeSlotsContainer.removeChild(timeSlot);
+        });
+    }
+
+    // Função para adicionar novo serv-slot
+    function addServSlot(nome = '', preco = '') {
+        const servSlot = document.createElement('div');
+        servSlot.className = 'serv-slot';
+        servSlot.innerHTML = `
+            <input type="text" class="servico" placeholder="Serviço" value="${nome}">
+            <span>-</span>
+            <input type="number" class="preco" placeholder="R$" value="${preco}">
+            <button type="button" class="remove-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+
+        // Inserir antes do botão de adicionar
+        const addBtn = servSlotsContainer.querySelector('.add-serv-btn');
+        servSlotsContainer.insertBefore(servSlot, addBtn);
+
+        // Adicionar evento para remover
+        const removeBtn = servSlot.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', () => {
+            servSlotsContainer.removeChild(servSlot);
+        });
     }
 
     // Event listeners
@@ -121,34 +211,55 @@ document.addEventListener('DOMContentLoaded', async () => {
                 diasTrabalho.push(parseInt(checkbox.value));
             });
 
+            // Horários
             const horarios = [];
-            const inicio1 = document.getElementById('timeFrom1').value;
-            const fim1 = document.getElementById('timeTo1').value;
-            if (inicio1 && fim1) horarios.push({ inicio: inicio1, fim: fim1 });
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                const horario = slot.querySelector('.timeFrom')?.value;
+                if (horario) horarios.push(horario);
+            });
 
-            const inicio2 = document.getElementById('timeFrom2').value;
-            const fim2 = document.getElementById('timeTo2').value;
-            if (inicio2 && fim2) horarios.push({ inicio: inicio2, fim: fim2 });
-
+            // Serviços
             const servicos = [];
-            document.querySelectorAll('input[name="service"]:checked').forEach(checkbox => {
-                servicos.push({ nome: checkbox.value });
+            document.querySelectorAll('.serv-slot').forEach(slot => {
+                const nome = slot.querySelector('.servico')?.value;
+                const preco = slot.querySelector('.preco')?.value;
+                if (nome) servicos.push({ nome, preco: preco || null });
             });
 
             // Foto (se mudou)
             let fotoUrl = editPhotoPreview.src;
+            if (fotoUrl.startsWith('data:')) {
+                // Se for uma nova imagem (data URL), enviar para o servidor
+                const response = await fetch(`${API_BASE_URL}/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ image: fotoUrl })
+                });
 
+                if (!response.ok) throw new Error('Erro ao enviar imagem');
+
+                const data = await response.json();
+                fotoUrl = data.url;
+            }
+
+            // Montar objeto com dados atualizados
             const profileData = {
                 nome: editName.value,
                 email: editEmail.value,
                 telefone: editPhone.value,
                 cidade: editCity.value,
                 estado: editState.value,
-                foto: fotoUrl,
                 dias_trabalho: diasTrabalho,
                 horarios: horarios,
                 servicos: servicos
             };
+
+            if (fotoUrl && !fotoUrl.includes('imagens/user.png')) {
+                profileData.foto = fotoUrl;
+            }
 
             const response = await fetch(`${API_BASE_URL}/auth/profile`, {
                 method: 'PUT',
@@ -199,6 +310,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 3000);
     }
 
-    // Carregar dados iniciais
+    // Inicialização
     loadProfileData();
+
+    // Adicionar eventos aos botões dinâmicos
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.id === 'addTimeBtn') {
+            addTimeSlot();
+        }
+        if (e.target && e.target.id === 'addServBtn') {
+            addServSlot();
+        }
+    });
 });
