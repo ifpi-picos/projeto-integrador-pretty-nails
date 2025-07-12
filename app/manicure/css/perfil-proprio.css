@@ -418,6 +418,9 @@ body {
   border: none;
   font-size: 1rem;
   cursor: pointer;
+  text-align: center;
+  line-height: 20px;
+  padding: 0;
 }
 
 .modal-footer {
@@ -454,6 +457,13 @@ body {
 
 .save-btn:hover {
   background-color: var(--primary-dark);
+}
+
+.save-btn.disabled, .save-btn:disabled {
+    background-color: #ccc !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {

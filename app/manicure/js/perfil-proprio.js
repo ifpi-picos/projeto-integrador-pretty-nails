@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const editPhotoPreview = document.getElementById('editPhotoPreview');
     const editPhoto = document.getElementById('editPhoto');
     const editName = document.getElementById('editName');
-    const editEmail = document.getElementById('editEmail');
     const editPhone = document.getElementById('editPhone');
     const editCity = document.getElementById('editCity');
     const editState = document.getElementById('editState');
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Preencher dados do modal
             editPhotoPreview.src = data.foto || 'imagens/user.png';
             editName.value = data.nome || '';
-            editEmail.value = data.email || '';
             editPhone.value = data.telefone || '';
             editCity.value = data.cidade || '';
             editState.value = data.estado || '';
@@ -248,7 +246,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Montar objeto com dados atualizados
             const profileData = {
                 nome: editName.value,
-                email: editEmail.value,
                 telefone: editPhone.value,
                 cidade: editCity.value,
                 estado: editState.value,
