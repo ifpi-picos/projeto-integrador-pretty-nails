@@ -1,3 +1,4 @@
+// Seleção de horários
 document.querySelectorAll('.horario-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
@@ -5,6 +6,7 @@ document.querySelectorAll('.horario-btn').forEach(btn => {
   });
 });
 
+// Envio do formulário de agendamento
 document.getElementById('agendamento-form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -16,10 +18,10 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
   if (submitBtn) submitBtn.disabled = true;
 
   try {
+    // Verificação de autenticação
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-
-    // Verificação robusta de autenticação
+    
     if (!token || !userId) {
       mensagemDiv.textContent = 'Sessão expirada. Redirecionando para login...';
       mensagemDiv.style.color = 'red';
@@ -31,56 +33,55 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
       return;
     }
 
-    const dataInput = document.getElementById('data').value;
-    const horarioSelecionado = document.querySelector('.horario-btn.selected');
-    const servico = document.getElementById('servico').value;
-    const observacoes = document.getElementById('observacoes')?.value || '';
-
-    if (!dataInput) {
-      mensagemDiv.textContent = 'Por favor, selecione uma data.';
+    // Obtenção dos dados do formulário
+    const dataSelecionada = new Date(sessionStorage.getItem('dataSelecionada'));
+    const horarioBtnSelecionado = document.querySelector('.horario-btn.selected');
+    
+    if (!dataSelecionada || isNaN(dataSelecionada.getTime())) {
+      mensagemDiv.textContent = 'Por favor, selecione uma data válida.';
       mensagemDiv.style.color = 'red';
       return;
     }
-    if (!horarioSelecionado) {
+    
+    if (!horarioBtnSelecionado) {
       mensagemDiv.textContent = 'Por favor, selecione um horário disponível.';
       mensagemDiv.style.color = 'red';
       return;
     }
+    
+    const horario = horarioBtnSelecionado.dataset.value;
+    const servico = document.getElementById('servico').value;
+    const observacoes = document.getElementById('observacoes')?.value || '';
+
+    // Validação do serviço
     if (!servico) {
       mensagemDiv.textContent = 'Por favor, selecione um serviço.';
       mensagemDiv.style.color = 'red';
       return;
     }
 
-    const horarioValor = horarioSelecionado.textContent.trim();
-    if (!/^\d{2}:\d{2}$/.test(horarioValor)) {
-      mensagemDiv.textContent = 'Horário inválido.';
+    // Combinação de data e horário
+    const [hora, minuto] = horario.split(':');
+    dataSelecionada.setHours(parseInt(hora), parseInt(minuto), 0, 0);
+
+    // Verificação se a data/horário é futura
+    if (dataSelecionada <= new Date()) {
+      mensagemDiv.textContent = 'Agende apenas para horários futuros.';
       mensagemDiv.style.color = 'red';
       return;
     }
 
-    const dataHoraCompleta = new Date(`${dataInput}T${horarioValor}:00`);
-    if (isNaN(dataHoraCompleta.getTime())) {
-      mensagemDiv.textContent = 'Data e horário inválidos.';
-      mensagemDiv.style.color = 'red';
-      return;
-    }
-
+    // Obtenção do ID da manicure
     const urlParams = new URLSearchParams(window.location.search);
     const idManicure = urlParams.get('id');
+    
     if (!idManicure) {
       mensagemDiv.textContent = 'ID da manicure não encontrado.';
       mensagemDiv.style.color = 'red';
       return;
     }
 
-    if (dataHoraCompleta < new Date()) {
-      mensagemDiv.textContent = 'Agende apenas para horários futuros.';
-      mensagemDiv.style.color = 'red';
-      return;
-    }
-
-    // ATUALIZAÇÃO DESTA PARTE
+    // Envio para o servidor
     const resposta = await fetch(`${API_BASE_URL}/api/agendamentos`, {
       method: 'POST',
       headers: {
@@ -90,12 +91,13 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
       body: JSON.stringify({
         clienteId: userId,
         manicureId: idManicure,
-        dataHora: dataHoraCompleta.toISOString(),
+        dataHora: dataSelecionada.toISOString(),
         servico,
         observacoes,
       }),
     });
 
+    // Processamento da resposta
     let resultado;
     try {
       resultado = await resposta.json();
@@ -123,8 +125,11 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
       return;
     }
 
+    // Sucesso no agendamento
     mensagemDiv.textContent = 'Agendamento realizado com sucesso!';
     mensagemDiv.style.color = 'green';
+    
+    // Limpeza do formulário após sucesso
     setTimeout(() => {
       this.reset();
       document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));

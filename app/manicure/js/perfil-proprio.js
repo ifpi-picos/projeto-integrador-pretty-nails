@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Função para adicionar novo time-slot
-    function addTimeSlot(horario = '') {
+    function addTimeSlot(horario = '00:00') {
         const timeSlot = document.createElement('div');
         timeSlot.className = 'time-slot';
         timeSlot.innerHTML = `
@@ -309,14 +309,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Inicialização
     loadProfileData();
-
-    // Adicionar eventos aos botões dinâmicos
-    document.addEventListener('click', function (e) {
-        if (e.target && e.target.id === 'addTimeBtn') {
-            addTimeSlot();
-        }
-        if (e.target && e.target.id === 'addServBtn') {
-            addServSlot();
-        }
-    });
 });

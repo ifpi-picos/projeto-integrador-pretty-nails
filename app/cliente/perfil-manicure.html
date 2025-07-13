@@ -4,100 +4,87 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agendamento de Manicure</title>
     <link rel="stylesheet" href="css/perfil-manicure.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Agendamento de Manicure</title>
-    <style>
-        /* Estilo rápido para os botões de horário selecionados */
-        .horario-btn {
-            display: inline-block;
-            padding: 10px 15px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            cursor: pointer;
-            user-select: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .horario-btn.selected {
-            background-color: #c2185b;
-            color: #fff;
-        }
-
-        .horario-btn:hover {
-            background-color: #f8bbd0;
-            color: #c2185b;
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-
+        <a href="javascript:history.back()" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
         <div class="agendamento-container">
+            <!-- Seção do Formulário -->
             <section class="form-section">
                 <div class="perfil-manicure">
-                    <img id="profile-img" src="imagens/user.png" alt="Foto da Manicure">
+                    <img id="profile-img" src="imagens/user.png" alt="Foto da Manicure" class="profile-image">
                     <div class="info">
                         <h2 id="nome"></h2>
-                        <p id="biografia"></p>
-                        <p id="endereco"></p>
+                        <p class="bio-text" id="biografia"></p>
+                        <p class="address-text"><i class="fas fa-map-marker-alt"></i> <span id="endereco"></span></p>
                     </div>
                 </div>
 
-                <h2>Dados do Agendamento</h2>
-                <form id="agendamento-form">
-                    <input type="date" id="data" required>
+                <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Dados do Agendamento</h2>
+                <form id="agendamento-form" class="agendamento-form">
                     <div class="form-group">
-                        <label>Horários Disponíveis</label>
-                        <div class="horarios-disponiveis">
-                            <div class="horario-btn" data-value="9">09:00</div>
-                            <div class="horario-btn" data-value="10">10:00</div>
-                            <div class="horario-btn" data-value="11">11:00</div>
-                            <div class="horario-btn" data-value="13">13:00</div>
-                            <div class="horario-btn" data-value="14">14:00</div>
-                            <div class="horario-btn" data-value="15">15:00</div>
-                            <div class="horario-btn" data-value="16">16:00</div>
-                            <div class="horario-btn" data-value="17">17:00</div>
+                        <label><i class="far fa-calendar"></i> Selecione o Dia</label>
+                        <div class="days-container" id="dias-trabalho">
+                            <!-- Dias serão preenchidos dinamicamente como botões -->
+                        </div>
+                        <p id="data-selecionada" class="selected-date"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="far fa-clock"></i> Horários Disponíveis</label>
+                        <div class="horarios-disponiveis" id="horarios">
+                            <!-- Horários serão preenchidos dinamicamente -->
                         </div>
                     </div>
-                    <select id="servico" required>
-                        <option value="">Serviço</option>
-                        <option value="manicure">Manicure</option>
-                        <option value="pedicure">Pedicure</option>
-                    </select>
-                    <textarea id="observacoes" placeholder="Observações"></textarea>
-                    <button type="submit">Agendar</button>
-                    <div id="mensagem-agendamento" style="margin-top:10px;"></div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-hand-sparkles"></i> Serviço</label>
+                        <select id="servico" required>
+                            <option value="">Selecione um serviço</option>
+                            <!-- Serviços serão preenchidos dinamicamente -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="far fa-comment-dots"></i> Observações</label>
+                        <textarea id="observacoes" placeholder="Alguma observação importante?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-calendar-check"></i> Agendar
+                    </button>
+
+                    <div id="mensagem-agendamento" class="message"></div>
                 </form>
             </section>
 
+            <!-- Seção de Informações -->
             <section class="info-section">
-                <h2>Nossos Serviços</h2>
-                <div class="servicos-list">
-                    <div class="servico-item"><span>Manicure Completa</span><span>R$ 40,00</span></div>
-                    <div class="servico-item"><span>Pedicure Completa</span><span>R$ 50,00</span></div>
-                    <div class="servico-item"><span>Podologia</span><span>R$ 80,00</span></div>
-                    <div class="servico-item"><span>Esmaltação em Gel</span><span>R$ 60,00</span></div>
-                    <div class="servico-item"><span>Alongamento de Unhas</span><span>R$ 120,00</span></div>
-                    <div class="servico-item"><span>Manutenção de Unhas</span><span>R$ 80,00</span></div>
+                <h2 class="section-title"><i class="fas fa-hand-sparkles"></i> Nossos Serviços</h2>
+                <div class="servicos-list" id="servicos">
+                    <!-- Serviços serão listados dinamicamente aqui -->
                 </div>
 
                 <div class="info-card">
-                    <h3>Informações Importantes</h3>
-                    <p>• Cancelamentos devem ser feitos com 24h de antecedência</p>
-                    <p>• Chegar 5 minutos antes do horário marcado</p>
-                    <p>• Aceitamos todos os cartões</p>
+                    <h3><i class="fas fa-info-circle"></i> Regras e Informações</h3>
+                    <div class="info-list" id="regras">
+                        <!-- Regras da manicure serão listados dinamicamente -->
+                    </div>
                 </div>
 
-                <div class="info-card">
-                    <h3>Contato</h3>
-                    Telefone:
-                    <p id="telefone"></p>
-                    <br>
-                    Email:
-                    <p id="email"></p>
+                <div class="info-card contact-card">
+                    <h3><i class="fas fa-address-book"></i> Contato</h3>
+                    <p class="contact-info"><i class="fas fa-phone"></i> <span id="telefone"></span></p>
+                    <p class="contact-info"><i class="fas fa-envelope"></i> <span id="email"></span></p>
                 </div>
             </section>
         </div>
@@ -106,7 +93,6 @@
     <script src="../../config.js"></script>
     <script src="js/perfil-manicure.js"></script>
     <script src="js/agendar.js"></script>
-
 </body>
 
 </html>
