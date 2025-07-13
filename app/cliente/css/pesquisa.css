@@ -23,6 +23,45 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.initial-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    text-align: center;
+    padding: 20px;
+    color: var(--preto);
+}
+
+.message-content {
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+AC
+.initial-message i {
+    color: var(--tom2);
+    margin-bottom: 20px;
+}
+
+.initial-message h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--preto);
+}
+
+.initial-message p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Esconder a mensagem inicial quando houver resultados */
+.initial-message.hidden {
+    display: none;
+}
+
 /* HEADER */
 .header {
     display: flex;

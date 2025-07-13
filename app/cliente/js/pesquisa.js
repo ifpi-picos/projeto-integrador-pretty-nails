@@ -9,14 +9,28 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".apply-btn").addEventListener("click", function () {
         const estado = document.getElementById("estado").value;
         const cidade = document.getElementById("cidade").value;
-        adicionarPerfis(estado, cidade);
+        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+
+        if (!estado && !cidade && !searchTerm) {
+            document.getElementById("initial-message").classList.remove("hidden");
+            document.getElementById("perfil-container").innerHTML = "";
+        } else {
+            adicionarPerfis(estado, cidade, searchTerm);
+        }
     });
 
     document.getElementById("searchInput").addEventListener("input", function () {
         const searchTerm = this.value.toLowerCase();
         const estado = document.getElementById("estado").value;
         const cidade = document.getElementById("cidade").value;
-        adicionarPerfis(estado, cidade, searchTerm);
+
+        // Se o campo de pesquisa estiver vazio e não houver outros filtros, mostrar mensagem inicial
+        if (!searchTerm && !estado && !cidade) {
+            document.getElementById("initial-message").classList.remove("hidden");
+            document.getElementById("perfil-container").innerHTML = "";
+        } else {
+            adicionarPerfis(estado, cidade, searchTerm);
+        }
     });
 });
 
@@ -79,6 +93,18 @@ function carregarCidades() {
 let manicuresCache = [];
 
 async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome = "") {
+    const initialMessage = document.getElementById("initial-message");
+    const container = document.getElementById("perfil-container");
+
+    // Mostrar mensagem inicial apenas se não houver filtros
+    if (!filtroEstado && !filtroCidade && !filtroNome) {
+        initialMessage.classList.remove("hidden");
+        container.innerHTML = "";
+        return;
+    } else {
+        initialMessage.classList.add("hidden");
+    }
+
     try {
         const token = localStorage.getItem("token");
 
@@ -100,7 +126,6 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
             manicuresCache = await resposta.json();
         }
 
-        const container = document.getElementById("perfil-container");
         container.innerHTML = "";
 
         const listaManicures = manicuresCache.manicures || [];
@@ -151,6 +176,7 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
 
     } catch (error) {
         console.error("Erro ao carregar manicures:", error);
-        document.getElementById("perfil-container").innerHTML = "<p class='no-results'>Erro ao carregar perfis. Verifique sua conexão ou login.</p>";
+        container.innerHTML = "<p class='no-results'>Erro ao carregar perfis. Verifique sua conexão ou login.</p>";
+        initialMessage.classList.add("hidden");
     }
 }

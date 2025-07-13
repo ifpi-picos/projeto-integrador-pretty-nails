@@ -86,8 +86,8 @@ a {
 }
 
 #user_infos span:last-child {
-    font-size: 12px;
-    color: #777;
+    font-size: 16px;
+    color: var(--preto);
 }
 
 #side_items {
@@ -99,7 +99,6 @@ a {
     gap: 15px;
 }
 
-/* .side-item agora é o <a> */
 .side-item {
     position: relative;
     border-radius: 12px;

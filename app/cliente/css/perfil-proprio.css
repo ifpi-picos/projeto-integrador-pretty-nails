@@ -1,277 +1,486 @@
 :root {
-    --branco: #ffff;
-    --gelo: #f1f1f1;
-    --preto: #2a2a2a;
-    --cinza: #cbcbcb;
-    --tom1: #f08080;
-    --tom2: #f4978e;
-    --tom3: #f8ad9d;
-    --tom4: #fbc4ab;
-    --tom5: #ffdab9;
+  --primary: #FF6B6B;
+  --primary-light: #FF8E8E;
+  --primary-dark: #E05555;
+  --secondary: #4ECDC4;
+  --light: #F7FFF7;
+  --dark: #292F36;
+  --gray: #6C757D;
+  --light-gray: #F1F3F5;
+  --success: #28A745;
+  --warning: #FFC107;
+  --danger: #DC3545;
+  --info: #17A2B8;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+  --radius: 12px;
+  --radius-sm: 8px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Corpo da Página */
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--tom7);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    overflow-x: hidden;
+  background-color: var(--light-gray);
+  color: var(--dark);
+  line-height: 1.6;
 }
 
-/* Cabeçalho */
-header {
-    width: 100%;
-    background-color: var(--tom1);
-    color: var(--branco);
-    text-align: center;
-    padding: 20px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+  position: relative;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 32px;
-}
-
-/* Contêiner Principal */
-.main-container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 120px 20px 20px 20px;
-    box-sizing: border-box;
-}
-
-/* Contêiner do Perfil */
-.profile-container {
-    width: 100%;
-    max-width: 1000px;
-    background-color: var(--branco);
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* Seção de Perfil com fundo rosa */
 .profile-header {
-    background-color: var(--tom1);
-    padding: 25px;
-    border-radius: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    align-items: center;
+  position: relative;
+  margin-bottom: 5rem;
 }
 
-/* Informação de Perfil */
+.profile-banner {
+  height: 150px;
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.profile-pic-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
+  border-radius: 50%;
+    background-color: white;
+  border: 5px solid white;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.profile-pic-container:hover {
+  transform: scale(1.05);
+}
+
+.profile-pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.profile-pic-container:hover .profile-overlay {
+  opacity: 1;
+}
+
 .profile-info {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
+  margin-top: 1rem;
+  width: 100%;
 }
 
-.profile-picture {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    margin: 0 auto;
+.profile-info h1 {
+  color: var(--dark);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
-.profile-picture img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 4px solid var(--tom1);
-    object-fit: cover;
-}
-
-.profile-picture .edit-icon {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background-color: var(--tom1);
-    color: var(--branco);
-    padding: 5px;
-    border-radius: 50%;
-    cursor: pointer;
+.profile-info p {
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .profile-details {
-    flex: 1;
-    color: var(--branco);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
 }
 
-.profile-details h2 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: bold;
+.detail-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
 }
 
-.profile-details p {
-    margin: 5px 0;
+.detail-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary);
+}
+
+.detail-header h3 {
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+
+.days-container, .hours-container, .services-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.day, .hour, .service {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.day {
+  background-color: #E2F0FD;
+  color: #0C5460;
+}
+
+.hour {
+  background-color: #D4EDDA;
+  color: #155724;
+}
+
+.service {
+  background-color: #FFF3CD;
+  color: #856404;
 }
 
 .edit-button {
-    background-color: var(--tom2);
-    color: var(--branco);
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 25px;
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 2rem auto 0;
+  padding: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .edit-button:hover {
-    background-color: var(--tom3);
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Seção de Manicures Favoritas (Carrossel) */
-.favorite-manicurists {
-    background-color: var(--gelo);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
 }
 
-.favorite-manicurists h3 {
-    color: var(--preto);
-    margin-bottom: 20px;
-    font-size: 22px;
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
-.carousel {
-    overflow-x: auto;
-    display: flex;
-    gap: 20px;
-    padding-bottom: 10px;
+.modal-content {
+  background-color: white;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-20px);
+  transition: var(--transition);
 }
 
-.carousel-items {
-    display: flex;
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
 }
 
-.carousel-item {
-    min-width: 150px;
-    text-align: center;
-    padding: 10px;
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--light-gray);
 }
 
-.profile-link {
-    text-decoration: none;
-    color: var(--preto);
+.modal-header h2 {
+  color: var(--dark);
+  font-size: 1.5rem;
 }
 
-.profile-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 15px;
-    border-radius: 10px;
-    width: 120px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--gray);
+  transition: var(--transition);
 }
 
-.profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    object-fit: cover;
+.close-modal:hover {
+  color: var(--dark);
 }
 
-.carousel-item p {
-    font-size: 14px;
-    color: var(--preto);
+.modal-body {
+  padding: 1.5rem;
 }
 
-/* Seção de Temas de Unhas Favoritos */
-.favorite-nail-themes {
-    background-color: var(--gelo);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-.favorite-nail-themes h3 {
-    color: var(--preto-tom2);
-    margin-bottom: 20px;
-    font-size: 22px;
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.themes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 25px;
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
 }
 
-.theme-item {
-    background-size: cover;
-    background-position: center;
-    padding: 50px 0;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 16px;
-    color: var(--preto-tom2);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    height: 10px ;
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
 }
 
-.theme-item .theme-name {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--branco);
-    padding: 5px;
-    border-radius: 5px;
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.theme-item:hover {
-    background-color: var(--tom4);
+.photo-upload img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--light-gray);
 }
 
-/* Estilização do botão de voltar */
-.back-button {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    display: flex;
-    align-items: center;
+.upload-btn {
+  padding: 0.6rem 1rem;
+  background-color: var(--light-gray);
+  color: var(--dark);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.back-button img {
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
+.upload-btn:hover {
+  background-color: #e2e6ea;
+}
+
+.days-checkbox, .services-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.days-checkbox label, .services-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.time-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.serv-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.time-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 48%;
+}
+.serv-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-slot input {
+  flex: 1;
+}
+.serv-slot input {
+  flex: 1;
+}
+
+.add-time-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+.add-serv-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.remove-btn {
+  background-color: var(--primary);
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  line-height: 20px;
+  padding: 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--light-gray);
+}
+
+.cancel-btn, .save-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cancel-btn {
+  background-color: var(--light-gray);
+  color: var(--dark);
+  border: none;
+}
+
+.cancel-btn:hover {
+  background-color: #e2e6ea;
+}
+
+.save-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+}
+
+.save-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.save-btn.disabled, .save-btn:disabled {
+    background-color: #ccc !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+
+    .app-container {
+        margin-bottom: 50px;
+    }
+
+  .profile-content {
+    padding: 0 1rem;
+  }
+  
+  .profile-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    width: 95%;
+  }
 }
