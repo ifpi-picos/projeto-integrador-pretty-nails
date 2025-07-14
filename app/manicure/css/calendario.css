@@ -67,7 +67,16 @@ body {
   align-items: center;
   gap: 20px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
+
+.mes-ano {
+  font-size: 22px;
+  font-weight: bold;
+  min-width: 180px;
+  text-align: center;
+}
+
 
 .controle button {
   padding: 10px 20px;
@@ -117,3 +126,63 @@ body {
   border-radius: 6px;
   margin-top: 5px;
 }
+
+/* Responsividade */
+/* Ajusta barra lateral para telas pequenas */
+@media (max-width: 768px) {
+  #sidebar {
+    position: fixed;
+    height: 100vh;
+    width: 60px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  #sidebar_content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side-item {
+    justify-content: center;
+  }
+
+  .item-description {
+    display: none;
+  }
+
+  #open_btn {
+    display: none;
+  }
+}
+.controle {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mes-ano {
+  font-size: 18px;
+}
+.semana, .dias {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.dia, .dia-semana {
+  padding: 4px;
+  min-height: 50px;
+  font-size: 10px;
+}
+
+.evento {
+  font-size: 9px;
+  padding: 2px;
+}
+
+.numero-dia {
+  font-size: 10px;
+}
+
+
