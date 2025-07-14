@@ -37,6 +37,64 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+    // Função para adicionar novo time-slot
+    function addTimeSlot(horario = '00:00') {
+        const timeSlot = document.createElement('div');
+        timeSlot.className = 'time-slot';
+        timeSlot.innerHTML = `
+            <input type="time" class="timeFrom" value="${horario}">
+            <button type="button" class="remove-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        // Inserir antes do botão de adicionar
+        const addBtn = timeSlotsContainer.querySelector('.add-time-btn');
+        if (addBtn) {
+            timeSlotsContainer.insertBefore(timeSlot, addBtn);
+        } else {
+            timeSlotsContainer.appendChild(timeSlot);
+        }
+
+        // Adicionar evento para remover
+        const removeBtn = timeSlot.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', () => {
+            timeSlotsContainer.removeChild(timeSlot);
+        });
+    }
+
+    // Função para adicionar novo serv-slot
+    function addServSlot(nome = '', preco = '') {
+        const servSlot = document.createElement('div');
+        servSlot.className = 'serv-slot';
+        servSlot.innerHTML = `
+            <input type="text" class="servico" placeholder="Serviço" value="${nome}">
+            <span>-</span>
+            <input type="number" class="preco" placeholder="R$" value="${preco}">
+            <button type="button" class="remove-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+
+        // Inserir antes do botão de adicionar
+        const addBtn = servSlotsContainer.querySelector('.add-serv-btn');
+        if (addBtn) {
+            servSlotsContainer.insertBefore(servSlot, addBtn);
+        } else {
+            servSlotsContainer.appendChild(servSlot);
+        }
+
+        // Adicionar evento para remover
+        const removeBtn = servSlot.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', () => {
+            servSlotsContainer.removeChild(servSlot);
+        });
+    }
+
+    // Event listeners para botões de adicionar
+    addTimeBtn.addEventListener('click', () => addTimeSlot());
+    addServBtn.addEventListener('click', () => addServSlot());
+
     // Carregar dados do perfil
     async function loadProfileData() {
         try {
@@ -63,15 +121,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             editPhone.value = data.telefone || '';
             editCity.value = data.cidade || '';
             editState.value = data.estado || '';
+            
+            // Dias de trabalho
             if (data.dias_trabalho && Array.isArray(data.dias_trabalho)) {
                 document.querySelectorAll('input[name="workDay"]').forEach(checkbox => {
                     checkbox.checked = data.dias_trabalho.includes(parseInt(checkbox.value));
                 });
-            }
-
-            // Dias de trabalho
-            if (data.dias_trabalho && Array.isArray(data.dias_trabalho) && data.dias_trabalho.length > 0) {
-                // Exemplo de nomes dos dias da semana (ajuste conforme necessário)
+                
                 const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
                 workDaysContainer.innerHTML = data.dias_trabalho
                     .map(dia => `<span class="hour">${diasSemana[dia]}</span>`)
@@ -81,50 +137,50 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // Horários
+            timeSlotsContainer.innerHTML = '';
             if (data.horarios && data.horarios.length > 0) {
                 workHoursContainer.innerHTML = data.horarios
                     .map(h => `<span class="hour">${h}</span>`)
                     .join('');
 
-                // Preencher horários no modal
-                timeSlotsContainer.innerHTML = '';
                 data.horarios.forEach(horario => {
                     addTimeSlot(horario);
                 });
-                // Adiciona o botão de adicionar horário
-                const addTimeBtn = document.createElement('button');
-                addTimeBtn.type = 'button';
-                addTimeBtn.className = 'add-time-btn';
-                addTimeBtn.id = 'addTimeBtn';
-                addTimeBtn.innerHTML = '<i class="fas fa-plus"></i> Adicionar horário';
-                addTimeBtn.addEventListener('click', () => addTimeSlot());
-                timeSlotsContainer.appendChild(addTimeBtn);
             } else {
                 workHoursContainer.innerHTML = '<span class="hour">Nenhum horário cadastrado</span>';
             }
+            
+            // Adicionar botão de adicionar horário
+            const timeAddBtn = document.createElement('button');
+            timeAddBtn.type = 'button';
+            timeAddBtn.className = 'add-time-btn';
+            timeAddBtn.id = 'addTimeBtn';
+            timeAddBtn.innerHTML = '<i class="fas fa-plus"></i> Adicionar horário';
+            timeAddBtn.addEventListener('click', () => addTimeSlot());
+            timeSlotsContainer.appendChild(timeAddBtn);
 
-            // Serviços oferecidos
+            // Serviços
+            servSlotsContainer.innerHTML = '';
             if (data.servicos && data.servicos.length > 0) {
                 servicesList.innerHTML = data.servicos
                     .map(s => `<span class="service">${s.nome ? s.nome : s}${s.preco ? ` (R$${s.preco})` : ''}</span>`)
                     .join('');
 
-                // Preencher serviços no modal
-                servSlotsContainer.innerHTML = '';
                 data.servicos.forEach(servico => {
                     addServSlot(servico.nome || servico, servico.preco);
                 });
-                // Adiciona o botão de adicionar serviço
-                const addServBtn = document.createElement('button');
-                addServBtn.type = 'button';
-                addServBtn.className = 'add-serv-btn';
-                addServBtn.id = 'addServBtn';
-                addServBtn.innerHTML = '<i class="fas fa-plus"></i> Adicionar serviço';
-                addServBtn.addEventListener('click', () => addServSlot());
-                servSlotsContainer.appendChild(addServBtn);
             } else {
                 servicesList.innerHTML = '<span class="service">Nenhum serviço cadastrado</span>';
             }
+            
+            // Adicionar botão de adicionar serviço
+            const servAddBtn = document.createElement('button');
+            servAddBtn.type = 'button';
+            servAddBtn.className = 'add-serv-btn';
+            servAddBtn.id = 'addServBtn';
+            servAddBtn.innerHTML = '<i class="fas fa-plus"></i> Adicionar serviço';
+            servAddBtn.addEventListener('click', () => addServSlot());
+            servSlotsContainer.appendChild(servAddBtn);
 
         } catch (error) {
             console.error('Erro ao carregar perfil:', error);
@@ -139,49 +195,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             editModal.classList.remove('active');
         }
-    }
-
-    // Função para adicionar novo time-slot
-    function addTimeSlot(horario = '00:00') {
-        const timeSlot = document.createElement('div');
-        timeSlot.className = 'time-slot';
-        timeSlot.innerHTML = `
-        <input type="time" class="timeFrom" value="${horario}">
-        <button type="button" class="remove-btn">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-        const addBtn = timeSlotsContainer.querySelector('.add-time-btn');
-        timeSlotsContainer.insertBefore(timeSlot, addBtn);
-
-        const removeBtn = timeSlot.querySelector('.remove-btn');
-        removeBtn.addEventListener('click', () => {
-            timeSlotsContainer.removeChild(timeSlot);
-        });
-    }
-
-    // Função para adicionar novo serv-slot
-    function addServSlot(nome = '', preco = '') {
-        const servSlot = document.createElement('div');
-        servSlot.className = 'serv-slot';
-        servSlot.innerHTML = `
-            <input type="text" class="servico" placeholder="Serviço" value="${nome}">
-            <span>-</span>
-            <input type="number" class="preco" placeholder="R$" value="${preco}">
-            <button type="button" class="remove-btn">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-
-        // Inserir antes do botão de adicionar
-        const addBtn = servSlotsContainer.querySelector('.add-serv-btn');
-        servSlotsContainer.insertBefore(servSlot, addBtn);
-
-        // Adicionar evento para remover
-        const removeBtn = servSlot.querySelector('.remove-btn');
-        removeBtn.addEventListener('click', () => {
-            servSlotsContainer.removeChild(servSlot);
-        });
     }
 
     // Event listeners
