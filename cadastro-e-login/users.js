@@ -8,8 +8,8 @@ async function adicionarUsuario() {
   const campoCidade = document.querySelector("#cidade").value;
   const campoTipo = document.querySelector("#tipo").value;
 
-  if (campoSenha.length < 5) {
-    alert("A senha deve ter pelo menos 5 caracteres.");
+  if (campoSenha.length < 6) {
+    alert("A senha deve ter pelo menos 6 caracteres.");
     return;
   }
 
@@ -42,7 +42,9 @@ async function adicionarUsuario() {
       throw new Error(errorData.message || "Erro ao cadastrar usuário.");
     }
 
-    alert("Cadastro realizado com sucesso! Faça login.");
+    alert("Cadastro realizado com sucesso!");
+    alert("Um email de confirmação foi enviado para " + campoEmail + ". Por favor, verifique sua caixa de entrada.");
+
 
     // Troca para o formulário de login
     container.classList.remove('right-panel-active');
