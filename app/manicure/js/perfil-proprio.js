@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             let fotoUrl = editPhotoPreview.src;
             if (fotoUrl.startsWith('data:')) {
                 // Se for uma nova imagem (data URL), enviar para o servidor
-                const response = await fetch(`${API_BASE_URL}/upload`, {
+                const response = await fetch(`${API_BASE_URL}/auth/upload`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
