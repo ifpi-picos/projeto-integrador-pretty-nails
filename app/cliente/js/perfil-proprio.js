@@ -95,19 +95,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             let fotoUrl = editPhotoPreview.src;
             if (fotoUrl.startsWith('data:')) {
                 // Se for uma nova imagem (data URL), enviar para o servidor
-                const response = await fetch(`${API_BASE_URL}/upload`, {
+                const response = await fetch(`${API_BASE_URL}/auth/upload`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ image: fotoUrl })
+                    body: JSON.stringify({ image: fotoUrl }) // <== aqui está corrigido
                 });
 
-                if (!response.ok) throw new Error('Erro ao enviar imagem');
-
-                const data = await response.json();
-                fotoUrl = data.url;
+                const result = await response.json();
+                if (response.ok) {
+                    console.log('URL da imagem:', result.url);
+                    fotoUrl = result.url; // <== define a URL para ser usada no PUT
+                } else {
+                    throw new Error(result.error || 'Erro ao enviar imagem');
+                }
             }
 
             // Montar objeto com dados atualizados
