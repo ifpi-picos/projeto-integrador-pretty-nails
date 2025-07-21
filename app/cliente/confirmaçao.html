@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro Realizado</title>
+  <link rel="stylesheet" href="css/principal.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--tom2), var(--tom3));
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sucesso-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .sucesso-box {
+      background-color: var(--gelo);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .sucesso-box h1 {
+      font-size: 28px;
+      color: var(--tom1);
+      margin-bottom: 15px;
+    }
+
+    .sucesso-box p {
+      font-size: 18px;
+      color: var(--preto);
+      margin-bottom: 30px;
+    }
+
+    .icone {
+      font-size: 60px;
+      color: var(--tom1);
+      margin-bottom: 20px;
+    }
+
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .botao-voltar {
+      background-color: var(--tom1);
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .botao-voltar:hover {
+      background-color: var(--tom2);
+    }
+
+    @media (max-width: 480px) {
+      .sucesso-box {
+        padding: 25px;
+      }
+
+      .sucesso-box h1 {
+        font-size: 24px;
+      }
+
+      .sucesso-box p {
+        font-size: 16px;
+      }
+
+      .icone {
+        font-size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sucesso-container">
+    <div class="sucesso-box">
+      <div class="icone">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h1>Cadastro realizado com sucesso!</h1>
+      <p>Seu cadastro foi concluído. Agora você pode fazer login com sua nova conta.</p>
+    </div>
+  </div>
+</body>
+
+</html>
