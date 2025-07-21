@@ -42,15 +42,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const data = await response.json();
 
-            // Preencher dados na tela
-            foto.src = data.foto || 'imagens/user.png';
+            // Preencher dados na tela (com tratamento correto da foto)
+            foto.src = data.foto ? `${data.foto}?${Date.now()}` : 'imagens/user.png';
             nome.textContent = data.nome || 'Nome não informado';
             email.innerHTML = `<i class="fas fa-envelope"></i> ${data.email || 'Email não informado'}`;
             telefone.innerHTML = `<i class="fas fa-phone"></i> ${data.telefone || 'Telefone não informado'}`;
             endereco.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${data.cidade || 'Cidade não informada'}, ${data.estado || 'Estado não informado'}`;
 
-            // Preencher dados do modal
-            editPhotoPreview.src = data.foto || 'imagens/user.png';
+            // Preencher dados do modal (com tratamento correto da foto)
+            editPhotoPreview.src = data.foto ? `${data.foto}?${Date.now()}` : 'imagens/user.png';
             editName.value = data.nome || '';
             editPhone.value = data.telefone || '';
             editCity.value = data.cidade || '';
@@ -91,26 +91,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     saveProfileBtn.addEventListener('click', async () => {
         try {
             // Coletar dados do formulário
-            // Foto (se mudou)
             let fotoUrl = editPhotoPreview.src;
+            let fotoAntiga = foto.src.includes('imagens/user.png') ? null : foto.src;
+
+            // Se for uma nova imagem (data URL)
             if (fotoUrl.startsWith('data:')) {
-                // Se for uma nova imagem (data URL), enviar para o servidor
                 const response = await fetch(`${API_BASE_URL}/auth/upload`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ image: fotoUrl }) // <== aqui está corrigido
+                    body: JSON.stringify({ 
+                        image: fotoUrl,
+                        fotoAntiga: fotoAntiga
+                    })
                 });
 
-                const result = await response.json();
-                if (response.ok) {
-                    console.log('URL da imagem:', result.url);
-                    fotoUrl = result.url; // <== define a URL para ser usada no PUT
-                } else {
-                    throw new Error(result.error || 'Erro ao enviar imagem');
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Erro ao enviar imagem');
                 }
+
+                const result = await response.json();
+                fotoUrl = result.url;
             }
 
             // Montar objeto com dados atualizados
@@ -121,8 +125,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 estado: editState.value,
             };
 
+            // Só envia a foto se não for a imagem padrão
             if (fotoUrl && !fotoUrl.includes('imagens/user.png')) {
-                profileData.foto = fotoUrl;
+                profileData.foto = fotoUrl.split('?')[0]; // Remove o timestamp
+            } else {
+                profileData.foto = null;
             }
 
             const response = await fetch(`${API_BASE_URL}/auth/profile`, {

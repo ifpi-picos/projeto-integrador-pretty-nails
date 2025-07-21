@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             </button>
         `;
         
-        // Inserir antes do botão de adicionar
         const addBtn = timeSlotsContainer.querySelector('.add-time-btn');
         if (addBtn) {
             timeSlotsContainer.insertBefore(timeSlot, addBtn);
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             timeSlotsContainer.appendChild(timeSlot);
         }
 
-        // Adicionar evento para remover
         const removeBtn = timeSlot.querySelector('.remove-btn');
         removeBtn.addEventListener('click', () => {
             timeSlotsContainer.removeChild(timeSlot);
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             </button>
         `;
 
-        // Inserir antes do botão de adicionar
         const addBtn = servSlotsContainer.querySelector('.add-serv-btn');
         if (addBtn) {
             servSlotsContainer.insertBefore(servSlot, addBtn);
@@ -84,7 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             servSlotsContainer.appendChild(servSlot);
         }
 
-        // Adicionar evento para remover
         const removeBtn = servSlot.querySelector('.remove-btn');
         removeBtn.addEventListener('click', () => {
             servSlotsContainer.removeChild(servSlot);
@@ -108,15 +104,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const data = await response.json();
 
-            // Preencher dados na tela
-            foto.src = data.foto || 'imagens/user.png';
+            // Preencher dados na tela (com tratamento correto da foto)
+            foto.src = data.foto ? `${data.foto}?${Date.now()}` : 'imagens/user.png';
             nome.textContent = data.nome || 'Nome não informado';
             email.innerHTML = `<i class="fas fa-envelope"></i> ${data.email || 'Email não informado'}`;
             telefone.innerHTML = `<i class="fas fa-phone"></i> ${data.telefone || 'Telefone não informado'}`;
             endereco.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${data.cidade || 'Cidade não informada'}, ${data.estado || 'Estado não informado'}`;
 
-            // Preencher dados do modal
-            editPhotoPreview.src = data.foto || 'imagens/user.png';
+            // Preencher dados do modal (com tratamento correto da foto)
+            editPhotoPreview.src = data.foto ? `${data.foto}?${Date.now()}` : 'imagens/user.png';
             editName.value = data.nome || '';
             editPhone.value = data.telefone || '';
             editCity.value = data.cidade || '';
@@ -239,21 +235,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Foto (se mudou)
             let fotoUrl = editPhotoPreview.src;
+            let fotoAntiga = foto.src.includes('imagens/user.png') ? null : foto.src;
+
             if (fotoUrl.startsWith('data:')) {
-                // Se for uma nova imagem (data URL), enviar para o servidor
                 const response = await fetch(`${API_BASE_URL}/auth/upload`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ image: fotoUrl })
+                    body: JSON.stringify({ 
+                        image: fotoUrl,
+                        fotoAntiga: fotoAntiga
+                    })
                 });
 
-                if (!response.ok) throw new Error('Erro ao enviar imagem');
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Erro ao enviar imagem');
+                }
 
-                const data = await response.json();
-                fotoUrl = data.url;
+                const result = await response.json();
+                fotoUrl = result.url;
             }
 
             // Montar objeto com dados atualizados
@@ -267,8 +270,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 servicos: servicos
             };
 
+            // Só envia a foto se não for a imagem padrão
             if (fotoUrl && !fotoUrl.includes('imagens/user.png')) {
-                profileData.foto = fotoUrl;
+                profileData.foto = fotoUrl.split('?')[0]; // Remove o timestamp
+            } else {
+                profileData.foto = null;
             }
 
             const response = await fetch(`${API_BASE_URL}/auth/profile`, {
