@@ -66,30 +66,38 @@ function preencherPerfil(manicure) {
         // Limpa o container
         diasContainer.innerHTML = '';
 
-        // Para cada dia de trabalho, cria um botão
-        manicure.dias_trabalho.forEach(diaIndex => {
-            const btn = document.createElement('button');
-            btn.className = 'day-btn';
-            btn.dataset.diaIndex = diaIndex;
-            btn.innerHTML = `${diasAbreviados[diaIndex]}`;
+        // Cria um item para cada dia da semana
+        for (let i = 0; i < 7; i++) {
+            const diaItem = document.createElement('div');
+            diaItem.className = 'day-item';
+            if (manicure.dias_trabalho && manicure.dias_trabalho.includes(i)) {
+                diaItem.classList.add('active');
+            }
 
-            // Adiciona evento de clique
-            btn.addEventListener('click', function () {
-                // Remove a seleção de outros botões
-                document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
-                this.classList.add('selected');
+            diaItem.innerHTML = `
+            <div>${diasAbreviados[i]}</div>
+        `;
 
-                // Calcula a data correspondente
-                const data = calcularDataParaDiaSemana(diaIndex);
-                document.getElementById('data-selecionada').textContent =
-                    `Data selecionada: ${formatarData(data)}`;
+            // Só adiciona evento de clique se o dia estiver disponível
+            if (manicure.dias_trabalho && manicure.dias_trabalho.includes(i)) {
+                diaItem.style.cursor = 'pointer';
+                diaItem.addEventListener('click', function () {
+                    // Remove seleção de outros dias
+                    document.querySelectorAll('.day-item').forEach(d => d.classList.remove('selected'));
+                    this.classList.add('selected');
 
-                // Armazena a data selecionada em um campo oculto ou variável
-                sessionStorage.setItem('dataSelecionada', data.toISOString());
-            });
+                    // Calcula a data correspondente
+                    const data = calcularDataParaDiaSemana(i);
+                    document.getElementById('data-selecionada').textContent =
+                        `Data selecionada: ${formatarData(data)}`;
 
-            diasContainer.appendChild(btn);
-        });
+                    // Armazena a data selecionada
+                    sessionStorage.setItem('dataSelecionada', data.toISOString());
+                });
+            }
+
+            diasContainer.appendChild(diaItem);
+        }
     } else {
         document.getElementById('dias-trabalho').innerHTML =
             '<span class="day">Nenhum dia cadastrado</span>';

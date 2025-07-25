@@ -237,6 +237,44 @@ textarea {
     color: white;
 }
 
+/* Estilos para os dias da semana */
+.days-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.day-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    cursor: default;
+    color: var(--gray);
+    opacity: 0.6;
+    border: 2px solid var(--light-gray);
+    transition: var(--transition);
+    border-radius: var(--radius-sm);
+}
+
+.day-item.active {
+    opacity: 1;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.day-item.active:hover {
+    background-color: var(--primary-light);
+    color: white;
+    border-color: var(--primary-light);
+}
+
+.day-item.active.selected {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
 .selected-date {
     margin-top: 10px;
     font-weight: 500;
@@ -246,15 +284,15 @@ textarea {
 
 /* Botões de horário */
 .horarios-disponiveis {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.8rem;
 }
 
 .horario-btn {
     background: white;
-    border: 1px solid var(--light-gray);
-    padding: 0.6rem;
+    border: 2px solid var(--light-gray);
+    padding: 10px;
     text-align: center;
     border-radius: var(--radius-sm);
     cursor: pointer;

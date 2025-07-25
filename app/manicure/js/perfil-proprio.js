@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <i class="fas fa-times"></i>
             </button>
         `;
-        
+
         const addBtn = timeSlotsContainer.querySelector('.add-time-btn');
         if (addBtn) {
             timeSlotsContainer.insertBefore(timeSlot, addBtn);
@@ -117,19 +117,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             editPhone.value = data.telefone || '';
             editCity.value = data.cidade || '';
             editState.value = data.estado || '';
-            
+
             // Dias de trabalho
-            if (data.dias_trabalho && Array.isArray(data.dias_trabalho)) {
+            if (data.dias_trabalho && Array.isArray(data.dias_trabalho) && data.dias_trabalho.length > 0) {
+                const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+                workDaysContainer.innerHTML = data.dias_trabalho
+                    .map(dia => `<span class="day">${diasSemana[dia]}</span>`)
+                    .join('');
+
+                // Marcar checkboxes
                 document.querySelectorAll('input[name="workDay"]').forEach(checkbox => {
                     checkbox.checked = data.dias_trabalho.includes(parseInt(checkbox.value));
                 });
-                
-                const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-                workDaysContainer.innerHTML = data.dias_trabalho
-                    .map(dia => `<span class="hour">${diasSemana[dia]}</span>`)
-                    .join('');
             } else {
-                workDaysContainer.innerHTML = '<span class="work-day">Nenhum dia cadastrado</span>';
+                workDaysContainer.innerHTML = '<span class="day">Nenhum dia cadastrado</span>';
             }
 
             // Horários
@@ -145,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 workHoursContainer.innerHTML = '<span class="hour">Nenhum horário cadastrado</span>';
             }
-            
+
             // Adicionar botão de adicionar horário
             const timeAddBtn = document.createElement('button');
             timeAddBtn.type = 'button';
@@ -168,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 servicesList.innerHTML = '<span class="service">Nenhum serviço cadastrado</span>';
             }
-            
+
             // Adicionar botão de adicionar serviço
             const servAddBtn = document.createElement('button');
             servAddBtn.type = 'button';
@@ -244,7 +245,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ 
+                    body: JSON.stringify({
                         image: fotoUrl,
                         fotoAntiga: fotoAntiga
                     })

@@ -79,7 +79,6 @@ document.getElementById('logout_btn').addEventListener('click', function () {
     window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
 });
 
-
 // Adicione esta função para lidar com a responsividade
 function handleResponsiveSidebar() {
     const sidebar = document.getElementById('sidebar');
