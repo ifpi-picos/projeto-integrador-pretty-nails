@@ -1,4 +1,4 @@
-// Seleção de horários
+// Seleção de horários (permanece igual)
 document.querySelectorAll('.horario-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
@@ -6,13 +6,9 @@ document.querySelectorAll('.horario-btn').forEach(btn => {
   });
 });
 
-// Envio do formulário de agendamento
+// Envio do formulário de agendamento modificado
 document.getElementById('agendamento-form').addEventListener('submit', async function (e) {
   e.preventDefault();
-
-  const mensagemDiv = document.getElementById('mensagem-agendamento');
-  mensagemDiv.textContent = '';
-  mensagemDiv.style.color = '';
 
   const submitBtn = this.querySelector('button[type="submit"]');
   if (submitBtn) submitBtn.disabled = true;
@@ -23,8 +19,12 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     const userId = localStorage.getItem('userId');
     
     if (!token || !userId) {
-      mensagemDiv.textContent = 'Sessão expirada. Redirecionando para login...';
-      mensagemDiv.style.color = 'red';
+      await Swal.fire({
+        icon: 'error',
+        title: 'Sessão expirada',
+        text: 'Redirecionando para login...',
+        confirmButtonColor: '#FF6B6B'
+      });
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       setTimeout(() => {
@@ -38,14 +38,22 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     const horarioBtnSelecionado = document.querySelector('.horario-btn.selected');
     
     if (!dataSelecionada || isNaN(dataSelecionada.getTime())) {
-      mensagemDiv.textContent = 'Por favor, selecione uma data válida.';
-      mensagemDiv.style.color = 'red';
+      await Swal.fire({
+        icon: 'error',
+        title: 'Atenção',
+        text: 'Por favor, selecione uma data válida.',
+        confirmButtonColor: '#FF6B6B'
+      });
       return;
     }
     
     if (!horarioBtnSelecionado) {
-      mensagemDiv.textContent = 'Por favor, selecione um horário disponível.';
-      mensagemDiv.style.color = 'red';
+      await Swal.fire({
+        icon: 'error',
+        title: 'Atenção',
+        text: 'Por favor, selecione um horário disponível.',
+        confirmButtonColor: '#FF6B6B'
+      });
       return;
     }
     
@@ -55,8 +63,12 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
 
     // Validação do serviço
     if (!servico) {
-      mensagemDiv.textContent = 'Por favor, selecione um serviço.';
-      mensagemDiv.style.color = 'red';
+      await Swal.fire({
+        icon: 'error',
+        title: 'Atenção',
+        text: 'Por favor, selecione um serviço.',
+        confirmButtonColor: '#FF6B6B'
+      });
       return;
     }
 
@@ -66,8 +78,12 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
 
     // Verificação se a data/horário é futura
     if (dataSelecionada <= new Date()) {
-      mensagemDiv.textContent = 'Agende apenas para horários futuros.';
-      mensagemDiv.style.color = 'red';
+      await Swal.fire({
+        icon: 'error',
+        title: 'Atenção',
+        text: 'Agende apenas para horários futuros.',
+        confirmButtonColor: '#FF6B6B'
+      });
       return;
     }
 
@@ -76,10 +92,23 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     const idManicure = urlParams.get('id');
     
     if (!idManicure) {
-      mensagemDiv.textContent = 'ID da manicure não encontrado.';
-      mensagemDiv.style.color = 'red';
+      await Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'ID da manicure não encontrado.',
+        confirmButtonColor: '#FF6B6B'
+      });
       return;
     }
+
+    // Mostrar loading
+    Swal.fire({
+      title: 'Processando agendamento...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
 
     // Envio para o servidor
     const resposta = await fetch(`${API_BASE_URL}/api/agendamentos`, {
@@ -102,44 +131,61 @@ document.getElementById('agendamento-form').addEventListener('submit', async fun
     try {
       resultado = await resposta.json();
     } catch (e) {
-      mensagemDiv.textContent = 'Erro inesperado ao processar a resposta do servidor.';
-      mensagemDiv.style.color = 'red';
-      return;
+      throw new Error('Erro inesperado ao processar a resposta do servidor.');
     }
 
     if (!resposta.ok) {
       if (resposta.status === 401) {
         localStorage.removeItem('token');
-        mensagemDiv.textContent = 'Usuário não autenticado ou token inválido. Redirecionando para o login...';
-        mensagemDiv.style.color = 'red';
+        await Swal.fire({
+          icon: 'error',
+          title: 'Acesso negado',
+          text: 'Usuário não autenticado ou token inválido. Redirecionando para o login...',
+          confirmButtonColor: '#FF6B6B'
+        });
         setTimeout(() => {
           window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
         }, 2000);
       } else if (resposta.status === 409) {
-        mensagemDiv.textContent = resultado.error || 'Horário já agendado para esta manicure.';
-        mensagemDiv.style.color = 'red';
+        await Swal.fire({
+          icon: 'error',
+          title: 'Conflito',
+          text: resultado.error || 'Horário já agendado para esta manicure.',
+          confirmButtonColor: '#FF6B6B'
+        });
       } else {
-        mensagemDiv.textContent = resultado.error || resultado.message || 'Erro ao agendar horário.';
-        mensagemDiv.style.color = 'red';
+        await Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: resultado.error || resultado.message || 'Erro ao agendar horário.',
+          confirmButtonColor: '#FF6B6B'
+        });
       }
       return;
     }
 
     // Sucesso no agendamento
-    mensagemDiv.textContent = 'Agendamento realizado com sucesso!';
-    mensagemDiv.style.color = 'green';
+    await Swal.fire({
+      icon: 'success',
+      title: 'Sucesso!',
+      text: 'Agendamento realizado com sucesso!',
+      confirmButtonColor: '#FF6B6B'
+    });
     
     // Limpeza do formulário após sucesso
-    setTimeout(() => {
-      this.reset();
-      document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
-    }, 1500);
+    this.reset();
+    document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('selected'));
 
   } catch (err) {
     console.error('Erro no agendamento:', err);
-    mensagemDiv.textContent = 'Erro na conexão. Tente novamente.';
-    mensagemDiv.style.color = 'red';
+    await Swal.fire({
+      icon: 'error',
+      title: 'Erro',
+      text: err.message || 'Erro na conexão. Tente novamente.',
+      confirmButtonColor: '#FF6B6B'
+    });
   } finally {
     if (submitBtn) submitBtn.disabled = false;
+    Swal.close();
   }
 });
