@@ -1,166 +1,658 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pretty Nails</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #ffa5a5;
+            --light: #F7FFF7;
+            --dark: #292F36;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .slide {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
-<body>
-    <!--Cabeçalho-->
-    <header class="Cabecalho">
-        <nav>
-            <div class="logo">Pretty Nails</div> <!--trocar para logo personalizada para caber alí (não na forma de círculo)-->
-            <div class="menu-hamburguer" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
+
+<body class="bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="fixed w-full z-50 gradient-bg shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/50" alt="Pretty Nails Logo"
+                        class="h-10 w-10 rounded-full mr-3">
+                    <span class="text-white text-2xl font-bold">Pretty Nails</span>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#inicio" class="nav-link text-white font-medium">Início</a>
+                    <a href="#sobre" class="nav-link text-white font-medium">Sobre</a>
+                    <a href="#vantagens" class="nav-link text-white font-medium">Vantagens</a>
+                    <a href="#faq" class="nav-link text-white font-medium">FAQ</a>
+                    <a href="cadastro-e-login/cadastro-e-login.html"
+                        class="bg-white text-pink-600 px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition duration-300 shadow-lg pulse">
+                        Cadastre-se
+                    </a>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#inicio"><strong>Início</strong></a></li>
-                <li><a href="#sobre"><strong>Sobre</strong></a></li>
-                <li><a href="#Suporte"><strong>Suporte</strong></a></li>
-                <li><a href="cadastro-e-login/cadastro-e-login.html"><button><strong>Cadastre-se</strong></button></a></li>
-            </ul>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#inicio" class="block text-white py-2 px-4 hover:bg-pink-500 rounded">Início</a>
+                <a href="#sobre" class="block text-white py-2 px-4 hover:bg-pink-500 rounded">Sobre</a>
+                <a href="#vantagens" class="block text-white py-2 px-4 hover:bg-pink-500 rounded">Vantagens</a>
+                <a href="#faq" class="block text-white py-2 px-4 hover:bg-pink-500 rounded">FAQ</a>
+                <a href="cadastro-e-login/cadastro-e-login.html"
+                    class="block bg-white text-pink-600 px-4 py-2 rounded-full font-bold mt-2 text-center">
+                    Cadastre-se
+                </a>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <!--Página 1: início-->
-        <div class="pag1" id="inicio">
-            <div class="anipag1">
-                <div class="container-de-slides">
-                    <div class="slides">
-                      <div class="slide active">
-                        <img src="imagens/slide1.jpeg" alt="">
-                      </div>
-                      <div class="slide">
-                        <img src="imagens/slide2.jpeg" alt="">
-                      </div>
-                      <div class="slide">
-                        <img src="imagens/slide3.jpeg" alt="">
-                      </div>
-                      <div class="slide">
-                        <img src="imagens/slide4.jpeg" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div><!--fim de "pag1"-->
-        
-        <!--Página 2: sobre-->
-        <div class="pag2" id="sobre">
-            <div class="container-de-topico">
-
-                <div class="topico1">
-                    <div class="texto1">
-                        <h2><span>| O QUE É O APLICATIVO PRETTY NAILS?</span></h2>
-                        <br>
-                        <h3>Pretty Nails é um aplicativo de agenda <br> que permite que a cliente tenha acesso<br> direto aos horários disponíveis às manicures.</h3>
-                    </div>
-                    <div class="imagem1">
-                        <img src="imagens/1.png" alt="Imagem 1" />
-                    </div>
-                </div>
-
-                <div class="topico2">
-                    <div class="imagem2">
-                        <img src="imagens/2.png" alt="Imagem 2" />
-                    </div>
-                    <div class="texto2">
-                        <h2><span>| POR QUÊ USAR O PRETTY NAILS?</span></h2>
-                        <br>
-                        <h3>O Pretty Nails é o app perfeito para quem busca praticidade <br> e organização no dia a dia de manicures. <br> Ele profissionaliza o trabalho das manicures, permitindo <br> o agendamento fácil e rápido de horários, <br> além de simplificar o processo para os clientes, <br> que podem agendar serviços com apenas alguns cliques.
-                    </div>
-                </div>
-            
-                <div class="topico3">
-                    <div class="texto3">
-                        <h2><span>| VANTAGENS DE QUEM USA PRETTY NAILS</span></h2>
-                        <br>
-                        <h3> - Valorização do seu trabalho; <br> - Auxílio; <br> - Facilidade; <br> - Inspiração; <br> - Contato prático; <br> - Clientes.</h3>
-                    </div>
-                    <div class="imagem3">
-                        <img src="imagens/3.png" alt="Imagem 3" />
-                    </div>
-                </div>
-                
-            </div>
-        </div><!--fim de "pag2"-->
-        
-        <div class="pag3" id="Suporte">
-            <div class="pf">
-                <h1>Perguntas Frequentes</h1>
-            </div>
-            <div class="perguntas">
-                <div class="pfs">
-                    <div class="faq-item">
-                        <h3 class="faq-question">O aplicativo é gratuito?</h3>
-                        <p class="faq-answer">Sim, o aplicativo é totalmente gratuito para download e uso.</p>
-                    </div>
-                    <hr>
-                    <div class="faq-item">
-                        <h3 class="faq-question">Posso cancelar ou remarcar meu agendamento?</h3>
-                        <p class="faq-answer">Sim, você pode cancelar ou remarcar seu agendamento diretamente pelo aplicativo, desde que esteja dentro do prazo permitido.</p>
-                    </div>
-                    <hr>
-                    <div class="faq-item">
-                        <h3 class="faq-question">Como posso agendar um horário?</h3>
-                        <p class="faq-answer">Para agendar um horário, basta acessar a seção de agendamentos no aplicativo e seguir as instruções.</p>
-                    </div>
-                    <hr>
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 px-4 gradient-bg text-white">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Agende sua manicure com facilidade</h1>
+                <p class="text-xl mb-8">Encontre os melhores profissionais, escolha o horário perfeito e receba
+                    lembretes automáticos - tudo em um só lugar!</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="cadastro-e-login/cadastro-e-login.html"
+                        class="bg-white text-pink-600 px-8 py-3 rounded-full font-bold text-center hover:bg-gray-100 transition duration-300 shadow-lg">
+                        Comece agora
+                    </a>
+                    <a href="#sobre"
+                        class="border-2 border-white text-white px-8 py-3 rounded-full font-bold text-center hover:bg-white hover:text-pink-600 transition duration-300">
+                        Saiba mais
+                    </a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!--Rodapé-->
-        <footer>
-            <div class="footer-col logo-nome">
-                <div class="img-logo">
-                    <img src="imagens/logo-app.jpg" alt="Logo do App">
+    <!-- Slideshow Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Inspire-se com nossos trabalhos</h2>
+            <div class="relative max-w-4xl mx-auto overflow-hidden rounded-3xl shadow-xl" style="height: 500px;">
+                <div id="slides" class="flex h-full transition-transform duration-500">
+                    <div class="slide min-w-full h-full">
+                        <img src="imagens/nail-design1.jpg" alt="Nail Design 1" class="w-full h-full object-cover">
+                    </div>
+                    <div class="slide min-w-full h-full">
+                        <img src="imagens/nail-design2.jpg" alt="Nail Design 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="slide min-w-full h-full">
+                        <img src="imagens/nail-design3.jpg" alt="Nail Design 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="slide min-w-full h-full">
+                        <img src="imagens/nail-design4.jpg" alt="Nail Design 4" class="w-full h-full object-cover">
+                    </div>
                 </div>
-                <div class="nome-redes">
-                    <h3>Pretty Nails</h3>
-                    <div class="redes-sociais">
-                        <a href="https://www.instagram.com/prettynails.app/?utm_source=ig_web_button_share_sheet" class="footer-link" id="instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="footer-link" id="facebook">
-                            <i class="fa-brands fa-facebook"></i>
-                        </a>
-                        <a href="#" class="footer-link" id="whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
+                <button id="prev"
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg text-pink-600 hover:bg-pink-100 transition">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next"
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg text-pink-600 hover:bg-pink-100 transition">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                    <button class="w-3 h-3 rounded-full bg-white opacity-50 dot" data-index="0"></button>
+                    <button class="w-3 h-3 rounded-full bg-white opacity-50 dot" data-index="1"></button>
+                    <button class="w-3 h-3 rounded-full bg-white opacity-50 dot" data-index="2"></button>
+                    <button class="w-3 h-3 rounded-full bg-white opacity-50 dot" data-index="3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">O que é o Pretty Nails?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Uma plataforma que conecta clientes e manicures
+                    profissionais, facilitando o agendamento e organização de horários.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center mb-20 bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="md:w-1/2 p-8 md:p-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4"><span class="text-pink-600">|</span> Conectando
+                        clientes e profissionais</h3>
+                    <p class="text-gray-600 mb-6">Pretty Nails é um aplicativo de agenda que permite que a cliente tenha
+                        acesso direto aos horários disponíveis das manicures, eliminando a necessidade de ligações e
+                        mensagens.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Visualização em tempo real da agenda</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Agendamento rápido com poucos cliques</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Perfis completos de profissionais</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 flex justify-center items-center p-4">
+                    <video src="imagens/agendamento-exemplo.mp4" alt="Agendamento-Exemplo"
+                        class="w-full max-h-96 object-contain rounded-lg shadow-2xl" autoplay muted loop
+                        playsinline></video>
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row-reverse items-center mb-20 bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="md:w-1/2 p-8 md:p-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4"><span class="text-pink-600">|</span> Por que usar
+                        o Pretty Nails?</h3>
+                    <p class="text-gray-600 mb-6">O Pretty Nails é o app perfeito para quem busca praticidade e
+                        organização no dia a dia de manicures. Ele profissionaliza o trabalho das manicures, permitindo
+                        o agendamento fácil e rápido de horários, além de simplificar o processo para os clientes.</p>
+                    <div class="bg-pink-50 p-6 rounded-xl">
+                        <p class="font-medium text-pink-700">"Com o Pretty Nails, minha agenda está sempre organizada e
+                            meus clientes adoram a facilidade de agendamento!"</p>
+                        <p class="text-sm text-gray-500 mt-2">- Ana Clara, Manicure Profissional</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center items-center p-4">
+                    <img src="imagens/Agendamentos.png" alt="Happy Client"
+                        class="w-full max-h-96 object-contain rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="vantagens" class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Vantagens de usar o Pretty Nails</h2>
+                <p class="text-xl max-w-3xl mx-auto">Descubra como nossa plataforma pode transformar sua experiência com
+                    manicures</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm hover:bg-opacity-20 transition duration-300">
+                    <div class="bg-white text-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-medal text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Valorização profissional</h3>
+                    <p class="opacity-90">Destaque seu trabalho e aumente seu reconhecimento no mercado.</p>
+                </div>
+
+                <div
+                    class="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm hover:bg-opacity-20 transition duration-300">
+                    <div class="bg-white text-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-hands-helping text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Suporte completo</h3>
+                    <p class="opacity-90">Nossa equipe está sempre disponível para ajudar com qualquer dúvida.</p>
+                </div>
+
+                <div
+                    class="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm hover:bg-opacity-20 transition duration-300">
+                    <div class="bg-white text-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Agilidade</h3>
+                    <p class="opacity-90">Agendamentos rápidos e fáceis em poucos cliques.</p>
+                </div>
+
+                <div
+                    class="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm hover:bg-opacity-20 transition duration-300">
+                    <div class="bg-white text-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Inspiração</h3>
+                    <p class="opacity-90">Acesse um portfólio completo de designs para se inspirar.</p>
+                </div>
+
+                <div
+                    class="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm hover:bg-opacity-20 transition duration-300">
+                    <div class="bg-white text-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Comunicação direta</h3>
+                    <p class="opacity-90">Chat integrado para conversar facilmente com seu profissional.</p>
+                </div>
+
+                <div
+                    class="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm hover:bg-opacity-20 transition duration-300">
+                    <div class="bg-white text-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Base de clientes</h3>
+                    <p class="opacity-90">Aumente sua visibilidade e atraia novos clientes.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="cadastro-e-login/cadastro-e-login.html"
+                    class="inline-block bg-white text-pink-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Experimente grátis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Perguntas Frequentes</h2>
+                <p class="text-xl text-gray-600">Tire suas dúvidas sobre o Pretty Nails</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <button
+                        class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-100 transition">
+                        <span class="font-bold text-lg text-gray-800">O aplicativo é gratuito?</span>
+                        <i class="fas fa-chevron-down text-pink-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-gray-600 hidden">
+                        <p>Sim, o aplicativo é totalmente gratuito para download e uso. Oferecemos opções premium com
+                            recursos adicionais para profissionais que desejam mais visibilidade e ferramentas
+                            avançadas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <button
+                        class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-100 transition">
+                        <span class="font-bold text-lg text-gray-800">Posso cancelar ou remarcar meu agendamento?</span>
+                        <i class="fas fa-chevron-down text-pink-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-gray-600 hidden">
+                        <p>Sim, você pode cancelar ou remarcar seu agendamento diretamente pelo aplicativo, desde que
+                            esteja dentro do prazo permitido pela política do profissional. Cada manicure define suas
+                            próprias regras de cancelamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <button
+                        class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-100 transition">
+                        <span class="font-bold text-lg text-gray-800">Como posso agendar um horário?</span>
+                        <i class="fas fa-chevron-down text-pink-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-gray-600 hidden">
+                        <p>Para agendar um horário, basta buscar por profissionais na sua região, selecionar o serviço
+                            desejado, escolher um horário disponível na agenda e confirmar o agendamento. Você receberá
+                            uma notificação no app.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <button
+                        class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-100 transition">
+                        <span class="font-bold text-lg text-gray-800">Como me torno um profissional no Pretty
+                            Nails?</span>
+                        <i class="fas fa-chevron-down text-pink-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-gray-600 hidden">
+                        <p>Basta se cadastrar como profissional, preencher seu perfil com informações e fotos do seu
+                            trabalho, e configurar sua agenda.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <button
+                        class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-100 transition">
+                        <span class="font-bold text-lg text-gray-800">O aplicativo está disponível para iOS e
+                            Android?</span>
+                        <i class="fas fa-chevron-down text-pink-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-gray-600 hidden">
+                        <p>Infelizmente ainda não, mas estamos desenvolvendo o mais rápido possível e tudo com
+                            qualidade.
+                            Aguarde as novidades!
+                        </p>
                     </div>
                 </div>
             </div>
-    
-            <div class="footer-col">
-                <h3>Quem somos nós?</h3>
-                <p>Somos a Focus In Beauty, onde cada detalhe conta. Mais que uma empresa, somos sua parceira para realçar beleza e confiança, com uma equipe dedicada a oferecer serviços personalizados e excepcionais.</p>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-6">Ainda tem dúvidas? Entre em contato conosco!</p>
+                <a href="#"
+                    class="inline-block bg-pink-600 text-white px-8 py-3 rounded-full font-bold hover:bg-pink-700 transition duration-300 shadow-lg">
+                    Fale conosco
+                </a>
             </div>
-    
-            <div class="footer-col">
-                <h3>Links</h3>
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#">Saiba mais</a></li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- Testimonials Section
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">O que estão dizendo</h2>
+                <p class="text-xl text-gray-600">Depoimentos de clientes e profissionais satisfeitos</p>
             </div>
-    
-            <div class="footer-col">
-                <h3>Nos Contrate</h3>
-                <ul>
-                    <li><p>(89) 91213456</p></li>
-                    <li><p>empresafib@gmail.com</p></li>
-                    <li><p>IFPI- Campus Picos, bairro Pantanal</p></li>
-                    <li><p>Brasil</p></li>
-                </ul>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Mariana Santos</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Adoro usar o Pretty Nails! Consigo agendar minha manicure em segundos e
+                        nunca mais esqueci um horário graças aos lembretes automáticos."</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Camila Oliveira</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Como profissional, o Pretty Nails mudou meu negócio. Minha agenda está
+                        sempre cheia e consigo me organizar muito melhor."</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Juliana Costa</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Amo a variedade de profissionais no app. Consigo encontrar manicures
+                        especializadas em diferentes técnicas e sempre descubro novos designs."</p>
+                </div>
             </div>
-        </footer>    
-    </main>
+        </div>
+    </section>
+     -->
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Pronto para transformar sua experiência com manicures?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Junte-se a milhares de clientes e profissionais que já descobriram
+                a melhor forma de agendar serviços de beleza.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="cadastro-e-login/cadastro-e-login.html"
+                    class="bg-white text-pink-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Comece agora
+                </a>
+                <a href="#"
+                    class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-pink-600 transition duration-300">
+                    Baixe o app
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img src="https://via.placeholder.com/50" alt="Pretty Nails Logo"
+                            class="h-12 w-12 rounded-full mr-4">
+                        <h3 class="text-2xl font-bold">Pretty Nails</h3>
+                    </div>
+                    <p class="mb-6 text-gray-300">Conectando clientes e profissionais de manicure com agendamentos
+                        fáceis e rápidos.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/prettynails.app?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            class="text-gray-300 hover:text-white transition">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="https://wa.link/0xwrih" class="text-gray-300 hover:text-white transition">
+                            <i class="fab fa-whatsapp text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-300 hover:text-white transition">Início</a></li>
+                        <li><a href="#sobre" class="text-gray-300 hover:text-white transition">Sobre</a></li>
+                        <li><a href="#vantagens" class="text-gray-300 hover:text-white transition">Vantagens</a></li>
+                        <li><a href="#faq" class="text-gray-300 hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-300"></i>
+                            <span>nailannobre22@gmail.com.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-gray-300"></i>
+                            <span>(89)98152-0745</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-gray-300"></i>
+                            <span>IFPI - Campus Picos, Pantanal</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Pretty Nails. Todos os direitos reservados.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="hover:text-white transition">Termos de Serviço</a>
+                    <a href="#" class="hover:text-white transition">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Slideshow Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            document.getElementById('slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('opacity-50', i !== currentSlide);
+                dot.classList.toggle('opacity-100', i === currentSlide);
+            });
+        }
+
+        // Next/Previous buttons
+        document.getElementById('next').addEventListener('click', () => showSlide(currentSlide + 1));
+        document.getElementById('prev').addEventListener('click', () => showSlide(currentSlide - 1));
+
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.getAttribute('data-index')));
+            });
+        });
+
+        // Auto slide
+        setInterval(() => showSlide(currentSlide + 1), 5000);
+
+        // Initialize dots
+        dots[0].classList.remove('opacity-50');
+        dots[0].classList.add('opacity-100');
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+
+                // Toggle answer
+                answer.classList.toggle('hidden');
+
+                // Toggle icon
+                if (answer.classList.contains('hidden')) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
-<script src="index.js"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
+
 </html>
