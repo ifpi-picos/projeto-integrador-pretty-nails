@@ -58,7 +58,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         } catch (error) {
             console.error('Erro ao carregar perfil:', error);
-            showNotification('Erro ao carregar dados do perfil', 'error');
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Erro ao carregar dados do perfil',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
         }
     }
 
@@ -147,38 +153,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             const updatedData = await response.json();
-            showNotification('Perfil atualizado com sucesso!', 'success');
-
-            // Atualizar localStorage se necessário
-            if (updatedData.nome) localStorage.setItem('userName', updatedData.nome);
-            if (updatedData.foto) localStorage.setItem('userFoto', updatedData.foto);
+            
+            await Swal.fire({
+                icon: 'success',
+                title: 'Sucesso!',
+                text: 'Perfil atualizado com sucesso!',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
 
             toggleModal(false);
             loadProfileData(); // Recarregar dados
 
         } catch (error) {
             console.error('Erro ao atualizar perfil:', error);
-            showNotification(error.message || 'Erro ao atualizar perfil', 'error');
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: error.message || 'Erro ao atualizar perfil',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
         }
     });
 
     // Função para mostrar notificações
     function showNotification(message, type) {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        document.body.appendChild(notification);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
 
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 10);
-
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
+        Toast.fire({
+            icon: type,
+            title: message
+        });
     }
 
     // Inicialização

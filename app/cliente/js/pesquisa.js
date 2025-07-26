@@ -9,26 +9,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".apply-btn").addEventListener("click", function () {
         const estado = document.getElementById("estado").value;
         const cidade = document.getElementById("cidade").value;
-        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        const searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
 
-        if (!estado && !cidade && !searchTerm) {
+        if (searchTerm === "" && !estado && !cidade) {
+            // Se todos os filtros estiverem vazios, mostra mensagem inicial
             document.getElementById("initial-message").classList.remove("hidden");
             document.getElementById("perfil-container").innerHTML = "";
         } else {
+            // Caso contrário, aplica os filtros
+            document.getElementById("initial-message").classList.add("hidden");
             adicionarPerfis(estado, cidade, searchTerm);
         }
     });
 
     document.getElementById("searchInput").addEventListener("input", function () {
-        const searchTerm = this.value.toLowerCase();
+        const searchTerm = this.value.trim().toLowerCase();
         const estado = document.getElementById("estado").value;
         const cidade = document.getElementById("cidade").value;
 
-        // Se o campo de pesquisa estiver vazio e não houver outros filtros, mostrar mensagem inicial
-        if (!searchTerm && !estado && !cidade) {
+        if (searchTerm === "" && !estado && !cidade) {
+            // Se campo de pesquisa vazio e sem outros filtros, mostra mensagem inicial
             document.getElementById("initial-message").classList.remove("hidden");
             document.getElementById("perfil-container").innerHTML = "";
         } else {
+            // Caso contrário, aplica os filtros
+            document.getElementById("initial-message").classList.add("hidden");
             adicionarPerfis(estado, cidade, searchTerm);
         }
     });
@@ -147,6 +152,7 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
             } else if (filtroEstado) {
                 mensagem = `Nenhuma manicure encontrada no estado ${filtroEstado}.`;
             }
+            
             container.innerHTML = `<p class="no-results">${mensagem}</p>`;
             return;
         }
@@ -178,5 +184,14 @@ async function adicionarPerfis(filtroEstado = "", filtroCidade = "", filtroNome 
         console.error("Erro ao carregar manicures:", error);
         container.innerHTML = "<p class='no-results'>Erro ao carregar perfis. Verifique sua conexão ou login.</p>";
         initialMessage.classList.add("hidden");
+        
+        // Mostrar erro com SweetAlert2
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: error.message || 'Erro ao carregar perfis de manicures',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
     }
 }
