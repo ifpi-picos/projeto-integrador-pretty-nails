@@ -12,6 +12,12 @@
     --danger: #DC3545;
     --info: #17A2B8;
 
+    --star-default: #ddd;
+    --star-hover: #ffe100;
+    --star-selected: #ffc107;
+    --star-inactive: #f1f3f5;
+
+
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
     --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
@@ -212,27 +218,86 @@ body {
 }
 
 .rating {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row-reverse; /* Importante para a seleção */
     justify-content: center;
     margin: 0.5rem 0;
     gap: 0.3rem;
 }
 
-.star {
-    font-size: 1.5rem;
-    color: #ddd;
-    cursor: pointer;
-    transition: var(--transition);
+.rating input {
+    display: none; /* Esconde os inputs reais */
 }
 
-.star:hover, .star.selected {
-    color: #FFD700;
+.rating label {
+    font-size: 1.8rem;
+    color: var(--star-default);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: var(--star-hover);
     transform: scale(1.1);
 }
 
-.star.selected ~ .star {
-    color: #ddd !important;
+.rating input:checked ~ label {
+    color: var(--star-selected);
+    transform: scale(1);
 }
+
+/* Efeito de preenchimento ao selecionar */
+.rating label::before {
+    content: '★';
+    position: absolute;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.rating input:checked ~ label::before {
+    opacity: 1;
+}
+
+/* Estilo para quando já tem avaliação */
+.rating.readonly label {
+    cursor: default;
+}
+
+.rating.readonly input:checked ~ label {
+    color: var(--star-selected);
+}
+
+/* Feedback enviado */
+.feedback-success {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: var(--radius-sm);
+    margin-top: 1rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.feedback-success i {
+    color: var(--success);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.feedback-success p {
+    margin: 0.5rem 0;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.feedback-success .stars {
+    color: var(--star-selected);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
 
 .text-container {
     display: flex;

@@ -12,7 +12,7 @@ function sortAgendamentos(agendamentos) {
         // Primeiro ordena por status
         const statusComparison = statusOrder[a.status] - statusOrder[b.status];
         if (statusComparison !== 0) return statusComparison;
-        
+
         // Se status for igual, ordena por data (mais recente primeiro)
         return new Date(b.data_hora) - new Date(a.data_hora);
     });
@@ -39,10 +39,10 @@ function renderManicures(agendamentos) {
     sortedAgendamentos.forEach(agendamento => {
         const manicure = agendamento.manicure || {};
         const date = new Date(agendamento.data_hora);
-        const dateStr = date.toLocaleDateString('pt-BR', { 
-            weekday: 'long', 
-            day: 'numeric', 
-            month: 'long' 
+        const dateStr = date.toLocaleDateString('pt-BR', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long'
         });
 
         const manicureCard = document.createElement('div');
@@ -58,15 +58,15 @@ function renderManicures(agendamentos) {
             </div>
             <div class="requests-list">
                 ${createRequestHtml({
-                    id: agendamento.id,
-                    data: agendamento.data_hora,
-                    horaInicio: date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-                    horaFim: '', // Se houver horaFim, adicione aqui
-                    status: agendamento.status,
-                    feedback: agendamento.feedback,
-                    servico: agendamento.servico,
-                    observacoes: agendamento.observacoes
-                })}
+            id: agendamento.id,
+            data: agendamento.data_hora,
+            horaInicio: date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            horaFim: '', // Se houver horaFim, adicione aqui
+            status: agendamento.status,
+            feedback: agendamento.feedback,
+            servico: agendamento.servico,
+            observacoes: agendamento.observacoes
+        })}
             </div>
         `;
 
@@ -89,10 +89,10 @@ function formatStatus(status) {
 // Função para criar o HTML de cada requisição (mantida igual)
 function createRequestHtml(request) {
     const date = new Date(request.data);
-    const dateStr = date.toLocaleDateString('pt-BR', { 
-        weekday: 'long', 
-        day: 'numeric', 
-        month: 'long' 
+    const dateStr = date.toLocaleDateString('pt-BR', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
     });
 
     let feedbackHtml = '';
@@ -100,13 +100,19 @@ function createRequestHtml(request) {
         feedbackHtml = `
             <div class="feedback-section">
                 <h4>Avalie o serviço:</h4>
+                
                 <div class="rating" data-request-id="${request.id}">
-                    <span class="star" data-value="1">★</span>
-                    <span class="star" data-value="2">★</span>
-                    <span class="star" data-value="3">★</span>
-                    <span class="star" data-value="4">★</span>
-                    <span class="star" data-value="5">★</span>
-                </div>
+    <input type="radio" id="star5" name="rating" value="5" />
+    <label for="star5">★</label>
+    <input type="radio" id="star4" name="rating" value="4" />
+    <label for="star4">★</label>
+    <input type="radio" id="star3" name="rating" value="3" />
+    <label for="star3">★</label>
+    <input type="radio" id="star2" name="rating" value="2" />
+    <label for="star2">★</label>
+    <input type="radio" id="star1" name="rating" value="1" />
+    <label for="star1">★</label>
+</div>
                 <h4>Escreva sobre sua experiência:</h4>
                 <div class="text-container">
                     <textarea id="text-feedback"></textarea>
@@ -140,45 +146,79 @@ function createRequestHtml(request) {
 }
 
 // Configura o sistema de avaliação por estrelas (mantida igual)
+// Configura o sistema de avaliação por estrelas (versão corrigida para seleção múltipla)
 function setupStarRating() {
     document.querySelectorAll('.rating').forEach(ratingDiv => {
-        const stars = Array.from(ratingDiv.querySelectorAll('.star'));
-        let selected = 0;
-        stars.forEach((star, idx) => {
-            star.addEventListener('mouseenter', function() {
-                stars.forEach((s, i) => {
-                    s.classList.toggle('hovered', i <= idx);
-                });
-            });
-            star.addEventListener('mouseleave', function() {
-                stars.forEach(s => s.classList.remove('hovered'));
-            });
-            star.addEventListener('click', function() {
-                if (selected === idx + 1) {
-                    // Se clicar na mesma estrela já selecionada, desmarca todas
-                    selected = 0;
-                } else {
-                    selected = idx + 1;
+        const stars = ratingDiv.querySelectorAll('.star');
+        let selectedRating = 0;
+        let hoverRating = 0;
+
+        // Adiciona eventos para cada estrela
+        stars.forEach(star => {
+            const value = parseInt(star.getAttribute('data-value'));
+
+            // Mouse entra na estrela
+            star.addEventListener('mouseenter', () => {
+                if (selectedRating === 0) { // Só mostra hover se nenhuma estrela estiver selecionada
+                    hoverRating = value;
+                    updateStars();
                 }
-                stars.forEach((s, i) => {
-                    s.classList.toggle('selected', i < selected);
-                });
+            });
+
+            // Mouse sai da estrela
+            star.addEventListener('mouseleave', () => {
+                hoverRating = 0;
+                updateStars();
+            });
+
+            // Clica na estrela
+            star.addEventListener('click', () => {
+                selectedRating = value;
+                updateStars();
+
+                // Atualiza o valor escondido para o formulário (se necessário)
+                ratingDiv.setAttribute('data-selected', selectedRating);
             });
         });
+
+        // Atualiza a aparência das estrelas
+        function updateStars() {
+            stars.forEach(star => {
+                const value = parseInt(star.getAttribute('data-value'));
+
+                // Estrela selecionada (amarela sólida)
+                star.classList.toggle('selected', value <= selectedRating);
+
+                // Estrela com hover (amarelo claro, apenas quando não selecionada e sem seleção prévia)
+                star.classList.toggle('hovered',
+                    value <= hoverRating &&
+                    selectedRating === 0
+                );
+            });
+        }
     });
 
-    // Simula o envio de feedback
+    // Envio do feedback (mantido igual)
     document.querySelectorAll('.submit-feedback').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const requestItem = this.closest('.request-item');
-            const stars = requestItem.querySelectorAll('.star.selected').length;
-            if (stars === 0) {
-                alert('Por favor, selecione uma avaliação');
+            const rating = requestItem.querySelector('.rating')?.getAttribute('data-selected') || 0;
+            const feedbackText = requestItem.querySelector('#text-feedback')?.value || '';
+
+            if (rating === "0") {
+                alert('Por favor, selecione uma avaliação com as estrelas');
                 return;
             }
-            alert('Avaliação enviada com sucesso! (Simulação)');
+
+            // Simulação de envio (substituir por chamada real à API)
+            console.log(`Avaliação: ${rating} estrelas | Feedback: ${feedbackText}`);
+
+            // Feedback visual
             requestItem.querySelector('.feedback-section').innerHTML = `
-                <p style="text-align: center; color: green;">Obrigado pelo seu feedback!</p>
+                <div class="feedback-success">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Avaliação enviada com sucesso!(simulação)</p>
+                </div>
             `;
         });
     });
@@ -196,16 +236,16 @@ document.addEventListener('DOMContentLoaded', () => {
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(response => {
-        if (!response.ok) throw new Error('Erro ao buscar agendamentos');
-        return response.json();
-    })
-    .then(res => {
-        const data = res.agendamentos?.comoCliente || [];
-        renderManicures(data);
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao carregar agendamentos', 'error');
-    });
+        .then(response => {
+            if (!response.ok) throw new Error('Erro ao buscar agendamentos');
+            return response.json();
+        })
+        .then(res => {
+            const data = res.agendamentos?.comoCliente || [];
+            renderManicures(data);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao carregar agendamentos', 'error');
+        });
 });
