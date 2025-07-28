@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configurações | Pretty Nails</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap">
+  <style>
+    :root {
+      --bg-color: #fff;
+      --text-color: #333;
+      --input-bg: #f9f9f9;
+      --btn-bg: #e91e63;
+      --btn-color: #fff;
+    }
+
+    body.dark {
+      --bg-color: #1f1f1f;
+      --text-color: #fff;
+      --input-bg: #333;
+      --btn-bg: #d81b60;
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    .config-container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 12px;
+      background-color: var(--input-bg);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .config-section {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      font-size: 1em;
+    }
+
+    button.salvar-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--btn-bg);
+      color: var(--btn-color);
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    button.salvar-btn:hover {
+      background-color: #c2185b;
+    }
+
+    .alerta {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      background-color: #dff0d8;
+      color: #3c763d;
+      display: none;
+    }
+
+    .alerta.mostrar {
+      display: block;
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="config-container">
+    <h2>⚙️ Configurações do Perfil</h2>
+
+    <form id="form-config">
+      <div class="config-section">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Seu nome completo" />
+      </div>
+
+      <div class="config-section">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="seuemail@exemplo.com" />
+      </div>
+
+      <div class="config-section">
+        <label for="senha">Nova senha</label>
+        <input type="password" id="senha" placeholder="********" />
+      </div>
+
+      <div class="config-section">
+        <label for="notificacoes">Notificações</label>
+        <select id="notificacoes">
+          <option>Ativadas</option>
+          <option>Desativadas</option>
+        </select>
+      </div>
+
+      <div class="config-section">
+        <label for="tema">Tema do site</label>
+        <select id="tema">
+          <option value="claro">Claro</option>
+          <option value="escuro">Escuro</option>
+        </select>
+      </div>
+
+      <button type="submit" class="salvar-btn">Salvar Alterações</button>
+
+      <div class="alerta" id="mensagem">Alterações salvas com sucesso! ✅</div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('form-config');
+    const temaSelect = document.getElementById('tema');
+    const mensagem = document.getElementById('mensagem');
+
+    temaSelect.addEventListener('change', () => {
+      document.body.classList.toggle('dark', temaSelect.value === 'escuro');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const senha = document.getElementById('senha').value;
+      const notificacoes = document.getElementById('notificacoes').value;
+
+      if (senha.length > 0) {
+        console.log("Senha alterada!");
+      }
+
+      console.log("Notificações:", notificacoes);
+
+      mensagem.classList.add('mostrar');
+      setTimeout(() => mensagem.classList.remove('mostrar'), 3000);
+    });
+  </script>
+</body>
+</html>
 <!-- Coloca o código aqui -->
