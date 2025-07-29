@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!token) {
         alert("Você precisa estar logado para acessar esta página.");
-        window.location.href = "login.html";
+        window.location.href = "../../cadastro-e-login/cadastro-e-login.html";
         return;
     }
 
