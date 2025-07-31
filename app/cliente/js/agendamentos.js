@@ -23,7 +23,6 @@ function renderManicures(agendamentos) {
     const container = document.getElementById('manicures-container');
     container.innerHTML = '';
 
-    // Ordenar os agendamentos antes de renderizar
     const sortedAgendamentos = sortAgendamentos(agendamentos);
 
     if (sortedAgendamentos.length === 0) {
@@ -61,9 +60,9 @@ function renderManicures(agendamentos) {
             id: agendamento.id,
             data: agendamento.data_hora,
             horaInicio: date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-            horaFim: '', // Se houver horaFim, adicione aqui
             status: agendamento.status,
             feedback: agendamento.feedback,
+            manicureId: manicure.id,
             servico: agendamento.servico,
             observacoes: agendamento.observacoes
         })}
@@ -72,7 +71,7 @@ function renderManicures(agendamentos) {
 
         container.appendChild(manicureCard);
     });
-    setupStarRating(); // Ativa os eventos de avaliação
+    setupStarRating();
 }
 
 // Função para formatar o status para exibição
@@ -86,7 +85,7 @@ function formatStatus(status) {
     return statusMap[status] || status;
 }
 
-// Função para criar o HTML de cada requisição (mantida igual)
+// Função para criar o HTML de cada requisição
 function createRequestHtml(request) {
     const date = new Date(request.data);
     const dateStr = date.toLocaleDateString('pt-BR', {
@@ -96,37 +95,58 @@ function createRequestHtml(request) {
     });
 
     let feedbackHtml = '';
-    if (request.status === 'concluido' && !request.feedback) {
-        feedbackHtml = `
+    if (request.status === 'concluido') {
+        if (request.avaliado) {
+            const estrelas = request.feedback?.estrelas || 5;
+            const comentario = request.feedback?.comentario || '';
+            const data = request.feedback?.created_at;
+
+            feedbackHtml = `
             <div class="feedback-section">
-                <h4>Avalie o serviço:</h4>
-                
-                <div class="rating" data-request-id="${request.id}">
-    <input type="radio" id="star5" name="rating" value="5" />
-    <label for="star5">★</label>
-    <input type="radio" id="star4" name="rating" value="4" />
-    <label for="star4">★</label>
-    <input type="radio" id="star3" name="rating" value="3" />
-    <label for="star3">★</label>
-    <input type="radio" id="star2" name="rating" value="2" />
-    <label for="star2">★</label>
-    <input type="radio" id="star1" name="rating" value="1" />
-    <label for="star1">★</label>
-</div>
-                <h4>Escreva sobre sua experiência:</h4>
-                <div class="text-container">
-                    <textarea id="text-feedback"></textarea>
+                <div class="feedback-success">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Avaliação enviada com sucesso!</p>
+                    <div class="stars">${'★'.repeat(estrelas)}${'☆'.repeat(5 - estrelas)}</div>
+                    ${comentario ? `<p class="feedback-comment">"${comentario}"</p>` : ''}
+                    ${data ? `<p><small>Avaliado em ${new Date(data).toLocaleDateString('pt-BR')}</small></p>` : ''}
                 </div>
-                <button class="submit-feedback">Enviar Avaliação</button>
             </div>
         `;
+        } else {
+            // Mostra formulário para novo feedback
+            feedbackHtml = `
+            <div class="feedback-section">
+                <h4>Avalie o serviço:</h4>
+                <div class="rating" data-request-id="${request.id}">
+                    <input type="radio" id="star5-${request.id}" name="rating-${request.id}" value="5" />
+                    <label for="star5-${request.id}" class="star">★</label>
+                    <input type="radio" id="star4-${request.id}" name="rating-${request.id}" value="4" />
+                    <label for="star4-${request.id}" class="star">★</label>
+                    <input type="radio" id="star3-${request.id}" name="rating-${request.id}" value="3" />
+                    <label for="star3-${request.id}" class="star">★</label>
+                    <input type="radio" id="star2-${request.id}" name="rating-${request.id}" value="2" />
+                    <label for="star2-${request.id}" class="star">★</label>
+                    <input type="radio" id="star1-${request.id}" name="rating-${request.id}" value="1" />
+                    <label for="star1-${request.id}" class="star">★</label>
+                </div>
+                <h4>Escreva sobre sua experiência:</h4>
+                <div class="text-container">
+                    <textarea id="text-feedback-${request.id}" placeholder="Conte como foi sua experiência..."></textarea>
+                </div>
+                <button class="submit-feedback" data-request-id="${request.id}" data-manicure-id="${request.manicureId}">
+                    <i class="fas fa-paper-plane"></i> Enviar Avaliação
+                </button>
+            </div>
+        `;
+        }
     }
+
 
     return `
         <div class="request-item" data-request-id="${request.id}">
             <div class="request-meta">
                 <div class="request-date">${dateStr}</div>
-                <div class="request-time">${request.horaInicio}${request.horaFim ? ' às ' + request.horaFim : ''}</div>
+                <div class="request-time">${request.horaInicio}</div>
             </div>
             <div class="request-details">
                 <div class="detail-row">
@@ -145,107 +165,121 @@ function createRequestHtml(request) {
     `;
 }
 
-// Configura o sistema de avaliação por estrelas (mantida igual)
-// Configura o sistema de avaliação por estrelas (versão corrigida para seleção múltipla)
 function setupStarRating() {
     document.querySelectorAll('.rating').forEach(ratingDiv => {
         const stars = ratingDiv.querySelectorAll('.star');
-        let selectedRating = 0;
-        let hoverRating = 0;
+        const inputs = ratingDiv.querySelectorAll('input[type="radio"]');
 
-        // Adiciona eventos para cada estrela
-        stars.forEach(star => {
-            const value = parseInt(star.getAttribute('data-value'));
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                // Marca o input correspondente
+                inputs[index].checked = true;
 
-            // Mouse entra na estrela
-            star.addEventListener('mouseenter', () => {
-                if (selectedRating === 0) { // Só mostra hover se nenhuma estrela estiver selecionada
-                    hoverRating = value;
-                    updateStars();
+                // Atualiza visualização das estrelas
+                stars.forEach((s, i) => {
+                    s.classList.toggle('selected', i <= index);
+                });
+            });
+
+            star.addEventListener('mouseover', () => {
+                const checkedIndex = [...inputs].findIndex(input => input.checked);
+                if (checkedIndex === -1) {
+                    stars.forEach((s, i) => {
+                        s.classList.toggle('hovered', i <= index);
+                    });
                 }
             });
 
-            // Mouse sai da estrela
-            star.addEventListener('mouseleave', () => {
-                hoverRating = 0;
-                updateStars();
-            });
-
-            // Clica na estrela
-            star.addEventListener('click', () => {
-                selectedRating = value;
-                updateStars();
-
-                // Atualiza o valor escondido para o formulário (se necessário)
-                ratingDiv.setAttribute('data-selected', selectedRating);
+            star.addEventListener('mouseout', () => {
+                stars.forEach(s => s.classList.remove('hovered'));
             });
         });
-
-        // Atualiza a aparência das estrelas
-        function updateStars() {
-            stars.forEach(star => {
-                const value = parseInt(star.getAttribute('data-value'));
-
-                // Estrela selecionada (amarela sólida)
-                star.classList.toggle('selected', value <= selectedRating);
-
-                // Estrela com hover (amarelo claro, apenas quando não selecionada e sem seleção prévia)
-                star.classList.toggle('hovered',
-                    value <= hoverRating &&
-                    selectedRating === 0
-                );
-            });
-        }
     });
 
-    // Envio do feedback (mantido igual)
+    // Configuração do envio de feedback
     document.querySelectorAll('.submit-feedback').forEach(button => {
-        button.addEventListener('click', function () {
-            const requestItem = this.closest('.request-item');
-            const rating = requestItem.querySelector('.rating')?.getAttribute('data-selected') || 0;
-            const feedbackText = requestItem.querySelector('#text-feedback')?.value || '';
+        button.addEventListener('click', async function () {
+            const requestId = this.getAttribute('data-request-id');
+            const manicureId = this.getAttribute('data-manicure-id');
+            const feedbackSection = this.closest('.feedback-section');
+            const ratingInput = feedbackSection.querySelector('input[name="rating-' + requestId + '"]:checked');
+            const comment = feedbackSection.querySelector('#text-feedback-' + requestId).value;
 
-            if (rating === "0") {
+            if (!ratingInput) {
                 alert('Por favor, selecione uma avaliação com as estrelas');
                 return;
             }
 
-            // Simulação de envio (substituir por chamada real à API)
-            console.log(`Avaliação: ${rating} estrelas | Feedback: ${feedbackText}`);
+            const rating = ratingInput.value;
+            const token = localStorage.getItem('token');
 
-            // Feedback visual
-            requestItem.querySelector('.feedback-section').innerHTML = `
-                <div class="feedback-success">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Avaliação enviada com sucesso!(simulação)</p>
-                </div>
-            `;
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/feedbacks`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        agendamento_id: requestId,
+                        manicure_id: manicureId,
+                        estrelas: rating,
+                        comentario: comment
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar feedback');
+                }
+
+                // Atualiza a interface após envio bem-sucedido
+                feedbackSection.innerHTML = `
+                    <div class="feedback-success">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Avaliação enviada com sucesso!</p>
+                        <div class="stars">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>
+                        ${comment ? `<p class="feedback-comment">"${comment}"</p>` : ''}
+                    </div>
+                `;
+
+                // Opcional: recarregar os agendamentos para atualizar a lista
+                // loadAgendamentos();
+
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao enviar avaliação. Tente novamente mais tarde.');
+            }
         });
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Função para carregar agendamentos
+async function loadAgendamentos() {
     const token = localStorage.getItem('token');
     if (!token) {
         alert('Faça login para ver seus agendamentos', 'error');
+        window.location.href = 'login.html';
         return;
     }
 
-    fetch(`${API_BASE_URL}/api/agendamentos/meus-agendamentos`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-        .then(response => {
-            if (!response.ok) throw new Error('Erro ao buscar agendamentos');
-            return response.json();
-        })
-        .then(res => {
-            const data = res.agendamentos?.comoCliente || [];
-            renderManicures(data);
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao carregar agendamentos', 'error');
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/agendamentos/meus-agendamentos`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
-});
+
+        if (!response.ok) throw new Error('Erro ao buscar agendamentos');
+
+        const data = await response.json();
+        const agendamentos = data.agendamentos?.comoCliente || [];
+        renderManicures(agendamentos);
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao carregar agendamentos', 'error');
+    }
+}
+
+// Carrega os agendamentos quando a página é carregada
+document.addEventListener('DOMContentLoaded', loadAgendamentos);

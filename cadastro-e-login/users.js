@@ -4,6 +4,7 @@ async function adicionarUsuario() {
   const campoEmail = document.querySelector("#cadastro-email").value;
   const campoSenha = document.querySelector("#cadastro-senha").value;
   const campoTelefone = document.querySelector("#telefone").value;
+  const campoRua = document.querySelector("#rua").value.trim();
   const campoEstado = document.querySelector("#estado").value;
   const campoCidade = document.querySelector("#cidade").value;
   const campoTipo = document.querySelector("#tipo").value;
@@ -13,7 +14,7 @@ async function adicionarUsuario() {
     return;
   }
 
-  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone || !campoEstado || !campoCidade || !campoTipo) {
+  if (!campoNome || !campoEmail || !campoSenha || !campoTelefone || !campoRua || !campoEstado || !campoCidade || !campoTipo) {
     alert("Preencha todos os campos obrigatórios.");
     return;
   }
@@ -23,8 +24,9 @@ async function adicionarUsuario() {
     email: campoEmail,
     password: campoSenha,
     telefone: campoTelefone,
-    estado: campoEstado,
-    cidade: campoCidade,
+    rua: campoRua,
+    estado: campoEstado, // Agora envia o nome completo do estado como texto
+    cidade: campoCidade, // Envia o nome da cidade como texto
     tipo: campoTipo
   };
 
@@ -44,7 +46,6 @@ async function adicionarUsuario() {
 
     alert("Cadastro realizado com sucesso!");
     alert("Um email de confirmação foi enviado para " + campoEmail + ". Por favor, verifique sua caixa de entrada.");
-
 
     // Troca para o formulário de login
     container.classList.remove('right-panel-active');
@@ -88,6 +89,7 @@ async function loginUsuario() {
     localStorage.setItem("userName", user.nome);
     localStorage.setItem("userEmail", user.email);
     localStorage.setItem("userTelefone", user.telefone);
+    localStorage.setItem("userRua", user.rua);
     localStorage.setItem("userEstado", user.estado);
     localStorage.setItem("userCidade", user.cidade);
     localStorage.setItem("userTipo", user.tipo);
