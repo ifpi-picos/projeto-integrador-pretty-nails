@@ -212,6 +212,7 @@ AC
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10px;
 }
 
 .profile-info h3 {
