@@ -317,7 +317,6 @@ body {
               padding: 15px;
               width: 95%;
               gap: 15px;
-              border: 1px solid var(--cinza);
        }
 
        .button-container {
@@ -327,6 +326,7 @@ body {
               scroll-snap-type: x mandatory;
               gap: 15px;
               scrollbar-width: none;
+              border-radius: 10px 0px 0 10px;
        }
 
        .button-container .button-box {
@@ -343,7 +343,6 @@ body {
        #perfis-container {
               width: 95%;
               padding: 10px;
-              border: 1px solid var(--cinza);
        }
 
        #sessoes {

@@ -5,69 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pretty Nails</title>
-    <link rel="stylesheet" href="cadastro-e-login.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="cadastro-e-login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
     <script src="../config.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async></script>
-
-    <script>
-        async function handleCredentialResponse(response) {
-            if (response && response.credential) {
-                try {
-                    // Envia o token do Google para o backend
-                    const backendResponse = await fetch(`${API_BASE_URL}/auth/google`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ token: response.credential })
-                    });
-
-                    if (!backendResponse.ok) {
-                        alert('Erro ao autenticar com Google.');
-                        return;
-                    }
-
-                    const data = await backendResponse.json();
-
-                    // Salva o token JWT do backend e dados do usuário
-                    localStorage.setItem("token", data.token);
-                    localStorage.setItem("userId", data.id);
-                    localStorage.setItem("userName", data.nome);
-                    localStorage.setItem("userEmail", data.email);
-                    localStorage.setItem("tipo", data.tipo);
-
-                    alert("Login realizado! Redirecionando...");
-                    window.location.href = "../app/cliente/principal.html";
-                } catch (error) {
-                    alert("Erro ao processar o login do Google.");
-                    console.error("Erro ao autenticar com o backend:", error);
-                }
-            } else {
-                alert("Token não recebido. O redirecionamento foi cancelado.");
-                console.error("Token não recebido.");
-            }
-        }
-
-        window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: "495511510189-goo1hjj4u82qeu2ccngim4p4i6l020g1.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-            });
-
-            google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"), {
-                type: "icon",
-                shape: "circle",
-                theme: "filled_blue",
-                text: "signin_with",
-                size: "large",
-            }
-            );
-
-            google.accounts.id.prompt();
-        }
-    </script>
 </head>
 
 <body>
@@ -92,23 +36,21 @@
                     <i class="mdi mdi-phone"></i>
                     <input type="tel" id="telefone" placeholder="Telefone" required />
                 </div>
-                <div style="display: flex; justify-content: center; gap: 10px;">
-                    <div class="input-icon" style="width: 50%;">
-                        <i class="mdi mdi-map-marker"></i>
-                        <select id="estado" onchange="carregarCidades()" style="width: 85%;">
-                            <option value="" disabled selected>estado</option>
-                        </select>
-                    </div>
-                    <div class="input-icon" style="width: 50%;">
-                        <i class="mdi mdi-city"></i>
-                        <select id="cidade" style="width: 85%;">
-                            <option value="" disabled selected>Cidade</option>
-                        </select>
-                    </div>
+                <div class="input-icon">
+                    <i class="mdi mdi-map-marker"></i>
+                    <select id="estado" onchange="carregarCidades()" required>
+                        <option value="" disabled selected>Estado</option>
+                    </select>
+                </div>
+                <div class="input-icon">
+                    <i class="mdi mdi-city"></i>
+                    <select id="cidade" required>
+                        <option value="" disabled selected>Cidade</option>
+                    </select>
                 </div>
                 <div class="input-icon">
                     <i class="mdi mdi-account-switch"></i>
-                    <select id="tipo" style="width: 92%;">
+                    <select id="tipo" required>
                         <option value="" disabled selected>Tipo de usuário</option>
                         <option value="MANICURE">Manicure</option>
                         <option value="CLIENTE">Cliente</option>
@@ -154,8 +96,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- Texto alternativo para mobile -->
+        <div class="mobile-toggle-container">
+            <p class="mobile-toggle-text">Não tem uma conta? <span class="mobile-toggle-link" id="mobileSignUp">Cadastre-se</span></p>
+            <p class="mobile-toggle-text">Já tem uma conta? <span class="mobile-toggle-link" id="mobileSignIn">Faça login</span></p>
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
     <script src="cadastro-e-login.js"></script>
     <script src="users.js"></script>
 </body>

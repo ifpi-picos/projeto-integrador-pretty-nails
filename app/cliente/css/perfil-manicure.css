@@ -240,14 +240,17 @@ textarea {
 /* Estilos para os dias da semana */
 .days-container {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-items: space-between;
     margin-bottom: 1rem;
+    width: auto;
+    padding: 10px;
 }
 
 .day-item {
-    flex: 1;
     text-align: center;
-    padding: 10px;
+    height: 30px;
+    width: 30px;
     margin: 5px;
     cursor: default;
     color: var(--gray);
@@ -435,6 +438,19 @@ textarea {
     gap: 0.8rem;
     margin: 0.5rem 0;
     font-size: 0.9rem;
+    color: #000;
+}
+
+.contact-info span {
+       overflow: scroll;
+    white-space: nowrap;
+    /* remove a barra de rolagem */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    /* Chrome, Safari e Opera */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari e Opera */
+    }
 }
 
 .contact-info i {

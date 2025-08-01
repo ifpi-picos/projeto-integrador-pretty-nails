@@ -8,16 +8,16 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background: var(--tom3);
   font-family: 'Quicksand', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   margin: 0;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -27,13 +27,10 @@ h1 {
 
 .container {
   background: var(--branco);
-  border-radius: 15px;
-  box-shadow: 0 14px 28px var(--sombra), 0 10px 10px var(--sombra);
   position: relative;
   overflow: hidden;
-  width: 850px;
-  max-width: 100%;
-  min-height: 500px;
+  width: 100%;
+  height: 100vh;
   display: flex;
 }
 
@@ -49,6 +46,7 @@ h1 {
   padding: 0 50px;
   text-align: center;
   width: 50%;
+  max-width: 50%; /* Garante que não ultrapasse 50% da largura */
 }
 
 .sign-in-container {
@@ -60,6 +58,9 @@ h1 {
   left: 0;
   opacity: 0;
   z-index: 1;
+  overflow-y: auto;
+  padding: 20px 50px !important;
+  width: 100%; /* Garante largura consistente */
 }
 
 .container.right-panel-active .sign-up-container {
@@ -81,8 +82,23 @@ select {
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
-  width: 100%;
+  width: 100%; /* Largura fixa de 100% do container */
   border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  max-width: 100%; /* Impede que ultrapasse o container */
+}
+
+/* Estilos específicos para os selects */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-overflow: ellipsis; /* Adiciona reticências para texto longo */
+  white-space: nowrap; /* Mantém o texto em uma linha */
+  overflow: hidden; /* Esconde o texto que ultrapassar */
+  min-width: 0; /* Permite que o elemento reduza seu tamanho */
 }
 
 button {
@@ -98,6 +114,7 @@ button {
   transition: all 0.3s ease;
   margin-top: 10px;
   cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
 }
 
 button:hover {
@@ -109,6 +126,8 @@ button:hover {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  min-width: 0; /* Importante para evitar expansão indesejada */
 }
 
 .input-icon i {
@@ -133,6 +152,11 @@ button:focus {
 .ghost {
   background-color: transparent;
   border: 2px solid #fff;
+  transition: all 0.3s ease;
+}
+
+.ghost:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .overlay-container {
@@ -197,4 +221,139 @@ button:focus {
 
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+
+.plataformas-digitais {
+  margin-top: 20px;
+}
+
+/* Estilos para mobile */
+.mobile-toggle-container {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.mobile-toggle-text {
+  display: none;
+  color: var(--tom1);
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.mobile-toggle-link {
+  color: var(--tom1);
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-toggle-link:hover {
+  color: #d66f6f;
+}
+
+/* Barra de rolagem para o formulário de cadastro */
+.sign-up-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sign-up-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.sign-up-container::-webkit-scrollbar-thumb {
+  background: var(--tom1);
+  border-radius: 10px;
+}
+
+.sign-up-container::-webkit-scrollbar-thumb:hover {
+  background: #d66f6f;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .form-container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    max-width: 100%; /* Garante que ocupe toda a largura no mobile */
+  }
+  
+  .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .sign-in-container {
+    z-index: 2;
+  }
+  
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .container.right-panel-active .sign-in-container {
+    transform: translateX(-100%);
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .overlay-container {
+    display: none;
+  }
+  
+  .mobile-toggle-container {
+    display: block;
+  }
+  
+  .mobile-toggle-text {
+    display: block;
+  }
+  
+  /* Animação para mobile */
+  .form-container {
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  }
+  
+  #mobileSignUp {
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  
+  #mobileSignIn {
+    display: none;
+  }
+  
+  .container.right-panel-active #mobileSignUp {
+    display: none;
+  }
+  
+  .container.right-panel-active #mobileSignIn {
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
