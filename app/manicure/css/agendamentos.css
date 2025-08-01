@@ -268,35 +268,6 @@ body {
     color: var(--primary-light);
 }
 
-/* Notification */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--dark);
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(100px);
-    opacity: 0;
-    transition: var(--transition);
-    z-index: 1000;
-}
-
-.notification.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.notification.success {
-    background: var(--success);
-}
-
-.notification.error {
-    background: var(--danger);
-}
-
 /* Utility Classes */
 .hidden {
     display: none;

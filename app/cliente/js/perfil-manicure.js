@@ -38,12 +38,75 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const manicure = await resposta.json();
         preencherPerfil(manicure);
-
     } catch (erro) {
         console.error("Erro ao carregar dados da manicure:", erro);
         alert(erro.message || "Erro ao carregar o perfil. Tente novamente mais tarde.");
     }
+
+    // Botão para ver feedbacks
+    const feedbackBtn = document.getElementById("ver-feedbacks-btn");
+    feedbackBtn.addEventListener("click", async () => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/feedbacks/manicure/${id}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) {
+                throw new Error("Erro ao buscar feedbacks");
+            }
+
+            const data = await res.json();
+            const feedbacks = data.feedbacks || [];
+
+            if (feedbacks.length === 0) {
+                Swal.fire("Sem avaliações", "Esta manicure ainda não possui avaliações.", "info");
+                return;
+            }
+
+            const html = feedbacks.map(fb => {
+                const nome = fb.usuario.nome || "Cliente anônimo";
+                const comentario = fb.comentario || "";
+                const nota = parseInt(fb.estrelas) || 0;
+                const foto = fb.usuario.foto || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+
+                // Criando estrelas preenchidas e vazias
+                const estrelasCheias = "★".repeat(nota);
+                const estrelasVazias = "☆".repeat(5 - nota);
+                const estrelas = `<span class="estrelas-ativas">${estrelasCheias}</span><span class="estrelas-inativas">${estrelasVazias}</span>`;
+
+                return `
+        <div class="avaliacao-card">
+            <div class="avaliacao-header">
+                <img src="${foto}" alt="Foto do cliente" class="avaliacao-foto">
+                <div>
+                    <p class="avaliacao-nome">${nome}</p>
+                    <p class="avaliacao-estrelas">${estrelas}</p>
+                </div>
+            </div>
+            <p class="avaliacao-comentario">"${comentario}"</p>
+        </div>
+    `;
+            }).join("");
+
+
+
+            Swal.fire({
+                title: "Avaliações dos Clientes",
+                html,
+                width: 600,
+                scrollbarPadding: false,
+                confirmButtonText: "Fechar"
+            });
+
+        } catch (erro) {
+            console.error(erro);
+            Swal.fire("Erro", "Não foi possível carregar os feedbacks.", "error");
+        }
+    });
 });
+
 
 function preencherPerfil(manicure) {
     // Informações básicas
@@ -217,18 +280,10 @@ document.getElementById('agendamento-form').addEventListener('submit', function 
     e.preventDefault();
 
     const dataSelecionada = sessionStorage.getItem('dataSelecionada');
-    if (!dataSelecionada) {
-        alert('Por favor, selecione um dia');
-        return;
-    }
 
     const data = new Date(dataSelecionada);
     const horarioSelecionado = document.querySelector('.horario-btn.selected')?.dataset.value;
 
-    if (!horarioSelecionado) {
-        alert('Por favor, selecione um horário');
-        return;
-    }
 
     // Combine data e horário
     const [hora, minuto] = horarioSelecionado.split(':');

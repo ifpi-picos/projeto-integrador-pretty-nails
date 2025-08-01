@@ -459,6 +459,58 @@ textarea {
     text-align: center;
 }
 
+.avaliacao-card {
+    background-color: var(--light);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    font-family: var(--font-primary);
+    color: var(--dark);
+    transition: var(--transition);
+}
+
+.avaliacao-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.avaliacao-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.avaliacao-foto {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.avaliacao-nome {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.avaliacao-estrelas {
+    margin: 0;
+    color: var(--warning);
+    font-size: 1rem;
+}
+
+.avaliacao-comentario {
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gray);
+}
+
+
 /* Mensagens */
 .message {
     padding: 0.8rem;
@@ -516,6 +568,33 @@ textarea {
 .regra-item span {
     flex: 1;
 }
+
+.feedback-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.feedback-btn:hover {
+    background-color: #3dbdb5;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

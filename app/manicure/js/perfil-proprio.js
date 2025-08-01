@@ -310,21 +310,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Função para mostrar notificações
     function showNotification(message, type) {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 10);
-
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
+        Swal.fire({
+            title: type === 'success' ? 'Sucesso!' : 'Erro!',
+            text: message,
+            icon: type,
+            confirmButtonText: 'OK',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            toast: true,
+            position: 'top-end',
+        });
     }
 
     // Inicialização

@@ -336,15 +336,17 @@ async function loadAgendamentos() {
 
 // Função para mostrar notificação
 function showNotification(message, type) {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.className = `notification ${type} show`;
-    notification.style.display = 'block';
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        notification.style.display = 'none';
-    }, 3000);
+    Swal.fire({
+        title: type === 'success' ? 'Sucesso!' : 'Erro!',
+        text: message,
+        icon: type,
+        confirmButtonText: 'OK',
+        timer: 3000,
+        timerProgressBar: true,
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false
+    });
 }
 
 // Configura os tabs

@@ -4,6 +4,7 @@ function sortAgendamentos(agendamentos) {
         'pendente': 1,
         'confirmado': 2,
         'concluido': 3,
+        'recusado': 4,
         'cancelado': 4
     };
 
@@ -80,12 +81,12 @@ function formatStatus(status) {
         'pendente': 'Pendente',
         'confirmado': 'Confirmado',
         'concluido': 'Concluído',
-        'cancelado': 'Cancelado'
+        'cancelado': 'Cancelado',
+        'recusado': 'Recusado'
     };
     return statusMap[status] || status;
 }
 
-// Função para criar o HTML de cada requisição
 function createRequestHtml(request) {
     const date = new Date(request.data);
     const dateStr = date.toLocaleDateString('pt-BR', {
@@ -95,26 +96,9 @@ function createRequestHtml(request) {
     });
 
     let feedbackHtml = '';
-    if (request.status === 'concluido') {
-        if (request.avaliado) {
-            const estrelas = request.feedback?.estrelas || 5;
-            const comentario = request.feedback?.comentario || '';
-            const data = request.feedback?.created_at;
-
-            feedbackHtml = `
-            <div class="feedback-section">
-                <div class="feedback-success">
-                    <i class="fas fa-check-circle"></i>
-                    <p>Avaliação enviada com sucesso!</p>
-                    <div class="stars">${'★'.repeat(estrelas)}${'☆'.repeat(5 - estrelas)}</div>
-                    ${comentario ? `<p class="feedback-comment">"${comentario}"</p>` : ''}
-                    ${data ? `<p><small>Avaliado em ${new Date(data).toLocaleDateString('pt-BR')}</small></p>` : ''}
-                </div>
-            </div>
-        `;
-        } else {
-            // Mostra formulário para novo feedback
-            feedbackHtml = `
+    if (request.status === 'concluido' && !request.avaliado) {
+        // Mostra formulário para novo feedback APENAS se não estiver avaliado
+        feedbackHtml = `
             <div class="feedback-section">
                 <h4>Avalie o serviço:</h4>
                 <div class="rating" data-request-id="${request.id}">
@@ -138,9 +122,7 @@ function createRequestHtml(request) {
                 </button>
             </div>
         `;
-        }
     }
-
 
     return `
         <div class="request-item" data-request-id="${request.id}">
