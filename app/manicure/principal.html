@@ -1,95 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel da Manicure</title>
+    <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="css/side-bar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://db.onlinewebfonts.com/c/317a953648270ae836a6c0fd507bbc61?family=Arrius+W00+Regular"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/principal.css">
-    <link rel="stylesheet" href="css/side-bar.css">
-    <title>Pretty Nails</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <div class="menu">
+    <header>Pretty Nails</header>
 
-        <div id="app-header">
-            <h1>Pretty Nails</h1>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="imagens/user.png" id="user_avatar" alt="Avatar">
+                <p id="user_infos">
+                    <span class="item-description" id="user-name">Nome</span>
+                </p>
+            </div>
+
+            <ul id="side_items">
+                <a href="principal.html" class="side-item-link">
+                    <li class="side-item active" data-label="Inicio">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="item-description">Início</span>
+                    </li>
+                </a>
+                <a href="calendario.html" class="side-item-link">
+                    <li class="side-item" data-label="calendario">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span class="item-description">Calendário</span>
+                    </li>
+                </a>
+                <a href="agendamentos.html" class="side-item-link">
+                    <li class="side-item" data-label="Agendamentos">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span class="item-description">Agendamentos</span>
+                    </li>
+                </a>
+                <a href="perfil-proprio.html" class="side-item-link">
+                    <li class="side-item" data-label="Perfil">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">Perfil</span>
+                    </li>
+                </a>
+                <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                    <li class="side-item" data-label="Configurações">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">Configurações</span>
+                    </li>
+                </a>
+            </ul>
+
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
 
-        <nav id="sidebar">
-            <div id="sidebar_content">
-                <div id="user">
-                    <img src="imagens/user.png" id="user_avatar" alt="Avatar">
-                    <p id="user_infos">
-                        <span class="item-description" id="user-name">Nome</span>
-                    </p>
-                </div>
+        <div id="logout">
+            <button id="logout_btn" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">Logout</span>
+            </button>
+        </div>
+    </nav>
 
-                <ul id="side_items">
-                    <a href="principal.html" class="side-item-link">
-                        <li class="side-item active" data-label="Inicio">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="item-description">Início</span>
-                        </li>
-                    </a>
-                    <a href="calendario.html" class="side-item-link">
-                        <li class="side-item" data-label="calendario">
-                            <i class="fa-regular fa-calendar-days"></i>
-                            <span class="item-description">Calendário</span>
-                        </li>
-                    </a>
-                    <a href="agendamentos.html" class="side-item-link">
-                        <li class="side-item" data-label="Agendamentos">
-                            <i class="fa-solid fa-calendar-check"></i>
-                            <span class="item-description">Agendamentos</span>
-                        </li>
-                    </a>
-                    <a href="perfil-proprio.html" class="side-item-link">
-                        <li class="side-item" data-label="Perfil">
-                            <i class="fa-solid fa-user"></i>
-                            <span class="item-description">Perfil</span>
-                        </li>
-                    </a>
-                    <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
-                        <li class="side-item" data-label="Configurações">
-                            <i class="fa-solid fa-gear"></i>
-                            <span class="item-description">Configurações</span>
-                        </li>
-                    </a>
-                </ul>
+    <div class="container">
+        <!-- Estatísticas -->
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>Estatísticas da manicure</h3>
+            <canvas id="grafico" width="250" height="200"></canvas>
+        </div>
 
-                <button id="open_btn">
-                    <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
+        <!-- Feedback -->
+        <div class="card">
+            <div class="icon">💬</div>
+            <h3>Feedback</h3>
+            <div class="info-box">Nenhum feedback ainda</div>
+        </div>
 
-            <div id="logout">
-                <button id="logout_btn" onclick="logout()">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="item-description">Logout</span>
-                </button>
-            </div>
-        </nav>
-        
-        <div class="pag-content">
+        <!-- Dias de trabalho -->
+        <div class="card">
+            <div class="icon">📅</div>
+            <h3>Dias de Trabalho</h3>
+            <div id="calendar"></div>
+        </div>
 
-            <div class="pink-area">
-                <div class="dev-container" style="text-align: center; align-items: center; padding: 40px;">
-                    <h2 style="color: #d63384; margin-bottom: 20px;">Estamos em desenvolvimento!</h2>
-                    <p style="font-size: 1.2em; margin-bottom: 30px;">Esta tela estará disponível em breve.</p>
-                </div>
-            </div>
+        <!-- Horários -->
+        <div class="card">
+            <div class="icon">⏰</div>
+            <h3>Horários</h3>
+            <input type="time" id="inputHorario" />
+            <button onclick="adicionarHorario()">Adicionar Horário</button>
+            <ul id="listaHorarios"></ul>
+        </div>
 
+        <!-- Serviços -->
+        <div class="card">
+            <div class="icon">✂️</div>
+            <h3>Serviços</h3>
+            <input type="text" id="nomeServico" placeholder="Nome do serviço" />
+            <input type="number" id="precoServico" placeholder="Valor R$" />
+            <button onclick="adicionarServico()">Adicionar Serviço</button>
+            <ul id="listaServicos"></ul>
+        </div>
     </div>
+
 
     <script src="../../config.js"></script>
     <script src="js/principal.js"></script>
     <script src="js/side-bar.js"></script>
+
 </body>
 
 </html>
