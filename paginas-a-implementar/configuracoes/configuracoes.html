@@ -3,175 +3,258 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Configurações | Pretty Nails</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap">
+  <title>Painel da Manicure</title>
+
+  <!-- FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
-    :root {
-      --bg-color: #fff;
-      --text-color: #333;
-      --input-bg: #f9f9f9;
-      --btn-bg: #e91e63;
-      --btn-color: #fff;
-    }
-
-    body.dark {
-      --bg-color: #1f1f1f;
-      --text-color: #fff;
-      --input-bg: #333;
-      --btn-bg: #d81b60;
-    }
-
     * {
       box-sizing: border-box;
-      transition: all 0.3s ease;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      font-family: 'Quicksand', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
       margin: 0;
-      padding: 0;
+      background-color: #f1f1f1;
     }
 
-    .config-container {
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 12px;
-      background-color: var(--input-bg);
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
+    header {
+      background: linear-gradient(to right, #f9a5b2, #f7b7c1);
+      padding: 20px;
       text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .config-section {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      font-size: 1em;
-    }
-
-    button.salvar-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: var(--btn-bg);
-      color: var(--btn-color);
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      transition: background-color 0.3s;
     }
 
-    button.salvar-btn:hover {
-      background-color: #c2185b;
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
 
-    .alerta {
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeInUp 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      transition: 0.3s ease;
+    }
+
+    .card h3 {
       margin-top: 10px;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 0.9em;
-      background-color: #dff0d8;
-      color: #3c763d;
-      display: none;
+      font-size: 18px;
+      color: #333;
     }
 
-    .alerta.mostrar {
-      display: block;
-      animation: fadeIn 0.4s ease-in;
+    .info-box {
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 14px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
+    .dias { background-color: #e1f0fa; color: #135d92; }
+    .horarios { background-color: #d9f5e4; color: #267347; }
+    .servicos { background-color: #fff1c1; color: #8a6300; }
+
+    .icon {
+      font-size: 40px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f49ca0;
+      color: white;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 6px;
+      margin-top: 6px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    ul li {
+      background: #f9f9f9;
+      padding: 6px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+
+    #calendar {
+      max-width: 100%;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
-  <div class="config-container">
-    <h2>⚙️ Configurações do Perfil</h2>
+  <header>Pretty Nails</header>
 
-    <form id="form-config">
-      <div class="config-section">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" placeholder="Seu nome completo" />
-      </div>
+  <div class="container">
+    <!-- Estatísticas -->
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>Estatísticas da manicure</h3>
+      <canvas id="grafico" width="250" height="200"></canvas>
+    </div>
 
-      <div class="config-section">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="seuemail@exemplo.com" />
-      </div>
+    <!-- Feedback -->
+    <div class="card">
+      <div class="icon">💬</div>
+      <h3>Feedback</h3>
+      <div class="info-box">Nenhum feedback ainda</div>
+    </div>
 
-      <div class="config-section">
-        <label for="senha">Nova senha</label>
-        <input type="password" id="senha" placeholder="********" />
-      </div>
+    <!-- Dias de trabalho -->
+    <div class="card">
+      <div class="icon">📅</div>
+      <h3>Dias de Trabalho</h3>
+      <div id="calendar"></div>
+    </div>
 
-      <div class="config-section">
-        <label for="notificacoes">Notificações</label>
-        <select id="notificacoes">
-          <option>Ativadas</option>
-          <option>Desativadas</option>
-        </select>
-      </div>
+    <!-- Horários -->
+    <div class="card">
+      <div class="icon">⏰</div>
+      <h3>Horários</h3>
+      <input type="time" id="inputHorario" />
+      <button onclick="adicionarHorario()">Adicionar Horário</button>
+      <ul id="listaHorarios"></ul>
+    </div>
 
-      <div class="config-section">
-        <label for="tema">Tema do site</label>
-        <select id="tema">
-          <option value="claro">Claro</option>
-          <option value="escuro">Escuro</option>
-        </select>
-      </div>
-
-      <button type="submit" class="salvar-btn">Salvar Alterações</button>
-
-      <div class="alerta" id="mensagem">Alterações salvas com sucesso! ✅</div>
-    </form>
+    <!-- Serviços -->
+    <div class="card">
+      <div class="icon">✂️</div>
+      <h3>Serviços</h3>
+      <input type="text" id="nomeServico" placeholder="Nome do serviço" />
+      <input type="number" id="precoServico" placeholder="Valor R$" />
+      <button onclick="adicionarServico()">Adicionar Serviço</button>
+      <ul id="listaServicos"></ul>
+    </div>
   </div>
 
+  <!-- JavaScript -->
   <script>
-    const form = document.getElementById('form-config');
-    const temaSelect = document.getElementById('tema');
-    const mensagem = document.getElementById('mensagem');
-
-    temaSelect.addEventListener('change', () => {
-      document.body.classList.toggle('dark', temaSelect.value === 'escuro');
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const senha = document.getElementById('senha').value;
-      const notificacoes = document.getElementById('notificacoes').value;
-
-      if (senha.length > 0) {
-        console.log("Senha alterada!");
+    // Chart.js
+    const ctx = document.getElementById('grafico').getContext('2d');
+    const grafico = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
+        datasets: [{
+          label: 'Serviços Realizados',
+          data: [12, 19, 8, 15],
+          backgroundColor: '#f49ca0'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
       }
-
-      console.log("Notificações:", notificacoes);
-
-      mensagem.classList.add('mostrar');
-      setTimeout(() => mensagem.classList.remove('mostrar'), 3000);
     });
+
+    // FullCalendar
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'pt-br',
+        height: 400,
+        dateClick: function(info) {
+          alert('Dia selecionado: ' + info.dateStr);
+        }
+      });
+      calendar.render();
+
+      carregarHorarios();
+      carregarServicos();
+    });
+
+    // Horários
+    function adicionarHorario() {
+      const input = document.getElementById('inputHorario');
+      const hora = input.value;
+      if (hora) {
+        let horarios = JSON.parse(localStorage.getItem('horarios') || '[]');
+        horarios.push(hora);
+        localStorage.setItem('horarios', JSON.stringify(horarios));
+        input.value = '';
+        carregarHorarios();
+      }
+    }
+
+    function carregarHorarios() {
+      const lista = document.getElementById('listaHorarios');
+      lista.innerHTML = '';
+      const horarios = JSON.parse(localStorage.getItem('horarios') || '[]');
+      horarios.forEach((hora, i) => {
+        const li = document.createElement('li');
+        li.textContent = hora;
+        lista.appendChild(li);
+      });
+    }
+
+    // Serviços
+    function adicionarServico() {
+      const nome = document.getElementById('nomeServico').value;
+      const preco = document.getElementById('precoServico').value;
+      if (nome && preco) {
+        let servicos = JSON.parse(localStorage.getItem('servicos') || '[]');
+        servicos.push({ nome, preco });
+        localStorage.setItem('servicos', JSON.stringify(servicos));
+        document.getElementById('nomeServico').value = '';
+        document.getElementById('precoServico').value = '';
+        carregarServicos();
+      }
+    }
+
+    function carregarServicos() {
+      const lista = document.getElementById('listaServicos');
+      lista.innerHTML = '';
+      const servicos = JSON.parse(localStorage.getItem('servicos') || '[]');
+      servicos.forEach((servico) => {
+        const li = document.createElement('li');
+        li.textContent = `${servico.nome} - R$ ${parseFloat(servico.preco).toFixed(2)}`;
+        lista.appendChild(li);
+      });
+    }
   </script>
 </body>
 </html>
-<!-- Coloca o código aqui -->
