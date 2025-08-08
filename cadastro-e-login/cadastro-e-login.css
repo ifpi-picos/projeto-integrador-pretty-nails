@@ -6,6 +6,17 @@
   --sombra: rgba(0, 0, 0, 0.1);
 }
 
+/* Força o modo de cores padrão para evitar warnings de high-contrast */
+@media (forced-colors: active) {
+  :root {
+    --tom1: ButtonText;
+    --tom2: ButtonFace;
+    --tom3: Canvas;
+    --branco: Canvas;
+    --sombra: transparent;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -88,6 +99,16 @@ select {
   font-size: 14px;
   box-sizing: border-box;
   max-width: 100%; /* Impede que ultrapasse o container */
+  min-width: 0; /* Permite que diminua conforme necessário */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  background-color: #f8f8f8;
+  border: 2px solid var(--tom1);
+  box-shadow: 0 0 8px rgba(226, 152, 152, 0.3);
 }
 
 /* Estilos específicos para os selects */
@@ -98,7 +119,12 @@ select {
   text-overflow: ellipsis; /* Adiciona reticências para texto longo */
   white-space: nowrap; /* Mantém o texto em uma linha */
   overflow: hidden; /* Esconde o texto que ultrapassar */
-  min-width: 0; /* Permite que o elemento reduza seu tamanho */
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
 }
 
 button {
@@ -279,6 +305,8 @@ button:focus {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
   }
   
   .form-container {
@@ -286,16 +314,22 @@ button:focus {
     height: 100%;
     padding: 20px;
     max-width: 100%; /* Garante que ocupe toda a largura no mobile */
+    position: fixed;
+    top: 0;
+    left: 0;
   }
   
   .sign-up-container {
     transform: translateX(100%);
     opacity: 1;
     z-index: 1;
+    overflow-y: auto;
+    padding: 15px !important;
   }
   
   .sign-in-container {
     z-index: 2;
+    overflow-y: auto;
   }
   
   .container.right-panel-active .sign-up-container {
@@ -320,6 +354,20 @@ button:focus {
   
   .mobile-toggle-text {
     display: block;
+    margin-top: 20px;
+  }
+  
+  /* Melhorias para formulários em mobile */
+  input, select {
+    padding: 15px;
+    font-size: 16px; /* Impede zoom no iOS */
+    margin: 10px 0;
+  }
+  
+  button {
+    padding: 15px 45px;
+    font-size: 16px;
+    margin-top: 15px;
   }
   
   /* Animação para mobile */
@@ -343,6 +391,16 @@ button:focus {
   .container.right-panel-active #mobileSignIn {
     display: inline-block;
     animation: pulse 2s infinite;
+  }
+  
+  /* Melhorias para viewport pequenos */
+  .input-icon {
+    margin: 5px 0;
+  }
+  
+  h1 {
+    margin: 10px 0 15px;
+    font-size: 1.8em;
   }
 }
 
