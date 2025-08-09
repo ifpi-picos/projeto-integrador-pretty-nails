@@ -223,7 +223,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   opacity: 0;
   visibility: hidden;
   transition: var(--transition);
@@ -237,9 +237,9 @@ body {
 .modal-content {
   background-color: white;
   border-radius: var(--radius);
-  width: 90%;
+  width: 90vw;
   max-width: 600px;
-  max-height: 90vh;
+  max-height: 95vh;
   overflow-y: auto;
   box-shadow: var(--shadow-lg);
   transform: translateY(-20px);
@@ -522,9 +522,11 @@ body {
   .modal-content {
     width: 99vw;
     max-width: 99vw;
-    min-width: 90vw;
+    min-width: 95vw;
     margin: 0 auto;
     padding: 0.5rem;
+    max-height: 98vh;
+    overflow-y: auto;
   }
   .modal-header, .modal-body, .modal-footer {
     padding: 1rem;
