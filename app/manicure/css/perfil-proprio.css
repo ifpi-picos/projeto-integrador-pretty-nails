@@ -522,9 +522,11 @@ body {
   .modal-content {
     width: 99vw;
     max-width: 99vw;
-    min-width: 90vw;
+    min-width: 95vw;
     margin: 0 auto;
     padding: 0.5rem;
+    max-height: 98vh;
+    overflow-y: auto;
   }
   .modal-header, .modal-body, .modal-footer {
     padding: 1rem;

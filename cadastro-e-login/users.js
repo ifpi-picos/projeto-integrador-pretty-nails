@@ -150,8 +150,6 @@ async function adicionarUsuario() {
     tipo: campoTipo
   };
 
-  console.log('Dados sendo enviados:', usuario);
-
   try {
     // Mostra loading (usando modal normal)
     Swal.fire({
@@ -184,13 +182,25 @@ async function adicionarUsuario() {
     }
 
     Swal.fire({
-      icon: 'success',
-      title: 'Cadastro realizado com sucesso!',
-      text: `Um email de confirmação foi enviado para ${campoEmail}.`,
-      toast: true,
-      position: toastPosition,
-      timer: 4000,
-      showConfirmButton: false
+      title: 'Confirme seu email',
+      html: `<div style='display:flex;flex-direction:column;align-items:center;'>
+      <p style='font-size:1.1rem;margin-bottom:20px;'>Um email foi enviado para <b>${campoEmail}</b>.<br>Por favor, acesse seu email para confirmar o cadastro.</p>
+      <a id="ir-para-email" href='https://mail.google.com/mail/?authuser=${encodeURIComponent(campoEmail)}' target='_blank' style='background:#FF6B6B;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-top:10px;'>Ir para o email</a>
+      </div>`,
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      allowEscapeKey: true,
+      width: 350,
+      padding: '2em',
+      background: '#fff',
+      customClass: {
+      popup: 'swal2-center',
+      },
+      didRender: () => {
+      document.getElementById('ir-para-email').addEventListener('click', () => {
+        Swal.close();
+      });
+      }
     });
 
     // Limpa os campos do formulário
