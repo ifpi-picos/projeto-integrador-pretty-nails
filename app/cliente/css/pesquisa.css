@@ -229,52 +229,44 @@ AC
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .header {
-        gap: 10px;
-        padding: 10px;
-    }
-    
-    .search-box {
-        max-width: 100%;
-        margin: 0;
-    }
-    
-    .filter-btn {
-        text-align: center;
-    }
-    
-    .profile-card {
-        padding: 8px;
-    }
-    
-    .profile-card img {
-        width: 70px;
-        height: 70px;
-        margin-right: 10px;
-    }
-    
-    .profile-info h3 {
-        font-size: 15px;
-    }
-    
-    .profile-info p {
-        font-size: 12px;
-    }
+  .header {
+    gap: 2vw;
+    padding: 2vw 2vw;
+  }
+  .search-box {
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+  .filter-btn {
+    text-align: center;
+    margin-bottom: 2vh;
+  }
+  .profile-card {
+    padding: 2vw 1vw;
+  }
+  .profile-card img {
+    width: 9vw;
+    height: 9vw;
+    margin-right: 2vw;
+  }
+  .profile-info h3 {
+    font-size: 1.1rem;
+  }
+  .profile-info p {
+    font-size: 0.95rem;
+  }
 }
-
 @media (max-width: 480px) {
-    .profile-card {
-        text-align: center;
-        padding: 15px;
-    }
-    
-    .profile-card img {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-    
-    .perfil-container {
-        padding: 10px;
-        margin-bottom: 70px;
-    }
+  .profile-card {
+    text-align: center;
+    padding: 4vw 2vw;
+  }
+  .profile-card img {
+    margin-right: 0;
+    margin-bottom: 2vw;
+  }
+  .perfil-container {
+    padding: 2vw;
+    margin-bottom: 15vh;
+  }
 }

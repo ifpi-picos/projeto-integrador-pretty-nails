@@ -467,20 +467,74 @@ body {
 }
 
 @media (max-width: 768px) {
-
-    .app-container {
-        margin-bottom: 50px;
-    }
-
-  .profile-content {
-    padding: 0 1rem;
+  .app-container {
+    margin-bottom: 8vh;
   }
-  
+  .profile-content {
+    padding: 0 3vw;
+  }
   .profile-details {
     grid-template-columns: 1fr;
   }
-  
   .modal-content {
-    width: 95%;
+    width: 98vw;
+    max-width: 98vw;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0 1vw 4vw;
+    margin-bottom: 12vh;
+  }
+  .profile-header {
+    margin-bottom: 2rem;
+  }
+  .profile-banner {
+    height: 90px;
+    border-radius: 16px 16px 0 0;
+  }
+  .profile-content {
+    padding: 0 2vw;
+  }
+  .profile-pic-container {
+    width: 90px;
+    height: 90px;
+    margin-top: -45px;
+    border-width: 3px;
+  }
+  .profile-info h1 {
+    font-size: 1.2rem;
+  }
+  .profile-details {
+    gap: 1rem;
+    padding: 0;
+  }
+  .detail-card {
+    padding: 1rem;
+  }
+  .edit-button {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    margin: 1rem auto 0;
+  }
+  .modal-content {
+    width: 99vw;
+    max-width: 99vw;
+    min-width: 90vw;
+    margin: 0 auto;
+    padding: 0.5rem;
+  }
+  .modal-header, .modal-body, .modal-footer {
+    padding: 1rem;
+  }
+  .photo-upload img {
+    width: 70px;
+    height: 70px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 0.6rem;
+    font-size: 0.95rem;
   }
 }
