@@ -181,27 +181,39 @@ async function adicionarUsuario() {
       throw new Error(responseData.error || responseData.message || "Erro ao cadastrar usuário.");
     }
 
-    Swal.fire({
-      title: 'Confirme seu email',
-      html: `<div style='display:flex;flex-direction:column;align-items:center;'>
-      <p style='font-size:1.1rem;margin-bottom:20px;'>Um email foi enviado para <b>${campoEmail}</b>.<br>Por favor, acesse seu email para confirmar o cadastro.</p>
-      <a id="ir-para-email" href='https://mail.google.com/mail/?authuser=${encodeURIComponent(campoEmail)}' target='_blank' style='background:#FF6B6B;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-top:10px;'>Ir para o email</a>
-      </div>`,
-      showConfirmButton: false,
-      allowOutsideClick: false,
-      allowEscapeKey: true,
-      width: 350,
-      padding: '2em',
-      background: '#fff',
-      customClass: {
-      popup: 'swal2-center',
-      },
-      didRender: () => {
-      document.getElementById('ir-para-email').addEventListener('click', () => {
-        Swal.close();
-      });
-      }
+   Swal.fire({
+  title: 'Confirme seu email',
+  html: `<div style='display:flex;flex-direction:column;align-items:center;'>
+    <p style='font-size:1.1rem;margin-bottom:20px;'>Um email foi enviado para <b>${campoEmail}</b>.<br>Por favor, acesse seu email para confirmar o cadastro.</p>
+    <button id="ir-para-email" style='background:#FF6B6B;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:bold;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-top:10px;border:none;cursor:pointer;'>Ir para o email</button>
+    </div>`,
+  showConfirmButton: false,
+  allowOutsideClick: false,
+  allowEscapeKey: true,
+  width: 350,
+  padding: '2em',
+  background: '#fff',
+  customClass: {
+    popup: 'swal2-center',
+  },
+  didRender: () => {
+    document.getElementById('ir-para-email').addEventListener('click', () => {
+      // Tentativa de abrir o aplicativo do Gmail
+      const gmailAppUrl = `googlemail://co?to=${encodeURIComponent(campoEmail)}`;
+      const gmailWebUrl = `https://mail.google.com/mail/?authuser=${encodeURIComponent(campoEmail)}`;
+      
+      // Tentar abrir o app, se falhar, abrir a versão web
+      window.location.href = gmailAppUrl;
+      setTimeout(() => {
+        if (!document.hidden) {
+          window.open(gmailWebUrl, '_blank');
+        }
+      }, 500);
+      
+      Swal.close();
     });
+  }
+});
 
     // Limpa os campos do formulário
     document.querySelector("#nome").value = "";
