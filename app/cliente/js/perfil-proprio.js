@@ -58,13 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         } catch (error) {
             console.error('Erro ao carregar perfil:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro',
-                text: 'Erro ao carregar dados do perfil',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
+            showNotification('Erro ao carregar dados do perfil', 'error');
         }
     }
 
@@ -153,47 +147,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             const updatedData = await response.json();
-            
-            await Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: 'Perfil atualizado com sucesso!',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
+            showNotification('Perfil atualizado com sucesso!', 'success');
 
             toggleModal(false);
             loadProfileData(); // Recarregar dados
 
         } catch (error) {
             console.error('Erro ao atualizar perfil:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro',
-                text: error.message || 'Erro ao atualizar perfil',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
+            showNotification(error.message || 'Erro ao atualizar perfil', 'error');
         }
     });
 
     // Função para mostrar notificações
     function showNotification(message, type) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
+        Swal.fire({
+            title: type === 'success' ? 'Sucesso!' : 'Erro!',
+            text: message,
+            icon: type,
+            confirmButtonText: 'OK',
             timer: 3000,
             timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
-
-        Toast.fire({
-            icon: type,
-            title: message
+            showConfirmButton: false,
+            toast: true,
+            position: 'top-end',
         });
     }
 
