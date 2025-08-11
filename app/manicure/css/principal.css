@@ -1,3 +1,26 @@
+:root {
+    --primary: #FF6B6B;
+    --primary-light: #FF8E8E;
+    --primary-dark: #E05555;
+    --secondary: #4ECDC4;
+    --light: #F7FFF7;
+    --dark: #292F36;
+    --gray: #6C757D;
+    --light-gray: #F1F3F5;
+    --success: #28A745;
+    --warning: #FFC107;
+    --danger: #DC3545;
+    --info: #17A2B8;
+    
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    
+    --transition: all 0.3s ease;
+    --radius: 12px;
+    --radius-sm: 8px;
+}
+
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -5,32 +28,27 @@
 
 body {
     margin: 0;
+    margin-left: 100px; /* Espaço para a sidebar fechada */
     background-color: #f1f1f1;
-    transition: margin-left 0.4s ease;
+    /* Removido transition que causava problemas */
 }
 
-/* Quando a sidebar está aberta */
-body.sidebar-aberta {
-    margin-left: 230px;
-}
+/* Removido classes que alteravam margin-left baseado na sidebar */
 
-/* Quando a sidebar está fechada */
-body:not(.sidebar-aberta) {
-    margin-left: 100px;
-}
-
-header {
-    background: linear-gradient(to right, #f9a5b2, #f7b7c1);
-    padding: 20px;
+.app-header {
     text-align: center;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-    transition: width 0.4s ease;
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.6s ease-out;
+    margin-top: 50px;
+}
+
+.app-header h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .container {
@@ -38,7 +56,6 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
-    margin-top: 70px; /* Espaço para o header */
 }
 
 .card {
@@ -51,14 +68,45 @@ header {
     opacity: 0;
 }
 
-@keyframes fadeInUp {
-    0% {
-        transform: translateY(20px);
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
         opacity: 0;
+        transform: translateY(-20px);
     }
-    100% {
-        transform: translateY(0);
+    to {
         opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -127,25 +175,35 @@ ul li {
 }
 
 @media (max-width: 768px) {
-    body.sidebar-aberta, 
-    body:not(.sidebar-aberta) {
+    /* Em dispositivos móveis, remove a margem pois a sidebar vira navbar inferior */
+    body {
         margin-left: 0;
     }
-
+    
     header {
+        padding-left: 20px; /* Volta ao padding normal */
         width: 100%;
     }
 
     .container {
-        margin-top: 130px; /* Mais espaço para header + sidebar mobile */
+        margin-top: 70px; /* Apenas espaço para o header */
+        margin-bottom: 70px; /* Espaço para navbar mobile */
     }
 }
 
 @media (max-width: 600px) {
+    body {
+        margin-left: 0;
+    }
+    
+    header {
+        padding-left: 20px;
+    }
+    
     .container {
         grid-template-columns: 1fr;
         margin-top: 70px;
-        margin-bottom: 60px;
+        margin-bottom: 80px; /* Espaço para navbar mobile */
     }
 
     .card {

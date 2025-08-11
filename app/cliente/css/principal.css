@@ -2,15 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Arrius+W00+Regular&display=swap');
 
 :root {
-       --branco: #ffff;
-       --gelo: #f1f1f1;
-       --preto: #2a2a2a;
-       --cinza: #cbcbcb;
-       --tom1: #f08080;
-       --tom2: #f4978e;
-       --tom3: #f8ad9d;
-       --tom4: #fbc4ab;
-       --tom5: #ffdab9;
+       --primary: #FF6B6B;
+       --primary-light: #FF8E8E;
+       --primary-dark: #E05555;
+       --secondary: #4ECDC4;
+       --light: #F7FFF7;
+       --dark: #292F36;
+       --gray: #6C757D;
+       --light-gray: #F1F3F5;
+       --success: #28A745;
+       --warning: #FFC107;
+       --danger: #DC3545;
+       --info: #17A2B8;
+
+       --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+       --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+       --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+       --transition: all 0.3s ease;
+       --radius: 12px;
+       --radius-sm: 8px;
 }
 
 * {
@@ -24,32 +35,14 @@ body {
        height: auto;
        min-height: 100vh;
        overflow-y: auto;
-       padding-top: 80px;
+       margin-left: 100px; /* Espaço para a sidebar fechada */
 }
 
 .menu {
        display: flex;
        flex-direction: column;
        align-items: center;
-}
-
-#app-header {
-       background: linear-gradient(45deg, var(--tom2), var(--tom3), var(--tom2));
-       width: 100%;
-       padding: 20px;
-       text-align: center;
-       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-       position: fixed;
-       top: 0;
-       left: 0;
-       z-index: 1000;
-}
-
-#app-header h1 {
-       font-family: 'Arrius W00 Regular', sans-serif;
-       font-size: 50px;
-       color: #ffffff;
-       margin: 0;
+       margin-top: 30px;
 }
 
 .pag-content {
@@ -58,25 +51,8 @@ body {
        align-items: center;
        justify-content: center;
        width: 100%;
-}
-
-#sessoes {
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       background: linear-gradient(45deg, var(--tom2), var(--tom3), var(--tom2));
-       color: #fff;
-       padding: 1rem;
-       width: 80%;
-       margin-top: 30px;
-       border-radius: 8px;
-       font-size: 20px;
-       font-weight: bold;
-       cursor: pointer;
-}
-
-#sessoes:hover {
-       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+       max-width: 100%;
+       overflow-x: hidden;
 }
 
 #sessoes i {
@@ -92,24 +68,16 @@ body {
        font-size: 0.8rem;
 }
 
-#temas {
+.temas h1 {
+       color: var(--primary);
+       font-size: 2rem;
        display: flex;
-       justify-content: center;
        align-items: center;
-       border-radius: 10px;
-       background-color: var(--tom3);
-       padding: 5px;
+       justify-content: center;
+       gap: 0.5rem;
        text-align: center;
-       font-size: 15px;
-       font-weight: bold;
-       width: 30%;
-       margin-top: 30px;
-}
-
-#temas h1 {
-       font-size: 25px;
-       color: var(--branco);
-       margin: 0;
+       word-break: keep-all;
+       white-space: nowrap;
 }
 
 .pink-area {
@@ -121,6 +89,8 @@ body {
        font-size: 18px;
        justify-content: center;
        margin: 15px auto;
+       max-width: 100%;
+       overflow-x: hidden;
 }
 
 .button-container {
@@ -142,23 +112,16 @@ body {
        width: auto;
 }
 
-#perfis-bem-avaliados {
+.perfis-bem-avaliados h1 {
+        color: var(--primary);
+       font-size: 2rem;
        display: flex;
-       justify-content: center;
        align-items: center;
-       background-color: var(--tom2);
-       padding: 5px;
-       border-radius: 15px;
+       justify-content: center;
+       gap: 0.5rem;
        text-align: center;
-       font-size: 15px;
-       font-weight: bold;
-       color: white;
-       width: 30%;
-}
-
-#perfis-bem-avaliados h1 {
-       font-size: 25px;
-       margin: 0;
+       word-break: keep-all;
+       white-space: nowrap;
 }
 
 #perfis-container {
@@ -280,33 +243,73 @@ body {
        cursor: pointer;
 }
 
-/* Tablet (<= 1024px) */
+/* Responsividade */
 @media (max-width: 1024px) {
+       .pink-area {
+              width: 85%;
+       }
 
-       #temas,
-       #perfis-bem-avaliados {
-              width: 50%;
+       .button-container {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 15px;
+       }
+
+       .theme-box {
+              width: 100%;
+              height: 130px;
+       }
+
+       #perfis-container {
+              width: 85%;
+       }
+}
+
+@media (max-width: 768px) {
+       body {
+              margin-left: 0; /* Remove margem em dispositivos móveis */
+       }
+
+       .menu {
+              margin-bottom: 80px; /* Espaço para navbar mobile */
        }
 
        .pink-area {
-              grid-template-columns: repeat(2, 1fr);
+              width: 90%;
+       }
+
+       .button-container {
+              grid-template-columns: 1fr;
+              gap: 10px;
+       }
+
+       .theme-box {
+              width: 100%;
+              height: 120px;
+       }
+
+       #perfis-container {
+              width: 90%;
+              margin-bottom: 20px;
        }
 }
 
 /* Celular (<= 600px) */
 @media (max-width: 600px) {
+       body {
+              margin-left: 0; /* Remove margem em dispositivos móveis */
+       }
 
        .menu {
-              margin-bottom: 70px;
+              margin-bottom: 80px; /* Maior espaço para navbar mobile */
        }
 
-       #app-header h1 {
-              font-size: 32px;
-       }
-
-       #temas,
-       #perfis-bem-avaliados {
-              width: 90%;
+       .temas h1, .perfis-bem-avaliados h1 {
+              font-size: 1.5rem;
+              text-align: center;
+              word-break: keep-all;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
        }
 
        .pink-area {
@@ -326,7 +329,11 @@ body {
               scroll-snap-type: x mandatory;
               gap: 15px;
               scrollbar-width: none;
-              border-radius: 10px 0px 0 10px;
+              border-radius: 10px;
+       }
+
+       .button-container::-webkit-scrollbar {
+              display: none;
        }
 
        .button-container .button-box {
@@ -338,6 +345,7 @@ body {
 
        .theme-box {
               height: 120px;
+              min-width: 180px;
        }
 
        #perfis-container {
@@ -345,15 +353,10 @@ body {
               padding: 10px;
        }
 
-       #sessoes {
-              width: 95%;
-              font-size: 16px;
-              padding: 0.8rem;
-       }
-
        .perfil {
               width: 120px;
               padding: 8px;
+              flex-shrink: 0;
        }
 
        .perfil img {
@@ -363,6 +366,9 @@ body {
 
        .perfil-nome {
               font-size: 14px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
        }
 
        .estrelas {

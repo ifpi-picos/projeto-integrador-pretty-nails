@@ -171,19 +171,30 @@ a {
 #open_btn {
     position: absolute;
     top: 30px;
-    right: -10px;
-    background-color: #ccc;
-    color: #333;
+    right: -11px;
+    background-color: #f49ca0;
+    color: white;
     border-radius: 50%;
     width: 22px;
     height: 22px;
     border: none;
     cursor: pointer;
     transition: var(--animacao);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#open_btn:hover {
+    background-color: #e58589;
+    transform: scale(1.1);
 }
 
 #open_btn_icon {
     transition: var(--animacao);
+    font-size: 12px;
+    line-height: 1;
 }
 
 .open-sidebar #open_btn_icon {
@@ -215,15 +226,8 @@ a {
     background-color: var(--cinza-hover);
 }
 
-/* Conteúdo da página */
-.telas {
-    padding-left: 100px;
-    transition: var(--animacao);
-}
-
-#sidebar.open-sidebar ~ .telas {
-    padding-left: 230px;
-}
+/* Removido conteúdo da página que alterava padding-left */
+/* A sidebar agora fica sempre por cima da interface */
 
 /* Quando a sidebar estiver FECHADA */
 #sidebar:not(.open-sidebar) .side-item {
@@ -324,10 +328,7 @@ a {
         color: var(--tom1);
     }
 
-    .telas {
-        padding-left: 0 !important;
-        padding-bottom: 70px !important;
-    }
+    /* Removido padding das telas para manter consistência */
 }
 
 /* Esconde o botão de abrir/fechar em telas muito pequenas */

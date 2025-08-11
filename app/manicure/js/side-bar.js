@@ -58,18 +58,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
-// Alterna a classe de ícone ao abrir/fechar a sidebar
+// Alterna apenas a classe da sidebar, sem afetar o body
 openBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open-sidebar');
-    document.body.classList.toggle('sidebar-aberta');
 });
 
 
-// Fecha a sidebar ao clicar fora
+// Fecha a sidebar ao clicar fora (apenas remove a classe da sidebar)
 document.addEventListener('click', function (event) {
     if (!sidebar.contains(event.target) && !openBtn.contains(event.target)) {
         sidebar.classList.remove('open-sidebar');
-        document.body.classList.remove('sidebar-aberta');
     }
 });
 
@@ -86,7 +84,6 @@ function handleResponsiveSidebar() {
     
     if (isMobile) {
         sidebar.classList.remove('open-sidebar');
-        document.body.classList.remove('sidebar-aberta');
     }
 }
 
@@ -98,3 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('resize', handleResponsiveSidebar);
+
+// Função logout para ser chamada pelo HTML
+function logout() {
+    localStorage.clear();
+    window.location.href = '../../cadastro-e-login/cadastro-e-login.html';
+}
