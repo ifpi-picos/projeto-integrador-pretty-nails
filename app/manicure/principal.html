@@ -85,42 +85,86 @@
     <div class="container">
         <!-- Estatísticas -->
         <div class="card">
-            <div class="icon">📊</div>
-            <h3>Estatísticas da manicure</h3>
+            <h3><span class="icon">📊</span>Estatísticas da manicure</h3>
             <canvas id="grafico" width="250" height="200"></canvas>
         </div>
 
         <!-- Feedback -->
         <div class="card">
-            <div class="icon">💬</div>
-            <h3>Feedback</h3>
-            <div class="info-box">Nenhum feedback ainda</div>
+            <h3><span class="icon">💬</span>Feedback</h3>
+            <div id="feedbackContainer">
+                <div class="feedback-summary">
+                    <div class="rating-overview">
+                        <span class="average-rating" id="averageRating">0.0</span>
+                        <div class="stars" id="averageStars"></div>
+                        <span class="total-reviews" id="totalReviews">(0 avaliações)</span>
+                    </div>
+                </div>
+                <div class="recent-feedback" id="recentFeedback">
+                    <div class="info-box">Nenhum feedback ainda</div>
+                </div>
+                <button class="view-more-btn" id="viewMoreFeedback" style="display: none;">
+                    Ver todos os feedbacks
+                </button>
+            </div>
         </div>
 
         <!-- Dias de trabalho -->
         <div class="card">
-            <div class="icon">📅</div>
-            <h3>Dias de Trabalho</h3>
-            <div id="calendar"></div>
+            <h3><span class="icon">📅</span>Dias de Trabalho</h3>
+            <div class="days-container" id="workDays"></div>
         </div>
 
         <!-- Horários -->
         <div class="card">
-            <div class="icon">⏰</div>
-            <h3>Horários</h3>
-            <input type="time" id="inputHorario" />
-            <button onclick="adicionarHorario()">Adicionar Horário</button>
-            <ul id="listaHorarios"></ul>
+            <h3><span class="icon">⏰</span>Horários</h3>
+            <div class="hours-container" id="workHours"></div>
         </div>
 
         <!-- Serviços -->
         <div class="card">
-            <div class="icon">✂️</div>
-            <h3>Serviços</h3>
-            <input type="text" id="nomeServico" placeholder="Nome do serviço" />
-            <input type="number" id="precoServico" placeholder="Valor R$" />
-            <button onclick="adicionarServico()">Adicionar Serviço</button>
-            <ul id="listaServicos"></ul>
+            <h3><span class="icon">✂️</span>Serviços</h3>
+            <div class="services-container" id="servicesList"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Feedbacks -->
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal-content feedback-modal">
+            <div class="modal-header">
+                <h2>Todos os Feedbacks</h2>
+                <button class="close-modal" id="closeFeedbackModal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="feedback-filters">
+                    <h3>Filtrar por estrelas:</h3>
+                    <div class="star-filters">
+                        <button class="star-filter active" data-stars="all">
+                            Todos <span class="count" id="countAll">(0)</span>
+                        </button>
+                        <button class="star-filter" data-stars="5">
+                            <span class="stars">★★★★★</span> <span class="count" id="count5">(0)</span>
+                        </button>
+                        <button class="star-filter" data-stars="4">
+                            <span class="stars">★★★★☆</span> <span class="count" id="count4">(0)</span>
+                        </button>
+                        <button class="star-filter" data-stars="3">
+                            <span class="stars">★★★☆☆</span> <span class="count" id="count3">(0)</span>
+                        </button>
+                        <button class="star-filter" data-stars="2">
+                            <span class="stars">★★☆☆☆</span> <span class="count" id="count2">(0)</span>
+                        </button>
+                        <button class="star-filter" data-stars="1">
+                            <span class="stars">★☆☆☆☆</span> <span class="count" id="count1">(0)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="all-feedbacks" id="allFeedbacks">
+                    <div class="info-box">Carregando feedbacks...</div>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -62,6 +62,35 @@ document.addEventListener('DOMContentLoaded', async function () {
 openBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open-sidebar');
 });
+    // Balão flutuante de descrição (desktop)
+    document.querySelectorAll('.side-item').forEach(item => {
+        item.addEventListener('mouseenter', function(e) {
+            if (!sidebar.classList.contains('open-sidebar') && window.innerWidth > 1024) {
+                let balloon = document.createElement('div');
+                balloon.className = 'sidebar-balloon';
+                balloon.textContent = item.querySelector('.item-description')?.textContent || '';
+                document.body.appendChild(balloon);
+                const rect = item.getBoundingClientRect();
+                balloon.style.position = 'fixed';
+                balloon.style.left = (rect.right + 12) + 'px';
+                balloon.style.top = (rect.top + rect.height/2 - 18) + 'px';
+                balloon.style.zIndex = 10001;
+                balloon.style.pointerEvents = 'none';
+                balloon.style.padding = '8px 16px';
+                balloon.style.background = '#fff';
+                balloon.style.borderRadius = '8px';
+                balloon.style.boxShadow = '0 2px 8px rgba(0,0,0,0.12)';
+                balloon.style.color = '#333';
+                balloon.style.fontSize = '14px';
+                balloon.style.whiteSpace = 'nowrap';
+                balloon.style.fontFamily = 'inherit';
+                balloon.classList.add('sidebar-balloon-active');
+            }
+        });
+        item.addEventListener('mouseleave', function(e) {
+            document.querySelectorAll('.sidebar-balloon-active').forEach(b => b.remove());
+        });
+    });
 
 // Fecha a sidebar ao clicar fora (apenas remove a classe da sidebar)
 document.addEventListener('click', function (event) {

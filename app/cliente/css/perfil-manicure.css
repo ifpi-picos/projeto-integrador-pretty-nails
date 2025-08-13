@@ -266,6 +266,14 @@ textarea {
     font-weight: 600;
 }
 
+.day-item.inactive {
+    opacity: 0.5;
+    color: var(--gray);
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+}
+
 .day-item.active:hover {
     background-color: var(--primary-light);
     color: white;

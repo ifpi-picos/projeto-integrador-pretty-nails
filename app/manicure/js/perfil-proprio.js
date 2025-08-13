@@ -118,20 +118,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             editCity.value = data.cidade || '';
             editState.value = data.estado || '';
 
-            // Dias de trabalho
-            if (data.dias_trabalho && Array.isArray(data.dias_trabalho) && data.dias_trabalho.length > 0) {
-                const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-                workDaysContainer.innerHTML = data.dias_trabalho
-                    .map(dia => `<span class="day">${diasSemana[dia]}</span>`)
-                    .join('');
+            // Dias de trabalho - mostrar todos os dias com os selecionados destacados
+            const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+            const diasTrabalho = data.dias_trabalho || [];
+            
+            const diasHTML = diasSemana.map((dia, index) => {
+                const isSelected = diasTrabalho.includes(index);
+                const cssClass = isSelected ? 'day active' : 'day inactive';
+                return `<span class="${cssClass}">${dia}</span>`;
+            }).join('');
+            
+            workDaysContainer.innerHTML = diasHTML;
 
-                // Marcar checkboxes
-                document.querySelectorAll('input[name="workDay"]').forEach(checkbox => {
-                    checkbox.checked = data.dias_trabalho.includes(parseInt(checkbox.value));
-                });
-            } else {
-                workDaysContainer.innerHTML = '<span class="day">Nenhum dia cadastrado</span>';
-            }
+            // Marcar checkboxes
+            document.querySelectorAll('input[name="workDay"]').forEach(checkbox => {
+                checkbox.checked = diasTrabalho.includes(parseInt(checkbox.value));
+            });
 
             // Horários
             timeSlotsContainer.innerHTML = '';

@@ -121,52 +121,44 @@ function preencherPerfil(manicure) {
     const endereco = `${manicure.rua || "Rua não informada"}, ${manicure.numero || ""} - ${manicure.cidade || ""}, ${manicure.estado || ""}`;
     document.getElementById("endereco").textContent = endereco;
 
-    // Dias de trabalho
-    if (manicure.dias_trabalho && Array.isArray(manicure.dias_trabalho) && manicure.dias_trabalho.length > 0) {
-        const diasContainer = document.getElementById('dias-trabalho');
-        const diasAbreviados = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+    // Dias de trabalho - mostrar todos os dias com os selecionados destacados
+    const diasContainer = document.getElementById('dias-trabalho');
+    const diasAbreviados = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+    const diasTrabalho = manicure.dias_trabalho || [];
 
-        // Limpa o container
-        diasContainer.innerHTML = '';
+    // Limpa o container
+    diasContainer.innerHTML = '';
 
-        // Cria um item para cada dia da semana
-        for (let i = 0; i < 7; i++) {
-            const diaItem = document.createElement('div');
-            diaItem.className = 'day-item';
-            if (manicure.dias_trabalho && manicure.dias_trabalho.includes(i)) {
-                diaItem.classList.add('active');
-            }
+    // Cria um item para cada dia da semana
+    for (let i = 0; i < 7; i++) {
+        const diaItem = document.createElement('div');
+        const isSelected = diasTrabalho.includes(i);
+        diaItem.className = isSelected ? 'day-item active' : 'day-item inactive';
 
-            diaItem.innerHTML = `
-            <div>${diasAbreviados[i]}</div>
-        `;
+        diaItem.innerHTML = `
+        <div>${diasAbreviados[i]}</div>
+    `;
 
-            // Só adiciona evento de clique se o dia estiver disponível
-            if (manicure.dias_trabalho && manicure.dias_trabalho.includes(i)) {
-                diaItem.style.cursor = 'pointer';
-                diaItem.addEventListener('click', function () {
-                    // Remove seleção de outros dias
-                    document.querySelectorAll('.day-item').forEach(d => d.classList.remove('selected'));
-                    this.classList.add('selected');
+        // Só adiciona evento de clique se o dia estiver disponível
+        if (isSelected) {
+            diaItem.style.cursor = 'pointer';
+            diaItem.addEventListener('click', function () {
+                // Remove seleção de outros dias
+                document.querySelectorAll('.day-item').forEach(d => d.classList.remove('selected'));
+                this.classList.add('selected');
 
-                    // Calcula a data correspondente
-                    const data = calcularDataParaDiaSemana(i);
-                    document.getElementById('data-selecionada').textContent =
-                        `Data selecionada: ${formatarData(data)}`;
+                // Calcula a data correspondente
+                const data = calcularDataParaDiaSemana(i);
+                document.getElementById('data-selecionada').textContent =
+                    `Data selecionada: ${formatarData(data)}`;
 
-                    // Armazena a data selecionada
-                    sessionStorage.setItem('dataSelecionada', data.toISOString());
-                });
-            }
-
-            diasContainer.appendChild(diaItem);
+                // Armazena a data selecionada
+                sessionStorage.setItem('dataSelecionada', data.toISOString());
+            });
         }
-    } else {
-        document.getElementById('dias-trabalho').innerHTML =
-            '<span class="day">Nenhum dia cadastrado</span>';
-    }
 
-    // Horários disponíveis
+        diasContainer.appendChild(diaItem);
+    }    // Horários disponíveis
     if (manicure.horarios && Array.isArray(manicure.horarios) && manicure.horarios.length > 0) {
         const horariosContainer = document.getElementById('horarios');
         horariosContainer.innerHTML = manicure.horarios

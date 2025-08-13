@@ -175,6 +175,32 @@ body {
   color: #0C5460;
 }
 
+/* Estados dos dias de trabalho */
+.day.active {
+  background-color: #E2F0FD;
+  color: #0C5460;
+  border: 1px solid #B8E0FF;
+  font-weight: bold;
+}
+
+.day.inactive {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  opacity: 0.6;
+}
+
+/* Efeitos hover para dias */
+.day.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.day.inactive:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .hour {
   background-color: #D4EDDA;
   color: #155724;
