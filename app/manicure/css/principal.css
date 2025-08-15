@@ -544,3 +544,152 @@ ul li {
         width: 100%;
     }
 }
+
+/* Estilos para o botão de histórico */
+.chart-actions {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* Estilos para o modal de histórico */
+.historico-modal {
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.year-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--light-gray);
+    border-radius: var(--radius-sm);
+}
+
+.year-navigation h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--dark);
+    min-width: 100px;
+    text-align: center;
+}
+
+.year-navigation .btn {
+    padding: 8px 12px;
+    min-width: 40px;
+    justify-content: center;
+}
+
+.year-navigation .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.year-navigation .btn:disabled:hover {
+    transform: none;
+    background: var(--gray);
+}
+
+/* Estatísticas resumidas do histórico */
+.historico-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-item {
+    background: white;
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stat-value.concluidos {
+    color: #FF8E8E;
+}
+
+.stat-value.cancelados {
+    color: #DC3545;
+}
+
+/* Container do gráfico de histórico */
+.chart-container-historico {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    height: 400px;
+    position: relative;
+}
+
+.chart-container-historico canvas {
+    max-height: 100%;
+}
+
+/* Responsividade para o modal de histórico */
+@media (max-width: 768px) {
+    .historico-modal {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .year-navigation {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .year-navigation h3 {
+        order: -1;
+    }
+    
+    .historico-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-container-historico {
+        height: 300px;
+        padding: 15px;
+    }
+}

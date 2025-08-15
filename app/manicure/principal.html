@@ -87,6 +87,11 @@
         <div class="card">
             <h3><span class="icon">📊</span>Estatísticas da manicure</h3>
             <canvas id="grafico" width="250" height="200"></canvas>
+            <div class="chart-actions">
+                <button class="btn btn-secondary" id="viewHistorico">
+                    <i class="fas fa-history"></i> Ver Histórico Completo
+                </button>
+            </div>
         </div>
 
         <!-- Feedback -->
@@ -163,6 +168,46 @@
 
                 <div class="all-feedbacks" id="allFeedbacks">
                     <div class="info-box">Carregando feedbacks...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Histórico de Estatísticas -->
+    <div class="modal-overlay" id="historicoModal">
+        <div class="modal-content historico-modal">
+            <div class="modal-header">
+                <h2>Histórico Completo de Agendamentos</h2>
+                <button class="close-modal" id="closeHistoricoModal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Controles de navegação de ano -->
+                <div class="year-navigation">
+                    <button class="btn btn-secondary" id="prevYearBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h3 id="currentYearDisplay"></h3>
+                    <button class="btn btn-secondary" id="nextYearBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Estatísticas resumidas -->
+                <div class="historico-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Concluídos:</span>
+                        <span class="stat-value concluidos" id="totalConcluidos">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Cancelados/Recusados:</span>
+                        <span class="stat-value cancelados" id="totalCancelados">0</span>
+                    </div>
+                </div>
+
+                <!-- Gráfico do histórico -->
+                <div class="chart-container-historico">
+                    <canvas id="historicoGrafico"></canvas>
                 </div>
             </div>
         </div>

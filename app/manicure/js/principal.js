@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    // Configuração da API
+    const API_BASE_URL = window.API_BASE_URL;
+    
     // Elementos do DOM
     const workDaysContainer = document.getElementById('workDays');
     const workHoursContainer = document.getElementById('workHours');
@@ -38,8 +41,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 datasets: [{
                     label: 'Agendamentos Concluídos',
                     data: [],
-                    backgroundColor: '#f49ca0',
-                    borderColor: '#f49ca0',
+                    backgroundColor: '#FF8E8E',
+                    borderColor: '#FF8E8E',
+                    borderWidth: 1
+                }, {
+                    label: 'Agendamentos Cancelados/Recusados',
+                    data: [],
+                    backgroundColor: '#DC3545',
+                    borderColor: '#DC3545',
                     borderWidth: 1
                 }]
             },
@@ -59,17 +68,94 @@ document.addEventListener('DOMContentLoaded', async () => {
                     },
                     title: {
                         display: true,
-                        text: 'Agendamentos Concluídos por Mês'
+                        text: 'Estatísticas de Agendamentos (Últimos 5 Meses)'
                     }
                 }
             }
         });
     }
 
+    // Função para testar conectividade com a API
+    async function testAPIConnection() {
+        try {
+            console.log('Testando conectividade com a API...');
+            const response = await fetch(`${API_BASE_URL}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            console.log('Status da conexão:', response.status);
+            
+            if (response.ok) {
+                console.log('✅ API está online');
+                return true;
+            } else {
+                console.log('❌ API retornou erro:', response.status);
+                return false;
+            }
+        } catch (error) {
+            console.log('❌ Erro ao conectar com a API:', error.message);
+            return false;
+        }
+    }
+
+    // Função para mostrar gráfico vazio
+    function showEmptyChart(message = 'Nenhum dado disponível') {
+        if (grafico) {
+            grafico.data.labels = [];
+            grafico.data.datasets[0].data = [];
+            grafico.data.datasets[1].data = [];
+            grafico.options.plugins.title.text = message;
+            grafico.update();
+        }
+        
+        // Mostrar mensagem informativa
+        showInfoMessage(message);
+    }
+
+    // Função para mostrar mensagem informativa
+    function showInfoMessage(message) {
+        // Remover mensagem anterior se existir
+        const existingMessage = document.getElementById('chartMessage');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        const chartContainer = document.querySelector('.card canvas#grafico').parentElement;
+        const infoDiv = document.createElement('div');
+        infoDiv.id = 'chartMessage';
+        infoDiv.style.cssText = `
+            background: #f8f9fa;
+            color: #6c757d;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+        `;
+        infoDiv.innerHTML = message;
+        
+        chartContainer.appendChild(infoDiv);
+    }
+
     // Função para carregar estatísticas de agendamentos
     async function loadAgendamentosEstatisticas() {
+        // Primeiro, testar a conectividade
+        const apiOnline = await testAPIConnection();
+        if (!apiOnline) {
+            console.error('❌ API offline');
+            showEmptyChart('Servidor offline. Tente novamente mais tarde.');
+            return;
+        }
+
         try {
             console.log('Carregando estatísticas de agendamentos...');
+            console.log('Token:', token ? 'Presente' : 'Ausente');
+            console.log('UserId:', userId);
+            console.log('API_BASE_URL:', API_BASE_URL);
             
             const response = await fetch(`${API_BASE_URL}/api/agendamentos/estatisticas`, {
                 method: 'GET',
@@ -82,35 +168,250 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log('Response status estatísticas:', response.status);
 
             if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
+                const errorText = await response.text();
+                console.error('Erro na resposta:', errorText);
+                
+                if (response.status === 401) {
+                    showEmptyChart('Erro de autenticação. Faça login novamente.');
+                } else {
+                    showEmptyChart(`Erro no servidor (${response.status})`);
+                }
+                return;
             }
 
             const data = await response.json();
             console.log('Dados de estatísticas recebidos:', data);
             
             if (data.success && data.estatisticas) {
-                updateChart(data.estatisticas.labels, data.estatisticas.dados);
+                console.log('✅ Atualizando gráfico com dados reais da API');
+                console.log('Labels:', data.estatisticas.labels);
+                console.log('Dados concluídos:', data.estatisticas.dadosConcluidos);
+                console.log('Dados cancelados:', data.estatisticas.dadosCancelados);
+                
+                // Verificar se há dados
+                const totalConcluidos = data.estatisticas.totalConcluidos || 0;
+                const totalCancelados = data.estatisticas.totalCancelados || 0;
+                
+                if (totalConcluidos === 0 && totalCancelados === 0) {
+                    showEmptyChart('Nenhum agendamento encontrado nos últimos 5 meses');
+                } else {
+                    updateChart(data.estatisticas.labels, data.estatisticas.dadosConcluidos, data.estatisticas.dadosCancelados);
+                }
             } else {
-                console.log('Nenhuma estatística encontrada, usando dados de exemplo');
-                updateChartWithExampleData();
+                console.log('API retornou sucesso=false ou sem estatísticas');
+                console.log('Resposta completa:', data);
+                showEmptyChart('Erro ao carregar dados. Tente novamente.');
             }
 
         } catch (error) {
             console.error('Erro ao carregar estatísticas:', error);
-            
-            // Se for erro de rede ou API, mostrar dados de exemplo
-            console.log('Usando dados de exemplo devido ao erro');
-            updateChartWithExampleData();
+            showEmptyChart('Erro de conexão. Verifique sua internet.');
         }
     }
 
     // Função para atualizar o gráfico com dados reais
-    function updateChart(labels, data) {
+    function updateChart(labels, dadosConcluidos, dadosCancelados) {
         if (grafico) {
             grafico.data.labels = labels;
-            grafico.data.datasets[0].data = data;
+            grafico.data.datasets[0].data = dadosConcluidos;
+            grafico.data.datasets[1].data = dadosCancelados;
+            grafico.options.plugins.title.text = 'Estatísticas de Agendamentos (Últimos 5 Meses)';
             grafico.update();
-            console.log('Gráfico atualizado com dados reais');
+            console.log('✅ Gráfico atualizado com dados reais');
+            
+            // Remover mensagem informativa se existir
+            const messageElement = document.getElementById('chartMessage');
+            if (messageElement) {
+                messageElement.remove();
+            }
+        }
+    }
+
+    // Variáveis para o modal de histórico
+    let historicoChart;
+    let currentYear = new Date().getFullYear();
+    let availableYears = [];
+
+    // Função para abrir modal de histórico
+    function openHistoricoModal() {
+        const modal = document.getElementById('historicoModal');
+        if (modal) {
+            modal.classList.add('active');
+            loadHistoricoData(currentYear);
+        }
+    }
+
+    // Função para carregar dados do histórico
+    async function loadHistoricoData(ano) {
+        try {
+            console.log('Carregando histórico para o ano:', ano);
+            console.log('Token:', token ? 'Presente' : 'Ausente');
+            console.log('UserId:', userId);
+            
+            const response = await fetch(`${API_BASE_URL}/api/agendamentos/historico-estatisticas?ano=${ano}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            console.log('Response status histórico:', response.status);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Erro na resposta do histórico:', errorText);
+                
+                if (response.status === 401) {
+                    showEmptyHistoricoChart('Erro de autenticação. Faça login novamente.');
+                } else {
+                    showEmptyHistoricoChart(`Erro no servidor (${response.status})`);
+                }
+                return;
+            }
+
+            const data = await response.json();
+            console.log('Dados de histórico recebidos:', data);
+            
+            if (data.success && data.historico) {
+                console.log('✅ Atualizando histórico com dados reais da API');
+                availableYears = data.historico.anosDisponiveis;
+                updateYearSelector(ano);
+                
+                // Verificar se há dados
+                const totalConcluidos = data.historico.totalConcluidos || 0;
+                const totalCancelados = data.historico.totalCancelados || 0;
+                
+                if (totalConcluidos === 0 && totalCancelados === 0) {
+                    showEmptyHistoricoChart(`Nenhum agendamento encontrado em ${ano}`);
+                    updateHistoricoStats({ totalConcluidos: 0, totalCancelados: 0 });
+                } else {
+                    updateHistoricoChart(data.historico.labels, data.historico.dadosConcluidos, data.historico.dadosCancelados);
+                    updateHistoricoStats(data.historico);
+                }
+            } else {
+                console.log('API retornou sucesso=false ou sem histórico');
+                console.log('Resposta completa:', data);
+                showEmptyHistoricoChart('Erro ao carregar dados do histórico.');
+            }
+
+        } catch (error) {
+            console.error('Erro ao carregar histórico:', error);
+            showEmptyHistoricoChart('Erro de conexão. Verifique sua internet.');
+        }
+    }
+
+    // Função para atualizar o seletor de ano
+    function updateYearSelector(selectedYear) {
+        const yearDisplay = document.getElementById('currentYearDisplay');
+        const prevBtn = document.getElementById('prevYearBtn');
+        const nextBtn = document.getElementById('nextYearBtn');
+        
+        if (yearDisplay) {
+            yearDisplay.textContent = selectedYear;
+        }
+        
+        if (prevBtn) {
+            prevBtn.disabled = availableYears.length === 0 || selectedYear <= Math.min(...availableYears);
+        }
+        
+        if (nextBtn) {
+            nextBtn.disabled = availableYears.length === 0 || selectedYear >= Math.max(...availableYears);
+        }
+    }
+
+    // Função para atualizar gráfico do histórico
+    function updateHistoricoChart(labels, dadosConcluidos, dadosCancelados) {
+        const ctx = document.getElementById('historicoGrafico');
+        if (!ctx) return;
+
+        if (historicoChart) {
+            historicoChart.destroy();
+        }
+
+        historicoChart = new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Agendamentos Concluídos',
+                    data: dadosConcluidos,
+                    backgroundColor: '#FF8E8E',
+                    borderColor: '#FF8E8E',
+                    borderWidth: 1
+                }, {
+                    label: 'Agendamentos Cancelados/Recusados',
+                    data: dadosCancelados,
+                    backgroundColor: '#DC3545',
+                    borderColor: '#DC3545',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: `Histórico Completo de Agendamentos - ${currentYear}`
+                    }
+                }
+            }
+        });
+    }
+
+    // Função para atualizar estatísticas do histórico
+    function updateHistoricoStats(historico) {
+        const totalConcluidos = document.getElementById('totalConcluidos');
+        const totalCancelados = document.getElementById('totalCancelados');
+        
+        if (totalConcluidos) {
+            totalConcluidos.textContent = historico.totalConcluidos;
+        }
+        
+        if (totalCancelados) {
+            totalCancelados.textContent = historico.totalCancelados;
+        }
+    }
+
+    // Função para mostrar estado vazio do gráfico histórico
+    function showEmptyHistoricoChart() {
+        const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
+                      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        
+        updateHistoricoChart(meses, new Array(12).fill(0), new Array(12).fill(0));
+        updateHistoricoStats({
+            totalConcluidos: 0,
+            totalCancelados: 0
+        });
+        
+        // Mostrar mensagem informativa
+        showInfoMessage("Nenhum dado histórico encontrado para este ano.", "info");
+    }
+
+    // Funções para navegação de anos
+    function previousYear() {
+        if (availableYears.length > 0 && currentYear > Math.min(...availableYears)) {
+            currentYear--;
+            loadHistoricoData(currentYear);
+        }
+    }
+
+    function nextYear() {
+        if (availableYears.length > 0 && currentYear < Math.max(...availableYears)) {
+            currentYear++;
+            loadHistoricoData(currentYear);
         }
     }
 
@@ -247,39 +548,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         } catch (error) {
             console.error('Erro ao carregar feedbacks:', error);
             
-            // Se for erro de rede ou API, mostrar dados de exemplo
-            console.log('Usando dados de exemplo devido ao erro');
-            const exampleFeedbacks = [
-                {
-                    id: 1,
-                    estrelas: 5,
-                    comentario: "Excelente trabalho! Adorei o resultado da unha decorada.",
-                    created_at: "2024-08-10T10:00:00Z",
-                    usuario: { nome: "Maria Silva", foto: "imagens/user.png" }
-                },
-                {
-                    id: 2,
-                    estrelas: 4,
-                    comentario: "Muito bom atendimento, voltarei com certeza!",
-                    created_at: "2024-08-08T14:30:00Z",
-                    usuario: { nome: "Ana Costa", foto: "imagens/user.png" }
-                },
-                {
-                    id: 3,
-                    estrelas: 5,
-                    comentario: "Perfeito! Supera as expectativas sempre.",
-                    created_at: "2024-08-05T16:15:00Z",
-                    usuario: { nome: "Joana Santos", foto: "imagens/user.png" }
-                },
-                {
-                    id: 4,
-                    estrelas: 3,
-                    comentario: "Bom trabalho, mas pode melhorar a pontualidade.",
-                    created_at: "2024-08-02T11:20:00Z",
-                    usuario: { nome: "Carla Oliveira", foto: "imagens/user.png" }
-                }
-            ];
-            displayFeedbacks(exampleFeedbacks);
+            // Mostrar estado vazio em caso de erro
+            displayFeedbacks([]);
         }
     }
 
@@ -417,38 +687,57 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Inicializar gráfico
     initializeChart();
     
-    // Verificar se os elementos estão disponíveis antes de carregar dados
+    // Como chegamos até aqui, significa que temos token e userId (senão teria redirecionado)
+    // Sempre carregar dados reais
+    console.log('Iniciando carregamento de dados reais...');
+    
+    // Carregar estatísticas do gráfico sempre
+    loadAgendamentosEstatisticas();
+    
+    // Verificar se os elementos estão disponíveis antes de carregar dados do perfil
     if (workDaysContainer && workHoursContainer && servicesList) {
-        // Se tiver dados de autenticação, carregar dados reais
-        if (token && userId) {
-            loadProfileData();
-            loadFeedbacks();
-            loadAgendamentosEstatisticas();
-        } else {
-            // Exibir dados de placeholder enquanto não há autenticação - todos os dias com alguns selecionados
-            const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-            const diasSelecionados = [1, 2, 3, 4, 5]; // Segunda a Sexta como exemplo
-            
-            const diasHTML = diasSemana.map((dia, index) => {
-                const isSelected = diasSelecionados.includes(index);
-                const cssClass = isSelected ? 'day active' : 'day inactive';
-                return `<span class="${cssClass}">${dia}</span>`;
-            }).join('');
-            
-            workDaysContainer.innerHTML = diasHTML;
-            workHoursContainer.innerHTML = '<span class="hour">08:00</span><span class="hour">10:00</span><span class="hour">14:00</span><span class="hour">16:00</span>';
-            servicesList.innerHTML = '<span class="service">Manicure (R$25)</span><span class="service">Pedicure (R$30)</span><span class="service">Esmaltação (R$15)</span>';
-            
-            // Também carregar feedbacks e estatísticas de exemplo
-            loadFeedbacks();
-            updateChartWithExampleData();
-        }
+        loadProfileData();
+        loadFeedbacks();
     } else {
-        // Se não há elementos de perfil, ainda assim inicializar o gráfico
-        if (token && userId) {
-            loadAgendamentosEstatisticas();
-        } else {
-            updateChartWithExampleData();
-        }
+        console.log('Elementos do perfil não encontrados, carregando apenas estatísticas');
     }
+
+    // Event listeners para modal de histórico
+    const viewHistoricoBtn = document.getElementById('viewHistorico');
+    const historicoModal = document.getElementById('historicoModal');
+    const closeHistoricoModal = document.getElementById('closeHistoricoModal');
+    const prevYearBtn = document.getElementById('prevYearBtn');
+    const nextYearBtn = document.getElementById('nextYearBtn');
+
+    if (viewHistoricoBtn) {
+        viewHistoricoBtn.addEventListener('click', openHistoricoModal);
+    }
+
+    if (closeHistoricoModal) {
+        closeHistoricoModal.addEventListener('click', () => {
+            historicoModal.classList.remove('active');
+        });
+    }
+
+    if (prevYearBtn) {
+        prevYearBtn.addEventListener('click', previousYear);
+    }
+
+    if (nextYearBtn) {
+        nextYearBtn.addEventListener('click', nextYear);
+    }
+
+    // Fechar modal ao clicar fora
+    if (historicoModal) {
+        historicoModal.addEventListener('click', (e) => {
+            if (e.target === historicoModal) {
+                historicoModal.classList.remove('active');
+            }
+        });
+    }
+
+    // Expor funções globalmente para uso em HTML
+    window.openHistoricoModal = openHistoricoModal;
+    window.previousYear = previousYear;
+    window.nextYear = nextYear;
 });
