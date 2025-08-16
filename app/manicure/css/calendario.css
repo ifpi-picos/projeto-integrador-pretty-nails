@@ -1,14 +1,24 @@
 :root {
-  --branco: #fff;
-  --preto: #000;
-  --preto-tom2: #2a2a2a;
-  --tom1: #d05f4b;
-  --tom2: #d87b6b;
-  --tom3: #e0978a;
-  --tom4: #e8b2a9;
-  --tom5: #ecc0b8;
-  --tom6: #f1cec8;
-  --tom7: #f5dcd7;
+    --primary: #FF6B6B;
+    --primary-light: #FF8E8E;
+    --primary-dark: #E05555;
+    --secondary: #4ECDC4;
+    --light: #F7FFF7;
+    --dark: #292F36;
+    --gray: #6C757D;
+    --light-gray: #F1F3F5;
+    --success: #28A745;
+    --warning: #FFC107;
+    --danger: #DC3545;
+    --info: #17A2B8;
+    
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    
+    --transition: all 0.3s ease;
+    --radius: 12px;
+    --radius-sm: 8px;
 }
 
 * {
@@ -20,15 +30,14 @@
 
 header {
   width: 100%;
-  background-color: var(--tom1);
-  color: var(--branco);
+  color: var(--tom1);
   text-align: center;
   padding: 20px 0;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
+  animation: fadeInDown 0.6s ease-out;
 }
 
 header h1 {
@@ -38,9 +47,9 @@ header h1 {
 
 body {
   font-family: 'Poppins', sans-serif;
-  margin: 80px;
   padding: 0;
-  background: #f7f7f7;
+  background: linear-gradient(135deg, #f7f7f7 0%, #efefef 100%);
+  min-height: 100vh;
 }
 
 .calendario-container {
@@ -48,6 +57,10 @@ body {
   max-width: 1000px;
   margin: auto;
   text-align: center;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .titulo {
@@ -86,6 +99,11 @@ body {
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.controle button:hover {
+  background-color: #b54a37;
 }
 
 .mes-ano {
@@ -93,38 +111,303 @@ body {
   font-weight: bold;
 }
 
+/* Legenda de cores */
+.legenda {
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.legenda h3 {
+  margin: 0 0 15px 0;
+  color: var(--tom1);
+  font-size: 18px;
+  text-align: center;
+}
+
+.legenda-items {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cor-status {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.cor-status.pendente {
+  background-color: #ffa500;
+}
+
+.cor-status.confirmado {
+  background-color: #4CAF50;
+}
+
+.cor-status.concluido {
+  background-color: #2196F3;
+}
+
+.cor-status.cancelado,
+.cor-status.recusado {
+  background-color: #f44336;
+}
+
 .semana, .dias {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  gap: 3px;
+  margin-top: 15px;
 }
 
 .dia-semana {
-  background: var(--tom5);
+  background: linear-gradient(135deg, var(--tom5) 0%, var(--tom4) 100%);
   text-align: center;
   font-weight: bold;
-  padding: 8px 0;
+  padding: 12px 0;
+  border-radius: 8px 8px 0 0;
+  color: var(--tom1);
+  font-size: 14px;
 }
 
 .dia {
   background: white;
-  padding: 6px;
-  border: 1px solid #ddd;
-  height: 100px;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  height: 110px;
   position: relative;
   cursor: pointer;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.dia:hover {
+  background: #fafafa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .numero-dia {
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.evento {
-  background: var(--tom3);
+/* Estilos dos agendamentos */
+.agendamento {
   padding: 4px 6px;
+  font-size: 11px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: white;
+  font-weight: 500;
+}
+
+.agendamento:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.agendamento.status-pendente {
+  background-color: #ffa500;
+}
+
+.agendamento.status-confirmado {
+  background-color: #4CAF50;
+}
+
+.agendamento.status-concluido {
+  background-color: #2196F3;
+}
+
+.agendamento.status-cancelado,
+.agendamento.status-recusado {
+  background-color: #f44336;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  color: var(--tom1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: var(--tom1);
+}
+
+.detalhe-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid var(--tom2);
+}
+
+.detalhe-item strong {
+  color: var(--tom1);
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
   font-size: 12px;
-  border-radius: 6px;
-  margin-top: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+
+.status-badge.status-pendente {
+  background-color: #ffa500;
+}
+
+.status-badge.status-confirmado {
+  background-color: #4CAF50;
+}
+
+.status-badge.status-concluido {
+  background-color: #2196F3;
+}
+
+.status-badge.status-cancelado,
+.status-badge.status-recusado {
+  background-color: #f44336;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn-action {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-action.confirmar {
+  background-color: #4CAF50;
+}
+
+.btn-action.confirmar:hover {
+  background-color: #45a049;
+}
+
+.btn-action.recusar,
+.btn-action.cancelar {
+  background-color: #f44336;
+}
+
+.btn-action.recusar:hover,
+.btn-action.cancelar:hover {
+  background-color: #da190b;
+}
+
+.btn-action.concluir {
+  background-color: #2196F3;
+}
+
+.btn-action.concluir:hover {
+  background-color: #1976D2;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsividade */
@@ -156,33 +439,55 @@ body {
   #open_btn {
     display: none;
   }
-}
-.controle {
+
+  .controle {
     flex-direction: column;
     gap: 10px;
-}
+  }
 
-.mes-ano {
-  font-size: 18px;
-}
-.semana, .dias {
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-}
+  .mes-ano {
+    font-size: 18px;
+  }
 
-.dia, .dia-semana {
-  padding: 4px;
-  min-height: 50px;
-  font-size: 10px;
-}
+  .semana, .dias {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+  }
 
-.evento {
-  font-size: 9px;
-  padding: 2px;
-}
+  .dia, .dia-semana {
+    padding: 4px;
+    min-height: 50px;
+    font-size: 10px;
+  }
 
-.numero-dia {
-  font-size: 10px;
+  .agendamento {
+    font-size: 9px;
+    padding: 2px;
+  }
+
+  .numero-dia {
+    font-size: 10px;
+  }
+
+  .legenda-items {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    padding: 20px;
+    width: 95%;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
 }
 
 
