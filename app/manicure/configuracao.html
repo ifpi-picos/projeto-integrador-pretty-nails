@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/configuracao.css">
+    <link rel="stylesheet" href="css/side-bar.css">
+</head>
+<body>
+
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="imagens/user.png" id="user_avatar" alt="Avatar">
+                <p id="user_infos">
+                    <span class="item-description" id="user-name">Nome</span>
+                </p>
+            </div>
+
+            <ul id="side_items">
+                <a href="principal.html" class="side-item-link">
+                    <li class="side-item" data-label="Inicio">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="item-description">Início</span>
+                    </li>
+                </a>
+                <a href="calendario.html" class="side-item-link">
+                    <li class="side-item" data-label="calendario">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span class="item-description">Calendário</span>
+                    </li>
+                </a>
+                <a href="agendamentos.html" class="side-item-link">
+                    <li class="side-item" data-label="Agendamentos">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span class="item-description">Agendamentos</span>
+                    </li>
+                </a>
+                <a href="perfil-proprio.html" class="side-item-link">
+                    <li class="side-item" data-label="Perfil">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">Perfil</span>
+                    </li>
+                </a>
+                <a href="configuracao.html" class="side-item-link"> 
+                    <li class="side-item active" data-label="Configurações">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">Configurações</span>
+                    </li>
+                </a>
+            </ul>
+
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div id="logout">
+            <button id="logout_btn" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">Logout</span>
+            </button>
+        </div>
+    </nav>
+    <div class="pag-content">
+        <h1 class="page-title"><i class="fas fa-cog"></i> Configurações</h1>
+
+        <div class="config-container">
+            <!-- Configurações Gerais -->
+            <div class="config-section">
+                <h2>Configurações Gerais</h2>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-adjust"></i> Tema (Claro/Escuro/Automático)</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-language"></i> Idioma</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-bell"></i> Notificações (Ativar/Desativar)</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Configurações de Conta -->
+            <div class="config-section">
+                <h2>Configurações de Conta</h2>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-envelope"></i> Alterar E-mail</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-lock"></i> Alterar Senha</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-user-times"></i> Excluir Conta</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Privacidade e Segurança -->
+            <div class="config-section">
+                <h2>Privacidade e Segurança</h2>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-user-shield"></i> Conta Privada/Pública</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-user-lock"></i> Bloqueio de Usuários</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-shield-alt"></i> Permissões do App</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Notificações -->
+            <div class="config-section">
+                <h2>Notificações</h2>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-bell"></i> Tipos de Notificação</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-clock"></i> Horário para Não Perturbar</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Suporte e Ajuda -->
+            <div class="config-section">
+                <h2>Suporte e Ajuda</h2>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-question-circle"></i> Central de Ajuda</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-comment-dots"></i> Enviar Feedback</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-file-alt"></i> Termos de Uso e Política de Privacidade</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Versão -->
+            <div class="config-section">
+                <h2>Versão do App e Atualizações</h2>
+                <div class="config-item">
+                    <div class="config-item-left"><i class="fas fa-sync-alt"></i> Verificar Atualizações</div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+            <!-- Logout -->
+            <div class="logout-section">
+                <button class="logout-button" onclick="logout()">
+                    <i class="fas fa-right-from-bracket"></i>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/configuracao.js"></script>
+    <script src="js/side-bar.js"></script>
+</body>
+</html>

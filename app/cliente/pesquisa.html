@@ -51,7 +51,7 @@
                         <span class="item-description">Perfil</span>
                     </li>
                 </a>
-                <a href="#" class="side-item-link" onclick="alert('Esta tela está em desenvolvimento.'); return false;">
+                <a href="configuracao.html" class="side-item-link">
                     <li class="side-item" data-label="Configurações">
                         <i class="fa-solid fa-gear"></i>
                         <span class="item-description">Configurações</span>
@@ -93,18 +93,8 @@
                     <option value="">Selecione</option>
                 </select>
 
-                <label for="servico">Serviço:</label>
-                <select id="servico">
-                    <option value="">Selecione</option>
-                    <option value="manicure">Manicure</option>
-                    <option value="pedicure">Pedicure</option>
-                    <option value="alongamento">Alongamento</option>
-                    <option value="design">Design de Unhas</option>
-                    <option value="unhas-em-gel">Unhas em Gel</option>
-                    <option value="unhas-de-acrilico">Unhas de Acrílico</option>
-                </select>
-
                 <button class="apply-btn">Aplicar</button>
+                <button class="clear-btn" onclick="limparFiltros()">Limpar Filtros</button>
                 <button class="close-btn" onclick="toggleFilters()">Fechar</button>
             </div>
         </div>

@@ -153,12 +153,41 @@ AC
     font-size: 14px;
 }
 
-.apply-btn, .close-btn {
+.apply-btn, .close-btn, .clear-btn {
     margin-top: 10px;
     padding: 8px;
     width: 100%;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.apply-btn {
+    background-color: var(--tom2);
+    color: white;
+}
+
+.apply-btn:hover {
+    background-color: var(--tom1);
+}
+
+.clear-btn {
+    background-color: var(--tom4);
+    color: var(--preto);
+}
+
+.clear-btn:hover {
+    background-color: var(--tom3);
+}
+
+.close-btn {
+    background-color: var(--cinza);
+    color: var(--preto);
+}
+
+.close-btn:hover {
+    background-color: #b8b8b8;
 }
 
 .perfil-container {
