@@ -27,6 +27,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const servSlotsContainer = document.getElementById('servSlotsContainer');
     const workDaysCheckbox = document.getElementById('workDaysCheckbox');
 
+    // Elementos do modal de compartilhamento
+    const shareModal = document.getElementById('shareModal');
+    const shareProfileBtn = document.getElementById('shareProfileBtn');
+    const closeShareModalBtn = document.getElementById('closeShareModalBtn');
+    const closeShareBtn = document.getElementById('closeShareBtn');
+    const sharePhoto = document.getElementById('sharePhoto');
+    const shareName = document.getElementById('shareName');
+    const shareLink = document.getElementById('shareLink');
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+
     // Verificar autenticação
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
@@ -35,6 +45,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!token || !userId) {
         window.location.href = 'login.html';
         return;
+    }
+
+    // Gerar link de compartilhamento
+    function generateShareLink() {
+        // Em produção, isso viria da API ou seria um link fixo com o ID do usuário
+        const baseUrl = window.location.origin;
+        return `${baseUrl}/perfil-publico.html?id=${userId}`;
     }
 
     // Função para adicionar novo time-slot
@@ -188,18 +205,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Mostrar/ocultar modal
-    function toggleModal(show) {
+    function toggleModal(modal, show) {
         if (show) {
-            editModal.classList.add('active');
+            modal.classList.add('active');
         } else {
-            editModal.classList.remove('active');
+            modal.classList.remove('active');
         }
     }
 
     // Event listeners
-    editProfileBtn.addEventListener('click', () => toggleModal(true));
-    closeModalBtn.addEventListener('click', () => toggleModal(false));
-    cancelEditBtn.addEventListener('click', () => toggleModal(false));
+    editProfileBtn.addEventListener('click', () => toggleModal(editModal, true));
+    closeModalBtn.addEventListener('click', () => toggleModal(editModal, false));
+    cancelEditBtn.addEventListener('click', () => toggleModal(editModal, false));
+
+    // Event listeners para o modal de compartilhamento
+    shareProfileBtn.addEventListener('click', () => {
+        // Preencher dados no modal de compartilhamento
+        sharePhoto.src = foto.src;
+        shareName.textContent = nome.textContent;
+        shareLink.value = generateShareLink();
+        
+        toggleModal(shareModal, true);
+    });
+    
+    closeShareModalBtn.addEventListener('click', () => toggleModal(shareModal, false));
+    closeShareBtn.addEventListener('click', () => toggleModal(shareModal, false));
+    
+    // Copiar link para a área de transferência
+    copyLinkBtn.addEventListener('click', () => {
+        shareLink.select();
+        document.execCommand('copy');
+        showNotification('Link copiado para a área de transferência!', 'success');
+    });
 
     // Preview da foto ao selecionar
     editPhoto.addEventListener('change', function (e) {
@@ -301,7 +338,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (updatedData.nome) localStorage.setItem('userName', updatedData.nome);
             if (updatedData.foto) localStorage.setItem('userFoto', updatedData.foto);
 
-            toggleModal(false);
+            toggleModal(editModal, false);
             loadProfileData(); // Recarregar dados
 
         } catch (error) {
