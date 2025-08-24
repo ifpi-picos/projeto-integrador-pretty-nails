@@ -113,9 +113,15 @@
       </div>
     </div>
 
-    <button class="edit-button" id="editProfileBtn">
-      <i class="fas fa-edit"></i> Editar Perfil
-    </button>
+    <div class="profile-actions">
+      <button class="edit-button" id="editProfileBtn">
+        <i class="fas fa-edit"></i> Editar Perfil
+      </button>
+      
+      <button class="share-button" id="shareProfileBtn">
+        <i class="fas fa-share-alt"></i> Compartilhar Perfil
+      </button>
+    </div>
   </div>
 
   <!-- Modal de Edição -->
@@ -193,6 +199,34 @@
       <div class="modal-footer">
         <button class="cancel-btn" id="cancelEditBtn">Cancelar</button>
         <button class="save-btn" id="saveProfileBtn">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Compartilhamento -->
+  <div class="modal-overlay" id="shareModal">
+    <div class="modal-content share-modal">
+      <div class="modal-header">
+        <h2>Compartilhar Perfil</h2>
+        <button class="close-modal" id="closeShareModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="share-card">
+          <img id="sharePhoto" src="" alt="Foto do perfil">
+          <h3 id="shareName">Nome do Profissional</h3>
+          <div class="share-link-container">
+            <input type="text" id="shareLink" readonly>
+            <button id="copyLinkBtn">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+          <p class="share-instruction">Compartilhe este link com seus clientes</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" id="closeShareBtn">Fechar</button>
       </div>
     </div>
   </div>
