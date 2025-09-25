@@ -1,0 +1,162 @@
+/* ===== SISTEMA DE TEMAS PRETTY NAILS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  /* === TEMA CLARO (Padrão) === */
+  
+  /* Cores Primárias Pretty Nails (mantém identidade visual) */
+  --primary: #FF6B6B;
+  --primary-light: #FF8E8E;
+  --primary-dark: #E05555;
+  --secondary: #4ECDC4;
+  
+  /* Cores de Fundo - Tema Claro */
+  --bg-primary: #ffffff;
+  --bg-secondary: #F7FFF7;
+  --bg-tertiary: #F1F3F5;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --gelo: #f1f1f1;
+  
+  /* Cores de Texto - Tema Claro */
+  --text-primary: #292F36;
+  --text-secondary: #6C757D;
+  --text-muted: #8b9dc3;
+  --text-inverse: #ffffff;
+  --preto: #2a2a2a;
+  --branco: #ffffff;
+  
+  /* Bordas e Sombras - Tema Claro */
+  --border-color: #e1e8ed;
+  --border-light: #F1F3F5;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  
+  /* Cores Funcionais (mantém em ambos os temas) */
+  --success: #28A745;
+  --warning: #FFC107;
+  --danger: #DC3545;
+  --info: #17A2B8;
+  
+  /* Configurações Gerais */
+  --transition: all 0.3s ease;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* === TEMA ESCURO === */
+[data-theme="dark"] {
+  /* Cores Primárias (mantém Pretty Nails) */
+  --primary: #FF6B6B;
+  --primary-light: #FF8E8E;
+  --primary-dark: #E05555;
+  --secondary: #4ECDC4;
+  
+  /* Cores de Fundo - Tema Escuro */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --bg-card: #242424;
+  --bg-sidebar: #1e1e1e;
+  --gelo: #2d2d2d;
+  
+  /* Cores de Texto - Tema Escuro */
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --text-inverse: #000000;
+  --preto: #ffffff;
+  --branco: #1a1a1a;
+  
+  /* Bordas e Sombras - Tema Escuro */
+  --border-color: #404040;
+  --border-light: #353535;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+  
+  /* Cores Funcionais - Ajustadas para Escuro */
+  --success: #4caf50;
+  --warning: #ff9800;
+  --danger: #f44336;
+  --info: #2196f3;
+}
+
+/* === TRANSIÇÕES SUAVES === */
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
+/* === APLICAÇÃO GLOBAL BASE === */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Cards e Containers */
+.card, .container, .config-container, .perfil-container, 
+.pink-area, #perfis-container {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* Sidebar */
+#sidebar, .sidebar {
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+/* Inputs e Forms */
+input, select, textarea, .form-control {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+input:focus, select:focus, textarea:focus, .form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25);
+}
+
+/* Botões */
+.btn-primary, .logout-button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border: none;
+  color: var(--text-inverse);
+}
+
+.btn-primary:hover, .logout-button:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+/* Modais */
+.modal-content {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Scrollbars - Tema Escuro */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}

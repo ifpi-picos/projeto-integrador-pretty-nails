@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pretty Nails</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="../themes.css">
     <link rel="stylesheet" href="css/perfil-manicure.css" />
+        <link rel="stylesheet" href="../themes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
@@ -26,6 +28,17 @@
                     <div class="info">
                         <h2 id="nome"></h2>
                         <p class="bio-text" id="biografia"></p>
+                        <div class="rating-container">
+                            <div class="stars" id="starsContainer">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-number" id="ratingNumber">0.0</span>
+                            <span class="rating-count" id="ratingCount">(0 avaliações)</span>
+                        </div>
                         <p class="address-text"><i class="fas fa-map-marker-alt"></i> <span id="endereco"></span></p>
                     </div>
                 </div>

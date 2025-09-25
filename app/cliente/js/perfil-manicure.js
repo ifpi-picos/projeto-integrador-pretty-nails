@@ -114,6 +114,27 @@ function preencherPerfil(manicure) {
     document.getElementById("profile-img").alt = manicure.nome || "Manicure";
     document.getElementById("nome").textContent = manicure.nome || "Nome não informado";
     document.getElementById("biografia").textContent = manicure.biografia || "Biografia não disponível.";
+
+    // Exibir avaliação (estrelas e total de feedbacks)
+    const mediaEstrelas = parseFloat(manicure.estrelas) || 0;
+    
+    // Buscar total de feedbacks para exibir a quantidade
+    fetch(`${API_BASE_URL}/feedback/manicure/${manicure.id}`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => response.ok ? response.json() : { feedbacks: [] })
+    .then(data => {
+        const totalFeedbacks = data.feedbacks ? data.feedbacks.length : 0;
+        displayStars(mediaEstrelas, totalFeedbacks);
+    })
+    .catch(error => {
+        console.error('Erro ao carregar feedbacks:', error);
+        // Exibe apenas as estrelas sem a contagem de feedbacks
+        displayStars(mediaEstrelas, 0);
+    });
+
     document.getElementById("telefone").textContent = manicure.telefone || "Telefone não informado";
     document.getElementById("email").textContent = manicure.email || "E-mail não informado";
 
@@ -284,3 +305,34 @@ document.getElementById('agendamento-form').addEventListener('submit', function 
     // Agora você pode enviar 'data' para o servidor
     console.log('Data e horário selecionados:', data);
 });
+
+// Função para exibir as estrelas
+function displayStars(rating, totalFeedbacks) {
+    const starsContainer = document.getElementById('starsContainer');
+    const ratingNumber = document.getElementById('ratingNumber');
+    const ratingCount = document.getElementById('ratingCount');
+    
+    if (!starsContainer || !ratingNumber || !ratingCount) return;
+    
+    const stars = starsContainer.querySelectorAll('i');
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    // Reset all stars
+    stars.forEach(star => {
+        star.className = 'fas fa-star';
+    });
+
+    // Fill stars based on rating
+    for (let i = 0; i < 5; i++) {
+        if (i < fullStars) {
+            stars[i].classList.add('active');
+        } else if (i === fullStars && hasHalfStar) {
+            stars[i].className = 'fas fa-star-half-alt active';
+        }
+    }
+
+    // Update rating number and count
+    ratingNumber.textContent = rating.toFixed(1);
+    ratingCount.textContent = `(${totalFeedbacks} ${totalFeedbacks === 1 ? 'avaliação' : 'avaliações'})`;
+}

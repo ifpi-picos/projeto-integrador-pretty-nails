@@ -630,3 +630,56 @@ textarea {
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
 }
+
+/* Estilos para a seção de avaliação no perfil da manicure */
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
+}
+
+.rating-container .stars {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.rating-container .stars i {
+    font-size: 1.2rem;
+    color: #ddd;
+    transition: var(--transition);
+}
+
+.rating-container .stars i.active {
+    color: #FFD700;
+}
+
+.rating-container .rating-number {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--dark);
+    margin-left: 0.3rem;
+}
+
+.rating-container .rating-count {
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Responsive para avaliação no perfil da manicure */
+@media (max-width: 768px) {
+    .rating-container {
+        justify-content: center;
+    }
+    
+    .rating-container .rating-number {
+        font-size: 1.2rem;
+        margin-left: 0.2rem;
+    }
+    
+    .rating-container .rating-count {
+        font-size: 0.8rem;
+    }
+}

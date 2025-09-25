@@ -1,5 +1,30 @@
 let cachedManicures = null;
 
+// Função para renderizar estrelas baseada na média
+function renderStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    let starsHtml = '';
+    
+    // Estrelas preenchidas
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fas fa-star active"></i>';
+    }
+    
+    // Meia estrela se necessário
+    if (hasHalfStar && fullStars < 5) {
+        starsHtml += '<i class="fas fa-star-half-alt active"></i>';
+    }
+    
+    // Estrelas vazias
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="far fa-star"></i>';
+    }
+    
+    return starsHtml;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Inicia o carregamento dos perfis
     adicionarPerfis();
@@ -34,7 +59,7 @@ async function adicionarPerfis() {
         }
 
         if (!cachedManicures) {
-            const resposta = await fetch(`${API_BASE_URL}/auth/manicures`, {
+            const resposta = await fetch(`${API_BASE_URL}/api/users/manicures`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -46,7 +71,8 @@ async function adicionarPerfis() {
                 throw new Error("Erro ao buscar manicures.");
             }
 
-            cachedManicures = await resposta.json();
+            const data = await resposta.json();
+            cachedManicures = data.success ? data.manicures : [];
             console.log("Dados recebidos da API:", cachedManicures);
         } else {
             console.log("Usando dados em cache:", cachedManicures);
@@ -54,11 +80,17 @@ async function adicionarPerfis() {
 
         container.innerHTML = "";
 
-        // Adaptação: acessar o array de manicures corretamente
-        const listaManicures = cachedManicures.manicures || [];
+        // Os dados já vêm ordenados por estrelas (maior para menor)
+        const listaManicures = cachedManicures;
 
         if (listaManicures.length === 0) {
-            container.innerHTML = "<p>Nenhum perfil encontrado.</p>";
+            container.innerHTML = `
+                <div class="empty-state-simple">
+                    <i class="fas fa-star-half-alt"></i>
+                    <h3>Nenhuma manicure bem avaliada no momento</h3>
+                    <p>Aguarde novas avaliações ou explore outros perfis</p>
+                </div>
+            `;
             return;
         }
 
@@ -82,7 +114,16 @@ async function adicionarPerfis() {
             
             const estrelasDiv = document.createElement("div");
             estrelasDiv.className = "estrelas";
-            estrelasDiv.textContent = "★★★★★";
+            
+            // Usar a média de estrelas do banco de dados
+            const mediaEstrelas = parseFloat(manicure.estrelas) || 0;
+            estrelasDiv.innerHTML = renderStars(mediaEstrelas);
+            
+            // Adicionar a média como número
+            const ratingNumber = document.createElement("span");
+            ratingNumber.className = "rating-number";
+            ratingNumber.textContent = mediaEstrelas.toFixed(1);
+            estrelasDiv.appendChild(ratingNumber);
             
             perfilDiv.appendChild(img);
             perfilDiv.appendChild(nomeDiv);

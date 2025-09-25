@@ -184,6 +184,28 @@ body {
 .estrelas {
        font-size: 18px;
        color: #FFD700;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       gap: 2px;
+       margin-top: 5px;
+}
+
+.estrelas i {
+       font-size: 14px;
+       color: #ddd;
+       transition: color 0.2s ease;
+}
+
+.estrelas i.active {
+       color: #FFD700;
+}
+
+.estrelas .rating-number {
+       font-size: 12px;
+       font-weight: bold;
+       color: var(--dark);
+       margin-left: 8px;
 }
 
 .theme-box {
@@ -373,5 +395,104 @@ body {
 
        .estrelas {
               font-size: 16px;
+              gap: 1px;
+       }
+
+       .estrelas i {
+              font-size: 12px;
+       }
+
+       .estrelas .rating-number {
+              font-size: 11px;
+              margin-left: 6px;
+       }
+}
+
+/* Empty State Simples - Quando não há manicures bem avaliadas */
+.empty-state-simple {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+       padding: 2rem 1rem;
+       margin: 1rem auto;
+       width: 100%;
+       max-width: 350px;
+       animation: fadeIn 0.5s ease-out;
+}
+
+.empty-state-simple i {
+       font-size: 2.5rem;
+       color: var(--primary);
+       opacity: 0.6;
+       margin-bottom: 0.8rem;
+}
+
+.empty-state-simple h3 {
+       color: var(--dark);
+       font-size: 1.1rem;
+       font-weight: 500;
+       margin-bottom: 0.4rem;
+       line-height: 1.3;
+}
+
+.empty-state-simple p {
+       color: var(--gray);
+       font-size: 0.85rem;
+       opacity: 0.8;
+       line-height: 1.4;
+}
+
+@keyframes fadeIn {
+       from {
+              opacity: 0;
+              transform: translateY(15px);
+       }
+       to {
+              opacity: 1;
+              transform: translateY(0);
+       }
+}
+
+/* Responsividade para Empty State Simples */
+@media (max-width: 768px) {
+       .empty-state-simple {
+              padding: 1.5rem 0.8rem;
+              margin: 0.5rem auto;
+              max-width: 280px;
+       }
+       
+       .empty-state-simple i {
+              font-size: 2rem;
+              margin-bottom: 0.6rem;
+       }
+       
+       .empty-state-simple h3 {
+              font-size: 1rem;
+              margin-bottom: 0.3rem;
+       }
+       
+       .empty-state-simple p {
+              font-size: 0.8rem;
+       }
+}
+
+@media (max-width: 480px) {
+       .empty-state-simple {
+              padding: 1rem 0.5rem;
+              max-width: 240px;
+       }
+       
+       .empty-state-simple i {
+              font-size: 1.8rem;
+       }
+       
+       .empty-state-simple h3 {
+              font-size: 0.95rem;
+       }
+       
+       .empty-state-simple p {
+              font-size: 0.75rem;
        }
 }

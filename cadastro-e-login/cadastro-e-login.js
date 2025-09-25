@@ -47,6 +47,9 @@ mobileSignIn?.addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", function () {
     carregarEstados();
     
+    // Configura formatação do telefone
+    configurarTelefone();
+    
     // Adiciona event listeners para melhorar a experiência mobile
     const inputs = document.querySelectorAll('input, select');
     inputs.forEach(input => {
@@ -109,4 +112,90 @@ async function carregarCidades() {
         console.error("Erro ao carregar cidades:", error);
         cidadeSelect.innerHTML = '<option value="" disabled selected>Erro ao carregar cidades</option>';
     }
+}
+
+// Função para configurar a formatação do telefone
+function configurarTelefone() {
+    const telefoneInput = document.getElementById('telefone');
+    
+    if (!telefoneInput) return;
+
+    // Formatação em tempo real
+    telefoneInput.addEventListener('input', function(e) {
+        let valor = e.target.value;
+        
+        // Remove tudo que não é número
+        valor = valor.replace(/\D/g, '');
+        
+        // Aplica a formatação (xx)xxxxx-xxxx
+        if (valor.length > 0) {
+            if (valor.length <= 2) {
+                valor = valor.replace(/(\d{1,2})/, '($1');
+            } else if (valor.length <= 7) {
+                valor = valor.replace(/(\d{2})(\d{1,5})/, '($1)$2');
+            } else {
+                valor = valor.replace(/(\d{2})(\d{5})(\d{1,4})/, '($1)$2-$3');
+            }
+        }
+        
+        // Limita a 14 caracteres (formato completo)
+        if (valor.length > 14) {
+            valor = valor.substring(0, 14);
+        }
+        
+        e.target.value = valor;
+    });
+
+    // Validação ao sair do campo
+    telefoneInput.addEventListener('blur', function(e) {
+        const valor = e.target.value;
+        const telefoneFormatado = /^\(\d{2}\)\d{5}-\d{4}$/;
+        
+        if (valor && !telefoneFormatado.test(valor)) {
+            // Adiciona classe de erro
+            e.target.classList.add('telefone-erro');
+            
+            // Mostra mensagem de erro
+            mostrarErroTelefone(e.target);
+        } else {
+            // Remove classe de erro se existir
+            e.target.classList.remove('telefone-erro');
+            removerErroTelefone();
+        }
+    });
+
+    // Remove erro quando o usuário começar a digitar novamente
+    telefoneInput.addEventListener('focus', function(e) {
+        e.target.classList.remove('telefone-erro');
+        removerErroTelefone();
+    });
+}
+
+// Função para mostrar erro do telefone
+function mostrarErroTelefone(input) {
+    // Remove mensagem de erro anterior se existir
+    removerErroTelefone();
+    
+    // Cria elemento de erro
+    const erroDiv = document.createElement('div');
+    erroDiv.id = 'telefone-erro-msg';
+    erroDiv.className = 'erro-telefone';
+    erroDiv.textContent = 'Formato inválido. Use: (xx)xxxxx-xxxx';
+    
+    // Insere após o campo de telefone
+    input.parentNode.insertAdjacentElement('afterend', erroDiv);
+}
+
+// Função para remover erro do telefone
+function removerErroTelefone() {
+    const erroExistente = document.getElementById('telefone-erro-msg');
+    if (erroExistente) {
+        erroExistente.remove();
+    }
+}
+
+// Função para validar telefone (para usar na validação do formulário)
+function validarTelefone(telefone) {
+    const telefoneFormatado = /^\(\d{2}\)\d{5}-\d{4}$/;
+    return telefoneFormatado.test(telefone);
 }

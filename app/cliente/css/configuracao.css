@@ -132,6 +132,7 @@ body {
 @media (min-width: 768px) {
     .config-container {
         padding: 30px;
+        margin-bottom: 50px;
     }
     
     .config-section h2 {
@@ -150,6 +151,7 @@ body {
 @media (min-width: 992px) {
     .config-container {
         width: 90%;
+        margin-bottom: 50px;
     }
     
     .page-title {
@@ -160,6 +162,7 @@ body {
 @media (min-width: 1200px) {
     .config-container {
         width: 80%;
+        margin-bottom: 50px;
     }
 }
 

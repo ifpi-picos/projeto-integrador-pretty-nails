@@ -298,6 +298,93 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Feedback já enviado anteriormente (persistido) */
+.feedback-enviado {
+    background: linear-gradient(135deg, rgba(76, 205, 196, 0.08), rgba(255, 107, 107, 0.08));
+    border: 1px solid rgba(76, 205, 196, 0.2);
+    border-radius: var(--radius);
+    margin-top: 1rem;
+}
+
+.feedback-enviado h4 {
+    color: var(--black);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    gap: 0.5rem;
+}
+
+.feedback-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stars-display {
+    font-size: 1.8rem;
+    color: var(--star-selected);
+    letter-spacing: 2px;
+}
+
+.rating-number {
+    font-weight: 600;
+    color: var(--dark);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.feedback-comment-display {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    margin: 1rem 0;
+    position: relative;
+    border-left: 3px solid var(--secondary);
+    width: 90%;
+    margin-left: 30px;
+}
+
+.feedback-comment-display i {
+    color: var(--secondary);
+    opacity: 0.6;
+}
+
+.feedback-comment-display i.fa-quote-left {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.feedback-comment-display i.fa-quote-right {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.feedback-comment-display p {
+    margin: 0;
+    padding: 0 1rem;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.5;
+    text-align: center;
+}
+
+.feedback-date {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gray);
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(76, 205, 196, 0.15);
+}
+
 
 .text-container {
     display: flex;
@@ -562,5 +649,10 @@ body {
     .manicure-photo {
         margin-right: 0;
         margin-bottom: 1rem;
+    }
+
+    .feedback-comment-display {
+        width: 90%;
+        margin-left: 10px;
     }
 }

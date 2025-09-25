@@ -112,12 +112,11 @@ async function adicionarUsuario() {
   }
 
   // Validação de telefone
-  const telefoneRegex = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[0-9])[0-9]{3}\-?[0-9]{4}$/;
-  if (campoTelefone && !telefoneRegex.test(campoTelefone.replace(/\D/g, ''))) {
+  if (campoTelefone && !validarTelefone(campoTelefone)) {
     Swal.fire({
       icon: 'warning',
       title: 'Atenção',
-      text: 'Por favor, insira um telefone válido.',
+      text: 'Telefone deve estar no formato (xx)xxxxx-xxxx.',
       toast: true,
       position: toastPosition,
       timer: 3000,

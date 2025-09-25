@@ -62,6 +62,7 @@ function renderManicures(agendamentos) {
             data: agendamento.data_hora,
             horaInicio: date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
             status: agendamento.status,
+            avaliado: agendamento.avaliado,
             feedback: agendamento.feedback,
             manicureId: manicure.id,
             servico: agendamento.servico,
@@ -96,32 +97,57 @@ function createRequestHtml(request) {
     });
 
     let feedbackHtml = '';
-    if (request.status === 'concluido' && !request.avaliado) {
-        // Mostra formulário para novo feedback APENAS se não estiver avaliado
-        feedbackHtml = `
-            <div class="feedback-section">
-                <h4>Avalie o serviço:</h4>
-                <div class="rating" data-request-id="${request.id}">
-                    <input type="radio" id="star5-${request.id}" name="rating-${request.id}" value="5" />
-                    <label for="star5-${request.id}" class="star">★</label>
-                    <input type="radio" id="star4-${request.id}" name="rating-${request.id}" value="4" />
-                    <label for="star4-${request.id}" class="star">★</label>
-                    <input type="radio" id="star3-${request.id}" name="rating-${request.id}" value="3" />
-                    <label for="star3-${request.id}" class="star">★</label>
-                    <input type="radio" id="star2-${request.id}" name="rating-${request.id}" value="2" />
-                    <label for="star2-${request.id}" class="star">★</label>
-                    <input type="radio" id="star1-${request.id}" name="rating-${request.id}" value="1" />
-                    <label for="star1-${request.id}" class="star">★</label>
+    if (request.status === 'concluido') {
+        if (request.avaliado === true && request.feedback) {
+            // Mostra o feedback já enviado anteriormente
+            const feedback = request.feedback;
+            const starsHtml = '★'.repeat(feedback.estrelas) + '☆'.repeat(5 - feedback.estrelas);
+            
+            feedbackHtml = `
+                <div class="feedback-section feedback-enviado">
+                    <h4>Sua avaliação:</h4>
+                    <div class="feedback-display">
+                        <div class="stars-display">${starsHtml}</div>
+                    </div>
+                    ${feedback.comentario ? `
+                        <div class="feedback-comment-display">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"${feedback.comentario}"</p>
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    ` : ''}
+                    <div class="feedback-date">
+                        Avaliado em ${new Date(feedback.created_at).toLocaleDateString('pt-BR')}
+                    </div>
                 </div>
-                <h4>Escreva sobre sua experiência:</h4>
-                <div class="text-container">
-                    <textarea id="text-feedback-${request.id}" placeholder="Conte como foi sua experiência..."></textarea>
+            `;
+        } else if (request.avaliado !== true) {
+            // Mostra formulário para novo feedback APENAS se não estiver avaliado
+            feedbackHtml = `
+                <div class="feedback-section">
+                    <h4>Avalie o serviço:</h4>
+                    <div class="rating" data-request-id="${request.id}">
+                        <input type="radio" id="star5-${request.id}" name="rating-${request.id}" value="5" />
+                        <label for="star5-${request.id}" class="star">★</label>
+                        <input type="radio" id="star4-${request.id}" name="rating-${request.id}" value="4" />
+                        <label for="star4-${request.id}" class="star">★</label>
+                        <input type="radio" id="star3-${request.id}" name="rating-${request.id}" value="3" />
+                        <label for="star3-${request.id}" class="star">★</label>
+                        <input type="radio" id="star2-${request.id}" name="rating-${request.id}" value="2" />
+                        <label for="star2-${request.id}" class="star">★</label>
+                        <input type="radio" id="star1-${request.id}" name="rating-${request.id}" value="1" />
+                        <label for="star1-${request.id}" class="star">★</label>
+                    </div>
+                    <h4>Escreva sobre sua experiência:</h4>
+                    <div class="text-container">
+                        <textarea id="text-feedback-${request.id}" placeholder="Conte como foi sua experiência..."></textarea>
+                    </div>
+                    <button class="submit-feedback" data-request-id="${request.id}" data-manicure-id="${request.manicureId}">
+                        <i class="fas fa-paper-plane"></i> Enviar Avaliação
+                    </button>
                 </div>
-                <button class="submit-feedback" data-request-id="${request.id}" data-manicure-id="${request.manicureId}">
-                    <i class="fas fa-paper-plane"></i> Enviar Avaliação
-                </button>
-            </div>
-        `;
+            `;
+        }
     }
 
     return `
@@ -214,7 +240,9 @@ function setupStarRating() {
                     throw new Error('Erro ao enviar feedback');
                 }
 
-                // Atualiza a interface após envio bem-sucedido
+                const result = await response.json();
+
+                // Mostra mensagem de sucesso temporariamente
                 feedbackSection.innerHTML = `
                     <div class="feedback-success">
                         <i class="fas fa-check-circle"></i>
@@ -224,8 +252,10 @@ function setupStarRating() {
                     </div>
                 `;
 
-                // Opcional: recarregar os agendamentos para atualizar a lista
-                // loadAgendamentos();
+                // Recarregar os agendamentos após 1 segundo para mostrar o estado persistido
+                setTimeout(() => {
+                    loadAgendamentos();
+                }, 1000);
 
             } catch (error) {
                 console.error('Erro:', error);
