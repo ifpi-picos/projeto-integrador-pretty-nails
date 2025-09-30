@@ -30,10 +30,113 @@
 .theme-box.skeleton {
     background-image: none !important;
     background-color: #e0e0e0 !important;
+    width: 350px; /* Tamanho padrão */
+    height: 150px; /* Tamanho padrão */
+}
+
+.perfil.skeleton {
+    min-height: 180px; /* Garante altura mínima igual ao perfil real */
+    width: 150px; /* Garante largura igual */
 }
 
 .perfil.skeleton img {
     display: none;
+}
+
+.perfil.skeleton .perfil-nome {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    color: transparent !important;
+    border-radius: 4px;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.perfil.skeleton .estrelas {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+    height: 16px;
+    margin-top: 5px;
+}
+
+.perfil.skeleton .estrelas i {
+    visibility: hidden;
+}
+
+/* Responsividade para skeleton de theme-box e perfis */
+@media (max-width: 1024px) {
+    .theme-box.skeleton {
+        width: 100%;
+        height: 130px;
+    }
+    
+    .perfil.skeleton {
+        width: 150px; /* Mantém tamanho padrão em tablets */
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .theme-box.skeleton {
+        width: 100%;
+        height: 120px;
+    }
+    
+    .perfil.skeleton {
+        width: 150px; /* Mantém tamanho padrão em tablets menores */
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    .theme-box.skeleton {
+        height: 120px;
+        min-width: 180px;
+    }
+    
+    .perfil.skeleton {
+        width: 120px; /* Corresponde ao .perfil no breakpoint 600px */
+        min-height: 150px;
+        padding: 8px; /* Corresponde ao padding do .perfil */
+    }
+    
+    .perfil.skeleton .perfil-nome {
+        height: 18px;
+        font-size: 14px; /* Corresponde ao font-size do .perfil-nome */
+    }
+    
+    .perfil.skeleton .estrelas {
+        height: 14px;
+        margin-top: 4px;
+        font-size: 16px; /* Corresponde ao .estrelas font-size */
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-box.skeleton {
+        height: 110px;
+        min-width: 160px;
+    }
+    
+    .perfil.skeleton {
+        width: 110px; /* Tamanho ainda menor para celulares pequenos */
+        min-height: 140px;
+        padding: 6px;
+    }
+    
+    .perfil.skeleton .perfil-nome {
+        height: 16px;
+        font-size: 13px;
+    }
+    
+    .perfil.skeleton .estrelas {
+        height: 12px;
+        margin-top: 3px;
+        font-size: 14px;
+    }
 }
 
 @keyframes shimmer {

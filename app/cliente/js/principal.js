@@ -8,12 +8,12 @@ function renderStars(rating) {
     
     // Estrelas preenchidas
     for (let i = 0; i < fullStars; i++) {
-        starsHtml += '<i class="fas fa-star active"></i>';
+        starsHtml += '<i class="fas fa-star active" data-brilho="suave"></i>';
     }
     
     // Meia estrela se necessário
     if (hasHalfStar && fullStars < 5) {
-        starsHtml += '<i class="fas fa-star-half-alt active"></i>';
+        starsHtml += '<i class="fas fa-star-half-alt active" data-brilho="suave"></i>';
     }
     
     // Estrelas vazias
@@ -114,6 +114,7 @@ async function adicionarPerfis() {
             
             const estrelasDiv = document.createElement("div");
             estrelasDiv.className = "estrelas";
+            estrelasDiv.setAttribute("data-brilho", "");
             
             // Usar a média de estrelas do banco de dados
             const mediaEstrelas = parseFloat(manicure.estrelas) || 0;
@@ -133,6 +134,13 @@ async function adicionarPerfis() {
 
             window.skeletonLoader.remove(nomeDiv);
             window.skeletonLoader.remove(estrelasDiv);
+            
+            // Ativar brilho nas estrelas após adicioná-las ao DOM
+            setTimeout(() => {
+                if (window.brilhoManager) {
+                    window.brilhoManager.porAvaliacao(estrelasDiv, mediaEstrelas);
+                }
+            }, 100);
         });
 
     } catch (error) {

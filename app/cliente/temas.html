@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pretty Nails — Galeria de Temas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/temas.css">
+</head>
+
+<body>
+  <div class="header">
+    <button class="back-to-home" onclick="history.back()">
+      ← Voltar
+    </button>
+    <h1 class="title" id="themeTitle" data-skeleton>Carregando tema...</h1>
+  </div>
+
+  <!-- GALERIA -->
+  <div class="theme-gallery" id="gallery">
+    <!-- Cards serão gerados dinamicamente -->
+    <div class="theme-card" data-skeleton>
+      <div class="theme-image skeleton-img" data-skeleton></div>
+      <div class="theme-title" data-skeleton>Carregando...</div>
+    </div>
+    <div class="theme-card" data-skeleton>
+      <div class="theme-image skeleton-img" data-skeleton></div>
+      <div class="theme-title" data-skeleton>Carregando...</div>
+    </div>
+    <div class="theme-card" data-skeleton>
+      <div class="theme-image skeleton-img" data-skeleton></div>
+      <div class="theme-title" data-skeleton>Carregando...</div>
+    </div>
+  </div>
+
+  <!-- CARD DE DETALHE -->
+  <section class="detail" id="detail">
+    <div class="top">
+      <button class="back-btn" id="backBtn">← Voltar</button>
+      <button class="save-btn" id="saveBtn" aria-pressed="false">
+        <span class="icon" aria-hidden="true">♡</span>
+        <span class="label">Salvar</span>
+      </button>
+    </div>
+
+    <div class="preview">
+      <img id="previewImg" src="" alt="Preview do tema" />
+      <div class="overlay">
+        <div style="font-weight:700;font-size:18px" id="overlayTitle"></div>
+        <div style="font-size:13px;opacity:.95">Designer: Pretty Nails</div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <div class="info">
+        <div id="tema-title" class="name"></div>
+        <div class="tag">Estilo • 3 fotos • 20min</div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost">Experimentar</button>
+        <button class="btn primary">Agendar</button>
+      </div>
+    </div>
+
+    <div class="desc" id="desc">Descrição aqui...</div>
+  </section>
+
+  <script src="js/skeleton.js"></script>
+  <script src="js/temas.js"></script>
+</body>
+
+</html>

@@ -40,8 +40,8 @@ function renderSolicitacoes(agendamentos) {
                 <img src="${cliente.foto}" alt="${cliente.nome}" class="cliente-photo">
                 <div class="cliente-info">
                     <h3>${cliente.nome}</h3>
-                    <div class="cliente-rating">
-                        <i class="fas fa-star"></i>
+                    <div class="cliente-rating" data-brilho="suave">
+                        <i class="fas fa-star" data-brilho="suave"></i>
                         <span>4.8</span>
                     </div>
                 </div>

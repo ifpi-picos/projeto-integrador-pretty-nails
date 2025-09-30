@@ -1,0 +1,183 @@
+/* brilho.css - Sistema de animação de brilho para elementos dourados */
+
+/* Classe principal para elementos com brilho */
+[data-brilho] {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animação de brilho */
+[data-brilho].brilhante::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.4) 70%,
+        transparent 100%
+    );
+    animation: brilho-sweep 2.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Animação específica para estrelas */
+.estrelas[data-brilho].brilhante::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 25%,
+        rgba(255, 255, 255, 0.9) 45%,
+        rgba(255, 255, 255, 0.7) 55%,
+        rgba(255, 255, 255, 0.3) 75%,
+        transparent 100%
+    );
+    animation: brilho-estrelas 3s ease-in-out infinite;
+    border-radius: inherit;
+}
+
+/* Animação para ícones de estrelas individuais */
+.estrelas i[data-brilho].brilhante::before {
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 30%,
+        transparent 70%
+    );
+    animation: brilho-icone 2s ease-in-out infinite;
+    border-radius: 50%;
+}
+
+/* Keyframes para brilho geral */
+@keyframes brilho-sweep {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* Keyframes específico para estrelas */
+@keyframes brilho-estrelas {
+    0% {
+        left: -120%;
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    45% {
+        left: 120%;
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        left: 120%;
+        opacity: 0;
+    }
+}
+
+/* Keyframes para ícones individuais */
+@keyframes brilho-icone {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Variações de intensidade */
+[data-brilho="suave"].brilhante::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.2) 60%,
+        transparent 100%
+    );
+    animation-duration: 4s;
+}
+
+[data-brilho="intenso"].brilhante::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 20%,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0.8) 60%,
+        rgba(255, 255, 255, 0.4) 80%,
+        transparent 100%
+    );
+    animation-duration: 1.8s;
+}
+
+/* Estados condicionais */
+[data-brilho].pausado::before {
+    animation-play-state: paused;
+}
+
+[data-brilho].lento::before {
+    animation-duration: 5s;
+}
+
+[data-brilho].rapido::before {
+    animation-duration: 1.5s;
+}
+
+/* Compatibilidade com diferentes tipos de estrelas */
+.rating-container [data-brilho].brilhante::before,
+.feedback-display [data-brilho].brilhante::before,
+.stars-display [data-brilho].brilhante::before {
+    animation: brilho-estrelas 2.8s ease-in-out infinite;
+}
+
+/* Efeito para texto com estrelas */
+.estrelas .rating-number[data-brilho].brilhante::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 100%
+    );
+    animation: brilho-sweep 3.5s ease-in-out infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    [data-brilho].brilhante::before {
+        animation-duration: 2s;
+    }
+    
+    .estrelas[data-brilho].brilhante::before {
+        animation-duration: 2.5s;
+    }
+}
+
+/* Reduce motion para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    [data-brilho].brilhante::before {
+        animation: none;
+    }
+}

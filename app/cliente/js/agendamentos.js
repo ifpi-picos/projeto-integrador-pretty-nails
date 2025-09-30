@@ -107,7 +107,7 @@ function createRequestHtml(request) {
                 <div class="feedback-section feedback-enviado">
                     <h4>Sua avaliação:</h4>
                     <div class="feedback-display">
-                        <div class="stars-display">${starsHtml}</div>
+                        <div class="stars-display" data-brilho="suave">${starsHtml}</div>
                     </div>
                     ${feedback.comentario ? `
                         <div class="feedback-comment-display">

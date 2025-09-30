@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Skeleton Responsivo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="app/css/themes.css">
+    <link rel="stylesheet" href="app/cliente/css/principal.css">
+    <link rel="stylesheet" href="app/cliente/css/skeleton.css">
+    <style>
+        body { margin: 20px; }
+        .test-section { margin: 40px 0; }
+        .test-title { color: #333; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Teste de Skeleton Responsivo</h1>
+    
+    <div class="test-section">
+        <h2 class="test-title">Skeleton de Perfis</h2>
+        <div id="perfis-container">
+            <!-- Skeleton de perfis -->
+            <div class="perfil skeleton" data-skeleton>
+                <img src="" alt="" data-skeleton>
+                <div class="perfil-nome" data-skeleton></div>
+                <div class="estrelas" data-skeleton></div>
+            </div>
+            <div class="perfil skeleton" data-skeleton>
+                <img src="" alt="" data-skeleton>
+                <div class="perfil-nome" data-skeleton></div>
+                <div class="estrelas" data-skeleton></div>
+            </div>
+            <div class="perfil skeleton" data-skeleton>
+                <img src="" alt="" data-skeleton>
+                <div class="perfil-nome" data-skeleton></div>
+                <div class="estrelas" data-skeleton></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2 class="test-title">Skeleton de Theme-boxes</h2>
+        <div class="button-container">
+            <div class="theme-box skeleton" data-skeleton></div>
+            <div class="theme-box skeleton" data-skeleton></div>
+            <div class="theme-box skeleton" data-skeleton></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2 class="test-title">Perfis Reais (Para Comparação)</h2>
+        <div id="perfis-container">
+            <div class="perfil">
+                <img src="app/cliente/imagens/user.png" alt="Usuario">
+                <div class="perfil-nome">Maria Silva</div>
+                <div class="estrelas">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+            <div class="perfil">
+                <img src="app/cliente/imagens/user.png" alt="Usuario">
+                <div class="perfil-nome">Ana Costa</div>
+                <div class="estrelas">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('Teste carregado. Redimensione a janela para ver a responsividade.');
+    </script>
+</body>
+</html>
