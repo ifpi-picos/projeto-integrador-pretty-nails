@@ -1,3 +1,102 @@
+// Funções para API do IBGE
+async function carregarEstadosModal() {
+    try {
+        const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+        const estados = await response.json();
+        
+        const estadoSelect = document.getElementById("editState");
+        estadoSelect.innerHTML = '<option value="" disabled selected>Selecione o estado</option>';
+        
+        estados.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(estado => {
+            const option = document.createElement("option");
+            option.value = estado.sigla;
+            option.textContent = estado.nome;
+            estadoSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Erro ao carregar estados:", error);
+    }
+}
+
+async function carregarCidadesModal() {
+    const estadoSelecionado = document.getElementById("editState").value;
+    const cidadeSelect = document.getElementById("editCity");
+
+    cidadeSelect.innerHTML = "<option value='' disabled selected>Carregando cidades...</option>";
+    cidadeSelect.disabled = true;
+
+    if (!estadoSelecionado) return;
+
+    try {
+        const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoSelecionado}/municipios`);
+        const cidades = await response.json();
+        
+        cidadeSelect.innerHTML = '<option value="" disabled selected>Selecione a cidade</option>';
+        
+        cidades.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(cidade => {
+            const option = document.createElement("option");
+            option.value = cidade.nome;
+            option.textContent = cidade.nome;
+            cidadeSelect.appendChild(option);
+        });
+        
+        cidadeSelect.disabled = false;
+    } catch (error) {
+        console.error("Erro ao carregar cidades:", error);
+        cidadeSelect.innerHTML = '<option value="" disabled selected>Erro ao carregar cidades</option>';
+    }
+}
+
+// Função para configurar a formatação do telefone
+function configurarTelefoneModal() {
+    const telefoneInput = document.getElementById('editPhone');
+    
+    if (!telefoneInput) return;
+
+    // Formatação em tempo real
+    telefoneInput.addEventListener('input', function(e) {
+        let valor = e.target.value;
+        
+        // Remove tudo que não é número
+        valor = valor.replace(/\D/g, '');
+        
+        // Aplica a formatação (xx)xxxxx-xxxx
+        if (valor.length > 0) {
+            if (valor.length <= 2) {
+                valor = valor.replace(/(\d{1,2})/, '($1');
+            } else if (valor.length <= 7) {
+                valor = valor.replace(/(\d{2})(\d{1,5})/, '($1)$2');
+            } else {
+                valor = valor.replace(/(\d{2})(\d{5})(\d{1,4})/, '($1)$2-$3');
+            }
+        }
+        
+        // Limita a 14 caracteres (formato completo)
+        if (valor.length > 14) {
+            valor = valor.substring(0, 14);
+        }
+        
+        e.target.value = valor;
+    });
+
+    // Validação ao sair do campo
+    telefoneInput.addEventListener('blur', function(e) {
+        const valor = e.target.value;
+        const telefoneFormatado = /^\(\d{2}\)\d{5}-\d{4}$/;
+        
+        if (valor && !telefoneFormatado.test(valor)) {
+            e.target.style.borderColor = '#dc3545';
+        } else {
+            e.target.style.borderColor = '';
+        }
+    });
+
+    // Remove erro quando o usuário começar a digitar novamente
+    telefoneInput.addEventListener('focus', function(e) {
+        e.target.style.borderColor = '';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Elementos do DOM
     const foto = document.getElementById('foto');
@@ -49,9 +148,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Gerar link de compartilhamento
     function generateShareLink() {
-        // Em produção, isso viria da API ou seria um link fixo com o ID do usuário
-        const baseUrl = window.location.origin;
-        return `${baseUrl}/perfil-publico.html?id=${userId}`;
+        // Usa o domínio configurado no config.js
+        const baseUrl = window.FRONTEND_URL || 'https://fib-pretty-nails.vercel.app';
+        return `${baseUrl}/app/cliente/perfil-manicure.html?id=${userId}`;
     }
 
     // Função para adicionar novo time-slot
@@ -132,8 +231,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             editPhotoPreview.src = data.foto ? `${data.foto}?${Date.now()}` : 'imagens/user.png';
             editName.value = data.nome || '';
             editPhone.value = data.telefone || '';
-            editCity.value = data.cidade || '';
-            editState.value = data.estado || '';
+            
+            // Configurar selects de estado/cidade
+            await carregarEstadosModal();
+            
+            // Se há estado salvo, selecionar e carregar cidades
+            if (data.estado) {
+                editState.value = data.estado;
+                await carregarCidadesModal();
+                
+                // Se há cidade salva, selecionar
+                if (data.cidade) {
+                    editCity.value = data.cidade;
+                }
+            }
 
             // Dias de trabalho - mostrar todos os dias com os selecionados destacados
             const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -214,7 +325,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Event listeners
-    editProfileBtn.addEventListener('click', () => toggleModal(editModal, true));
+    editProfileBtn.addEventListener('click', () => {
+        toggleModal(editModal, true);
+        // Configurar formatação do telefone quando modal abre
+        configurarTelefoneModal();
+    });
     closeModalBtn.addEventListener('click', () => toggleModal(editModal, false));
     cancelEditBtn.addEventListener('click', () => toggleModal(editModal, false));
 
@@ -232,10 +347,64 @@ document.addEventListener('DOMContentLoaded', async () => {
     closeShareBtn.addEventListener('click', () => toggleModal(shareModal, false));
     
     // Copiar link para a área de transferência
-    copyLinkBtn.addEventListener('click', () => {
-        shareLink.select();
-        document.execCommand('copy');
-        showNotification('Link copiado para a área de transferência!', 'success');
+    copyLinkBtn.addEventListener('click', async () => {
+        try {
+            // Tenta usar a API moderna do clipboard
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(shareLink.value);
+                showNotification('Link copiado para a área de transferência! 🔗', 'success');
+            } else {
+                // Fallback para navegadores mais antigos
+                shareLink.select();
+                shareLink.setSelectionRange(0, 99999); // Para dispositivos móveis
+                document.execCommand('copy');
+                showNotification('Link copiado para a área de transferência! 📋', 'success');
+            }
+            
+            // Adiciona feedback visual
+            copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+            copyLinkBtn.style.backgroundColor = '#28a745';
+            
+            // Restaura o botão após 2 segundos
+            setTimeout(() => {
+                copyLinkBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Link';
+                copyLinkBtn.style.backgroundColor = '';
+            }, 2000);
+            
+        } catch (err) {
+            console.error('Erro ao copiar link:', err);
+            showNotification('Erro ao copiar link. Tente selecionar e copiar manualmente.', 'error');
+        }
+    });
+
+    // Botões de compartilhamento em redes sociais
+    document.getElementById('shareWhatsApp').addEventListener('click', () => {
+        const texto = `Confira o perfil da manicure ${shareName.textContent}!`;
+        const url = shareLink.value;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(texto + ' ' + url)}`;
+        window.open(whatsappUrl, '_blank');
+    });
+
+    document.getElementById('shareFacebook').addEventListener('click', () => {
+        const url = shareLink.value;
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        window.open(facebookUrl, '_blank');
+    });
+
+    document.getElementById('shareTwitter').addEventListener('click', () => {
+        const texto = `Confira o perfil da manicure ${shareName.textContent}!`;
+        const url = shareLink.value;
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(texto)}&url=${encodeURIComponent(url)}`;
+        window.open(twitterUrl, '_blank');
+    });
+
+    document.getElementById('shareInstagram').addEventListener('click', () => {
+        // Instagram não permite compartilhamento direto via URL, então copiamos o link
+        navigator.clipboard.writeText(shareLink.value).then(() => {
+            showNotification('Link copiado! Cole no Instagram Stories ou Bio. 📸', 'info');
+        }).catch(() => {
+            showNotification('Copie o link manualmente para compartilhar no Instagram.', 'info');
+        });
     });
 
     // Preview da foto ao selecionar

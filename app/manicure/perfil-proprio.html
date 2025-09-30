@@ -153,17 +153,21 @@
 
         <div class="form-group">
           <label for="editPhone"><i class="fas fa-phone"></i> Telefone</label>
-          <input type="tel" id="editPhone" placeholder="(00) 00000-0000">
-        </div>
-
-        <div class="form-group">
-          <label for="editCity"><i class="fas fa-city"></i> Cidade</label>
-          <input type="text" id="editCity" placeholder="Sua cidade">
+          <input type="tel" id="editPhone" placeholder="(00)00000-0000" maxlength="14">
         </div>
 
         <div class="form-group">
           <label for="editState"><i class="fas fa-map-marked-alt"></i> Estado</label>
-          <input type="text" id="editState" placeholder="Seu estado">
+          <select id="editState" onchange="carregarCidadesModal()">
+            <option value="" disabled selected>Selecione o estado</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="editCity"><i class="fas fa-city"></i> Cidade</label>
+          <select id="editCity">
+            <option value="" disabled selected>Selecione primeiro o estado</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -220,10 +224,26 @@
           <div class="share-link-container">
             <input type="text" id="shareLink" readonly>
             <button id="copyLinkBtn">
-              <i class="fas fa-copy"></i>
+              <i class="fas fa-copy"></i> Copiar Link
             </button>
           </div>
           <p class="share-instruction">Compartilhe este link com seus clientes</p>
+          
+          <!-- Botões de Redes Sociais -->
+          <div class="social-share-buttons">
+            <button id="shareWhatsApp" class="social-btn whatsapp-btn">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button id="shareFacebook" class="social-btn facebook-btn">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </button>
+            <button id="shareTwitter" class="social-btn twitter-btn">
+              <i class="fab fa-twitter"></i> Twitter
+            </button>
+            <button id="shareInstagram" class="social-btn instagram-btn">
+              <i class="fab fa-instagram"></i> Instagram
+            </button>
+          </div>
         </div>
       </div>
 
