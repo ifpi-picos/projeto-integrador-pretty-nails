@@ -1,5 +1,3 @@
-console.log('Script perfil-manicure.js carregado!');
-
 document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
@@ -107,9 +105,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             Swal.fire("Erro", "Não foi possível carregar os feedbacks.", "error");
         }
     });
-
-    // Inicializar modal de referências
-    initReferenciaModal();
 });
 
 
@@ -309,6 +304,9 @@ document.getElementById('agendamento-form').addEventListener('submit', function 
 
     // Agora você pode enviar 'data' para o servidor
     console.log('Data e horário selecionados:', data);
+
+    // Inicializar modal de referências
+    initReferenciaModal();
 });
 
 // Função para exibir as estrelas
@@ -362,8 +360,6 @@ function initReferenciaModal() {
     // Abrir modal
     if (referenciaBtn) {
         referenciaBtn.addEventListener('click', abrirModalReferencia);
-    } else {
-        console.error('Botão de referência não encontrado!');
     }
 
     // Fechar modal
@@ -388,10 +384,7 @@ function initReferenciaModal() {
 
 async function abrirModalReferencia() {
     const modal = referenciaModalData.modal;
-    if (!modal) {
-        console.error('Modal não encontrado!');
-        return;
-    }
+    if (!modal) return;
 
     // Carregar temas salvos
     await carregarTemasSalvos();
@@ -412,34 +405,20 @@ async function carregarTemasSalvos() {
         // Carregar dados dos temas se ainda não foi carregado
         if (!referenciaModalData.temasData) {
             const response = await fetch('../../data/temas.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
             referenciaModalData.temasData = await response.json();
         }
 
         // Buscar temas salvos no localStorage
         const temasSalvos = [];
         
-        console.log('Verificando localStorage para temas salvos...');
-        
-        // Primeiro, vamos ver o que tem no localStorage
-        const allLocalStorageKeys = Object.keys(localStorage).filter(key => key.startsWith('pretty_saved_'));
-        console.log('Chaves no localStorage:', allLocalStorageKeys);
-        
         // Percorrer todos os temas e variações para encontrar os salvos
         Object.keys(referenciaModalData.temasData).forEach(categoria => {
             const tema = referenciaModalData.temasData[categoria];
             tema.variacoes.forEach((variacao, index) => {
-                // A chave no localStorage é a URL da imagem codificada
-                const imagemKey = encodeURIComponent(variacao.imagem);
-                const localStorageKey = 'pretty_saved_' + imagemKey;
-                const saved = localStorage.getItem(localStorageKey);
-                
-                if (saved === '1') {
-                    console.log(`Tema salvo encontrado: ${imagemKey}`, variacao.titulo);
+                const key = `${categoria}_${index}`;
+                if (localStorage.getItem('pretty_saved_' + key) === '1') {
                     temasSalvos.push({
-                        key: imagemKey, // Usar a chave correta da imagem
+                        key: key,
                         categoria: categoria,
                         variacao: variacao,
                         temaData: tema
@@ -447,8 +426,6 @@ async function carregarTemasSalvos() {
                 }
             });
         });
-
-        console.log(`Total de temas salvos encontrados: ${temasSalvos.length}`, temasSalvos);
 
         // Renderizar temas salvos
         renderizarTemasSalvos(temasSalvos);
@@ -460,22 +437,15 @@ async function carregarTemasSalvos() {
 }
 
 function renderizarTemasSalvos(temasSalvos) {
-    console.log('Renderizando temas salvos:', temasSalvos.length);
     const container = document.getElementById('temas-salvos');
     const noThemes = document.getElementById('no-saved-themes');
 
-    console.log('Elementos do modal:', {container: !!container, noThemes: !!noThemes});
-
-    if (!container) {
-        console.error('Container temas-salvos não encontrado!');
-        return;
-    }
+    if (!container) return;
 
     // Limpar container
     container.innerHTML = '';
 
     if (temasSalvos.length === 0) {
-        console.log('Nenhum tema salvo encontrado, mostrando mensagem');
         // Mostrar mensagem de nenhum tema salvo
         container.style.display = 'none';
         if (noThemes) {
@@ -484,7 +454,6 @@ function renderizarTemasSalvos(temasSalvos) {
         return;
     }
 
-    console.log('Renderizando', temasSalvos.length, 'temas salvos');
     // Esconder mensagem de nenhum tema
     container.style.display = 'grid';
     if (noThemes) {

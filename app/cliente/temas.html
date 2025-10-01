@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pretty Nails — Galeria de Temas</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/themes.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/temas.css">
 </head>
 
 <body>
   <div class="header">
-    <button class="back-to-home" onclick="history.back()">
-      ← Voltar
-    </button>
+    <a href="javascript:history.back()" class="back-button">
+      <i class="fas fa-arrow-left"></i>
+    </a>
     <h1 class="title" id="themeTitle" data-skeleton>Carregando tema...</h1>
   </div>
 
@@ -38,7 +40,9 @@
   <!-- CARD DE DETALHE -->
   <section class="detail" id="detail">
     <div class="top">
-      <button class="back-btn" id="backBtn">← Voltar</button>
+      <button class="back-button" id="backToGallery">
+        <i class="fas fa-arrow-left"></i>
+      </button>
       <button class="save-btn" id="saveBtn" aria-pressed="false">
         <span class="icon" aria-hidden="true">♡</span>
         <span class="label">Salvar</span>
@@ -58,10 +62,7 @@
         <div id="tema-title" class="name"></div>
         <div class="tag">Estilo • 3 fotos • 20min</div>
       </div>
-      <div class="actions">
-        <button class="btn ghost">Experimentar</button>
-        <button class="btn primary">Agendar</button>
-      </div>
+    
     </div>
 
     <div class="desc" id="desc">Descrição aqui...</div>

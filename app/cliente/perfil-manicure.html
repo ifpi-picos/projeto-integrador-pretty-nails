@@ -69,6 +69,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label><i class="fas fa-images"></i> Referência (Opcional)</label>
+                        <button type="button" id="referencia-btn" class="referencia-btn">
+                            <i class="fas fa-photo-video"></i>
+                            <span>Escolher dos Salvos</span>
+                        </button>
+                        <div id="referencia-selecionada" class="referencia-preview" style="display: none;">
+                            <img id="referencia-img" src="" alt="Referência selecionada">
+                            <button type="button" id="remover-referencia" class="remove-ref-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label><i class="far fa-comment-dots"></i> Observações</label>
                         <textarea id="observacoes" placeholder="Alguma observação importante?"></textarea>
                     </div>
@@ -102,19 +116,36 @@
                 </div>
             </section>
         </div>
+
+        <button id="ver-feedbacks-btn" class="feedback-btn" title="Ver avaliações">
+            <i class="fas fa-comments"></i>
+        </button>
+
+        <!-- Modal de Referências -->
+        <div id="referencia-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-images"></i> Escolher Referência</h3>
+                    <button class="modal-close" id="fechar-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="temas-salvos" class="temas-grid">
+                        <!-- Temas salvos serão carregados aqui -->
+                    </div>
+                    <div id="no-saved-themes" class="no-themes" style="display: none;">
+                        <i class="fas fa-heart"></i>
+                        <p>Você ainda não tem temas salvos.</p>
+                        <p>Visite a galeria de temas e salve seus favoritos!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="../../config.js"></script>
     <script src="js/perfil-manicure.js"></script>
     <script src="js/agendar.js"></script>
-
-    <button id="ver-feedbacks-btn" class="feedback-btn" title="Ver avaliações">
-        <i class="fas fa-comments"></i>
-    </button>
-
-    <script src="../../config.js"></script>
     <script src="../js/brilho.js"></script>
-    <script src="js/perfil-manicure.js"></script>
 
 </body>
 

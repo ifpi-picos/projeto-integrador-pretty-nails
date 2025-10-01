@@ -36,21 +36,29 @@
         position: relative;
     }
 
-    .back-to-home {
-        position: absolute;
-        left: 0;
-        background: transparent;
-        border: none;
-        color: var(--muted);
-        font-weight: 600;
-        cursor: pointer;
-        padding: 8px 12px;
-        border-radius: 8px;
+    .back-button {
+        position: fixed;
+        top: 50px;
+        left: 50px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: var(--shadow-md);
+        z-index: 1000;
         transition: var(--transition);
+        text-decoration: none;
     }
 
-    .back-to-home:hover {
-        background: rgba(0, 0, 0, 0.05);
+    .back-button:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
     }
 
     .title {
@@ -106,6 +114,60 @@
         font-weight: 500;
     }
 
+    /* Informações do card (preço e tempo) */
+    .card-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        background: rgba(255, 192, 203, 0.08);
+        border-top: 1px solid rgba(255, 192, 203, 0.1);
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+
+    .card-info .price {
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    .card-info .time {
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .card-info .time i {
+        font-size: 0.7rem;
+    }
+
+    /* Subtítulo do tema */
+    .theme-subtitle {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 5px;
+        font-weight: normal;
+        text-align: center;
+    }
+
+    /* Informações extras na página de detalhes */
+    .detail-extra-info {
+        display: flex;
+        gap: 15px;
+        margin: 15px 0;
+        padding: 12px;
+        background: rgba(255, 192, 203, 0.1);
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+
+    .detail-extra-info span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
     /* Skeleton animations */
     @keyframes shimmer {
         0% { background-position: 200% 0; }
@@ -136,18 +198,20 @@
         gap: 12px
     }
 
-    .back-btn {
-        background: transparent;
-        border: 0;
-        color: var(--muted);
-        font-weight: 600;
+    .detail .top .back-button {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin: 0;
+        border: none;
         cursor: pointer;
-        padding: 8px;
-        border-radius: 10px
     }
 
-    .back-btn:hover {
-        background: #f3f4f6
+    .detail .top .back-button:hover {
+        transform: translateY(-2px);
     }
 
     .preview {
@@ -237,11 +301,6 @@
         line-height: 1.45
     }
 
-    .actions {
-        display: flex;
-        gap: 10px
-    }
-
     .btn {
         padding: 10px 14px;
         border-radius: 10px;
@@ -262,14 +321,17 @@
 
     /* Responsividade */
     @media (max-width: 768px) {
+        .back-button {
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+        }
+
         .header {
             flex-direction: column;
             gap: 0.8rem;
-        }
-
-        .back-to-home {
-            position: static;
-            align-self: flex-start;
         }
 
         .title {

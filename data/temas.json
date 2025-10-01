@@ -1,0 +1,1064 @@
+{
+  "francesinha": {
+    "id": "francesinha",
+    "nome": "Unhas Francesinha",
+    "icone": "💅",
+    "categoria": "Clássico",
+    "popularidade": 95,
+    "duracao": "45-60 min",
+    "descricao": "O clássico atemporal da manicure francesa com elegância refinada e sofisticação natural.",
+    "tags": ["elegante", "clássico", "profissional", "casamento"],
+    "preco_base": 35.00,
+    "dificuldade": "intermediario",
+    "variacoes": [
+      {
+        "id": "francesinha-classica",
+        "titulo": "Francesinha Clássica",
+        "imagem": "imagens/francesinha.jpg",
+        "descricao": "A tradicional francesa com ponta branca impecável e base nude natural.",
+        "preco": 35.00,
+        "tempo": "45 min"
+      },
+      {
+        "id": "francesinha-colorida",
+        "titulo": "Francesinha Colorida",
+        "imagem": "https://i.pinimg.com/564x/89/45/2c/89452c8d5f4a7e6d3c2b1a9f8e7d6c5b.jpg",
+        "descricao": "Versão moderna com pontas em cores vibrantes para personalizar seu estilo.",
+        "preco": 40.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "francesinha-invertida",
+        "titulo": "Francesinha Invertida",
+        "imagem": "https://i.pinimg.com/564x/12/34/56/123456789abcdef0123456789abcdef0.jpg",
+        "descricao": "Design inovador com destaque na base da unha para um visual único.",
+        "preco": 45.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "francesinha-vintage",
+        "titulo": "Francesinha Vintage",
+        "imagem": "https://i.pinimg.com/564x/c4/d5/e6/c4d5e67890123456789012345678901234.jpg",
+        "descricao": "Estilo retrô com ponta branca levemente arredondada e base rosada suave.",
+        "preco": 38.00,
+        "tempo": "48 min"
+      },
+      {
+        "id": "francesinha-moderna",
+        "titulo": "Francesinha Moderna",
+        "imagem": "https://i.pinimg.com/564x/e5/f6/g7/e5f6g78901234567890123456789012345.jpg",
+        "descricao": "Linhas retas e precisas com branco puro para um visual contemporâneo.",
+        "preco": 42.00,
+        "tempo": "52 min"
+      },
+      {
+        "id": "francesinha-baby-boomer",
+        "titulo": "Francesinha Baby Boomer",
+        "imagem": "https://i.pinimg.com/564x/f7/g8/h9/f7g8h90123456789012345678901234567.jpg",
+        "descricao": "Degradê suave entre a base e a ponta para efeito natural e aveludado.",
+        "preco": 50.00,
+        "tempo": "60 min"
+      },
+      {
+        "id": "francesinha-oval",
+        "titulo": "Francesinha Oval",
+        "imagem": "https://i.pinimg.com/564x/g8/h9/i0/g8h9i01234567890123456789012345678.jpg",
+        "descricao": "Formato oval alongado com ponta branca fina e elegante.",
+        "preco": 40.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "francesinha-almond",
+        "titulo": "Francesinha Amêndoa",
+        "imagem": "https://i.pinimg.com/564x/h9/i0/j1/h9i0j12345678901234567890123456789.jpg",
+        "descricao": "Formato amêndoa com ponta branca em V para sofisticação máxima.",
+        "preco": 45.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "francesinha-stiletto",
+        "titulo": "Francesinha Stiletto",
+        "imagem": "https://i.pinimg.com/564x/i0/j1/k2/i0j1k23456789012345678901234567890.jpg",
+        "descricao": "Formato stiletto ousado com ponta branca alongada e dramática.",
+        "preco": 55.00,
+        "tempo": "65 min"
+      },
+      {
+        "id": "francesinha-coffin",
+        "titulo": "Francesinha Coffin",
+        "imagem": "https://i.pinimg.com/564x/j1/k2/l3/j1k2l34567890123456789012345678901.jpg",
+        "descricao": "Formato coffin quadrado com ponta branca larga e moderna.",
+        "preco": 48.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "francesinha-matte",
+        "titulo": "Francesinha Matte",
+        "imagem": "https://i.pinimg.com/564x/k2/l3/m4/k2l3m45678901234567890123456789012.jpg",
+        "descricao": "Acabamento fosco elegante que realça a sofisticação do design francês.",
+        "preco": 44.00,
+        "tempo": "53 min"
+      },
+      {
+        "id": "francesinha-perolada",
+        "titulo": "Francesinha Perolada",
+        "imagem": "https://i.pinimg.com/564x/l3/m4/n5/l3m4n56789012345678901234567890123.jpg",
+        "descricao": "Ponta branca com efeito pérola iridescente para brilho sutil.",
+        "preco": 52.00,
+        "tempo": "62 min"
+      },
+      {
+        "id": "francesinha-ombre",
+        "titulo": "Francesinha Ombré",
+        "imagem": "https://i.pinimg.com/564x/m4/n5/o6/m4n5o67890123456789012345678901234.jpg",
+        "descricao": "Transição suave do nude para o branco criando efeito degradê sofisticado.",
+        "preco": 58.00,
+        "tempo": "70 min"
+      }
+    ]
+  },
+  "nude": {
+    "id": "nude",
+    "nome": "Unhas Nude",
+    "icone": "🤎",
+    "categoria": "Natural",
+    "popularidade": 90,
+    "duracao": "30-45 min",
+    "descricao": "Tons naturais e versáteis que complementam qualquer look com elegância discreta.",
+    "tags": ["natural", "versátil", "minimalista", "dia-a-dia"],
+    "preco_base": 25.00,
+    "dificuldade": "facil",
+    "variacoes": [
+      {
+        "id": "nude-classico",
+        "titulo": "Nude Clássico",
+        "imagem": "imagens/nude.jpg",
+        "descricao": "Tom neutro perfeito que se adapta a qualquer ocasião e estilo.",
+        "preco": 25.00,
+        "tempo": "30 min"
+      },
+      {
+        "id": "nude-rose",
+        "titulo": "Nude Rosé",
+        "imagem": "https://i.pinimg.com/564x/a1/b2/c3/a1b2c3d4e5f6789012345678901234567.jpg",
+        "descricao": "Delicado tom rosado que adiciona feminilidade ao visual natural.",
+        "preco": 30.00,
+        "tempo": "35 min"
+      },
+      {
+        "id": "nude-bege",
+        "titulo": "Nude Bege",
+        "imagem": "https://i.pinimg.com/564x/d4/e5/f6/d4e5f67890123456789012345678901234.jpg",
+        "descricao": "Tom bege sofisticado para um acabamento elegante e atemporal.",
+        "preco": 28.00,
+        "tempo": "32 min"
+      },
+      {
+        "id": "nude-caramelo",
+        "titulo": "Nude Caramelo",
+        "imagem": "https://i.pinimg.com/564x/n5/o6/p7/n5o6p78901234567890123456789012345.jpg",
+        "descricao": "Tom quente e aconchegante que complementa peles morenas e negras.",
+        "preco": 32.00,
+        "tempo": "35 min"
+      },
+      {
+        "id": "nude-po",
+        "titulo": "Nude Pó",
+        "imagem": "https://i.pinimg.com/564x/o6/p7/q8/o6p7q89012345678901234567890123456.jpg",
+        "descricao": "Tom suave e aveludado com acabamento matte sofisticado.",
+        "preco": 34.00,
+        "tempo": "38 min"
+      },
+      {
+        "id": "nude-cinza",
+        "titulo": "Nude Cinza",
+        "imagem": "https://i.pinimg.com/564x/p7/q8/r9/p7q8r90123456789012345678901234567.jpg",
+        "descricao": "Tom neutro moderno com undertones cinza para visual contemporâneo.",
+        "preco": 33.00,
+        "tempo": "36 min"
+      },
+      {
+        "id": "nude-lilás",
+        "titulo": "Nude Lilás",
+        "imagem": "https://i.pinimg.com/564x/q8/r9/s0/q8r9s01234567890123456789012345678.jpg",
+        "descricao": "Sutil tom lavanda que adiciona delicadeza ao visual nude.",
+        "preco": 36.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "nude-coco",
+        "titulo": "Nude Coco",
+        "imagem": "https://i.pinimg.com/564x/r9/s0/t1/r9s0t12345678901234567890123456789.jpg",
+        "descricao": "Tom marrom claro reminiscente de coco para visual tropical.",
+        "preco": 31.00,
+        "tempo": "34 min"
+      },
+      {
+        "id": "nude-glitter",
+        "titulo": "Nude com Glitter",
+        "imagem": "https://i.pinimg.com/564x/s0/t1/u2/s0t1u23456789012345678901234567890.jpg",
+        "descricao": "Base nude com partículas de glitter sutil para brilho discreto.",
+        "preco": 42.00,
+        "tempo": "45 min"
+      },
+      {
+        "id": "nude-jelly",
+        "titulo": "Nude Jelly",
+        "imagem": "https://i.pinimg.com/564x/t1/u2/v3/t1u2v34567890123456789012345678901.jpg",
+        "descricao": "Efeito gelatinoso transparente que cria profundidade no tom nude.",
+        "preco": 38.00,
+        "tempo": "42 min"
+      },
+      {
+        "id": "nude-satinado",
+        "titulo": "Nude Satinado",
+        "imagem": "https://i.pinimg.com/564x/u2/v3/w4/u2v3w45678901234567890123456789012.jpg",
+        "descricao": "Acabamento sedoso que reflete luz suavemente para elegância máxima.",
+        "preco": 35.00,
+        "tempo": "37 min"
+      },
+      {
+        "id": "nude-escuro",
+        "titulo": "Nude Escuro",
+        "imagem": "https://i.pinimg.com/564x/v3/w4/x5/v3w4x56789012345678901234567890123.jpg",
+        "descricao": "Tom terracota profundo para peles morenas e visual ousado.",
+        "preco": 37.00,
+        "tempo": "39 min"
+      },
+      {
+        "id": "nude-marmorizado",
+        "titulo": "Nude Marmorizado",
+        "imagem": "https://i.pinimg.com/564x/w4/x5/y6/w4x5y67890123456789012345678901234.jpg",
+        "descricao": "Efeito mármore sutil em tons nude para textura sofisticada.",
+        "preco": 48.00,
+        "tempo": "52 min"
+      }
+    ]
+  },
+  "florais": {
+    "id": "florais",
+    "nome": "Unhas Florais",
+    "icone": "🌸",
+    "categoria": "Artístico",
+    "popularidade": 85,
+    "duracao": "60-90 min",
+    "descricao": "Arte floral delicada que traz a beleza da natureza para suas unhas com cores vibrantes.",
+    "tags": ["artístico", "romântico", "primavera", "feminino"],
+    "preco_base": 50.00,
+    "dificuldade": "avancado",
+    "variacoes": [
+      {
+        "id": "flores-delicadas",
+        "titulo": "Flores Delicadas",
+        "imagem": "imagens/florais.jpg",
+        "descricao": "Pequenas flores pintadas à mão para um visual romântico e delicado.",
+        "preco": 50.00,
+        "tempo": "60 min"
+      },
+      {
+        "id": "flores-tropicais",
+        "titulo": "Flores Tropicais",
+        "imagem": "https://i.pinimg.com/564x/f7/g8/h9/f7g8h90123456789012345678901234567.jpg",
+        "descricao": "Cores vibrantes inspiradas na flora tropical para um visual exuberante.",
+        "preco": 65.00,
+        "tempo": "75 min"
+      },
+      {
+        "id": "aquarela-floral",
+        "titulo": "Aquarela Floral",
+        "imagem": "https://i.pinimg.com/564x/i0/j1/k2/i0j1k23456789012345678901234567890.jpg",
+        "descricao": "Técnica de aquarela criando flores suaves com efeito artístico único.",
+        "preco": 70.00,
+        "tempo": "90 min"
+      },
+      {
+        "id": "flores-campestres",
+        "titulo": "Flores Campestres",
+        "imagem": "https://i.pinimg.com/564x/x5/y6/z7/x5y6z78901234567890123456789012345.jpg",
+        "descricao": "Margaridas e flores do campo em composição rústica e encantadora.",
+        "preco": 55.00,
+        "tempo": "65 min"
+      },
+      {
+        "id": "flores-japonesas",
+        "titulo": "Flores Japonesas",
+        "imagem": "https://i.pinimg.com/564x/y6/z7/a8/y6z7a89012345678901234567890123456.jpg",
+        "descricao": "Cerejeiras e lírios orientais com estética minimalista asiática.",
+        "preco": 68.00,
+        "tempo": "80 min"
+      },
+      {
+        "id": "flores-3d",
+        "titulo": "Flores em 3D",
+        "imagem": "https://i.pinimg.com/564x/z7/a8/b9/z7a8b90123456789012345678901234567.jpg",
+        "descricao": "Flores tridimensionais criadas com gel para efeito realista impressionante.",
+        "preco": 85.00,
+        "tempo": "95 min"
+      },
+      {
+        "id": "flores-negras",
+        "titulo": "Flores Negras",
+        "imagem": "https://i.pinimg.com/564x/a8/b9/c0/a8b9c01234567890123456789012345678.jpg",
+        "descricao": "Desenho floral gótico em preto sobre base vermelha ou nude escuro.",
+        "preco": 62.00,
+        "tempo": "72 min"
+      },
+      {
+        "id": "flores-brilhantes",
+        "titulo": "Flores Brilhantes",
+        "imagem": "https://i.pinimg.com/564x/b9/c0/d1/b9c0d12345678901234567890123456789.jpg",
+        "descricao": "Flores com detalhes em glitter e foil para máximo brilho.",
+        "preco": 75.00,
+        "tempo": "85 min"
+      },
+      {
+        "id": "flores-minimalistas",
+        "titulo": "Flores Minimalistas",
+        "imagem": "https://i.pinimg.com/564x/c0/d1/e2/c0d1e23456789012345678901234567890.jpg",
+        "descricao": "Pequenas flores simples em uma ou duas unhas para toque sutil.",
+        "preco": 48.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "flores-vitorianas",
+        "titulo": "Flores Vitorianas",
+        "imagem": "https://i.pinimg.com/564x/d1/e2/f3/d1e2f34567890123456789012345678901.jpg",
+        "descricao": "Rosas e hera em estilo vintage com detalhes dourados.",
+        "preco": 72.00,
+        "tempo": "88 min"
+      },
+      {
+        "id": "flores-desbotadas",
+        "titulo": "Flores Desbotadas",
+        "imagem": "https://i.pinimg.com/564x/e2/f3/g4/e2f3g45678901234567890123456789012.jpg",
+        "descricao": "Efeito aquarela com flores que parecem pintadas à mão livre.",
+        "preco": 65.00,
+        "tempo": "78 min"
+      },
+      {
+        "id": "flores-geometricas",
+        "titulo": "Flores Geométricas",
+        "imagem": "https://i.pinimg.com/564x/f3/g4/h5/f3g4h56789012345678901234567890123.jpg",
+        "descricao": "Flores estilizadas com formas geométricas para fusão moderna.",
+        "preco": 58.00,
+        "tempo": "68 min"
+      },
+      {
+        "id": "flores-noturnas",
+        "titulo": "Flores Noturnas",
+        "imagem": "https://i.pinimg.com/564x/g4/h5/i6/g4h5i67890123456789012345678901234.jpg",
+        "descricao": "Jasmim e flores da noite em cores escuras com detalhes brilhantes.",
+        "preco": 70.00,
+        "tempo": "82 min"
+      }
+    ]
+  },
+  "metalica": {
+    "id": "metalica",
+    "nome": "Unhas Metálicas",
+    "icone": "✨",
+    "categoria": "Glamour",
+    "popularidade": 80,
+    "duracao": "40-55 min",
+    "descricao": "Brilho metálico sofisticado que adiciona luxo e glamour ao seu visual.",
+    "tags": ["luxo", "festa", "brilhante", "moderno"],
+    "preco_base": 40.00,
+    "dificuldade": "intermediario",
+    "variacoes": [
+      {
+        "id": "dourado-luxo",
+        "titulo": "Dourado Luxo",
+        "imagem": "imagens/metalica.jpg",
+        "descricao": "Acabamento dourado premium para ocasiões especiais e eventos elegantes.",
+        "preco": 45.00,
+        "tempo": "45 min"
+      },
+      {
+        "id": "prata-moderna",
+        "titulo": "Prata Moderna",
+        "imagem": "https://i.pinimg.com/564x/l3/m4/n5/l3m4n56789012345678901234567890123.jpg",
+        "descricao": "Visual futurista com acabamento prateado para um look contemporâneo.",
+        "preco": 42.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "rose-gold",
+        "titulo": "Rose Gold",
+        "imagem": "https://i.pinimg.com/564x/o6/p7/q8/o6p7q89012345678901234567890123456.jpg",
+        "descricao": "Tendência rose gold que combina elegância e modernidade.",
+        "preco": 48.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "cobre-envelhecido",
+        "titulo": "Cobre Envelhecido",
+        "imagem": "https://i.pinimg.com/564x/h5/i6/j7/h5i6j78901234567890123456789012345.jpg",
+        "descricao": "Efeito vintage com pátina verde sobre base cobre para visual steampunk.",
+        "preco": 55.00,
+        "tempo": "60 min"
+      },
+      {
+        "id": "ouro-vermelho",
+        "titulo": "Ouro Vermelho",
+        "imagem": "https://i.pinimg.com/564x/i6/j7/k8/i6j7k89012345678901234567890123456.jpg",
+        "descricao": "Tom rosado metálico sofisticado que muda com a luz.",
+        "preco": 62.00,
+        "tempo": "65 min"
+      },
+      {
+        "id": "chrome-espelhado",
+        "titulo": "Chrome Espelhado",
+        "imagem": "https://i.pinimg.com/564x/j7/k8/l9/j7k8l90123456789012345678901234567.jpg",
+        "descricao": "Acabamento espelhado perfeito que reflete como um espelho.",
+        "preco": 70.00,
+        "tempo": "75 min"
+      },
+      {
+        "id": "grafite-metalico",
+        "titulo": "Grafite Metálico",
+        "imagem": "https://i.pinimg.com/564x/k8/l9/m0/k8l9m01234567890123456789012345678.jpg",
+        "descricao": "Tom cinza escuro metálico com efeito grafite industrial.",
+        "preco": 52.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "bronze-romano",
+        "titulo": "Bronze Romano",
+        "imagem": "https://i.pinimg.com/564x/l9/m0/n1/l9m0n12345678901234567890123456789.jpg",
+        "descricao": "Bronze escuro com veios verdes para visual histórico luxuoso.",
+        "preco": 58.00,
+        "tempo": "63 min"
+      },
+      {
+        "id": "prata-oxidada",
+        "titulo": "Prata Oxidada",
+        "imagem": "https://i.pinimg.com/564x/m0/n1/o2/m0n1o23456789012345678901234567890.jpg",
+        "descricao": "Efeito intencionalmente envelhecido para charme vintage.",
+        "preco": 54.00,
+        "tempo": "61 min"
+      },
+      {
+        "id": "ouro-verde",
+        "titulo": "Ouro Verde",
+        "imagem": "https://i.pinimg.com/564x/n1/o2/p3/n1o2p34567890123456789012345678901.jpg",
+        "descricao": "Tom esverdeado metálico exclusivo para visual diferenciado.",
+        "preco": 65.00,
+        "tempo": "68 min"
+      },
+      {
+        "id": "metal-liquido",
+        "titulo": "Metal Líquido",
+        "imagem": "https://i.pinimg.com/564x/o2/p3/q4/o2p3q45678901234567890123456789012.jpg",
+        "descricao": "Efeito de metal derretido com texturas orgânicas e brilhantes.",
+        "preco": 72.00,
+        "tempo": "78 min"
+      },
+      {
+        "id": "iridescente",
+        "titulo": "Iridescente Metálico",
+        "imagem": "https://i.pinimg.com/564x/p3/q4/r5/p3q4r56789012345678901234567890123.jpg",
+        "descricao": "Cores que mudam com o ângulo, criando arco-íris metálico.",
+        "preco": 68.00,
+        "tempo": "72 min"
+      },
+      {
+        "id": "metal-escovado",
+        "titulo": "Metal Escovado",
+        "imagem": "https://i.pinimg.com/564x/q4/r5/s6/q4r5s67890123456789012345678901234.jpg",
+        "descricao": "Acabamento texturizado que imita metal escovado industrial.",
+        "preco": 56.00,
+        "tempo": "62 min"
+      }
+    ]
+  },
+  "gliter": {
+    "id": "gliter",
+    "nome": "Unhas com Glitter",
+    "icone": "✨",
+    "categoria": "Festa",
+    "popularidade": 75,
+    "duracao": "45-65 min",
+    "descricao": "Brilho intenso e cintilante para arrasar em festas e eventos especiais.",
+    "tags": ["festa", "brilhante", "ousado", "noite"],
+    "preco_base": 38.00,
+    "dificuldade": "intermediario",
+    "variacoes": [
+      {
+        "id": "glitter-total",
+        "titulo": "Glitter Total",
+        "imagem": "imagens/gliter.jpg",
+        "descricao": "Cobertura completa de glitter para máximo brilho e impacto visual.",
+        "preco": 42.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "glitter-degrade",
+        "titulo": "Glitter Degradê",
+        "imagem": "https://i.pinimg.com/564x/r9/s0/t1/r9s0t12345678901234567890123456789.jpg",
+        "descricao": "Efeito gradiente concentrando glitter nas pontas para elegância sutil.",
+        "preco": 45.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "glitter-accent",
+        "titulo": "Glitter Accent",
+        "imagem": "https://i.pinimg.com/564x/u2/v3/w4/u2v3w45678901234567890123456789012.jpg",
+        "descricao": "Destaque estratégico em unhas selecionadas para toque especial.",
+        "preco": 40.00,
+        "tempo": "45 min"
+      },
+      {
+        "id": "glitter-holografico",
+        "titulo": "Glitter Holográfico",
+        "imagem": "https://i.pinimg.com/564x/r5/s6/t7/r5s6t78901234567890123456789012345.jpg",
+        "descricao": "Glitter que reflete todas as cores do arco-íris com efeito 3D.",
+        "preco": 58.00,
+        "tempo": "62 min"
+      },
+      {
+        "id": "glitter-chunky",
+        "titulo": "Glitter Chunky",
+        "imagem": "https://i.pinimg.com/564x/s6/t7/u8/s6t7u89012345678901234567890123456.jpg",
+        "descricao": "Partículas grandes de glitter para textura e brilho máximo.",
+        "preco": 52.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "glitter-micro",
+        "titulo": "Glitter Micro",
+        "imagem": "https://i.pinimg.com/564x/t7/u8/v9/t7u8v90123456789012345678901234567.jpg",
+        "descricao": "Partículas ultrafinas para cobertura uniforme e brilho sutil.",
+        "preco": 46.00,
+        "tempo": "52 min"
+      },
+      {
+        "id": "glitter-multicolor",
+        "titulo": "Glitter Multicolor",
+        "imagem": "https://i.pinimg.com/564x/u8/v9/w0/u8v9w01234567890123456789012345678.jpg",
+        "descricao": "Mix de cores vibrantes que criam efeito festivo e alegre.",
+        "preco": 54.00,
+        "tempo": "60 min"
+      },
+      {
+        "id": "glitter-ombre",
+        "titulo": "Glitter Ombré",
+        "imagem": "https://i.pinimg.com/564x/v9/w0/x1/v9w0x12345678901234567890123456789.jpg",
+        "descricao": "Degradê de glitter que vai do intenso ao sutil nas pontas.",
+        "preco": 62.00,
+        "tempo": "68 min"
+      },
+      {
+        "id": "glitter-francesinha",
+        "titulo": "Glitter Francesinha",
+        "imagem": "https://i.pinimg.com/564x/w0/x1/y2/w0x1y23456789012345678901234567890.jpg",
+        "descricao": "Ponta francesa em glitter sobre base nude ou colorida.",
+        "preco": 56.00,
+        "tempo": "64 min"
+      },
+      {
+        "id": "glitter-geometrico",
+        "titulo": "Glitter Geométrico",
+        "imagem": "https://i.pinimg.com/564x/x1/y2/z3/x1y2z34567890123456789012345678901.jpg",
+        "descricao": "Formas geométricas precisas em glitter sobre base lisa.",
+        "preco": 58.00,
+        "tempo": "66 min"
+      },
+      {
+        "id": "glitter-floral",
+        "titulo": "Glitter Floral",
+        "imagem": "https://i.pinimg.com/564x/y2/z3/a4/y2z3a45678901234567890123456789012.jpg",
+        "descricao": "Flores e detalhes naturais criados com glitter colorido.",
+        "preco": 65.00,
+        "tempo": "72 min"
+      },
+      {
+        "id": "glitter-marmorizado",
+        "titulo": "Glitter Marmorizado",
+        "imagem": "https://i.pinimg.com/564x/z3/a4/b5/z3a4b56789012345678901234567890123.jpg",
+        "descricao": "Efeito mármore criado com veios de glitter sobre base sólida.",
+        "preco": 60.00,
+        "tempo": "70 min"
+      },
+      {
+        "id": "glitter-stiletto",
+        "titulo": "Glitter Stiletto",
+        "imagem": "https://i.pinimg.com/564x/a4/b5/c6/a4b5c67890123456789012345678901234.jpg",
+        "descricao": "Formato stiletto totalmente coberto com glitter para drama máximo.",
+        "preco": 68.00,
+        "tempo": "75 min"
+      }
+    ]
+  },
+  "neon": {
+    "id": "neon",
+    "nome": "Unhas Neon",
+    "icone": "🌈",
+    "categoria": "Vibrante",
+    "popularidade": 70,
+    "duracao": "35-50 min",
+    "descricao": "Cores fluorescentes vibrantes que brilham e chamam atenção com energia jovem.",
+    "tags": ["vibrante", "jovem", "verão", "ousado"],
+    "preco_base": 35.00,
+    "dificuldade": "facil",
+    "variacoes": [
+      {
+        "id": "neon-pink",
+        "titulo": "Neon Pink",
+        "imagem": "imagens/neon.jpg",
+        "descricao": "Rosa fluorescente que irradia energia e personalidade vibrante.",
+        "preco": 35.00,
+        "tempo": "35 min"
+      },
+      {
+        "id": "neon-mix",
+        "titulo": "Neon Mix",
+        "imagem": "https://i.pinimg.com/564x/x5/y6/z7/x5y6z78901234567890123456789012345.jpg",
+        "descricao": "Combinação audaciosa de múltiplas cores neon para visual impactante.",
+        "preco": 40.00,
+        "tempo": "45 min"
+      },
+      {
+        "id": "neon-gradient",
+        "titulo": "Neon Gradient",
+        "imagem": "https://i.pinimg.com/564x/a8/b9/c0/a8b9c01234567890123456789012345678.jpg",
+        "descricao": "Degradê fluorescente criando transições suaves entre cores vibrantes.",
+        "preco": 45.00,
+        "tempo": "50 min"
+      },
+       {
+        "id": "neon-amarelo",
+        "titulo": "Neon Amarelo",
+        "imagem": "https://i.pinimg.com/564x/b5/c6/d7/b5c6d78901234567890123456789012345.jpg",
+        "descricao": "Amarelo limão fluorescente que brilha intensamente sob luz negra.",
+        "preco": 38.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "neon-laranja",
+        "titulo": "Neon Laranja",
+        "imagem": "https://i.pinimg.com/564x/c6/d7/e8/c6d7e89012345678901234567890123456.jpg",
+        "descricao": "Laranja elétrico que remete ao pôr do sol tropical vibrante.",
+        "preco": 38.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "neon-verde",
+        "titulo": "Neon Verde",
+        "imagem": "https://i.pinimg.com/564x/d7/e8/f9/d7e8f90123456789012345678901234567.jpg",
+        "descricao": "Verde limão radioativo para visual cyberpunk e futurista.",
+        "preco": 38.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "neon-azul",
+        "titulo": "Neon Azul",
+        "imagem": "https://i.pinimg.com/564x/e8/f9/g0/e8f9g01234567890123456789012345678.jpg",
+        "descricao": "Azul elétrico que lembra luzes de neon urbanas.",
+        "preco": 38.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "neon-roxo",
+        "titulo": "Neon Roxo",
+        "imagem": "https://i.pinimg.com/564x/f9/g0/h1/f9g0h12345678901234567890123456789.jpg",
+        "descricao": "Roxo ultravioleta misterioso e intensamente vibrante.",
+        "preco": 38.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "neon-tie-dye",
+        "titulo": "Neon Tie-Dye",
+        "imagem": "https://i.pinimg.com/564x/g0/h1/i2/g0h1i23456789012345678901234567890.jpg",
+        "descricao": "Efeito tie-dye psicodélico com múltiplas cores neon.",
+        "preco": 52.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "neon-francesinha",
+        "titulo": "Neon Francesinha",
+        "imagem": "https://i.pinimg.com/564x/h1/i2/j3/h1i2j34567890123456789012345678901.jpg",
+        "descricao": "Ponta francesa em cor neon sobre base preta para contraste máximo.",
+        "preco": 48.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "neon-matte",
+        "titulo": "Neon Matte",
+        "imagem": "https://i.pinimg.com/564x/i2/j3/k4/i2j3k45678901234567890123456789012.jpg",
+        "descricao": "Cores neon com acabamento fosco para modernidade surpreendente.",
+        "preco": 42.00,
+        "tempo": "48 min"
+      },
+      {
+        "id": "neon-glitter",
+        "titulo": "Neon com Glitter",
+        "imagem": "https://i.pinimg.com/564x/j3/k4/l5/j3k4l56789012345678901234567890123.jpg",
+        "descricao": "Base neon com cobertura de glitter transparente para brilho extra.",
+        "preco": 46.00,
+        "tempo": "52 min"
+      },
+      {
+        "id": "neon-abstract",
+        "titulo": "Neon Abstract",
+        "imagem": "https://i.pinimg.com/564x/k4/l5/m6/k4l5m67890123456789012345678901234.jpg",
+        "descricao": "Formas abstratas e linhas em cores neon sobre fundo escuro.",
+        "preco": 55.00,
+        "tempo": "65 min"
+      }
+    ]
+  },
+  "transparente": {
+    "id": "transparente",
+    "nome": "Unhas Transparentes",
+    "icone": "💎",
+    "categoria": "Minimalista",
+    "popularidade": 65,
+    "duracao": "25-40 min",
+    "descricao": "Transparência cristalina com efeito glass para um visual minimalista e moderno.",
+    "tags": ["minimalista", "moderno", "sutil", "cristalino"],
+    "preco_base": 30.00,
+    "dificuldade": "facil",
+    "variacoes": [
+      {
+        "id": "glass-nails",
+        "titulo": "Glass Nails",
+        "imagem": "imagens/transparente.jpg",
+        "descricao": "Efeito vidro cristalino para um acabamento minimalista e sofisticado.",
+        "preco": 32.00,
+        "tempo": "30 min"
+      },
+      {
+        "id": "transparente-detalhes",
+        "titulo": "Transparente com Detalhes",
+        "imagem": "https://i.pinimg.com/564x/d1/e2/f3/d1e2f34567890123456789012345678901.jpg",
+        "descricao": "Base transparente valorizada com pequenos detalhes decorativos precisos.",
+        "preco": 38.00,
+        "tempo": "40 min"
+      },
+      {
+        "id": "transparente-colorido",
+        "titulo": "Transparente Colorido",
+        "imagem": "https://i.pinimg.com/564x/g4/h5/i6/g4h5i67890123456789012345678901234.jpg",
+        "descricao": "Sutil toque de cor sobre base cristalina para elegância discreta.",
+        "preco": 35.00,
+        "tempo": "35 min"
+      },
+      {
+        "id": "cristal-gelo",
+        "titulo": "Cristal Gelo",
+        "imagem": "https://i.pinimg.com/564x/l5/m6/n7/l5m6n78901234567890123456789012345.jpg",
+        "descricao": "Efeito gelo congelado com partículas brancas para textura gélida.",
+        "preco": 40.00,
+        "tempo": "45 min"
+      },
+      {
+        "id": "jelly-colorido",
+        "titulo": "Jelly Colorido",
+        "imagem": "https://i.pinimg.com/564x/m6/n7/o8/m6n7o89012345678901234567890123456.jpg",
+        "descricao": "Cores translúcidas em tons pastel com efeito gelatinoso.",
+        "preco": 38.00,
+        "tempo": "42 min"
+      },
+      {
+        "id": "transparente-fumê",
+        "titulo": "Transparente Fumê",
+        "imagem": "https://i.pinimg.com/564x/n7/o8/p9/n7o8p90123456789012345678901234567.jpg",
+        "descricao": "Efeito fumê suave que cria profundidade misteriosa.",
+        "preco": 42.00,
+        "tempo": "46 min"
+      },
+      {
+        "id": "vidro-queimado",
+        "titulo": "Vidro Queimado",
+        "imagem": "https://i.pinimg.com/564x/o8/p9/q0/o8p9q01234567890123456789012345678.jpg",
+        "descricao": "Efeito de vidro temperado com veios iridescentes.",
+        "preco": 48.00,
+        "tempo": "52 min"
+      },
+      {
+        "id": "transparente-perolado",
+        "titulo": "Transparente Perolado",
+        "imagem": "https://i.pinimg.com/564x/p9/q0/r1/p9q0r12345678901234567890123456789.jpg",
+        "descricao": "Base transparente com partículas pérola para brilho sutil.",
+        "preco": 44.00,
+        "tempo": "48 min"
+      },
+      {
+        "id": "jelly-francesinha",
+        "titulo": "Jelly Francesinha",
+        "imagem": "https://i.pinimg.com/564x/q0/r1/s2/q0r1s23456789012345678901234567890.jpg",
+        "descricao": "Francesinha com base jelly transparente e ponta branca opaca.",
+        "preco": 46.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "transparente-floral",
+        "titulo": "Transparente Floral",
+        "imagem": "https://i.pinimg.com/564x/r1/s2/t3/r1s2t34567890123456789012345678901.jpg",
+        "descricao": "Flores delicadas sob camada transparente para efeito encapsulado.",
+        "preco": 58.00,
+        "tempo": "65 min"
+      },
+      {
+        "id": "cristal-ouro",
+        "titulo": "Cristal com Ouro",
+        "imagem": "https://i.pinimg.com/564x/s2/t3/u4/s2t3u45678901234567890123456789012.jpg",
+        "descricao": "Veios de ouro líquido sob camada cristalina transparente.",
+        "preco": 52.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "transparente-geometrico",
+        "titulo": "Transparente Geométrico",
+        "imagem": "https://i.pinimg.com/564x/t3/u4/v5/t3u4v56789012345678901234567890123.jpg",
+        "descricao": "Formas geométricas vazadas criando padrões transparentes.",
+        "preco": 50.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "jelly-ombre",
+        "titulo": "Jelly Ombré",
+        "imagem": "https://i.pinimg.com/564x/u4/v5/w6/u4v5w67890123456789012345678901234.jpg",
+        "descricao": "Degradê de cores jelly que vão do transparente ao colorido.",
+        "preco": 54.00,
+        "tempo": "60 min"
+      }
+    ]
+  },
+  "animais": {
+    "id": "animais",
+    "nome": "Unhas com Print Animal",
+    "icone": "🐆",
+    "categoria": "Temático",
+    "popularidade": 60,
+    "duracao": "50-70 min",
+    "descricao": "Estampas inspiradas na natureza selvagem com padrões marcantes e personalidade forte.",
+    "tags": ["selvagem", "ousado", "estampado", "personalidade"],
+    "preco_base": 45.00,
+    "dificuldade": "avancado",
+    "variacoes": [
+      {
+        "id": "leopardo",
+        "titulo": "Print Leopardo",
+        "imagem": "imagens/animais.jpg",
+        "descricao": "Clássico padrão de leopardo com manchas douradas para visual selvagem.",
+        "preco": 48.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "zebra",
+        "titulo": "Print Zebra",
+        "imagem": "https://i.pinimg.com/564x/j7/k8/l9/j7k8l90123456789012345678901234567.jpg",
+        "descricao": "Listras contrastantes em preto e branco para visual marcante e moderno.",
+        "preco": 45.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "cobra",
+        "titulo": "Print Cobra",
+        "imagem": "https://i.pinimg.com/564x/m0/n1/o2/m0n1o23456789012345678901234567890.jpg",
+        "descricao": "Textura escamosa sofisticada com brilho sutil para visual luxuoso.",
+        "preco": 52.00,
+        "tempo": "65 min"
+      },
+      {
+        "id": "tigre-laranja",
+        "titulo": "Print Tigre",
+        "imagem": "https://i.pinimg.com/564x/v5/w6/x7/v5w6x78901234567890123456789012345.jpg",
+        "descricao": "Listras de tigre laranja e pretas sobre base nude ou amarela.",
+        "preco": 55.00,
+        "tempo": "65 min"
+      },
+      {
+        "id": "girafa-dourada",
+        "titulo": "Print Girafa",
+        "imagem": "https://i.pinimg.com/564x/w6/x7/y8/w6x7y89012345678901234567890123456.jpg",
+        "descricao": "Manchas irregulares douradas sobre base marrom claro.",
+        "preco": 58.00,
+        "tempo": "68 min"
+      },
+      {
+        "id": "onca-pintada",
+        "titulo": "Print Onça Pintada",
+        "imagem": "https://i.pinimg.com/564x/x7/y8/z9/x7y8z90123456789012345678901234567.jpg",
+        "descricao": "Rosetas pretas sobre base dourada para visual selvagem elegante.",
+        "preco": 60.00,
+        "tempo": "70 min"
+      },
+      {
+        "id": "pele-de-cobra",
+        "titulo": "Pele de Cobra",
+        "imagem": "https://i.pinimg.com/564x/y8/z9/a0/y8z9a01234567890123456789012345678.jpg",
+        "descricao": "Padrão escamoso em verde, marrom ou cores metálicas.",
+        "preco": 62.00,
+        "tempo": "72 min"
+      },
+      {
+        "id": "pavao-iridescente",
+        "titulo": "Pavão Iridescente",
+        "imagem": "https://i.pinimg.com/564x/z9/a0/b1/z9a0b12345678901234567890123456789.jpg",
+        "descricao": "Olhos de pavão em azul, verde e roxo com efeito cintilante.",
+        "preco": 75.00,
+        "tempo": "85 min"
+      },
+      {
+        "id": "arara-colorida",
+        "titulo": "Arara Colorida",
+        "imagem": "https://i.pinimg.com/564x/a0/b1/c2/a0b1c23456789012345678901234567890.jpg",
+        "descricao": "Penas multicoloridas inspiradas nas araras tropicais.",
+        "preco": 68.00,
+        "tempo": "78 min"
+      },
+      {
+        "id": "foca-cinza",
+        "titulo": "Print Foca",
+        "imagem": "https://i.pinimg.com/564x/b1/c2/d3/b1c2d34567890123456789012345678901.jpg",
+        "descricao": "Manchas cinzas sutis sobre base branca para visual nórdico.",
+        "preco": 52.00,
+        "tempo": "62 min"
+      },
+      {
+        "id": "tartaruga-marinha",
+        "titulo": "Tartaruga Marinha",
+        "imagem": "https://i.pinimg.com/564x/c2/d3/e4/c2d3e45678901234567890123456789012.jpg",
+        "descricao": "Padrão hexagonal em verde e marrom sobre base azul oceano.",
+        "preco": 65.00,
+        "tempo": "75 min"
+      },
+      {
+        "id": "coala-fofo",
+        "titulo": "Estampa Coala",
+        "imagem": "https://i.pinimg.com/564x/d3/e4/f5/d3e4f56789012345678901234567890123.jpg",
+        "descricao": "Orelhas e nariz de coala fofinho sobre base cinza clara.",
+        "preco": 58.00,
+        "tempo": "68 min"
+      },
+      {
+        "id": "borboleta-azul",
+        "titulo": "Asas de Borboleta",
+        "imagem": "https://i.pinimg.com/564x/e4/f5/g6/e4f5g67890123456789012345678901234.jpg",
+        "descricao": "Padrão de asas de borboleta azul morfo com detalhes pretos.",
+        "preco": 72.00,
+        "tempo": "82 min"
+      }
+    ]
+  },
+  "frutas": {
+    "id": "frutas",
+    "nome": "Unhas com Frutas",
+    "icone": "🍓",
+    "categoria": "Divertido",
+    "popularidade": 55,
+    "duracao": "45-65 min",
+    "descricao": "Designs alegres e coloridos inspirados em frutas frescas para um visual divertido e jovem.",
+    "tags": ["divertido", "colorido", "verão", "jovem"],
+    "preco_base": 42.00,
+    "dificuldade": "intermediario",
+    "variacoes": [
+      {
+        "id": "morangos",
+        "titulo": "Morangos Doces",
+        "imagem": "imagens/frutas.jpg",
+        "descricao": "Morangos deliciosos em vermelho vibrante com detalhes verdes frescos.",
+        "preco": 44.00,
+        "tempo": "50 min"
+      },
+      {
+        "id": "abacaxi",
+        "titulo": "Abacaxi Tropical",
+        "imagem": "https://i.pinimg.com/564x/p3/q4/r5/p3q4r56789012345678901234567890123.jpg",
+        "descricao": "Design tropical com texturas douradas para clima de verão eterno.",
+        "preco": 46.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "cerejas",
+        "titulo": "Cerejas Vintage",
+        "imagem": "https://i.pinimg.com/564x/s6/t7/u8/s6t7u89012345678901234567890123456.jpg",
+        "descricao": "Cerejas vermelhas clássicas com toque retrô para visual charmoso.",
+        "preco": 42.00,
+        "tempo": "45 min"
+      },
+       {
+        "id": "limao-siciliano",
+        "titulo": "Limão Siciliano",
+        "imagem": "https://i.pinimg.com/564x/f5/g6/h7/f5g6h78901234567890123456789012345.jpg",
+        "descricao": "Fatias de limão amarelo vibrante sobre base verde limão.",
+        "preco": 48.00,
+        "tempo": "55 min"
+      },
+      {
+        "id": "laranja-suculenta",
+        "titulo": "Laranja Suculenta",
+        "imagem": "https://i.pinimg.com/564x/g6/h7/i8/g6h7i89012345678901234567890123456.jpg",
+        "descricao": "Gomos de laranja suculenta com detalhes verdes frescos.",
+        "preco": 46.00,
+        "tempo": "53 min"
+      },
+      {
+        "id": "uva-roxa",
+        "titulo": "Uvas Roxas",
+        "imagem": "https://i.pinimg.com/564x/h7/i8/j9/h7i8j90123456789012345678901234567.jpg",
+        "descricao": "Cachos de uva roxa com efeito de orvalho e detalhes verdes.",
+        "preco": 52.00,
+        "tempo": "60 min"
+      },
+      {
+        "id": "kiwi-fresco",
+        "titulo": "Kiwi Fresco",
+        "imagem": "https://i.pinimg.com/564x/i8/j9/k0/i8j9k01234567890123456789012345678.jpg",
+        "descricao": "Corte transversal de kiwi com sementes pretas detalhadas.",
+        "preco": 50.00,
+        "tempo": "58 min"
+      },
+      {
+        "id": "melancia-summer",
+        "titulo": "Melancia Summer",
+        "imagem": "https://i.pinimg.com/564x/j9/k0/l1/j9k0l12345678901234567890123456789.jpg",
+        "descricao": "Fatias de melancia com sementes pretas sobre base verde.",
+        "preco": 44.00,
+        "tempo": "52 min"
+      },
+      {
+        "id": "abacaxi-tropical",
+        "titulo": "Abacaxi Tropical",
+        "imagem": "https://i.pinimg.com/564x/k0/l1/m2/k0l1m23456789012345678901234567890.jpg",
+        "descricao": "Design completo de abacaxi com coroa e textura escamosa.",
+        "preco": 54.00,
+        "tempo": "62 min"
+      },
+      {
+        "id": "coco-havaiano",
+        "titulo": "Coco Havaiano",
+        "imagem": "https://i.pinimg.com/564x/l1/m2/n3/l1m2n34567890123456789012345678901.jpg",
+        "descricao": "Metades de coco com água cristalina e detalhes marrons.",
+        "preco": 48.00,
+        "tempo": "56 min"
+      },
+      {
+        "id": "romã-jóias",
+        "titulo": "Romã Jóias",
+        "imagem": "https://i.pinimg.com/564x/m2/n3/o4/m2n3o45678901234567890123456789012.jpg",
+        "descricao": "Sementes de romã como rubis sobre base vermelha profunda.",
+        "preco": 56.00,
+        "tempo": "64 min"
+      },
+      {
+        "id": "pessego-dourado",
+        "titulo": "Pêssego Dourado",
+        "imagem": "https://i.pinimg.com/564x/n3/o4/p5/n3o4p56789012345678901234567890123.jpg",
+        "descricao": "Pêssego suculento com detalhes dourados e folhas verdes.",
+        "preco": 52.00,
+        "tempo": "60 min"
+      },
+      {
+        "id": "frutas-vermelhas",
+        "titulo": "Frutas Vermelhas",
+        "imagem": "https://i.pinimg.com/564x/o4/p5/q6/o4p5q67890123456789012345678901234.jpg",
+        "descricao": "Mix de morango, framboesa e amora sobre base creme.",
+        "preco": 58.00,
+        "tempo": "66 min"
+      }
+    ]
+  }
+}

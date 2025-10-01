@@ -1,195 +1,132 @@
-// Configuração dos temas disponíveis
-const temasConfig = {
-    'francesinha': {
-        nome: 'Unhas Francesinha',
-        icon: '💅',
-        variacoes: [
-            {
-                titulo: 'Francesinha Clássica',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-francesinha-1-730x730.jpg',
-                descricao: 'O clássico da elegância francesa com ponta branca e base nude.'
-            },
-            {
-                titulo: 'Francesinha Colorida',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-francesinha-15-730x730.jpg',
-                descricao: 'Versão moderna com pontas coloridas para um look mais jovem.'
-            },
-            {
-                titulo: 'Francesinha Invertida',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-francesinha-8-730x730.jpg',
-                descricao: 'Inovação na base da unha criando um visual único e sofisticado.'
-            }
-        ]
-    },
-    'nude': {
-        nome: 'Unhas Nude',
-        icon: '🤎',
-        variacoes: [
-            {
-                titulo: 'Nude Clássico',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-nude-21-730x730.jpg',
-                descricao: 'Tons naturais que combinam com qualquer ocasião.'
-            },
-            {
-                titulo: 'Nude Rosé',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-nude-1-730x730.jpg',
-                descricao: 'Delicado tom rosado para um visual romântico.'
-            },
-            {
-                titulo: 'Nude Francês',
-                imagem: 'https://www.oibonita.com.br/wp-content/uploads/2023/03/unhas-nude-4-730x811.jpg',
-                descricao: 'Combinação perfeita entre nude e francesinha.'
-            }
-        ]
-    },
-    'florais': {
-        nome: 'Unhas Florais',
-        icon: '🌸',
-        variacoes: [
-            {
-                titulo: 'Flores Delicadas',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-florais-1-730x730.jpg',
-                descricao: 'Pequenas flores para um look feminino e romântico.'
-            },
-            {
-                titulo: 'Flores Tropicais',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-florais-10-730x730.jpg',
-                descricao: 'Cores vibrantes inspiradas na natureza tropical.'
-            },
-            {
-                titulo: 'Aquarela Floral',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-florais-5-730x730.jpg',
-                descricao: 'Técnica de aquarela criando flores suaves e artísticas.'
-            }
-        ]
-    },
-    'metalica': {
-        nome: 'Unhas Metálicas',
-        icon: '✨',
-        variacoes: [
-            {
-                titulo: 'Dourado Luxo',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-metalicas-1-730x730.jpg',
-                descricao: 'Brilho dourado para ocasiões especiais.'
-            },
-            {
-                titulo: 'Prata Moderna',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-metalicas-8-730x730.jpg',
-                descricao: 'Visual futurista com acabamento prateado.'
-            },
-            {
-                titulo: 'Rose Gold',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-metalicas-15-730x730.jpg',
-                descricao: 'Tendência rose gold para um look sofisticado.'
-            }
-        ]
-    },
-    'gliter': {
-        nome: 'Unhas com Glitter',
-        icon: '✨',
-        variacoes: [
-            {
-                titulo: 'Glitter Total',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-glitter-1-730x730.jpg',
-                descricao: 'Brilho completo para arrasar na festa.'
-            },
-            {
-                titulo: 'Glitter Degradê',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-glitter-10-730x730.jpg',
-                descricao: 'Efeito gradiente com glitter nas pontas.'
-            },
-            {
-                titulo: 'Glitter Accent',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-glitter-5-730x730.jpg',
-                descricao: 'Destaque em uma unha para um toque especial.'
-            }
-        ]
-    },
-    'neon': {
-        nome: 'Unhas Neon',
-        icon: '🌈',
-        variacoes: [
-            {
-                titulo: 'Neon Pink',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-neon-1-730x730.jpg',
-                descricao: 'Rosa vibrante que chama atenção.'
-            },
-            {
-                titulo: 'Neon Mix',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-neon-8-730x730.jpg',
-                descricao: 'Combinação de cores neon para um visual ousado.'
-            },
-            {
-                titulo: 'Neon Gradient',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-neon-15-730x730.jpg',
-                descricao: 'Degradê neon para um efeito único.'
-            }
-        ]
-    },
-    'transparente': {
-        nome: 'Unhas Transparentes',
-        icon: '💎',
-        variacoes: [
-            {
-                titulo: 'Glass Nails',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-transparentes-1-730x730.jpg',
-                descricao: 'Efeito vidro para um look minimalista.'
-            },
-            {
-                titulo: 'Transparente com Detalhes',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-transparentes-10-730x730.jpg',
-                descricao: 'Base transparente com pequenos detalhes decorativos.'
-            },
-            {
-                titulo: 'Transparente Colorido',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-transparentes-5-730x730.jpg',
-                descricao: 'Leve toque de cor sobre base transparente.'
-            }
-        ]
-    },
-    'animais': {
-        nome: 'Unhas com Print Animal',
-        icon: '🐆',
-        variacoes: [
-            {
-                titulo: 'Oncinha Clássica',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-animais-1-730x730.jpg',
-                descricao: 'Print de onça para um visual selvagem.'
-            },
-            {
-                titulo: 'Zebra Moderna',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-animais-8-730x730.jpg',
-                descricao: 'Listras de zebra em versão estilizada.'
-            },
-            {
-                titulo: 'Snake Print',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-animais-15-730x730.jpg',
-                descricao: 'Textura de cobra para um look ousado.'
-            }
-        ]
-    },
-    'frutas': {
-        nome: 'Unhas com Frutas',
-        icon: '🍓',
-        variacoes: [
-            {
-                titulo: 'Morangos Fofos',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-frutas-1-730x730.jpg',
-                descricao: 'Desenhos de morangos para um visual divertido.'
-            },
-            {
-                titulo: 'Frutas Tropicais',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-frutas-10-730x730.jpg',
-                descricao: 'Abacaxi, melancia e outras frutas do verão.'
-            },
-            {
-                titulo: 'Frutas Minimalistas',
-                imagem: 'https://www.dicasdemulher.com.br/wp-content/uploads/2019/01/unhas-frutas-5-730x730.jpg',
-                descricao: 'Representações simples e elegantes de frutas.'
-            }
-        ]
+// Configuração dos temas - carregado dinamicamente do JSON
+let temasConfig = {};
+
+// Função para tocar áudio de favoritar
+function playFavoriteSound() {
+    console.log('playFavoriteSound() chamada');
+    try {
+        // Primeiro tenta o arquivo MP3 real
+        const audio = new Audio('../../audios/pop.mp3');
+        audio.volume = 0.5;
+        
+        // Se falhar ao carregar, usa som sintético
+        audio.onerror = function() {
+            console.log('Arquivo pop.mp3 não encontrado, usando som sintético...');
+            playFallbackSound();
+        };
+        
+        // Tenta tocar o áudio
+        audio.play().then(() => {
+            console.log('Áudio MP3 tocado com sucesso!');
+        }).catch(err => {
+            console.log('Erro ao tocar áudio MP3:', err);
+            playFallbackSound();
+        });
+    } catch (err) {
+        console.log('Erro ao carregar áudio:', err);
+        playFallbackSound();
     }
-};
+}
+
+// Função de fallback que cria um som sintético
+function playFallbackSound() {
+    try {
+        console.log('Tentando criar som sintético...');
+        
+        // Cria um contexto de áudio
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Resume o contexto se estiver suspenso (necessário em alguns navegadores)
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+        
+        // Cria um oscilador para gerar o som
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        // Conecta os nós
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        // Configura o som (frequência e volume) - som mais simples
+        oscillator.frequency.setValueAtTime(523, audioContext.currentTime); // Nota C5
+        oscillator.type = 'sine'; // Onda senoidal (mais suave)
+        
+        // Envelope de volume (fade in/out)
+        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.2, audioContext.currentTime + 0.05);
+        gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.2);
+        
+        // Toca o som
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.2);
+        
+        console.log('Som sintético tocado com sucesso!');
+    } catch (err) {
+        console.log('Erro ao tocar som sintético:', err);
+        
+        // Fallback final: beep do sistema (se disponível)
+        try {
+            if (window.speechSynthesis) {
+                // Usa o sintetizador de voz para fazer um som curto
+                const utterance = new SpeechSynthesisUtterance('');
+                utterance.volume = 0.1;
+                utterance.rate = 10;
+                utterance.pitch = 2;
+                window.speechSynthesis.speak(utterance);
+            }
+        } catch (e) {
+            console.log('Nenhum método de áudio disponível');
+        }
+    }
+}
+
+// Função para carregar temas do arquivo JSON
+async function loadTemasFromJSON() {
+    try {
+        console.log('Tentando carregar temas do JSON...');
+        const response = await fetch('../../data/temas.json');
+        console.log('Resposta do fetch:', response.status, response.statusText);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Dados carregados do JSON:', data);
+        
+        // Converte o formato JSON para o formato esperado pelo código existente
+        temasConfig = {};
+        for (const [key, tema] of Object.entries(data)) {
+            temasConfig[key] = {
+                nome: tema.nome,
+                icon: tema.icone,
+                categoria: tema.categoria,
+                popularidade: tema.popularidade,
+                duracao: tema.duracao,
+                descricao: tema.descricao,
+                tags: tema.tags,
+                preco_base: tema.preco_base,
+                dificuldade: tema.dificuldade,
+                variacoes: tema.variacoes.map(variacao => ({
+                    titulo: variacao.titulo,
+                    imagem: variacao.imagem,
+                    descricao: variacao.descricao,
+                    preco: variacao.preco,
+                    tempo: variacao.tempo
+                }))
+            };
+        }
+        
+        console.log('Temas carregados com sucesso:', Object.keys(temasConfig));
+        return true;
+    } catch (error) {
+        console.error('Erro ao carregar temas do JSON:', error);
+        
+        console.log('Usando dados de fallback. Temas disponíveis:', Object.keys(temasConfig));
+        return false;
+    }
+}
 
 // Elementos da página
 const gallery = document.getElementById('gallery');
@@ -207,28 +144,49 @@ let currentKey = null;
 let currentTheme = null;
 
 // Inicialização quando a página carrega
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Carrega os temas do JSON primeiro
+    await loadTemasFromJSON();
+    
     // Aguarda o skeleton loader estar disponível
     setTimeout(() => {
         initializePage();
     }, 100);
 });
 
-function initializePage() {
+async function initializePage() {
     // Detecta o tema pela URL ou usa um padrão
     const urlParams = new URLSearchParams(window.location.search);
     const themeParam = urlParams.get('tema') || 'nude'; // padrão: nude
+    const variacaoParam = urlParams.get('variacao'); // variação específica para abrir
+    
+    console.log('Tema detectado da URL:', themeParam);
+    console.log('Variação específica:', variacaoParam);
+    console.log('Temas disponíveis:', Object.keys(temasConfig));
     
     currentTheme = temasConfig[themeParam];
     
     if (!currentTheme) {
         console.error('Tema não encontrado:', themeParam);
-        currentTheme = temasConfig.nude; // fallback
+        currentTheme = temasConfig.nude || Object.values(temasConfig)[0]; // fallback
     }
+    
+    console.log('Tema atual:', currentTheme);
     
     // Simula carregamento
     setTimeout(() => {
         loadThemeContent();
+        
+        // Se há uma variação específica, abre ela automaticamente
+        if (variacaoParam) {
+            const imageUrl = decodeURIComponent(variacaoParam);
+            const variacao = currentTheme.variacoes.find(v => v.imagem === imageUrl);
+            if (variacao) {
+                setTimeout(() => {
+                    openDetail(variacao);
+                }, 500); // Pequeno delay para garantir que a galeria foi carregada
+            }
+        }
     }, 1500);
 }
 
@@ -271,10 +229,24 @@ function createThemeCard(variacao, index) {
     card.dataset.img = variacao.imagem;
     card.dataset.desc = variacao.descricao;
     
+    // Constrói as informações extras (preço e tempo)
+    let extraInfo = '';
+    if (variacao.preco || variacao.tempo) {
+        extraInfo = '<div class="card-info">';
+        if (variacao.preco) {
+            extraInfo += `<span class="price">R$ ${variacao.preco.toFixed(2)}</span>`;
+        }
+        if (variacao.tempo) {
+            extraInfo += `<span class="time"><i class="fas fa-clock"></i> ${variacao.tempo}</span>`;
+        }
+        extraInfo += '</div>';
+    }
+    
     card.innerHTML = `
         <img src="${variacao.imagem}" alt="${variacao.titulo}" class="theme-image" 
-             onerror="this.src='imagens/user.png'">
+             onerror="this.src='imagens/imagem.png'">
         <div class="theme-title">${variacao.titulo}</div>
+        ${extraInfo}
     `;
     
     // Adiciona evento de clique
@@ -291,6 +263,37 @@ function openDetail(variacao) {
     overlayTitle.textContent = variacao.titulo;
     desc.textContent = variacao.descricao;
 
+    // Adiciona informações extras de preço e tempo
+    let existingInfo = detail.querySelector('.detail-extra-info');
+    if (existingInfo) {
+        existingInfo.remove();
+    }
+    
+    if (variacao.preco || variacao.tempo) {
+        const extraInfo = document.createElement('div');
+        extraInfo.className = 'detail-extra-info';
+        extraInfo.style.cssText = `
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(255, 192, 203, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        `;
+        
+        let infoContent = '';
+        if (variacao.preco) {
+            infoContent += `<span style="color: #e91e63; font-weight: 600;"><i class="fas fa-tag"></i> Preço médio:R$ ${variacao.preco.toFixed(2)}</span>`;
+        }
+        if (variacao.tempo) {
+            infoContent += `<span style="color: #666;"><i class="fas fa-clock"></i> Tempo médio: ${variacao.tempo}</span>`;
+        }
+        
+        extraInfo.innerHTML = infoContent;
+        desc.parentNode.insertBefore(extraInfo, desc.nextSibling);
+    }
+
     currentKey = encodeURIComponent(variacao.imagem);
 
     gallery.style.display = 'none';
@@ -302,14 +305,17 @@ function openDetail(variacao) {
 }
 
 // Event listeners para navegação
-if (detail) {
-    const backBtn = document.getElementById('backBtn');
-    if (backBtn) {
-        backBtn.addEventListener('click', () => {
+// Botão de voltar do card de detalhes para a galeria
+const backToGalleryBtn = document.getElementById('backToGallery');
+if (backToGalleryBtn) {
+    backToGalleryBtn.addEventListener('click', () => {
+        const detail = document.getElementById('detail');
+        const gallery = document.getElementById('gallery');
+        if (detail && gallery) {
             detail.classList.remove('active');
             gallery.style.display = 'grid';
-        });
-    }
+        }
+    });
 }
 
 // Funções de favoritos
@@ -333,9 +339,14 @@ function updateSaveUI() {
 // Evento do botão salvar
 if (saveBtn) {
     saveBtn.addEventListener('click', () => {
+        console.log('Botão de salvar clicado!');
         if (!currentKey) return;
         const willSave = !isSaved(currentKey);
         setSaved(currentKey, willSave);
         updateSaveUI();
+        
+        // Toca o áudio de favoritar
+        console.log('Tocando áudio de favoritar...');
+        playFavoriteSound();
     });
 }
